@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_9">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_9" data-name="SS – 9" clip-path="url(#clip-SS_9)">
+    <g id="Group_117" data-name="Group 117" transform="translate(-1251 -827)">
+      <circle id="Ellipse_3" data-name="Ellipse 3" cx="80" cy="80" r="80" transform="translate(1396 983)" fill="#8759f3"/>
+      <path id="Icon_awesome-video" data-name="Icon awesome-video" d="M48.491,4.5H6.894A6.894,6.894,0,0,0,0,11.394v41.6a6.894,6.894,0,0,0,6.894,6.894h41.6a6.894,6.894,0,0,0,6.894-6.894v-41.6A6.894,6.894,0,0,0,48.491,4.5ZM75.809,9.938,60,20.842v22.7l15.808,10.89a4.625,4.625,0,0,0,7.269-3.721V13.659A4.627,4.627,0,0,0,75.809,9.938Z" transform="translate(1440.047 1031.724)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

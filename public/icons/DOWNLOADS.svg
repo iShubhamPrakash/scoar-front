@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-DOWNLOADS">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="DOWNLOADS" clip-path="url(#clip-DOWNLOADS)">
+    <path id="Icon_open-data-transfer-download" data-name="Icon open-data-transfer-download" d="M81.75,0V81.75H27.25L109,163.5l81.75-81.75h-54.5V0ZM0,190.75V218H218V190.75Z" transform="translate(119 127)" fill="#8759f3"/>
+  </g>
+</svg>

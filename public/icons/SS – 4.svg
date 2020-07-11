@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_4">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_4" data-name="SS – 4" clip-path="url(#clip-SS_4)">
+    <path id="Icon_material-fullscreen" data-name="Icon material-fullscreen" d="M27.335,96.758H7.5v49.588H57.088V126.511H27.335ZM7.5,57.088H27.335V27.335H57.088V7.5H7.5Zm119.011,69.423H96.758v19.835h49.588V96.758H126.511ZM96.758,7.5V27.335h29.753V57.088h19.835V7.5Z" transform="translate(164.5 138.5)" fill="#8759f3"/>
+  </g>
+</svg>

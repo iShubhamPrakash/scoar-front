@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_11">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_11" data-name="SS – 11" clip-path="url(#clip-SS_11)">
+    <g id="Group_119" data-name="Group 119" transform="translate(-1373 -826)">
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="78.5" cy="78.5" r="78.5" transform="translate(1536 983)" fill="#8759f3"/>
+      <path id="Icon_material-sms" data-name="Icon material-sms" d="M63.8,3H9.756A6.728,6.728,0,0,0,3.034,9.719L3,70.189,16.511,56.751H63.8a6.757,6.757,0,0,0,6.756-6.719V9.719A6.757,6.757,0,0,0,63.8,3ZM26.645,33.235H19.889V26.516h6.756Zm13.511,0H33.4V26.516h6.756Zm13.511,0H46.912V26.516h6.756Z" transform="translate(1575.947 1026.067)" fill="#fff7f7"/>
+    </g>
+  </g>
+</svg>

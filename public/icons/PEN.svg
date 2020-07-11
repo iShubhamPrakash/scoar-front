@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-PEN">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="PEN" clip-path="url(#clip-PEN)">
+    <g id="Group_132" data-name="Group 132" transform="translate(94 -257)">
+      <path id="Icon_open-pencil" data-name="Icon open-pencil" d="M150.09,5.622C129.113.13,106.353,28.993,106.353,28.993l53.176,53.176,12.133-12.322c7.683-7.8,15.844-19.842,10.451-35.9a61.931,61.931,0,0,0-8.037-16.075C170.958,13.077,163.18,9.048,150.09,5.622ZM106.353,28.993,0,135.346v53.176H53.176L159.529,82.169Z" transform="translate(59 403)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="3"/>
+      <g id="Polygon_1" data-name="Polygon 1" transform="translate(261.807 568.042) rotate(90)">
+        <path d="M 32.26921463012695 19.78306198120117 L 3.202563524246216 19.78306198120117 L 17.73588943481445 2.343078374862671 L 32.26921463012695 19.78306198120117 Z" stroke="none"/>
+        <path d="M 17.73588943481445 4.68614387512207 L 6.405118942260742 18.28306198120117 L 29.06665992736816 18.28306198120117 L 17.73588943481445 4.68614387512207 M 17.73588943481445 3.814697265625e-06 L 35.47177886962891 21.28306198120117 L 0 21.28306198120117 L 17.73588943481445 3.814697265625e-06 Z" stroke="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

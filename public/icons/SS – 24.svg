@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_24">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_24" data-name="SS – 24" clip-path="url(#clip-SS_24)">
+    <path id="Icon_material-delete-forever" data-name="Icon material-delete-forever" d="M12.919,142.537a17.556,17.556,0,0,0,17.5,17.5h70.019a17.556,17.556,0,0,0,17.5-17.5V37.509H12.919ZM34.45,80.221,46.791,67.88,65.433,86.435,83.988,67.88,96.329,80.221,77.774,98.776l18.555,18.555L83.988,129.672,65.433,111.117,46.878,129.672,34.537,117.331,53.092,98.776,34.45,80.221ZM96.066,11.252,87.314,2.5H43.552L34.8,11.252H4.167v17.5H126.7v-17.5Z" transform="translate(175.125 153.932)" fill="none" stroke="#000" stroke-width="1.1"/>
+  </g>
+</svg>

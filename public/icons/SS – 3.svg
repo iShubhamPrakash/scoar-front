@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_3">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_3" data-name="SS – 3" clip-path="url(#clip-SS_3)">
+    <g id="Icon_feather-eye" data-name="Icon feather-eye" transform="translate(126.328 152.914)">
+      <path id="Path_10" data-name="Path 10" d="M1.5,82.99S39.995,6,107.361,6,213.222,82.99,213.222,82.99s-38.495,76.99-105.861,76.99S1.5,82.99,1.5,82.99Z" transform="translate(0)" fill="none" stroke="#8759f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_11" data-name="Path 11" d="M71.242,42.371A28.871,28.871,0,1,1,42.371,13.5,28.871,28.871,0,0,1,71.242,42.371Z" transform="translate(64.99 40.619)" fill="none" stroke="#8759f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_1">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_1" data-name="SS – 1" clip-path="url(#clip-SS_1)">
+    <g id="Icon_feather-zoom-in" data-name="Icon feather-zoom-in" transform="translate(162.5 137.5)">
+      <path id="Path_3" data-name="Path 3" d="M135.79,70.145A65.645,65.645,0,1,1,70.145,4.5,65.645,65.645,0,0,1,135.79,70.145Z" fill="none" stroke="#8759f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_4" data-name="Path 4" d="M60.669,60.669,24.975,24.975" transform="translate(91.531 91.531)" fill="none" stroke="#8759f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_5" data-name="Path 5" d="M16.5,12V61.234" transform="translate(53.645 33.528)" fill="none" stroke="#8759f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_6" data-name="Path 6" d="M12,16.5H61.234" transform="translate(33.528 53.645)" fill="none" stroke="#8759f3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

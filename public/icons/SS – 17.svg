@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_17">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_17" data-name="SS – 17" clip-path="url(#clip-SS_17)">
+    <g id="marker" transform="translate(167 149.263)">
+      <path id="Path_47" data-name="Path 47" d="M100,151.552H13.8v-7.7L82.451,75.92l.58.613,45.8,45.321c.2.2.408.384.613.572l-29.438,29.127ZM198.649,80.2a4.943,4.943,0,0,0-6.937,0L156.555,114.99a14.845,14.845,0,0,1-20.793,0L89.951,69.678a14.537,14.537,0,0,1,0-20.605l35.165-34.789a4.82,4.82,0,0,0,0-6.863,4.943,4.943,0,0,0-6.937,0L83.023,42.209a23.988,23.988,0,0,0-7.157,17.158,24.289,24.289,0,0,0,1.356,8L5.43,138.406A4.82,4.82,0,0,0,4,141.837v14.551a4.88,4.88,0,0,0,4.9,4.853h93.141a5.006,5.006,0,0,0,3.472-1.405l32.567-32.24a24.836,24.836,0,0,0,8.08,1.34,24.5,24.5,0,0,0,17.337-7.084l35.165-34.781a4.845,4.845,0,0,0,0-6.871h-.016Z" transform="translate(0 1.305)" fill="#1a1a1a" fill-rule="evenodd"/>
+      <circle id="Ellipse_50" data-name="Ellipse 50" cx="21" cy="21" r="21" transform="translate(22 125.737)" fill="none"/>
+      <ellipse id="Ellipse_51" data-name="Ellipse 51" cx="9" cy="6" rx="9" ry="6" transform="translate(94 83.737)" fill="none"/>
+      <circle id="Ellipse_52" data-name="Ellipse 52" cx="21" cy="21" r="21" transform="translate(22 5.737)" fill="none"/>
+    </g>
+  </g>
+</svg>

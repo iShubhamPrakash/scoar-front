@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <filter id="Rectangle_17" x="114.5" y="120.5" width="264" height="245" filterUnits="userSpaceOnUse">
+      <feOffset dx="5" dy="7" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-SS">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS" clip-path="url(#clip-SS)">
+    <g id="Group_113" data-name="Group 113" transform="translate(93 -553)">
+      <g id="Group_18" data-name="Group 18" transform="translate(27 677)">
+        <g transform="matrix(1, 0, 0, 1, -120, -124)" filter="url(#Rectangle_17)">
+          <rect id="Rectangle_17-2" data-name="Rectangle 17" width="243" height="224" rx="13" transform="translate(120 124)" fill="#8759f3"/>
+        </g>
+      </g>
+      <g id="Group_55" data-name="Group 55" transform="translate(89.846 750.775)">
+        <g id="Rectangle_38" data-name="Rectangle 38" transform="translate(0.154 0.225)" fill="none" stroke="#fff1f1" stroke-width="2.5">
+          <rect width="126" height="74" stroke="none"/>
+          <rect x="1.25" y="1.25" width="123.5" height="71.5" fill="none"/>
+        </g>
+        <rect id="Rectangle_39" data-name="Rectangle 39" width="11" height="11" transform="translate(22.154 46.225)" fill="#8759f3"/>
+        <rect id="Rectangle_40" data-name="Rectangle 40" width="11" height="11" transform="translate(54.154 46.225)" fill="#8759f3"/>
+        <rect id="Rectangle_43" data-name="Rectangle 43" width="11" height="11" transform="translate(38.154 46.225)" fill="#8759f3"/>
+        <rect id="Rectangle_41" data-name="Rectangle 41" width="11" height="11" transform="translate(71.154 46.225)" fill="#8759f3"/>
+        <rect id="Rectangle_42" data-name="Rectangle 42" width="11" height="11" transform="translate(87.154 46.225)" fill="#8759f3"/>
+        <g id="Icon_feather-plus" data-name="Icon feather-plus" transform="translate(106.565 51.916)">
+          <path id="Path_21" data-name="Path 21" d="M18,7.5V40.745" transform="translate(-2.849 -7.5)" fill="none" stroke="#fdfafa" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+          <path id="Path_22" data-name="Path 22" d="M7.5,18.887H37.8" transform="translate(-7.5 0.395)" fill="none" stroke="#fdfafa" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+        </g>
+      </g>
+      <rect id="Rectangle_52" data-name="Rectangle 52" width="8" height="8" transform="translate(112 803)" fill="#fff"/>
+      <rect id="Rectangle_52-2" data-name="Rectangle 52" width="8" height="8" transform="translate(131 803)" fill="#fff"/>
+      <rect id="Rectangle_52-3" data-name="Rectangle 52" width="8" height="8" transform="translate(150 803)" fill="#fff"/>
+      <rect id="Rectangle_53" data-name="Rectangle 53" width="8" height="8" transform="translate(169 803)" fill="#fff"/>
+      <rect id="Rectangle_52-4" data-name="Rectangle 52" width="8" height="8" transform="translate(188 803)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_10">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_10" data-name="SS – 10" clip-path="url(#clip-SS_10)">
+    <g id="Group_118" data-name="Group 118" transform="translate(-1283 -824)">
+      <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="78" cy="76.5" rx="78" ry="76.5" transform="translate(1465 983)" fill="#8759f3"/>
+      <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M31.35,62.7a17.1,17.1,0,0,0,17.1-17.1V17.1a17.1,17.1,0,0,0-34.2,0V45.6A17.1,17.1,0,0,0,31.35,62.7Zm28.5-28.5H57a2.849,2.849,0,0,0-2.85,2.85V45.6A22.826,22.826,0,0,1,29.072,68.29C17.227,67.134,8.55,56.485,8.55,44.585V37.05A2.849,2.849,0,0,0,5.7,34.2H2.85A2.849,2.849,0,0,0,0,37.05V44.2C0,60.171,11.395,74.4,27.075,76.567V82.65H17.1a2.849,2.849,0,0,0-2.85,2.85v2.85A2.849,2.849,0,0,0,17.1,91.2H45.6a2.849,2.849,0,0,0,2.85-2.85V85.5a2.849,2.849,0,0,0-2.85-2.85H35.625V76.635A31.381,31.381,0,0,0,62.7,45.6V37.05A2.849,2.849,0,0,0,59.85,34.2Z" transform="translate(1512.037 1014.483)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

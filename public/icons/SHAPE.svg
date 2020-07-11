@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SHAPE">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SHAPE" clip-path="url(#clip-SHAPE)">
+    <g id="Group_110" data-name="Group 110" transform="translate(74 -392)">
+      <g id="Rectangle_50" data-name="Rectangle 50" transform="translate(57 540)" fill="none" stroke="#000" stroke-width="3">
+        <rect width="197" height="134" stroke="none"/>
+        <rect x="1.5" y="1.5" width="194" height="131" fill="none"/>
+      </g>
+      <path id="Polygon_3" data-name="Polygon 3" d="M19.713,0,39.427,23.656H0Z" transform="translate(329.732 638.537) rotate(90)"/>
+    </g>
+  </g>
+</svg>

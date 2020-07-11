@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-ERASER">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="ERASER" clip-path="url(#clip-ERASER)">
+    <g id="Group_133" data-name="Group 133" transform="translate(100 -308)">
+      <path id="Polygon_2" data-name="Polygon 2" d="M14.748,0,29.5,17.7H0Z" transform="translate(261 580.955) rotate(90)"/>
+      <path id="Icon_awesome-eraser" data-name="Icon awesome-eraser" d="M159.982,78.547c6.05-6.05,8.338-10.313,2.287-16.364L104.2,4.8c-6.05-6.05-10.1-4.22-16.154,1.831L5.727,88.577c-3.285,3.285-6.5,5.342-5.839,10.8s6.315,9.582,9.08,12.347l29.5,29.392c2.906,2.906,6.18,5.58,10.289,5.58H162.269a3.873,3.873,0,0,0,3.873-3.873v-1.707c0-2.139-1.734-2.407-3.873-2.407h-6.148l-54.9,2.407,58.765-62.572ZM97.259,6.633l65.009,62.508L94.957,141.119H47.36L4.274,98.137l92.986-91.5Z" transform="translate(56 469.75)"/>
+    </g>
+  </g>
+</svg>

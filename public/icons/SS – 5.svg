@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_5">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_5" data-name="SS – 5" clip-path="url(#clip-SS_5)">
+    <path id="Icon_open-fullscreen-enter" data-name="Icon open-fullscreen-enter" d="M0,0V72.452L27.169,45.282,54.339,72.452,72.452,54.339,45.282,27.169,72.452,0ZM90.565,72.452,72.452,90.565l27.169,27.169L72.452,144.9H144.9V72.452L117.734,99.621Z" transform="translate(161.847 145.725)" fill="#8759f3"/>
+  </g>
+</svg>

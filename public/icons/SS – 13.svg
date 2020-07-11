@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_13">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_13" data-name="SS – 13" clip-path="url(#clip-SS_13)">
+    <path id="Icon_ionic-ios-arrow-dropup-circle" data-name="Icon ionic-ios-arrow-dropup-circle" d="M84.676,165.978a81.3,81.3,0,1,0-81.3-81.3A81.289,81.289,0,0,0,84.676,165.978Zm0-95.568-31.7,32.012A7.545,7.545,0,0,1,42.306,91.751L79.712,54.462a7.536,7.536,0,0,1,10.4-.235l36.859,36.742a7.532,7.532,0,1,1-10.632,10.671Z" transform="translate(156.017 170.827)" fill="#ff458d"/>
+  </g>
+</svg>

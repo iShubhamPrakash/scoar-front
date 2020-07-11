@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="482" height="471" viewBox="0 0 482 471">
+  <defs>
+    <clipPath id="clip-SS_7">
+      <rect width="482" height="471"/>
+    </clipPath>
+  </defs>
+  <g id="SS_7" data-name="SS – 7" clip-path="url(#clip-SS_7)">
+    <g id="Group_131" data-name="Group 131" transform="translate(19 -260)">
+      <g id="Group_84" data-name="Group 84" transform="translate(130.413 398.87)">
+        <g id="Group_83" data-name="Group 83">
+          <path id="Path_53" data-name="Path 53" d="M107.011,3C64.1,3,29.195,34.6,27.135,74.368L5.163,101.883c-2.861,3.547-.114,8.6,4.577,8.6H26.906v32.244c0,11.823,10.3,21.5,22.887,21.5H61.237v32.244h80.105v-50.3c27.007-12.038,45.774-37.941,45.774-67.928C187.116,36.642,151.3,3,107.011,3Z" transform="translate(-3.998 -3)" fill="none" stroke="#8759f3" stroke-width="1"/>
+        </g>
+      </g>
+      <path id="Icon_awesome-question" data-name="Icon awesome-question" d="M31.348,0C17.98,0,9.321,5.477,2.523,15.245a4.024,4.024,0,0,0,.867,5.506l7.225,5.478a4.02,4.02,0,0,0,5.569-.695c4.2-5.256,7.307-8.282,13.86-8.282,5.152,0,11.526,3.316,11.526,8.312,0,3.777-3.118,5.717-8.206,8.569C27.432,37.461,19.581,41.6,19.581,51.956v1.639a4.02,4.02,0,0,0,4.02,4.02H35.738a4.02,4.02,0,0,0,4.02-4.02v-.967c0-7.178,20.98-7.477,20.98-26.9C60.739,11.1,45.564,0,31.348,0ZM29.67,62.548a11.6,11.6,0,1,0,11.6,11.6A11.615,11.615,0,0,0,29.67,62.548Z" transform="translate(197.189 438.634)" fill="#8759f3"/>
+    </g>
+  </g>
+</svg>
