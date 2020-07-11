@@ -1,0 +1,17 @@
+.demo {
+    button {
+        background: purple;
+        color: #fff;
+        padding: 1em;
+    }
+
+    .canvas_container{
+        display: flex;
+        flex-wrap: wrap;
+        background: rosybrown;
+    }
+
+    .canvas{
+        margin: 1em;
+    }
+}
