@@ -4,6 +4,7 @@ import logo from "./logo.png";
 import "./App.css";
 import Basic from "./components/ContactForm";
 import Demo from "./components/Demo";
+import Whiteboard from "./components/Whiteboard";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -34,19 +35,21 @@ function App() {
   }, [fetchData]);
 
   return (
-    <div className="App">
+    <div>
       <Switch>
-        <Route exact path="/">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          {process.env.NODE_ENV === "production" ? (
-            <p>Scoar</p>
-          ) : (
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-          )}
-        </header>
+        <Route exact path="/" >
+         <div className="App">
+         <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            {process.env.NODE_ENV === "production" ? (
+              <p>Scoar</p>
+            ) : (
+              <p>
+                Edit <code>src/App.js</code> and save to reload.
+              </p>
+            )}
+          </header>
+         </div>
         </Route>
         <Route exact path="/form">
           <Basic />
@@ -58,10 +61,13 @@ function App() {
         </Route>
 
         <Route exact path="/demo">
-          <Demo/>
+          <Demo />
+        </Route>
+
+        <Route exact path="/whiteboard">
+          <Whiteboard />
         </Route>
       </Switch>
-     
     </div>
   );
 }
