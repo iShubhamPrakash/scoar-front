@@ -3,20 +3,45 @@ import CanvasDraw from "react-canvas-draw";
 import "./index.scss";
 import { Link } from "react-router-dom";
 
+
+const totalPage = 5;
 export default function index() {
   const [brushColor, setBrushColor] = useState("#444");
   const [brushRadius, setBrushRadius] = useState(4);
   const [height, setHeight] = useState(window.innerHeight);
-  const [width, setWidth] = useState(window.innerWidth);
+	const [width, setWidth] = useState(window.innerWidth);
+	
+	const [currentPage, setCurrentPage] = useState(1);
 
-  let saveableCanvas = useRef();
+  let canvasBoard = useRef();
 
   useEffect(() => {
     window.addEventListener("resize", () => {
       setHeight(window.innerHeight);
       setWidth(window.innerWidth);
-    });
-  }, []);
+		});
+	}, []);
+	
+	useEffect(()=>{
+		console.log("First load-", currentPage, canvasBoard)
+		loadSavedDataInCanvas(currentPage,canvasBoard)
+	},[])
+
+	useEffect(()=>{
+		console.log("Current page-", currentPage)
+		loadSavedDataInCanvas(currentPage,canvasBoard)
+	},[currentPage])
+
+
+	const loadSavedDataInCanvas=(currentPage,canvasRef)=>{
+		const savedData = localStorage.getItem(`savedDrawing${currentPage}`)
+		if (savedData){
+			canvasRef.loadSaveData(savedData,true)
+		}else{
+			canvasRef.clear()
+		};
+		
+	}
 
   return (
     <div className="whiteboard">
@@ -53,11 +78,11 @@ export default function index() {
       </div>
 
       <div className="toolbar_left">
-        {/* <button onClick={(e) => saveableCanvas.clear()}>Clear</button>
-        <button onClick={(e) => saveableCanvas.undo()}>undo</button>
+        {/* 
+        <button onClick={(e) => canvasBoard.undo()}>undo</button>
         <button
           onClick={() => {
-            localStorage.setItem("savedDrawing", saveableCanvas.getSaveData());
+            localStorage.setItem("savedDrawing", canvasBoard.getSaveData());
           }}
         >
           Save
@@ -73,7 +98,7 @@ export default function index() {
               <img alt="" src={"/icons/ARROW.svg"} />
             </span>
           </button>
-          <button className="board-tool" onClick={(e) => saveableCanvas.undo()}>
+          <button className="board-tool" onClick={(e) => canvasBoard.undo()}>
             <span className="custom-icon">
               <img alt="" src={"/icons/UNDO.svg"} />
             </span>
@@ -88,7 +113,7 @@ export default function index() {
               <img alt="" src={"/icons/PEN.svg"} />
             </span>
           </button>
-          <button className="board-tool">
+          <button className="board-tool" onClick={(e) => canvasBoard.clear()}>
             <span className="custom-icon">
               <img alt="" src={"/icons/ERASER.svg"} />
             </span>
@@ -115,11 +140,15 @@ export default function index() {
         </div>
 
         <div className="pages tool">
-          <button>
+          <button onClick={e=>{
+						if(currentPage > 1)  setCurrentPage(currentPage - 1);
+					}}>
             <i className="fa fa-chevron-left" />
           </button>
-          <span> 1/5 </span>
-          <button>
+				<span> {currentPage}/{totalPage} </span>
+          <button onClick={e=>{
+						if(currentPage < totalPage)  setCurrentPage(currentPage + 1);
+					}}>
             <i className="fa fa-chevron-right" />
           </button>
         </div>
@@ -132,7 +161,7 @@ export default function index() {
               <img alt="" src={"/icons/SS1.svg"} />
             </span>
           </button>
-          <button className="board-tool" onClick={(e) => saveableCanvas.undo()}>
+          <button className="board-tool" onClick={(e) => canvasBoard.undo()}>
             <span className="custom-icon">
               <img alt="" src={"/icons/SS2.svg"} />
             </span>
@@ -162,7 +191,7 @@ export default function index() {
 
       <div className="canvas_container">
         <CanvasDraw
-          ref={(canvasDraw) => (saveableCanvas = canvasDraw)}
+          ref={(canvasDraw) => (canvasBoard = canvasDraw)}
           brushColor={brushColor}
           brushRadius={brushRadius}
           immediateLoading={false}
@@ -180,8 +209,7 @@ export default function index() {
           className="canvas"
           onChange={() => {
             console.log("onChange");
-
-            localStorage.setItem("savedDrawing", saveableCanvas.getSaveData());
+            localStorage.setItem(`savedDrawing${currentPage}`, canvasBoard.getSaveData());
           }}
         />
       </div>
