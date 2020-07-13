@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import logo from "./logo.png";
-import "./App.css";
 import Basic from "./components/ContactForm";
 import Demo from "./components/Demo";
 import Whiteboard from "./components/Whiteboard";
