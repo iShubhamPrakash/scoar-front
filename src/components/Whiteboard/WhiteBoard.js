@@ -1,47 +1,61 @@
 import React, { useState, useEffect, useRef } from "react";
 import CanvasDraw from "react-canvas-draw";
 import { Link } from "react-router-dom";
-import {LeftToolBar} from "../Toolbar";
+import { LeftToolBar } from "../Toolbar";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  setBrushColor,
+  setBrushRadius,
+  setCanvasHeight,
+  setCanvasWidth,
+  setTotalPage,
+  setCurrentPage,
+} from "../../store/actions/whiteboardActions";
 
 
-const totalPage = 5;
-export default function index() {
-  const [brushColor, setBrushColor] = useState("#444");
-  const [brushRadius, setBrushRadius] = useState(4);
-  const [height, setHeight] = useState(window.innerHeight);
-	const [width, setWidth] = useState(window.innerWidth);
-	
-	const [currentPage, setCurrentPage] = useState(1);
+function WhiteBoard(props) {
+  const {
+    brushColor,
+    brushRadius,
+    canvasHeight,
+    canvasWidth,
+    currentPage,
+    totalPage
+  } = useSelector(state => state.whiteBoard);
+
 
   let canvasBoard = useRef();
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(setCanvasHeight(window.innerHeight));
+    dispatch(setCanvasWidth(window.innerWidth));
+    
     window.addEventListener("resize", () => {
-      setHeight(window.innerHeight);
-      setWidth(window.innerWidth);
-		});
-	}, []);
-	
-	useEffect(()=>{
-		console.log("First load-", currentPage, canvasBoard)
-		loadSavedDataInCanvas(currentPage,canvasBoard)
-	},[])
+      dispatch(setCanvasHeight(window.innerHeight));
+      dispatch(setCanvasWidth(window.innerWidth));
+    });
+  }, []);
 
-	useEffect(()=>{
-		console.log("Current page-", currentPage)
-		loadSavedDataInCanvas(currentPage,canvasBoard)
-	},[currentPage])
+  useEffect(() => {
+    console.log("First load-", currentPage, canvasBoard);
+    loadSavedDataInCanvas(currentPage, canvasBoard);
+  }, []);
 
+  useEffect(() => {
+    console.log("Current page-", currentPage);
+    loadSavedDataInCanvas(currentPage, canvasBoard);
+  }, [currentPage]);
 
-	const loadSavedDataInCanvas=(currentPage,canvasRef)=>{
-		const savedData = localStorage.getItem(`savedDrawing${currentPage}`)
-		if (savedData){
-			canvasRef.loadSaveData(savedData,true)
-		}else{
-			canvasRef.clear()
-		};
-		
-	}
+  const loadSavedDataInCanvas = (currentPage, canvasRef) => {
+    const savedData = localStorage.getItem(`savedDrawing${currentPage}`);
+    if (savedData) {
+      canvasRef.loadSaveData(savedData, true);
+    } else {
+      canvasRef.clear();
+    }
+  };
 
   return (
     <div className="whiteboard">
@@ -129,8 +143,8 @@ export default function index() {
           saveData={null}
           imgSrc={""}
           disabled={false}
-          canvasWidth={width}
-          canvasHeight={height}
+          canvasWidth={canvasWidth}
+          canvasHeight={canvasHeight}
           hideGrid={false}
           loadTimeOffset={5}
           lazyRadius={0}
@@ -139,10 +153,15 @@ export default function index() {
           className="canvas"
           onChange={() => {
             console.log("onChange");
-            localStorage.setItem(`savedDrawing${currentPage}`, canvasBoard.getSaveData());
+            localStorage.setItem(
+              `savedDrawing${currentPage}`,
+              canvasBoard.getSaveData()
+            );
           }}
         />
       </div>
     </div>
   );
 }
+
+export default WhiteBoard;

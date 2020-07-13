@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import * as actionTypes from "../../constants/actionTypes";
 
-import whiteboardReducer from './whiteboardReducer'
+import whiteboardReducer from "./whiteboardReducer";
 
 const test = (state = [], action) => {
   switch (action.type) {
@@ -14,4 +14,7 @@ const test = (state = [], action) => {
   }
 };
 
-export default combineReducers({ test, whiteboardReducer });
+export default combineReducers({
+  test,
+  whiteBoard: whiteboardReducer,
+});
