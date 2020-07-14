@@ -35,11 +35,13 @@ function WhiteBoard(props) {
       dispatch(setCanvasHeight(window.innerHeight));
       dispatch(setCanvasWidth(window.innerWidth));
     });
-  }, []);
 
-  useEffect(() => {
     console.log("First load-", currentPage, canvasBoard);
-    loadSavedDataInCanvas(currentPage, canvasBoard);
+    
+    setTimeout(()=>{
+      dispatch(setCurrentPage(1))
+    },1000)
+
   }, []);
 
   useEffect(() => {
@@ -55,6 +57,9 @@ function WhiteBoard(props) {
   };
 
   const loadSavedDataInCanvas = (currentPage, canvasRef) => {
+
+    if(canvasRef === null) return
+
     const savedData = localStorage.getItem(`savedDrawing${currentPage}`);
     if (savedData) {
       canvasRef.loadSaveData(savedData, true);

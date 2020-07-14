@@ -173,7 +173,7 @@ export default function LeftToolBar(props) {
       <div className="pages tool">
         <button
           onClick={(e) => {
-            if (currentPage > 1) setCurrentPage(currentPage - 1);
+            if (currentPage > 1) dispatch(setCurrentPage(currentPage - 1));
           }}
         >
           <i className="fa fa-chevron-left" />
@@ -184,7 +184,7 @@ export default function LeftToolBar(props) {
         </span>
         <button
           onClick={(e) => {
-            if (currentPage < totalPage) setCurrentPage(currentPage + 1);
+            if (currentPage < totalPage) dispatch(setCurrentPage(currentPage + 1));
           }}
         >
           <i className="fa fa-chevron-right" />
