@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import CanvasDraw from "react-canvas-draw";
-import { Link } from "react-router-dom";
 import { LeftToolBar } from "../Toolbar";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -13,6 +12,7 @@ import {
   setCurrentPage,
 } from "../../store/actions/whiteboardActions";
 import RightToolBar from "../Toolbar/RightToolBar";
+import TopToolBar from "../Toolbar/TopToolBar";
 
 function WhiteBoard(props) {
   const {
@@ -37,7 +37,7 @@ function WhiteBoard(props) {
     });
 
     console.log("First load-", currentPage, canvasBoard);
-    
+
     setTimeout(()=>{
       dispatch(setCurrentPage(1))
     },1000)
@@ -68,7 +68,7 @@ function WhiteBoard(props) {
     }
   };
 
-  // Toolbar functionalities
+  // Canvas functionalities
 
   const canvasUNDO = () => {
     canvasBoard.undo();
@@ -82,37 +82,8 @@ function WhiteBoard(props) {
 
   return (
     <div className="whiteboard">
-      <div className="toolbar_top">
-        <div className="logo">
-          <Link to="/">
-            <img alt="Go home" title="Go to home" src={"./logo.png"} />
-          </Link>
-        </div>
-
-        <div className="time tool_container">
-          <p>Product Designing &nbsp;&nbsp;| &nbsp;&nbsp; 1:20:32</p>
-        </div>
-
-        <div className="top-right">
-          <div className="more_option tool_container">
-            <p>
-              More Options{" "}
-              <i className="custom-icon">
-                <img alt="" src={"/icons/dROPDOWN.svg"} />
-              </i>{" "}
-              | &nbsp;&nbsp; Export{" "}
-              <i className="custom-icon">
-                <img alt="" src={"/icons/DOWNLOADS.svg"} />
-              </i>
-            </p>
-          </div>
-
-          <button className="btn btn-purple tool invite-btn">
-            {" "}
-            <i className="fa fa-user-plus" /> Invite
-          </button>
-        </div>
-      </div>
+      
+      <TopToolBar/>
 
       <LeftToolBar
         canvasBoard={canvasBoard}
@@ -120,7 +91,10 @@ function WhiteBoard(props) {
         canvasUNDO={canvasUNDO}
       />
 
-      <RightToolBar canvasBoard={canvasBoard} canvasUNDO={canvasUNDO} />
+      <RightToolBar 
+        canvasBoard={canvasBoard} 
+        canvasUNDO={canvasUNDO} 
+      />
 
       <div className="canvas_container">
         <CanvasDraw
