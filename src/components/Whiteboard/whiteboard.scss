@@ -1,6 +1,10 @@
 .whiteboard {
-  background: yellowgreen;
+  background: rgb(24, 20, 27);
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .canvas_container {
     display: flex;

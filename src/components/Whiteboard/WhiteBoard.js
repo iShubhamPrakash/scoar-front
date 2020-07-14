@@ -80,6 +80,20 @@ function WhiteBoard(props) {
     saveCanvasData(currentPage, canvasBoard);
   };
 
+  const increaseCanvasSize = ()=>{
+    if(canvasHeight < window.innerHeight && canvasWidth < window.innerWidth){
+      dispatch(setCanvasHeight(canvasHeight + 0.1 * canvasHeight))
+      dispatch(setCanvasWidth(canvasWidth + 0.1 * canvasWidth))
+    }
+	}
+	
+	const decreaseCanvasSize = ()=>{
+		if(canvasHeight > 400 && canvasWidth > 400){
+      dispatch(setCanvasHeight(canvasHeight - 0.1 * canvasHeight))
+      dispatch(setCanvasWidth(canvasWidth - 0.1 * canvasWidth))
+    }
+	}
+
   return (
     <div className="whiteboard">
       
@@ -92,8 +106,8 @@ function WhiteBoard(props) {
       />
 
       <RightToolBar 
-        canvasBoard={canvasBoard} 
-        canvasUNDO={canvasUNDO} 
+        increaseCanvasSize={increaseCanvasSize}
+        decreaseCanvasSize={decreaseCanvasSize} 
       />
 
       <div className="canvas_container">

@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setBrushColor,
   setBrushRadius,
-  setCanvasHeight,
-  setCanvasWidth,
   setTotalPage,
   setCurrentPage,
 } from "../../store/actions/whiteboardActions";

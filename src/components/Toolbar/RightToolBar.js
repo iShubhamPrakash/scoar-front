@@ -1,17 +1,18 @@
 import React from "react";
 
 export default function RightToolBar(props) {
-  const { canvasBoard,canvasUNDO } = props;
+  const { increaseCanvasSize,decreaseCanvasSize } = props;
+
 
   return (
     <div className="toolbar_right">
       <div className="board-tools tool_container">
-        <button className="board-tool">
+        <button className="board-tool" onClick={(e) => increaseCanvasSize()}>
           <span className="custom-icon">
             <img alt="" src={"/icons/SS1.svg"} />
           </span>
         </button>
-        <button className="board-tool" onClick={(e) => canvasUNDO()}>
+        <button className="board-tool" onClick={(e) => decreaseCanvasSize()}>
           <span className="custom-icon">
             <img alt="" src={"/icons/SS2.svg"} />
           </span>
