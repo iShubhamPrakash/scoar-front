@@ -12,7 +12,7 @@ import {
   setTotalPage,
   setCurrentPage,
 } from "../../store/actions/whiteboardActions";
-
+import RightToolBar from "../Toolbar/RightToolBar";
 
 function WhiteBoard(props) {
   const {
@@ -21,17 +21,16 @@ function WhiteBoard(props) {
     canvasHeight,
     canvasWidth,
     currentPage,
-    totalPage
-  } = useSelector(state => state.whiteBoard);
-
+    totalPage,
+  } = useSelector((state) => state.whiteBoard);
 
   let canvasBoard = useRef();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCanvasHeight(window.innerHeight));
     dispatch(setCanvasWidth(window.innerWidth));
-    
+
     window.addEventListener("resize", () => {
       dispatch(setCanvasHeight(window.innerHeight));
       dispatch(setCanvasWidth(window.innerWidth));
@@ -48,6 +47,13 @@ function WhiteBoard(props) {
     loadSavedDataInCanvas(currentPage, canvasBoard);
   }, [currentPage]);
 
+  const saveCanvasData = (currentPage, canvasRef) => {
+    const data = canvasRef.getSaveData();
+    if (data) {
+      localStorage.setItem(`savedDrawing${currentPage}`, data);
+    }
+  };
+
   const loadSavedDataInCanvas = (currentPage, canvasRef) => {
     const savedData = localStorage.getItem(`savedDrawing${currentPage}`);
     if (savedData) {
@@ -55,6 +61,18 @@ function WhiteBoard(props) {
     } else {
       canvasRef.clear();
     }
+  };
+
+  // Toolbar functionalities
+
+  const canvasUNDO = () => {
+    canvasBoard.undo();
+    saveCanvasData(currentPage, canvasBoard);
+  };
+
+  const canvasCLEAR = () => {
+    canvasBoard.clear();
+    saveCanvasData(currentPage, canvasBoard);
   };
 
   return (
@@ -93,45 +111,11 @@ function WhiteBoard(props) {
 
       <LeftToolBar
         canvasBoard={canvasBoard}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPage={totalPage}
+        canvasCLEAR={canvasCLEAR}
+        canvasUNDO={canvasUNDO}
       />
 
-      <div className="toolbar_right">
-        <div className="board-tools tool_container">
-          <button className="board-tool">
-            <span className="custom-icon">
-              <img alt="" src={"/icons/SS1.svg"} />
-            </span>
-          </button>
-          <button className="board-tool" onClick={(e) => canvasBoard.undo()}>
-            <span className="custom-icon">
-              <img alt="" src={"/icons/SS2.svg"} />
-            </span>
-          </button>
-          <button className="board-tool">
-            <span className="custom-icon">
-              <img alt="" src={"/icons/SS3.svg"} />
-            </span>
-          </button>
-          <button className="board-tool">
-            <span className="custom-icon">
-              <img alt="" src={"/icons/SS4.svg"} />
-            </span>
-          </button>
-          <button className="board-tool">
-            <span className="custom-icon">
-              <img alt="" src={"/icons/SS5.svg"} />
-            </span>
-          </button>
-          <button className="board-tool">
-            <span className="custom-icon">
-              <img alt="" src={"/icons/SS6.svg"} />
-            </span>
-          </button>
-        </div>
-      </div>
+      <RightToolBar canvasBoard={canvasBoard} canvasUNDO={canvasUNDO} />
 
       <div className="canvas_container">
         <CanvasDraw
@@ -151,13 +135,7 @@ function WhiteBoard(props) {
           catenaryColor={"#0a0302"}
           gridColor={"rgba(150,150,150,0.17)"}
           className="canvas"
-          onChange={() => {
-            console.log("onChange");
-            localStorage.setItem(
-              `savedDrawing${currentPage}`,
-              canvasBoard.getSaveData()
-            );
-          }}
+          onChange={() => saveCanvasData(currentPage, canvasBoard)}
         />
       </div>
     </div>
