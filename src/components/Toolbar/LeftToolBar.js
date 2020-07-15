@@ -290,11 +290,90 @@ export default function LeftToolBar(props) {
           </div>
         </Popover>
 
-        <button className="board-tool">
+        <button 
+          className="board-tool"
+          id={"shape-popover-btn"}
+          title="SHAPE"
+          aria-describedby={"shape-popover"}
+          variant="contained"
+          onClick={handlePopoverBtnClick}
+        >
           <span className="custom-icon">
             <img alt="" src={"/icons/SHAPE.svg"} />
           </span>
         </button>
+        <Popover
+          id={"shape-popover"}
+          className="tool-popover"
+          open={isOpen("shape-popover-btn")}
+          anchorEl={anchorEl}
+          onClose={handlePopoverBtnClose}
+          anchorOrigin={{
+            vertical: "center",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "center",
+            horizontal: "left",
+          }}
+        >
+          <div className="tool-popover-container">
+            <div className="tool-item-container eraser-container">
+              <button
+                title="Rectangle"
+                onClick={(e) => {
+                  // TODO: add functionality
+                }}
+              >
+                <SVGIcon filepath="/icons/SHAPE.svg" />
+              </button>
+
+              <button
+                title="Filled Rectangle"
+                onClick={(e) => {
+                  // TODO: add functionality
+                }}
+              >
+                <SVGIcon filepath="/icons/SS26.svg" />
+              </button>
+
+              <button>
+                <SVGIcon filepath="/icons/SS20.svg" />
+              </button>
+
+              <button>
+                <SVGIcon filepath="/icons/SS18.svg" />
+              </button>
+            </div>
+
+            <div className="fixed-line-toggle-container">
+              <p>Fixed line width </p>
+
+              <Switch
+                // checked={state.checkedB}
+                // onChange={handleChange}
+                size="small"
+                color="primary"
+                name="fixedLine"
+                inputProps={{ "aria-label": "primary checkbox" }}
+              />
+            </div>
+            <div className="brush-size-slider-container">
+              <p>Stroke Size</p>
+              <Slider
+                value={brushRadius}
+                min={1}
+                max={25}
+                valueLabelDisplay="auto"
+                // onChange={handleBrusSizeChange}
+                aria-labelledby="continuous-slider"
+              />
+            </div>
+          </div>
+        </Popover>
+
+
+
         <button className="board-tool">
           <span className="custom-icon">
             <img alt="" src={"/icons/FONT.svg"} />
