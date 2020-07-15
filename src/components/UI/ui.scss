@@ -1,0 +1,20 @@
+.svg-container{
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+
+    img{
+        position: absolute;
+        width: 160%;
+        height: auto;
+        overflow: hidden;
+        outline: none;
+        object-fit: cover;
+    }
+}

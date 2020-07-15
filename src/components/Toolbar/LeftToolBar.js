@@ -1,6 +1,8 @@
 import React from "react";
 import Popover from "@material-ui/core/Popover";
 import { useSelector, useDispatch } from "react-redux";
+import Slider from "@material-ui/core/Slider";
+import Switch from '@material-ui/core/Switch';
 
 import {
   setBrushColor,
@@ -8,6 +10,7 @@ import {
   setTotalPage,
   setCurrentPage,
 } from "../../store/actions/whiteboardActions";
+import SVGIcon from "../UI/SVGIcon";
 
 export default function LeftToolBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,6 +43,10 @@ export default function LeftToolBar(props) {
   const changeColor = (color) => {
     dispatch(setBrushColor(color));
     handlePopoverBtnClose();
+  };
+
+  const handleBrusSizeChange = (event, newValue) => {
+    dispatch(setBrushRadius(newValue));
   };
 
   return (
@@ -134,7 +141,49 @@ export default function LeftToolBar(props) {
           }}
         >
           <div className="tool-popover-container">
-            <p>pen</p>
+            <div className="pen-container">
+              <button>
+                <SVGIcon filepath="/icons/PEN.svg"/>
+              </button>
+
+              <button>
+                <SVGIcon filepath="/icons/SS16.svg"/>
+              </button>
+
+              <button>
+                <SVGIcon filepath="/icons/SS17.svg"/>
+              </button>
+
+              <button>
+                <SVGIcon filepath="/icons/SS19.svg"/>
+              </button>
+
+            </div>
+
+            <div className="fixed-line-toggle-container">
+              <p>Fixed line width </p>
+
+              <Switch
+                // checked={state.checkedB}
+                // onChange={handleChange}
+                size="small"
+                color="primary"
+                name="fixedLine"
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+
+            </div>
+            <div className="brush-size-slider-container">
+              <p>Pen Size</p>
+              <Slider
+                value={brushRadius}
+                min={1}
+                max={25}
+                valueLabelDisplay="auto"
+                onChange={handleBrusSizeChange}
+                aria-labelledby="continuous-slider"
+              />
+            </div>
           </div>
         </Popover>
 
@@ -182,7 +231,8 @@ export default function LeftToolBar(props) {
         </span>
         <button
           onClick={(e) => {
-            if (currentPage < totalPage) dispatch(setCurrentPage(currentPage + 1));
+            if (currentPage < totalPage)
+              dispatch(setCurrentPage(currentPage + 1));
           }}
         >
           <i className="fa fa-chevron-right" />

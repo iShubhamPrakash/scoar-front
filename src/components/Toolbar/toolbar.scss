@@ -280,4 +280,44 @@
       margin: 0;
     }
   }
+
+  .pen-container{
+    display: flex;
+    padding-bottom: 4px;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 4px;
+
+    button{
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:active{
+        background: rgba(0, 0, 0, 0.095);
+        outline: none;
+      }
+    }
+  }
+
+  .fixed-line-toggle-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+      font-size: 13px;
+      font-weight: bold;
+    }
+  }
+
+  .brush-size-slider-container{
+
+    p{
+      font-size: 13px;
+      font-weight: bold;
+    }
+  }
+
+  // end of .tool-popover-container 
 }
