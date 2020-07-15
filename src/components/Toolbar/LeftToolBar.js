@@ -2,7 +2,7 @@ import React from "react";
 import Popover from "@material-ui/core/Popover";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "@material-ui/core/Slider";
-import Switch from '@material-ui/core/Switch';
+import Switch from "@material-ui/core/Switch";
 
 import {
   setBrushColor,
@@ -14,6 +14,8 @@ import SVGIcon from "../UI/SVGIcon";
 
 export default function LeftToolBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const [prevColor, setPrevColor] = React.useState("#000");
 
   const { canvasBoard, canvasCLEAR, canvasUNDO } = props;
 
@@ -142,23 +144,40 @@ export default function LeftToolBar(props) {
           }}
         >
           <div className="tool-popover-container">
-            <div className="pen-container">
-              <button>
-                <SVGIcon filepath="/icons/PEN.svg"/>
+            <div className="tool-item-container pen-container">
+              <button
+                title="Marker"
+                onClick={(e) => {
+                  dispatch(setBrushRadius(4));
+                  changeColor("#444");
+                }}
+              >
+                <SVGIcon filepath="/icons/PEN.svg" />
+              </button>
+
+              <button
+                title="Pen"
+                onClick={(e) => {
+                  dispatch(setBrushRadius(1));
+                  changeColor("#000");
+                }}
+              >
+                <SVGIcon filepath="/icons/SS16.svg" />
+              </button>
+
+              <button
+                title="Highlighter"
+                onClick={(e) => {
+                  dispatch(setBrushRadius(8));
+                  changeColor("#ccff0058");
+                }}
+              >
+                <SVGIcon filepath="/icons/SS17.svg" />
               </button>
 
               <button>
-                <SVGIcon filepath="/icons/SS16.svg"/>
+                <SVGIcon filepath="/icons/SS19.svg" />
               </button>
-
-              <button>
-                <SVGIcon filepath="/icons/SS17.svg"/>
-              </button>
-
-              <button>
-                <SVGIcon filepath="/icons/SS19.svg"/>
-              </button>
-
             </div>
 
             <div className="fixed-line-toggle-container">
@@ -170,9 +189,8 @@ export default function LeftToolBar(props) {
                 size="small"
                 color="primary"
                 name="fixedLine"
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{ "aria-label": "primary checkbox" }}
               />
-
             </div>
             <div className="brush-size-slider-container">
               <p>Pen Size</p>
@@ -216,23 +234,34 @@ export default function LeftToolBar(props) {
           }}
         >
           <div className="tool-popover-container">
-            <div className="pen-container eraser-container">
-              <button onClick={e=>{changeColor('#fff')}}>
-                <SVGIcon filepath="/icons/SS21.svg"/>
+            <div className="tool-item-container eraser-container">
+              <button
+                title="White Eraser"
+                onClick={(e) => {
+                  dispatch(setBrushRadius(8));
+                  changeColor("#fff");
+                }}
+              >
+                <SVGIcon filepath="/icons/SS21.svg" />
               </button>
 
-              <button onClick={e=>{changeColor('#000')}}>
-                <SVGIcon filepath="/icons/SS22.svg"/>
+              <button
+                title="Dark Eraser"
+                onClick={(e) => {
+                  dispatch(setBrushRadius(8));
+                  changeColor("#000");
+                }}
+              >
+                <SVGIcon filepath="/icons/SS22.svg" />
               </button>
 
               <button>
-                <SVGIcon filepath="/icons/SS23.svg"/>
+                <SVGIcon filepath="/icons/SS23.svg" />
               </button>
 
-              <button onClick={e=> canvasCLEAR()}>
-                <SVGIcon filepath="/icons/SS24.svg"/>
+              <button onClick={(e) => canvasCLEAR()}>
+                <SVGIcon filepath="/icons/SS24.svg" />
               </button>
-
             </div>
 
             <div className="fixed-line-toggle-container">
@@ -244,9 +273,8 @@ export default function LeftToolBar(props) {
                 size="small"
                 color="primary"
                 name="fixedLine"
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{ "aria-label": "primary checkbox" }}
               />
-
             </div>
             <div className="brush-size-slider-container">
               <p>Eraser Size</p>
@@ -261,11 +289,6 @@ export default function LeftToolBar(props) {
             </div>
           </div>
         </Popover>
-
-
-
-
-
 
         <button className="board-tool">
           <span className="custom-icon">

@@ -191,10 +191,10 @@
   display: flex;
 }
 
-.tool-popover .MuiPopover-paper{
+.tool-popover .MuiPopover-paper {
   // override default style of the tool popover
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background: $gray;
   border: 1px solid $gray_d1;
   margin-left: 10px;
@@ -218,7 +218,7 @@
       border-radius: 50%;
       border: 2px solid #fff;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     span[id="red"] {
@@ -281,43 +281,41 @@
     }
   }
 
-  .pen-container{
+  .tool-item-container {
     display: flex;
     padding-bottom: 4px;
     border-bottom: 1px solid lightgray;
     margin-bottom: 4px;
-
-    button{
+    button {
       background: transparent;
       border: none;
       outline: none;
       cursor: pointer;
       border-radius: 4px;
 
-      &:active{
+      &:active {
         background: rgba(0, 0, 0, 0.095);
         outline: none;
       }
     }
   }
 
-  .fixed-line-toggle-container{
+  .fixed-line-toggle-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    p{
+    p {
       font-size: 13px;
       font-weight: bold;
     }
   }
 
-  .brush-size-slider-container{
-
-    p{
+  .brush-size-slider-container {
+    p {
       font-size: 13px;
       font-weight: bold;
     }
   }
 
-  // end of .tool-popover-container 
+  // end of .tool-popover-container
 }
