@@ -117,6 +117,7 @@ export default function LeftToolBar(props) {
         <button
           className="board-tool"
           id={"pen-popover-btn"}
+          title={"Select Pen"}
           aria-describedby={"pen-popover"}
           variant="contained"
           onClick={handlePopoverBtnClick}
@@ -189,13 +190,83 @@ export default function LeftToolBar(props) {
 
         <button
           className="board-tool"
-          title="CLEAR "
-          onClick={(e) => canvasCLEAR()}
+          id={"eraser-popover-btn"}
+          title="ERASER"
+          aria-describedby={"eraser-popover"}
+          variant="contained"
+          onClick={handlePopoverBtnClick}
         >
           <span className="custom-icon">
             <img alt="" src={"/icons/ERASER.svg"} />
           </span>
         </button>
+        <Popover
+          id={"eraser-popover"}
+          className="tool-popover"
+          open={isOpen("eraser-popover-btn")}
+          anchorEl={anchorEl}
+          onClose={handlePopoverBtnClose}
+          anchorOrigin={{
+            vertical: "center",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "center",
+            horizontal: "left",
+          }}
+        >
+          <div className="tool-popover-container">
+            <div className="pen-container eraser-container">
+              <button onClick={e=>{changeColor('#fff')}}>
+                <SVGIcon filepath="/icons/SS21.svg"/>
+              </button>
+
+              <button onClick={e=>{changeColor('#000')}}>
+                <SVGIcon filepath="/icons/SS22.svg"/>
+              </button>
+
+              <button>
+                <SVGIcon filepath="/icons/SS23.svg"/>
+              </button>
+
+              <button onClick={e=> canvasCLEAR()}>
+                <SVGIcon filepath="/icons/SS24.svg"/>
+              </button>
+
+            </div>
+
+            <div className="fixed-line-toggle-container">
+              <p>Fixed line width </p>
+
+              <Switch
+                // checked={state.checkedB}
+                // onChange={handleChange}
+                size="small"
+                color="primary"
+                name="fixedLine"
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+
+            </div>
+            <div className="brush-size-slider-container">
+              <p>Eraser Size</p>
+              <Slider
+                value={brushRadius}
+                min={1}
+                max={25}
+                valueLabelDisplay="auto"
+                onChange={handleBrusSizeChange}
+                aria-labelledby="continuous-slider"
+              />
+            </div>
+          </div>
+        </Popover>
+
+
+
+
+
+
         <button className="board-tool">
           <span className="custom-icon">
             <img alt="" src={"/icons/SHAPE.svg"} />

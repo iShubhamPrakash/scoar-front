@@ -122,7 +122,7 @@ function WhiteBoard(props) {
           disabled={false}
           canvasWidth={canvasWidth}
           canvasHeight={canvasHeight}
-          hideGrid={false}
+          hideGrid={true}
           loadTimeOffset={5}
           lazyRadius={0}
           catenaryColor={"#0a0302"}
