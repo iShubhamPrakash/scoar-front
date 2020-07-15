@@ -1,8 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
+import {openFullscreen,closeFullscreen} from '../../utils/browserFullScreen';
 
 export default function RightToolBar(props) {
-  const { increaseCanvasSize,decreaseCanvasSize } = props;
+	const [isFullScreen, setIsFullScreen]= useState(document.fullscreenElement)
+	const { increaseCanvasSize,decreaseCanvasSize } = props;
 
+	const handleFullScreen =()=>{
+		if(isFullScreen){
+			closeFullscreen();
+			setIsFullScreen(false)
+		}else{
+			openFullscreen();
+			setIsFullScreen(true)
+		}
+	}
 
   return (
     <div className="toolbar_right">
@@ -27,7 +38,7 @@ export default function RightToolBar(props) {
             <img alt="" src={"/icons/SS4.svg"} />
           </span>
         </button>
-        <button className="board-tool">
+        <button className="board-tool" title={ isFullScreen ? "Exit full screen" : "Enter full screen"} onClick={e=>handleFullScreen()}>
           <span className="custom-icon">
             <img alt="" src={"/icons/SS5.svg"} />
           </span>
