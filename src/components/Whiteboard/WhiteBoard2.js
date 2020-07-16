@@ -12,13 +12,12 @@ import CardHeader from "@material-ui/core/CardHeader";
 import GridListTile from "@material-ui/core/GridListTile";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
-import Button from "@material-ui/core/Button";
 
 // import Slider from '@material-ui/lab/Slider';
 
 import Slider from "@material-ui/core/Slider";
 
-import TextField from "@material-ui/core/TextField";
+
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Collapse from "@material-ui/core/Collapse";
@@ -350,6 +349,7 @@ class SketchFieldDemo extends React.Component {
 					setLineColor={(color) => this.setState({ lineColor: color })}
 					fillColor={this.state.fillColor}
 					setFillColor={(color) => this.setState({ fillColor: color })}
+					addImage={imageURL=>this._sketch.addImg(imageURL)}
 				/>
 
 				<RightToolBar 
@@ -388,46 +388,8 @@ class SketchFieldDemo extends React.Component {
           </div>
 
            <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-          
             
-
-			
-						<Card style={styles.card}>
-              <CardHeader
-                title="Colors"
-                subheader="Put some color on your drawing"
-                action={
-                  <IconButton
-                    onClick={(e) => this.setState({ expandColors: !this.state.expandColors })}>
-                    <ExpandMore/>
-                  </IconButton>
-                }/>
-              <Collapse in={this.state.expandColors}>
-                <CardContent>
-                  <label htmlFor='lineColor'>Line</label>
-                  <br/>
-                  <CompactPicker
-                    id='lineColor' color={this.state.lineColor}
-                    onChange={(color) => this.setState({ lineColor: color.hex })}/>
-                  <br/>
-                  <br/>
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        value={this.state.fillWithColor}
-                        onChange={(e) => this.setState({ fillWithColor: !this.state.fillWithColor })}/>
-                    }
-                    label="Fill"
-                  />
-                  <CompactPicker
-                    color={this.state.fillColor}
-                    onChange={(color) => this.setState({ fillColor: color.hex })}/>
-                </CardContent>
-              </Collapse>
-            </Card>
-            
-
-	{/* 			
+{/* 			
 						<Card style={styles.card}>
               <CardHeader
                 title="Background"
@@ -492,80 +454,22 @@ class SketchFieldDemo extends React.Component {
                   </div>
                 </CardContent>
               </Collapse>
-            </Card>
+            </Card> */}
             
-						
-						<Card style={styles.card}>
-              <CardHeader
-                title="Images"
-                subheader="Upload Images as drawing"
-                action={
-                  <IconButton
-                    onClick={(e) => this.setState({ expandImages: !this.state.expandImages })}>
-                    <ExpandMore/>
-                  </IconButton>
-                }/>
-              <Collapse in={this.state.expandImages}>
-                <CardContent>
-                  <div>
-                    <TextField
-                      label='Image URL'
-                      helperText='Copy/Paste an image URL'
-                      onChange={(e) => this.setState({ imageUrl: e.target.value })}
-                      value={this.state.imageUrl}/>
-                    <Button
-                      variant="outlined"
-                      onClick={(e) => {
-                        this._sketch.addImg(this.state.imageUrl)
-                      }}>
-                      Load Image from URL
-                    </Button>
-                  </div>
-                  <br/>
-                  <Button
-                    variant="outlined"
-                    onClick={(e) => this._sketch.addImg(dataUrl)}>
-                    Load Image from Data URL
-                  </Button>
-                </CardContent>
-              </Collapse>
-            </Card>
-            
-						
-						<Card style={styles.card}>
-              <CardHeader
-                title="Controlled value"
-                subheader="Control Component externally"
-                action={
-                  <IconButton
-                    onClick={(e) => this.setState({ expandControlled: !this.state.expandControlled })}>
-                    <ExpandMore/>
-                  </IconButton>
-                }/>
-              <Collapse in={this.state.expandControlled}>
-                <CardContent>
-                  <Button
-                    variant="outlined"
-                    onClick={(e) => this.setState({
-                      controlledValue: dataJsonControlled
-                    })}>
-                    Load controlled Value
-                  </Button>
-                </CardContent>
-              </Collapse>
-            </Card>
-           */}
-					
+		
+        
 					</div>
          
         </div>
-        <div style={{ width: 0 }}>
+        
+				<div style={{ width: 0 }}>
           <div className="col-xs-7 col-sm-7 col-md-9 col-lg-9">
             {/* Sketch area */}
 
             <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3"></div>
-          </div>
+					</div>
         </div>
+
       </MuiThemeProvider>
     );
   };

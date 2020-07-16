@@ -5,6 +5,8 @@ import Slider from "@material-ui/core/Slider";
 import Switch from "@material-ui/core/Switch";
 import { CompactPicker } from "react-color";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import {
   setBrushColor,
@@ -15,7 +17,7 @@ import SVGIcon from "../UI/SVGIcon";
 
 export default function LeftToolBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [imgURL, setImgURL] = React.useState("https://files.gamebanana.com/img/ico/sprays/4ea2f4dad8d6f.png");
   const [prevColor, setPrevColor] = React.useState("#000");
 
   const { 
@@ -39,7 +41,7 @@ export default function LeftToolBar(props) {
     setLineColor,
     fillColor,
     setFillColor,
-          
+    addImage,
   } = props;
 
   const {
@@ -404,20 +406,38 @@ export default function LeftToolBar(props) {
             <div className="brush-size-slider-container">
               <p>Stroke Size</p>
               <Slider
-                value={brushRadius}
-                min={1}
-                max={25}
-                valueLabelDisplay="auto"
-                // onChange={handleBrusSizeChange}
-                aria-labelledby="continuous-slider"
+               value={brushRadius}
+               min={1}
+               max={25}
+               valueLabelDisplay="auto"
+               onChange={handleBrusSizeChange}
+               aria-labelledby="continuous-slider"
               />
+            </div>
+            <div>
+              <TextField
+                label='Image URL'
+                helperText='Copy/Paste an image URL'
+                onChange={(e) => setImgURL(e.target.value)}
+                value={imgURL}/>
+              <br/>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={(e) => addImage(imgURL)}
+              >
+                Load Image from URL
+              </Button>
             </div>
           </div>
         </Popover>
 
 
 
-        <button className="board-tool" onClick={e=>addText()}>
+        <button className="board-tool" onClick={e=>{
+          selectTool(Tools.Select)
+          addText()
+        }}>
           <span className="custom-icon">
             <img alt="" src={"/icons/FONT.svg"} />
           </span>
