@@ -6,7 +6,6 @@ import Switch from "@material-ui/core/Switch";
 
 import {
   setBrushColor,
-  setBrushRadius,
   setTotalPage,
   setCurrentPage,
 } from "../../store/actions/whiteboardActions";
@@ -22,12 +21,14 @@ export default function LeftToolBar(props) {
     canvasUNDO, 
     canvasREDO,
     undoDisabled,
-    redoDisabled
+    redoDisabled,
+    addText,
+    brushRadius,
+    setBrushRadius
   } = props;
 
   const {
     brushColor,
-    brushRadius,
     canvasHeight,
     canvasWidth,
     currentPage,
@@ -54,7 +55,7 @@ export default function LeftToolBar(props) {
   };
 
   const handleBrusSizeChange = (event, newValue) => {
-    dispatch(setBrushRadius(newValue));
+    setBrushRadius(newValue);
   };
 
   return (
@@ -381,7 +382,7 @@ export default function LeftToolBar(props) {
 
 
 
-        <button className="board-tool">
+        <button className="board-tool" onClick={e=>addText()}>
           <span className="custom-icon">
             <img alt="" src={"/icons/FONT.svg"} />
           </span>

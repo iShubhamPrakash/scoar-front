@@ -273,7 +273,7 @@ class SketchFieldDemo extends React.Component {
     }
   };
 
-  _addText = () => this._sketch.addText(this.state.text);
+  _addText = () => this._sketch.addText(this.state.text || "Hello world !");
 
   componentDidMount = () => {
     (function (console) {
@@ -335,6 +335,9 @@ class SketchFieldDemo extends React.Component {
 					undoDisabled={!this.state.canUndo}
 					canvasREDO={this._redo}
 					redoDisabled={!this.state.canRedo}
+					addText={this._addText}
+					brushRadius={this.state.lineWidth}
+					setBrushRadius={ val => this.setState({ lineWidth: val })}
 				/>
 
         <RightToolBar 
@@ -423,24 +426,6 @@ class SketchFieldDemo extends React.Component {
                       this.setState({ lineWidth: v })
                     }
                   />
-                  <br/>
-
-                  <div className="row">
-                    <div className="col-lg-7">
-                      <TextField
-                        label='Text'
-                        helperText='Add text to Sketch'
-                        onChange={(e) => this.setState({ text: e.target.value })}
-                        value={this.state.text}/>
-                    </div>
-                    <div className="col-lg-3">
-                      <IconButton
-                        color="primary"
-                        onClick={this._addText}>
-                        <AddIcon/>
-                      </IconButton>
-                    </div>
-                  </div>
                 </CardContent>
               </Collapse>
             </Card>
