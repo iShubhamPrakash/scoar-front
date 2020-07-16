@@ -17,7 +17,13 @@ export default function LeftToolBar(props) {
 
   const [prevColor, setPrevColor] = React.useState("#000");
 
-  const { canvasBoard, canvasCLEAR, canvasUNDO } = props;
+  const { 
+    canvasCLEAR, 
+    canvasUNDO, 
+    canvasREDO,
+    undoDisabled,
+    redoDisabled
+  } = props;
 
   const {
     brushColor,
@@ -66,6 +72,7 @@ export default function LeftToolBar(props) {
           className="board-tool"
           title="UNDO"
           onClick={(e) => canvasUNDO()}
+          disabled={undoDisabled}
         >
           <span className="custom-icon">
             <img alt="" src={"/icons/UNDO.svg"} />

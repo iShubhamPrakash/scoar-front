@@ -1,103 +1,103 @@
 /*eslint no-unused-vars: 0, no-console: 0*/
 
-import React from 'react';
-import {CompactPicker} from 'react-color';
-import 'flexboxgrid';
-import './main.css';
-import AppBar from '@material-ui/core/AppBar';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import CardHeader from '@material-ui/core/CardHeader';
-import GridListTile from '@material-ui/core/GridListTile';
-import IconButton from '@material-ui/core/IconButton';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { CompactPicker } from "react-color";
+import "flexboxgrid";
+import "./main.css";
+import AppBar from "@material-ui/core/AppBar";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import CardHeader from "@material-ui/core/CardHeader";
+import GridListTile from "@material-ui/core/GridListTile";
+import IconButton from "@material-ui/core/IconButton";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
 
 // import Slider from '@material-ui/lab/Slider';
 
-import Slider from '@material-ui/core/Slider';
+import Slider from "@material-ui/core/Slider";
 
+import TextField from "@material-ui/core/TextField";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Collapse from "@material-ui/core/Collapse";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import color from "@material-ui/core/colors/blueGrey";
 
+import UndoIcon from "@material-ui/icons/Undo";
+import RedoIcon from "@material-ui/icons/Redo";
+import DeleteIcon from "@material-ui/icons/Delete";
+import SaveIcon from "@material-ui/icons/Save";
+import ClearIcon from "@material-ui/icons/Clear";
+import AddIcon from "@material-ui/icons/Add";
+import CopyIcon from "@material-ui/icons/FileCopy";
+import RemoveIcon from "@material-ui/icons/Remove";
+import DownloadIcon from "@material-ui/icons/CloudDownload";
+import ZoomInIcon from "@material-ui/icons/ZoomIn";
+import ZoomOutIcon from "@material-ui/icons/ZoomOut";
+import dataJson from "./data.json";
+import dataJsonControlled from "./data.json.controlled";
+import { SketchField, Tools } from "react-sketch";
+import dataUrl from "./data.url";
+import DropZone from "react-dropzone";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import Typography from "@material-ui/core/Typography/Typography";
 
-import TextField from '@material-ui/core/TextField';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Collapse from '@material-ui/core/Collapse';
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
-import color from '@material-ui/core/colors/blueGrey';
-
-import UndoIcon from '@material-ui/icons/Undo';
-import RedoIcon from '@material-ui/icons/Redo';
-import DeleteIcon from '@material-ui/icons/Delete';
-import SaveIcon from '@material-ui/icons/Save';
-import ClearIcon from '@material-ui/icons/Clear';
-import AddIcon from '@material-ui/icons/Add';
-import CopyIcon from '@material-ui/icons/FileCopy';
-import RemoveIcon from '@material-ui/icons/Remove';
-import DownloadIcon from '@material-ui/icons/CloudDownload';
-import ZoomInIcon from '@material-ui/icons/ZoomIn';
-import ZoomOutIcon from '@material-ui/icons/ZoomOut';
-import dataJson from './data.json';
-import dataJsonControlled from './data.json.controlled';
-import {SketchField, Tools} from 'react-sketch';
-import dataUrl from './data.url';
-import DropZone from 'react-dropzone';
-import Toolbar from '@material-ui/core/Toolbar/Toolbar';
-import Typography from '@material-ui/core/Typography/Typography';
+import { LeftToolBar, RightToolBar, TopToolBar } from "../Toolbar";
 
 const styles = {
   root: {
-    padding: '3px',
-    display: 'flex',
-    flexWrap: 'wrap',
-    margin: '10px 10px 5px 10px',
-    justifyContent: 'space-around',
+    padding: "3px",
+    display: "flex",
+    flexWrap: "wrap",
+    margin: "10px 10px 5px 10px",
+    justifyContent: "space-around",
   },
   gridList: {
-    width: '100%',
-    overflowY: 'auto',
-    marginBottom: '24px',
+    width: "100%",
+    overflowY: "auto",
+    marginBottom: "24px",
   },
   gridTile: {
-    backgroundColor: '#fcfcfc',
+    backgroundColor: "#fcfcfc",
   },
   appBar: {
-    backgroundColor: '#333',
+    backgroundColor: "#333",
   },
   radioButton: {
-    marginTop: '3px',
-    marginBottom: '3px',
+    marginTop: "3px",
+    marginBottom: "3px",
   },
   separator: {
-    height: '42px',
-    backgroundColor: 'white',
+    height: "42px",
+    backgroundColor: "white",
   },
   iconButton: {
-    fill: 'white',
-    width: '42px',
-    height: '42px',
+    fill: "white",
+    width: "42px",
+    height: "42px",
   },
   dropArea: {
-    width: '100%',
-    height: '64px',
-    border: '2px dashed rgb(102, 102, 102)',
-    borderStyle: 'dashed',
-    borderRadius: '5px',
-    textAlign: 'center',
-    paddingTop: '20px',
+    width: "100%",
+    height: "64px",
+    border: "2px dashed rgb(102, 102, 102)",
+    borderStyle: "dashed",
+    borderRadius: "5px",
+    textAlign: "center",
+    paddingTop: "20px",
   },
   activeStyle: {
-    borderStyle: 'solid',
-    backgroundColor: '#eee',
+    borderStyle: "solid",
+    backgroundColor: "#eee",
   },
   rejectStyle: {
-    borderStyle: 'solid',
-    backgroundColor: '#ffdddd',
+    borderStyle: "solid",
+    backgroundColor: "#ffdddd",
   },
   card: {
-    margin: '10px 10px 5px 0'
-  }
+    margin: "10px 10px 5px 0",
+  },
 };
 
 /**
@@ -108,9 +108,9 @@ const styles = {
  */
 function eventFire(el, etype) {
   if (el.fireEvent) {
-    el.fireEvent('on' + etype);
+    el.fireEvent("on" + etype);
   } else {
-    var evObj = document.createEvent('Events');
+    var evObj = document.createEvent("Events");
     evObj.initEvent(etype, true, false);
     el.dispatchEvent(evObj);
   }
@@ -122,9 +122,9 @@ class SketchFieldDemo extends React.Component {
 
     this.state = {
       lineWidth: 10,
-      lineColor: 'black',
-      fillColor: '#68CCCA',
-      backgroundColor: 'transparent',
+      lineColor: "black",
+      fillColor: "#68CCCA",
+      backgroundColor: "transparent",
       shadowWidth: 0,
       shadowOffset: 0,
       tool: Tools.Pencil,
@@ -140,25 +140,25 @@ class SketchFieldDemo extends React.Component {
       stretched: true,
       stretchedX: false,
       stretchedY: false,
-      originX: 'left',
-      originY: 'top',
-      imageUrl: 'https://files.gamebanana.com/img/ico/sprays/4ea2f4dad8d6f.png',
+      originX: "left",
+      originY: "top",
+      imageUrl: "https://files.gamebanana.com/img/ico/sprays/4ea2f4dad8d6f.png",
       expandTools: false,
       expandControls: false,
       expandColors: false,
       expandBack: false,
       expandImages: false,
       expandControlled: false,
-      text: 'a text, cool!',
+      text: "a text, cool!",
       enableCopyPaste: false,
     };
   }
 
-  _selectTool = event => {
+  _selectTool = (event) => {
     this.setState({
       tool: event.target.value,
       enableRemoveSelected: event.target.value === Tools.Select,
-      enableCopyPaste: event.target.value === Tools.Select
+      enableCopyPaste: event.target.value === Tools.Select,
     });
   };
 
@@ -172,16 +172,16 @@ class SketchFieldDemo extends React.Component {
     // console.save(this._sketch.toDataURL(), 'toDataURL.txt');
     // console.save(JSON.stringify(this._sketch.toJSON()), 'toDataJSON.txt');
 
-    console.log(this._sketch.toJSON())
+    console.log(this._sketch.toJSON());
 
     /*eslint-enable no-console*/
 
-    let { imgDown } = this.refs;
-    let event = new Event('click', {});
+    // let { imgDown } = this.refs;
+    // let event = new Event('click', {});
 
-    imgDown.href = this._sketch.toDataURL();
-    imgDown.download = 'toPNG.png';
-    imgDown.dispatchEvent(event);
+    // imgDown.href = this._sketch.toDataURL();
+    // imgDown.download = 'toPNG.png';
+    // imgDown.dispatchEvent(event);
   };
 
   _renderTile = (drawing, index) => {
@@ -196,16 +196,17 @@ class SketchFieldDemo extends React.Component {
         rows={1}
         style={styles.gridTile}
         actionIcon={
-          <IconButton onTouchTap={c => this._removeMe(index)}>
-            <ClearIcon color="white"/>
+          <IconButton onTouchTap={(c) => this._removeMe(index)}>
+            <ClearIcon color="white" />
           </IconButton>
-        }>
-        <img src={drawing}/>
+        }
+      >
+        <img src={drawing} />
       </GridListTile>
     );
   };
 
-  _removeMe = index => {
+  _removeMe = (index) => {
     let drawings = this.state.drawings;
     drawings.splice(index, 1);
     this.setState({ drawings: drawings });
@@ -229,10 +230,10 @@ class SketchFieldDemo extends React.Component {
 
   _clear = () => {
     this._sketch.clear();
-    this._sketch.setBackgroundFromDataUrl('');
+    this._sketch.setBackgroundFromDataUrl("");
     this.setState({
       controlledValue: null,
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       fillWithBackgroundColor: false,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
@@ -240,7 +241,7 @@ class SketchFieldDemo extends React.Component {
   };
 
   _removeSelected = () => {
-    this._sketch.removeSelected()
+    this._sketch.removeSelected();
   };
 
   _onSketchChange = () => {
@@ -257,7 +258,7 @@ class SketchFieldDemo extends React.Component {
       let reader = new FileReader();
       let { stretched, stretchedX, stretchedY, originX, originY } = this.state;
       reader.addEventListener(
-        'load',
+        "load",
         () =>
           sketch.setBackgroundFromDataUrl(reader.result, {
             stretched: stretched,
@@ -266,7 +267,7 @@ class SketchFieldDemo extends React.Component {
             originX: originX,
             originY: originY,
           }),
-        false,
+        false
       );
       reader.readAsDataURL(accepted[0]);
     }
@@ -275,23 +276,39 @@ class SketchFieldDemo extends React.Component {
   _addText = () => this._sketch.addText(this.state.text);
 
   componentDidMount = () => {
-    (function(console) {
-      console.save = function(data, filename) {
+    (function (console) {
+      console.save = function (data, filename) {
         if (!data) {
-          console.error('Console.save: No data');
+          console.error("Console.save: No data");
           return;
         }
-        if (!filename) filename = 'console.json';
-        if (typeof data === 'object') {
+        if (!filename) filename = "console.json";
+        if (typeof data === "object") {
           data = JSON.stringify(data, undefined, 4);
         }
-        var blob = new Blob([data], { type: 'text/json' }),
-          e = document.createEvent('MouseEvents'),
-          a = document.createElement('a');
+        var blob = new Blob([data], { type: "text/json" }),
+          e = document.createEvent("MouseEvents"),
+          a = document.createElement("a");
         a.download = filename;
         a.href = window.URL.createObjectURL(blob);
-        a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
-        e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
+        e.initMouseEvent(
+          "click",
+          true,
+          false,
+          window,
+          0,
+          0,
+          0,
+          0,
+          0,
+          false,
+          false,
+          false,
+          false,
+          0,
+          null
+        );
         a.dispatchEvent(e);
       };
     })(console);
@@ -305,68 +322,53 @@ class SketchFieldDemo extends React.Component {
       },
       palette: {
         primary: { main: color[500] }, // Purple and green play nicely together.
-        secondary: { main: '#11cb5f' }, // This is just green.A700 as hex.
+        secondary: { main: "#11cb5f" }, // This is just green.A700 as hex.
       },
     });
     return (
       <MuiThemeProvider theme={theme}>
-        {/* <div className="row">
+        {/* <TopToolBar />*/}
+
+        <LeftToolBar 
+					canvasCLEAR={this._clear}
+					canvasUNDO={this._undo}
+					undoDisabled={!this.state.canUndo}
+					canvasREDO={this._redo}
+					redoDisabled={!this.state.canRedo}
+				/>
+
+        <RightToolBar 
+					increaseCanvasSize={(e) => this._sketch.zoom(1.25)}
+					decreaseCanvasSize={(e) => this._sketch.zoom(0.8)}
+				/> 
+
+        <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <AppBar title="Sketch Tool" position="static" style={styles.appBar}>
-              <Toolbar>
-                <Typography variant="h6" color="inherit" style={{ flexGrow: 1 }}>Sketch Tool</Typography>
-                <IconButton
-                  color="primary"
-                  disabled={!this.state.canUndo}
-                  onClick={this._undo}>
-                  <UndoIcon/>
+					<IconButton color="primary" onClick={this._save}>
+                  <SaveIcon />
                 </IconButton>
-                <IconButton
-                  color="primary"
-                  disabled={!this.state.canRedo}
-                  onClick={this._redo}>
-                  <RedoIcon/>
+                <IconButton color="primary" onClick={this._download}>
+                  <DownloadIcon />
                 </IconButton>
-                <IconButton
-                  color="primary"
-                  onClick={this._save}>
-                  <SaveIcon/>
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  onClick={this._download}>
-                  <DownloadIcon/>
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  onClick={this._clear}>
-                  <DeleteIcon/>
-                </IconButton>
-              </Toolbar>
-            </AppBar>
           </div>
-        </div> */}
+        </div>
         <div className="row">
           <div className="col-xs-7 col-sm-7 col-md-9 col-lg-9">
             <SketchField
               name="sketch"
               className="canvas-area"
-              ref={c => (this._sketch = c)}
+              ref={(c) => (this._sketch = c)}
               lineColor={this.state.lineColor}
               lineWidth={this.state.lineWidth}
               fillColor={
-                this.state.fillWithColor
-                  ? this.state.fillColor
-                  : 'transparent'
+                this.state.fillWithColor ? this.state.fillColor : "transparent"
               }
               backgroundColor={
                 this.state.fillWithBackgroundColor
                   ? this.state.backgroundColor
-                  : 'transparent'
+                  : "transparent"
               }
-              width={
-                this.state.controlledSize ? this.state.sketchWidth : null
-              }
+              width={this.state.controlledSize ? this.state.sketchWidth : null}
               height={
                 this.state.controlledSize ? this.state.sketchHeight : null
               }
@@ -378,7 +380,7 @@ class SketchFieldDemo extends React.Component {
             />
           </div>
 
-          {/* <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+           <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3">
             <Card style={styles.card}>
               <CardHeader
                 title="Tools"
@@ -422,17 +424,7 @@ class SketchFieldDemo extends React.Component {
                     }
                   />
                   <br/>
-                  <label htmlFor="zoom">Zoom</label>
-                  <div>
-                    <IconButton
-                      onClick={(e) => this._sketch.zoom(1.25)}>
-                      <ZoomInIcon/>
-                    </IconButton>
-                    <IconButton
-                      onClick={(e) => this._sketch.zoom(0.8)}>
-                      <ZoomOutIcon/>
-                    </IconButton>
-                  </div>
+
                   <div className="row">
                     <div className="col-lg-7">
                       <TextField
@@ -452,7 +444,9 @@ class SketchFieldDemo extends React.Component {
                 </CardContent>
               </Collapse>
             </Card>
-            <Card style={styles.card}>
+            
+{/* 
+						<Card style={styles.card}>
               <CardHeader
                 title="Controls"
                 subheader="Copy/Paste etc."
@@ -519,7 +513,9 @@ class SketchFieldDemo extends React.Component {
                 </CardContent>
               </Collapse>
             </Card>
-            <Card style={styles.card}>
+            
+						
+						<Card style={styles.card}>
               <CardHeader
                 title="Colors"
                 subheader="Put some color on your drawing"
@@ -552,7 +548,9 @@ class SketchFieldDemo extends React.Component {
                 </CardContent>
               </Collapse>
             </Card>
-            <Card style={styles.card}>
+            
+						
+						<Card style={styles.card}>
               <CardHeader
                 title="Background"
                 subheader="Background of drawing"
@@ -617,7 +615,9 @@ class SketchFieldDemo extends React.Component {
                 </CardContent>
               </Collapse>
             </Card>
-            <Card style={styles.card}>
+            
+						
+						<Card style={styles.card}>
               <CardHeader
                 title="Images"
                 subheader="Upload Images as drawing"
@@ -652,7 +652,9 @@ class SketchFieldDemo extends React.Component {
                 </CardContent>
               </Collapse>
             </Card>
-            <Card style={styles.card}>
+            
+						
+						<Card style={styles.card}>
               <CardHeader
                 title="Controlled value"
                 subheader="Control Component externally"
@@ -674,19 +676,17 @@ class SketchFieldDemo extends React.Component {
                 </CardContent>
               </Collapse>
             </Card>
-          </div>
-         */}
+           */}
+					
+					</div>
+         
         </div>
         <div style={{ width: 0 }}>
           <div className="col-xs-7 col-sm-7 col-md-9 col-lg-9">
             {/* Sketch area */}
 
-            <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-
-
-            </div>
+            <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3"></div>
           </div>
-
         </div>
       </MuiThemeProvider>
     );
