@@ -3,7 +3,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import logo from "./logo.png";
 import Basic from "./components/ContactForm";
 import Demo from "./components/Demo";
-import Whiteboard from "./components/Whiteboard";
+import Whiteboard from "./components/Whiteboard/WhiteBoard2.js";
 
 function App() {
   const [message, setMessage] = useState(null);
