@@ -134,9 +134,9 @@ class SketchFieldDemo extends React.Component {
       drawings: [],
       canUndo: false,
       canRedo: false,
-      controlledSize: false,
+      controlledSize: true,
       sketchWidth: 600,
-      sketchHeight: 600,
+      sketchHeight: window.innerHeight,
       stretched: true,
       stretchedX: false,
       stretchedY: false,
@@ -154,11 +154,11 @@ class SketchFieldDemo extends React.Component {
     };
   }
 
-  _selectTool = (event) => {
+  _selectTool = (tool) => {
     this.setState({
-      tool: event.target.value,
-      enableRemoveSelected: event.target.value === Tools.Select,
-      enableCopyPaste: event.target.value === Tools.Select,
+      tool: tool,
+      enableRemoveSelected: tool === Tools.Select,
+      enableCopyPaste: tool === Tools.Select,
     });
   };
 
@@ -327,9 +327,10 @@ class SketchFieldDemo extends React.Component {
     });
     return (
       <MuiThemeProvider theme={theme}>
-        {/* <TopToolBar />*/}
+        <TopToolBar />
 
-        <LeftToolBar 
+				<LeftToolBar 
+					Tools={Tools}
 					canvasCLEAR={this._clear}
 					canvasUNDO={this._undo}
 					undoDisabled={!this.state.canUndo}
@@ -338,23 +339,16 @@ class SketchFieldDemo extends React.Component {
 					addText={this._addText}
 					brushRadius={this.state.lineWidth}
 					setBrushRadius={ val => this.setState({ lineWidth: val })}
+					selectTool={val=>this._selectTool(val)}
 				/>
 
-        <RightToolBar 
+				<RightToolBar 
+					Tools={Tools}
+					selectTool={val=>this._selectTool(val)}
 					increaseCanvasSize={(e) => this._sketch.zoom(1.25)}
 					decreaseCanvasSize={(e) => this._sketch.zoom(0.8)}
 				/> 
 
-        <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<IconButton color="primary" onClick={this._save}>
-                  <SaveIcon />
-                </IconButton>
-                <IconButton color="primary" onClick={this._download}>
-                  <DownloadIcon />
-                </IconButton>
-          </div>
-        </div>
         <div className="row">
           <div className="col-xs-7 col-sm-7 col-md-9 col-lg-9">
             <SketchField
@@ -384,51 +378,6 @@ class SketchFieldDemo extends React.Component {
           </div>
 
            <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-            <Card style={styles.card}>
-              <CardHeader
-                title="Tools"
-                subheader="Available tools"
-                action={
-                  <IconButton
-                    onClick={(e) => this.setState({ expandTools: !this.state.expandTools })}>
-                    <ExpandMore/>
-                  </IconButton>
-                }/>
-              <Collapse in={this.state.expandTools}>
-                <CardContent>
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <TextField
-                        select={true}
-                        label="Canvas Tool"
-                        value={this.state.tool}
-                        onChange={this._selectTool}
-                        helperText="Please select Canvas Tool">
-                        <MenuItem value={Tools.Select} key="Select">Select</MenuItem>
-                        <MenuItem value={Tools.Pencil} key="Pencil">Pencil</MenuItem>
-                        <MenuItem value={Tools.Line} key="Line">Line</MenuItem>
-                        <MenuItem value={Tools.Arrow} key="Arrow">Arrow</MenuItem>
-                        <MenuItem value={Tools.Rectangle} key="Rectangle">Rectangle</MenuItem>
-                        <MenuItem value={Tools.Circle} key="Circle">Circle</MenuItem>
-                        <MenuItem value={Tools.Pan} key="Pan">Pan</MenuItem>
-                        <MenuItem value={Tools.RectangleLabel} key="Pan">RectangleLabel</MenuItem>
-                      </TextField>
-                    </div>
-                  </div>
-                  <br/>
-                  <br/>
-                  <Typography id="slider">Line Weight</Typography>
-                  <Slider
-                    step={1} min={0} max={100}
-                    aria-labelledby="slider"
-                    value={this.state.lineWidth}
-                    onChange={(e, v) =>
-                      this.setState({ lineWidth: v })
-                    }
-                  />
-                </CardContent>
-              </Collapse>
-            </Card>
             
 {/* 
 						<Card style={styles.card}>

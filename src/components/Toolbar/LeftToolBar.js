@@ -24,7 +24,9 @@ export default function LeftToolBar(props) {
     redoDisabled,
     addText,
     brushRadius,
-    setBrushRadius
+    setBrushRadius,
+    Tools,
+    selectTool,
   } = props;
 
   const {
@@ -64,7 +66,7 @@ export default function LeftToolBar(props) {
         <span className="top-right-icon">
           <img alt="" src={"/icons/SS15.svg"} />
         </span>
-        <button className="board-tool">
+        <button className="board-tool" onClick={e=>selectTool(Tools.Select)}>
           <span className="custom-icon">
             <img alt="" src={"/icons/ARROW.svg"} />
           </span>
@@ -156,7 +158,8 @@ export default function LeftToolBar(props) {
               <button
                 title="Marker"
                 onClick={(e) => {
-                  dispatch(setBrushRadius(4));
+                  selectTool(Tools.Pencil)
+                  setBrushRadius(4);
                   changeColor("#444");
                 }}
               >
@@ -165,10 +168,7 @@ export default function LeftToolBar(props) {
 
               <button
                 title="Pen"
-                onClick={(e) => {
-                  dispatch(setBrushRadius(1));
-                  changeColor("#000");
-                }}
+                onClick={e=>selectTool(Tools.Pencil)}
               >
                 <SVGIcon filepath="/icons/SS16.svg" />
               </button>
@@ -176,7 +176,8 @@ export default function LeftToolBar(props) {
               <button
                 title="Highlighter"
                 onClick={(e) => {
-                  dispatch(setBrushRadius(8));
+                  selectTool(Tools.Pencil)
+                  setBrushRadius(8);
                   changeColor("#ccff0058");
                 }}
               >
@@ -329,23 +330,19 @@ export default function LeftToolBar(props) {
             <div className="tool-item-container eraser-container">
               <button
                 title="Rectangle"
-                onClick={(e) => {
-                  // TODO: add functionality
-                }}
+                onClick={e=>selectTool(Tools.Rectangle)}
               >
                 <SVGIcon filepath="/icons/SHAPE.svg" />
               </button>
 
               <button
-                title="Filled Rectangle"
-                onClick={(e) => {
-                  // TODO: add functionality
-                }}
+                title="Circle"
+                onClick={e=>selectTool(Tools.Circle)}
               >
                 <SVGIcon filepath="/icons/SS26.svg" />
               </button>
 
-              <button>
+              <button  onClick={e=>selectTool(Tools.Line)}>
                 <SVGIcon filepath="/icons/SS20.svg" />
               </button>
 

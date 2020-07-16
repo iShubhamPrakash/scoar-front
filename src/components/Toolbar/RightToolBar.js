@@ -3,7 +3,12 @@ import {openFullscreen,closeFullscreen} from '../../utils/browserFullScreen';
 
 export default function RightToolBar(props) {
 	const [isFullScreen, setIsFullScreen]= useState(document.fullscreenElement)
-	const { increaseCanvasSize,decreaseCanvasSize } = props;
+	const { 
+    increaseCanvasSize,
+    decreaseCanvasSize,
+    Tools,
+    selectTool
+  } = props;
 
 	const handleFullScreen =()=>{
 		if(isFullScreen){
@@ -43,7 +48,7 @@ export default function RightToolBar(props) {
             <img alt="" src={"/icons/SS5.svg"} />
           </span>
         </button>
-        <button className="board-tool">
+        <button className="board-tool" title="Pan" onClick={e=>selectTool(Tools.Pan)}>
           <span className="custom-icon">
             <img alt="" src={"/icons/SS6.svg"} />
           </span>
