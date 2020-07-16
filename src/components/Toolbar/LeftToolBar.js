@@ -3,6 +3,8 @@ import Popover from "@material-ui/core/Popover";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "@material-ui/core/Slider";
 import Switch from "@material-ui/core/Switch";
+import { CompactPicker } from "react-color";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 import {
   setBrushColor,
@@ -27,6 +29,17 @@ export default function LeftToolBar(props) {
     setBrushRadius,
     Tools,
     selectTool,
+    removeSelected,
+    copyPasteDisabled,
+    copy,
+    paste,
+    fillWithColor,
+    toggleFillWithColor,
+    lineColor,
+    setLineColor,
+    fillColor,
+    setFillColor,
+          
   } = props;
 
   const {
@@ -52,7 +65,7 @@ export default function LeftToolBar(props) {
   };
 
   const changeColor = (color) => {
-    dispatch(setBrushColor(color));
+    setLineColor(color);
     handlePopoverBtnClose();
   };
 
@@ -108,7 +121,7 @@ export default function LeftToolBar(props) {
           }}
         >
           <div className="tool-popover-container">
-            <div className="color-container">
+            {/* <div className="color-container">
               <span id="black" onClick={(e) => changeColor("#000")}></span>
               <span id="red" onClick={(e) => changeColor("#fc0303")}></span>
               <span id="blue" onClick={(e) => changeColor("#0059ff")}></span>
@@ -123,6 +136,31 @@ export default function LeftToolBar(props) {
             <span className="color-picker-icon">
               <img alt="" src={"/icons/SS27.svg"} />
             </span>
+            <br/> */}
+            <label htmlFor='lineColor'>Line</label>
+            <br/>
+            <CompactPicker
+              id='lineColor' color={lineColor}
+              onChange={(color) => changeColor(color.hex)}/>
+            <br/>
+            <br/>
+            <FormControlLabel
+              control={
+                <Switch
+                  name="fillColor"
+                  size="small"
+                  checked={fillWithColor}
+                  onChange={(e) => toggleFillWithColor(e.target.checked)}/>
+              }
+              label="Fill"
+            />
+
+            <br/>
+            <CompactPicker
+              color={fillColor}
+              onChange={(color) => setFillColor(color.hex)}/>
+
+
           </div>
         </Popover>
 
@@ -168,7 +206,11 @@ export default function LeftToolBar(props) {
 
               <button
                 title="Pen"
-                onClick={e=>selectTool(Tools.Pencil)}
+                onClick={(e) => {
+                  selectTool(Tools.Pencil)
+                  setBrushRadius(1);
+                  changeColor("#000");
+                }}
               >
                 <SVGIcon filepath="/icons/SS16.svg" />
               </button>
@@ -177,7 +219,7 @@ export default function LeftToolBar(props) {
                 title="Highlighter"
                 onClick={(e) => {
                   selectTool(Tools.Pencil)
-                  setBrushRadius(8);
+                  setBrushRadius(12);
                   changeColor("#ccff0058");
                 }}
               >
@@ -247,7 +289,7 @@ export default function LeftToolBar(props) {
               <button
                 title="White Eraser"
                 onClick={(e) => {
-                  dispatch(setBrushRadius(8));
+                  setBrushRadius(8);
                   changeColor("#fff");
                 }}
               >
@@ -257,7 +299,7 @@ export default function LeftToolBar(props) {
               <button
                 title="Dark Eraser"
                 onClick={(e) => {
-                  dispatch(setBrushRadius(8));
+                  setBrushRadius(8);
                   changeColor("#000");
                 }}
               >
@@ -277,12 +319,10 @@ export default function LeftToolBar(props) {
               <p>Fixed line width </p>
 
               <Switch
-                // checked={state.checkedB}
-                // onChange={handleChange}
-                size="small"
-                color="primary"
                 name="fixedLine"
-                inputProps={{ "aria-label": "primary checkbox" }}
+                size="small"
+                // checked={fillWithColor}
+                // onChange={(e) => toggleFillWithColor(e.target.checked)}
               />
             </div>
             <div className="brush-size-slider-container">
@@ -352,15 +392,13 @@ export default function LeftToolBar(props) {
             </div>
 
             <div className="fixed-line-toggle-container">
-              <p>Fixed line width </p>
+              <p>Filled shape </p>
 
               <Switch
-                // checked={state.checkedB}
-                // onChange={handleChange}
+                name="filledShape"
                 size="small"
-                color="primary"
-                name="fixedLine"
-                inputProps={{ "aria-label": "primary checkbox" }}
+                checked={fillWithColor}
+                onChange={(e) => toggleFillWithColor(e.target.checked)}
               />
             </div>
             <div className="brush-size-slider-container">

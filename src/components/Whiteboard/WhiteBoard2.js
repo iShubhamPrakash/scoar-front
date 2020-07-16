@@ -121,7 +121,7 @@ class SketchFieldDemo extends React.Component {
     super(props);
 
     this.state = {
-      lineWidth: 10,
+      lineWidth: 4,
       lineColor: "black",
       fillColor: "#68CCCA",
       backgroundColor: "transparent",
@@ -340,6 +340,16 @@ class SketchFieldDemo extends React.Component {
 					brushRadius={this.state.lineWidth}
 					setBrushRadius={ val => this.setState({ lineWidth: val })}
 					selectTool={val=>this._selectTool(val)}
+					removeSelected={this._removeSelected}
+					copyPasteDisabled={!this.state.enableCopyPaste}
+					copy={e=> this._sketch.copy()}
+					paste={ e=> this._sketch.paste()}
+					fillWithColor={this.state.fillWithColor}
+					toggleFillWithColor={(val) => this.setState({ fillWithColor: val })}
+					lineColor={this.state.lineColor}
+					setLineColor={(color) => this.setState({ lineColor: color })}
+					fillColor={this.state.fillColor}
+					setFillColor={(color) => this.setState({ fillColor: color })}
 				/>
 
 				<RightToolBar 
@@ -378,77 +388,10 @@ class SketchFieldDemo extends React.Component {
           </div>
 
            <div className="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+          
             
-{/* 
-						<Card style={styles.card}>
-              <CardHeader
-                title="Controls"
-                subheader="Copy/Paste etc."
-                action={
-                  <IconButton
-                    onClick={(e) => this.setState({ expandControls: !this.state.expandControls })}>
-                    <ExpandMore/>
-                  </IconButton>
-                }/>
-              <Collapse in={this.state.expandControls}>
-                <CardContent>
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <FormControlLabel
-                        control={
-                          <Switch
-                            value={this.state.controlledSize}
-                            onChange={(e) => this.setState({ controlledSize: !this.state.controlledSize })}
-                          />
-                        }
-                        label="Control size"
-                      />
-                      <br/>
-                      <Typography id="xSize">Change Canvas Width</Typography>
-                      <Slider
-                        step={1}
-                        min={10}
-                        max={1000}
-                        value={this.state.sketchWidth}
-                        onChange={(e, v) => this.setState({ sketchWidth: v })}/>
-                      <br/>
-                      <Typography id="ySize">Change Canvas Height</Typography>
-                      <Slider
-                        step={1}
-                        min={10}
-                        max={1000}
-                        value={this.state.sketchHeight}
-                        onChange={(e, v) => this.setState({ sketchHeight: v })}/>
-                      <br/>
-                    </div>
-                  </div>
-                  <label htmlFor="zoom">Selection Actions (Select an object first!)</label>
-                  <div className="row">
-                    <div className="col">
-                      <IconButton
-                        color="primary"
-                        disabled={!this.state.enableCopyPaste}
-                        onClick={(e) => {
-                          this._sketch.copy();
-                          this._sketch.paste();
-                        }}>
-                        <CopyIcon/>
-                      </IconButton>
-                    </div>
-                    <div className="col">
-                      <IconButton
-                        color="primary"
-                        disabled={!this.state.enableRemoveSelected}
-                        onClick={this._removeSelected}>
-                        <RemoveIcon/>
-                      </IconButton>
-                    </div>
-                  </div>
-                </CardContent>
-              </Collapse>
-            </Card>
-            
-						
+
+			
 						<Card style={styles.card}>
               <CardHeader
                 title="Colors"
@@ -483,7 +426,8 @@ class SketchFieldDemo extends React.Component {
               </Collapse>
             </Card>
             
-						
+
+	{/* 			
 						<Card style={styles.card}>
               <CardHeader
                 title="Background"
