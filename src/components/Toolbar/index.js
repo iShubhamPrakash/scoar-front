@@ -1,11 +1,5 @@
-import LeftToolBar from './LeftToolBar'
-import TopToolBar from './TopToolBar'
-import RightToolBar from './RightToolBar'
+import LeftToolBar from "./LeftToolBar";
+import TopToolBar from "./TopToolBar";
+import RightToolBar from "./RightToolBar";
 
-
-
-export {
-    LeftToolBar,
-    TopToolBar,
-    RightToolBar
-}
+export { LeftToolBar, TopToolBar, RightToolBar };
