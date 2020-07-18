@@ -3,7 +3,14 @@ import "flexboxgrid";
 import dataJson from "./data.json";
 import { SketchField, Tools } from "react-sketch";
 import { LeftToolBar, RightToolBar, TopToolBar } from "../Toolbar";
+import { connect } from "react-redux";
 
+import {
+  setTotalPage,
+  setCurrentPage,
+} from "../../store/actions/whiteboardActions";
+
+const localStorageKey="scoar"
 class WhiteBoard extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +47,18 @@ class WhiteBoard extends Component {
       text: "a text, cool!",
       enableCopyPaste: false,
     };
+  }
+
+
+  componentDidMount(){
+    this.loadSavedDataInCanvas(this.props.currentPage)
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps){
+    if(nextProps.currentPage !== this.props.currentPage){
+      console.log("page changed")
+      this.loadSavedDataInCanvas(nextProps.currentPage)
+    }
   }
 
   _selectTool = (tool) => {
@@ -100,6 +119,11 @@ class WhiteBoard extends Component {
   };
 
   _onSketchChange = () => {
+
+    console.log("_onSketchChange",this._sketch)
+    // Save canvas data to the local storage
+    this.saveCanvasData(this.props.currentPage)
+
     let prev = this.state.canUndo;
     let now = this._sketch.canUndo();
     if (prev !== now) {
@@ -130,8 +154,29 @@ class WhiteBoard extends Component {
 
   _addText = () => this._sketch.addText(this.state.text || "Hello world !");
 
+
+  loadSavedDataInCanvas = (currentPage) => {
+    let savedData = localStorage.getItem(`${localStorageKey}${currentPage}`);
+    if (savedData) {
+      savedData= JSON.parse(savedData)
+      this.setState({controlledValue:savedData})
+    } else {
+      console.log("local storage data not found for page"+ currentPage)
+      this._clear()
+    }
+  };
+
+  saveCanvasData = (currentPage) => {
+    let data = this._sketch.toJSON();
+    if (data) {
+      data = JSON.stringify(data)
+      localStorage.setItem(`${localStorageKey}${currentPage}`, data);
+    }
+  };
+
   render = () => {
     let { controlledValue } = this.state;
+    const { canvasData, currentPage, totalPage} = this.props;
     return (
       <div className="whiteboard">
 				
@@ -188,7 +233,9 @@ class WhiteBoard extends Component {
               height={
                 this.state.controlledSize ? this.state.sketchHeight : null
               }
-              defaultValue={dataJson}
+              // defaultValue={dataJson}
+              defaultValue={controlledValue}
+
               value={controlledValue}
               forceValue
               onChange={this._onSketchChange}
@@ -209,4 +256,12 @@ class WhiteBoard extends Component {
   };
 }
 
-export default WhiteBoard;
+
+// const mapDispatchToProps={
+
+// }
+
+const mapStateToProps=(state)=>{
+  return state.whiteBoard
+}
+export default connect(mapStateToProps)(WhiteBoard);

@@ -6,7 +6,7 @@ const initialState = {
   canvasHeight: 700,
   canvasWidth: 700,
   totalPage: 5,
-  currentPage: 0,
+  currentPage: 1,
   canvasData: [],
 };
 
