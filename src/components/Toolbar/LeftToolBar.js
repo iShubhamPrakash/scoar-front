@@ -280,6 +280,17 @@ export default function LeftToolBar(props) {
           </span>
         </button>
 
+
+        <button
+          className="board-tool"
+          title="Remove Selected"
+          onClick={(e) => removeSelected()}
+        >
+          <span className="custom-icon">
+            <img alt="" src={"/icons/SS23.svg"} />
+          </span>
+        </button>
+
         {/* <button
           className="board-tool"
           id={"eraser-popover-btn"}
