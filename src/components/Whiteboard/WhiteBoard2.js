@@ -184,6 +184,7 @@ class WhiteBoard extends Component {
 
         <LeftToolBar
           Tools={Tools}
+          saveCanvasData={this.saveCanvasData}
           canvasCLEAR={this._clear}
           canvasUNDO={this._undo}
           undoDisabled={!this.state.canUndo}

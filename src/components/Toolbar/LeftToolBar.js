@@ -98,6 +98,16 @@ export default function LeftToolBar(props) {
         </button>
         <button
           className="board-tool"
+          title="REDO"
+          onClick={(e) => canvasREDO()}
+          disabled={redoDisabled}
+        >
+          <span className="custom-icon">
+            <img alt="" src={"/icons/REDO.svg"} />
+          </span>
+        </button>
+        <button
+          className="board-tool"
           id={"color-popover-btn"}
           aria-describedby={"color-popover"}
           variant="contained"
@@ -259,7 +269,18 @@ export default function LeftToolBar(props) {
           </div>
         </Popover>
 
+
         <button
+          className="board-tool"
+          title="Clear All"
+          onClick={(e) => canvasCLEAR()}
+        >
+          <span className="custom-icon">
+            <img alt="" src={"/icons/SS24.svg"} />
+          </span>
+        </button>
+
+        {/* <button
           className="board-tool"
           id={"eraser-popover-btn"}
           title="ERASER"
@@ -339,7 +360,7 @@ export default function LeftToolBar(props) {
               />
             </div>
           </div>
-        </Popover>
+        </Popover> */}
 
         <button 
           className="board-tool"
