@@ -51,6 +51,12 @@ class WhiteBoard extends Component {
 
   componentDidMount() {
     this.loadSavedDataInCanvas(this.props.currentPage);
+    window.addEventListener('resize',(e)=>{
+      this.setState({
+        sketchWidth: window.innerWidth,
+        sketchHeight: window.innerHeight,
+      })
+    })
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -239,10 +245,8 @@ class WhiteBoard extends Component {
               height={
                 this.state.controlledSize ? this.state.sketchHeight : null
               }
-              // defaultValue={dataJson}
-              // defaultValue={controlledValue}
 
-              // value={controlledValue}
+              value={controlledValue}
               forceValue
               onChange={this._onSketchChange}
               tool={this.state.tool}
