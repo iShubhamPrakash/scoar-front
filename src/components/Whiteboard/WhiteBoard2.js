@@ -10,7 +10,7 @@ import {
   setCurrentPage,
 } from "../../store/actions/whiteboardActions";
 
-const localStorageKey="scoar"
+const localStorageKey = "scoar";
 class WhiteBoard extends Component {
   constructor(props) {
     super(props);
@@ -19,13 +19,13 @@ class WhiteBoard extends Component {
       lineWidth: 4,
       lineColor: "black",
       fillColor: "#68CCCA",
-      backgroundColor: "transparent",
+      backgroundColor: "#FF0000",
       shadowWidth: 0,
       shadowOffset: 0,
       tool: Tools.Pencil,
       enableRemoveSelected: false,
       fillWithColor: false,
-      fillWithBackgroundColor: false,
+      fillWithBackgroundColor: true,
       drawings: [],
       canUndo: false,
       canRedo: false,
@@ -49,15 +49,14 @@ class WhiteBoard extends Component {
     };
   }
 
-
-  componentDidMount(){
-    this.loadSavedDataInCanvas(this.props.currentPage)
+  componentDidMount() {
+    this.loadSavedDataInCanvas(this.props.currentPage);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps){
-    if(nextProps.currentPage !== this.props.currentPage){
-      console.log("page changed")
-      this.loadSavedDataInCanvas(nextProps.currentPage)
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.currentPage !== this.props.currentPage) {
+      console.log("page changed");
+      this.loadSavedDataInCanvas(nextProps.currentPage);
     }
   }
 
@@ -107,8 +106,8 @@ class WhiteBoard extends Component {
     this._sketch.setBackgroundFromDataUrl("");
     this.setState({
       controlledValue: null,
-      backgroundColor: "transparent",
-      fillWithBackgroundColor: false,
+      backgroundColor: "#fff",
+      fillWithBackgroundColor: true,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
     });
@@ -119,10 +118,9 @@ class WhiteBoard extends Component {
   };
 
   _onSketchChange = () => {
-
-    console.log("_onSketchChange",this._sketch)
+    console.log("_onSketchChange", this._sketch);
     // Save canvas data to the local storage
-    this.saveCanvasData(this.props.currentPage)
+    this.saveCanvasData(this.props.currentPage);
 
     let prev = this.state.canUndo;
     let now = this._sketch.canUndo();
@@ -154,33 +152,40 @@ class WhiteBoard extends Component {
 
   _addText = () => this._sketch.addText(this.state.text || "Hello world !");
 
-
   loadSavedDataInCanvas = (currentPage) => {
     let savedData = localStorage.getItem(`${localStorageKey}${currentPage}`);
     if (savedData) {
-      savedData= JSON.parse(savedData)
-      this.setState({controlledValue:savedData})
+      savedData = JSON.parse(savedData);
+      this.setState({ controlledValue: savedData });
     } else {
-      console.log("local storage data not found for page"+ currentPage)
-      this._clear()
+      console.log("local storage data not found for page" + currentPage);
+      this._clear();
     }
   };
 
   saveCanvasData = (currentPage) => {
     let data = this._sketch.toJSON();
     if (data) {
-      data = JSON.stringify(data)
+      data = JSON.stringify(data);
       localStorage.setItem(`${localStorageKey}${currentPage}`, data);
     }
   };
 
+  exportToPNG = () => {
+    const canvasData = this._sketch.toDataURL();
+    // console.log(canvasData)
+    const link = document.createElement("a");
+    link.download = "scoar-whiteboard.png";
+    link.href = canvasData;
+    link.click();
+  };
+
   render = () => {
     let { controlledValue } = this.state;
-    const { canvasData, currentPage, totalPage} = this.props;
+    const { canvasData, currentPage, totalPage } = this.props;
     return (
       <div className="whiteboard">
-				
-        <TopToolBar />
+        <TopToolBar exportToPNG={this.exportToPNG} />
 
         <LeftToolBar
           Tools={Tools}
@@ -235,9 +240,9 @@ class WhiteBoard extends Component {
                 this.state.controlledSize ? this.state.sketchHeight : null
               }
               // defaultValue={dataJson}
-              defaultValue={controlledValue}
+              // defaultValue={controlledValue}
 
-              value={controlledValue}
+              // value={controlledValue}
               forceValue
               onChange={this._onSketchChange}
               tool={this.state.tool}
@@ -257,12 +262,11 @@ class WhiteBoard extends Component {
   };
 }
 
-
 // const mapDispatchToProps={
 
 // }
 
-const mapStateToProps=(state)=>{
-  return state.whiteBoard
-}
+const mapStateToProps = (state) => {
+  return state.whiteBoard;
+};
 export default connect(mapStateToProps)(WhiteBoard);

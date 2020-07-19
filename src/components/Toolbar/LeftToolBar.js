@@ -17,12 +17,14 @@ import SVGIcon from "../UI/SVGIcon";
 
 export default function LeftToolBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [imgURL, setImgURL] = React.useState("https://files.gamebanana.com/img/ico/sprays/4ea2f4dad8d6f.png");
+  const [imgURL, setImgURL] = React.useState(
+    "https://files.gamebanana.com/img/ico/sprays/4ea2f4dad8d6f.png"
+  );
   const [prevColor, setPrevColor] = React.useState("#000");
 
-  const { 
-    canvasCLEAR, 
-    canvasUNDO, 
+  const {
+    canvasCLEAR,
+    canvasUNDO,
     canvasREDO,
     undoDisabled,
     redoDisabled,
@@ -81,7 +83,10 @@ export default function LeftToolBar(props) {
         <span className="top-right-icon">
           <img alt="" src={"/icons/SS15.svg"} />
         </span>
-        <button className="board-tool" onClick={e=>selectTool(Tools.Select)}>
+        <button
+          className="board-tool"
+          onClick={(e) => selectTool(Tools.Select)}
+        >
           <span className="custom-icon">
             <img alt="" src={"/icons/ARROW.svg"} />
           </span>
@@ -149,30 +154,32 @@ export default function LeftToolBar(props) {
               <img alt="" src={"/icons/SS27.svg"} />
             </span>
             <br/> */}
-            <label htmlFor='lineColor'>Line</label>
-            <br/>
+            <label htmlFor="lineColor">Line</label>
+            <br />
             <CompactPicker
-              id='lineColor' color={lineColor}
-              onChange={(color) => changeColor(color.hex)}/>
-            <br/>
-            <br/>
+              id="lineColor"
+              color={lineColor}
+              onChange={(color) => changeColor(color.hex)}
+            />
+            <br />
+            <br />
             <FormControlLabel
               control={
                 <Switch
                   name="fillColor"
                   size="small"
                   checked={fillWithColor}
-                  onChange={(e) => toggleFillWithColor(e.target.checked)}/>
+                  onChange={(e) => toggleFillWithColor(e.target.checked)}
+                />
               }
               label="Fill"
             />
 
-            <br/>
+            <br />
             <CompactPicker
               color={fillColor}
-              onChange={(color) => setFillColor(color.hex)}/>
-
-
+              onChange={(color) => setFillColor(color.hex)}
+            />
           </div>
         </Popover>
 
@@ -208,7 +215,7 @@ export default function LeftToolBar(props) {
               <button
                 title="Marker"
                 onClick={(e) => {
-                  selectTool(Tools.Pencil)
+                  selectTool(Tools.Pencil);
                   setBrushRadius(4);
                   changeColor("#444");
                 }}
@@ -219,7 +226,7 @@ export default function LeftToolBar(props) {
               <button
                 title="Pen"
                 onClick={(e) => {
-                  selectTool(Tools.Pencil)
+                  selectTool(Tools.Pencil);
                   setBrushRadius(1);
                   changeColor("#000");
                 }}
@@ -230,7 +237,7 @@ export default function LeftToolBar(props) {
               <button
                 title="Highlighter"
                 onClick={(e) => {
-                  selectTool(Tools.Pencil)
+                  selectTool(Tools.Pencil);
                   setBrushRadius(12);
                   changeColor("#ccff0058");
                 }}
@@ -269,7 +276,6 @@ export default function LeftToolBar(props) {
           </div>
         </Popover>
 
-
         <button
           className="board-tool"
           title="Clear All"
@@ -279,7 +285,6 @@ export default function LeftToolBar(props) {
             <img alt="" src={"/icons/SS24.svg"} />
           </span>
         </button>
-
 
         <button
           className="board-tool"
@@ -373,7 +378,7 @@ export default function LeftToolBar(props) {
           </div>
         </Popover> */}
 
-        <button 
+        <button
           className="board-tool"
           id={"shape-popover-btn"}
           title="SHAPE"
@@ -404,19 +409,16 @@ export default function LeftToolBar(props) {
             <div className="tool-item-container eraser-container">
               <button
                 title="Rectangle"
-                onClick={e=>selectTool(Tools.Rectangle)}
+                onClick={(e) => selectTool(Tools.Rectangle)}
               >
                 <SVGIcon filepath="/icons/SHAPE.svg" />
               </button>
 
-              <button
-                title="Circle"
-                onClick={e=>selectTool(Tools.Circle)}
-              >
-                <SVGIcon filepath="/icons/SS26.svg" />
+              <button title="Circle" onClick={(e) => selectTool(Tools.Circle)}>
+                <SVGIcon filepath="/icons/circle.svg" />
               </button>
 
-              <button  onClick={e=>selectTool(Tools.Line)}>
+              <button onClick={(e) => selectTool(Tools.Line)}>
                 <SVGIcon filepath="/icons/SS20.svg" />
               </button>
 
@@ -438,21 +440,22 @@ export default function LeftToolBar(props) {
             <div className="brush-size-slider-container">
               <p>Stroke Size</p>
               <Slider
-               value={brushRadius}
-               min={1}
-               max={25}
-               valueLabelDisplay="auto"
-               onChange={handleBrusSizeChange}
-               aria-labelledby="continuous-slider"
+                value={brushRadius}
+                min={1}
+                max={25}
+                valueLabelDisplay="auto"
+                onChange={handleBrusSizeChange}
+                aria-labelledby="continuous-slider"
               />
             </div>
             <div>
               <TextField
-                label='Image URL'
-                helperText='Copy/Paste an image URL'
+                label="Image URL"
+                helperText="Copy/Paste an image URL"
                 onChange={(e) => setImgURL(e.target.value)}
-                value={imgURL}/>
-              <br/>
+                value={imgURL}
+              />
+              <br />
               <Button
                 variant="outlined"
                 size="small"
@@ -464,12 +467,13 @@ export default function LeftToolBar(props) {
           </div>
         </Popover>
 
-
-
-        <button className="board-tool" onClick={e=>{
-          selectTool(Tools.Select)
-          addText()
-        }}>
+        <button
+          className="board-tool"
+          onClick={(e) => {
+            selectTool(Tools.Select);
+            addText();
+          }}
+        >
           <span className="custom-icon">
             <img alt="" src={"/icons/FONT.svg"} />
           </span>
