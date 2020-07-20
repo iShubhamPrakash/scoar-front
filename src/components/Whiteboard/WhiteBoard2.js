@@ -19,13 +19,11 @@ class WhiteBoard extends Component {
       lineWidth: 4,
       lineColor: "black",
       fillColor: "#68CCCA",
-      backgroundColor: "#FF0000",
       shadowWidth: 0,
       shadowOffset: 0,
       tool: Tools.Pencil,
       enableRemoveSelected: false,
       fillWithColor: false,
-      fillWithBackgroundColor: true,
       drawings: [],
       canUndo: false,
       canRedo: false,
@@ -112,8 +110,6 @@ class WhiteBoard extends Component {
     this._sketch.setBackgroundFromDataUrl("");
     this.setState({
       controlledValue: null,
-      backgroundColor: "#fff",
-      fillWithBackgroundColor: true,
       canUndo: this._sketch.canUndo(),
       canRedo: this._sketch.canRedo(),
     });
@@ -124,15 +120,19 @@ class WhiteBoard extends Component {
   };
 
   _onSketchChange = () => {
-    console.log("_onSketchChange", this._sketch);
+    console.log("_onSketchChange", this._sketch);   
+    let controlledValue = this._sketch.toJSON();
+    // this.setState({ controlledValue})
+
     // Save canvas data to the local storage
-    this.saveCanvasData(this.props.currentPage);
+    this.saveCanvasData(controlledValue, this.props.currentPage);
 
     let prev = this.state.canUndo;
     let now = this._sketch.canUndo();
     if (prev !== now) {
       this.setState({ canUndo: now });
     }
+
   };
 
   _onBackgroundImageDrop = (accepted /*, rejected*/) => {
@@ -169,8 +169,8 @@ class WhiteBoard extends Component {
     }
   };
 
-  saveCanvasData = (currentPage) => {
-    let data = this._sketch.toJSON();
+  saveCanvasData = (data,currentPage) => {
+    // let data = this._sketch.toJSON();
     if (data) {
       data = JSON.stringify(data);
       localStorage.setItem(`${localStorageKey}${currentPage}`, data);
@@ -236,19 +236,14 @@ class WhiteBoard extends Component {
               fillColor={
                 this.state.fillWithColor ? this.state.fillColor : "transparent"
               }
-              backgroundColor={
-                this.state.fillWithBackgroundColor
-                  ? this.state.backgroundColor
-                  : "transparent"
-              }
-              width={this.state.controlledSize ? this.state.sketchWidth : null}
-              height={
-                this.state.controlledSize ? this.state.sketchHeight : null
-              }
-
+              backgroundColor="#FF0000"
+              width={this.state.sketchWidth}
+              height={this.state.sketchHeight}
+              
+              forceValue={false}
               value={controlledValue}
-              forceValue
               onChange={this._onSketchChange}
+              
               tool={this.state.tool}
             />
           </div>
