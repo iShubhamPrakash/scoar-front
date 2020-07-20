@@ -1,0 +1,60 @@
+import React, {useState} from "react";
+import TextField from '@material-ui/core/TextField';
+
+export default function Login() {
+
+	const [mobile, setMobile] = useState("")
+	const [otp, setOTP] = useState("")
+	const [next, setNext] = useState(false)
+
+	const handleNext = async ()=>{
+		try{
+			// const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/sendotp/${mobile}`)
+			
+			// if(res.status === 200){
+			// 	setNext(true)
+			// }else{
+			// 	alert("Try again! Something went wrong!!")
+			// }
+			setNext(true)
+		}catch(e){
+			alert("Try again! Something went wrong!!")
+		}
+	}
+
+
+	const handleLogin = async () => {
+		alert("Success")
+		// try{
+		// 	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/verifyotp/${otp}`)
+			
+		// 	if(res.status === 200){
+		// 		alert("Success")
+		// 	}else{
+		// 		alert("Try again! Something went wrong!!")
+		// 	}
+		// 	setNext(true)
+		// }catch(e){
+		// 	alert("Try again! Something went wrong!!")
+		// }
+	}
+
+  return (
+    <div className="login">
+      <h1 className="login__header">Login</h1>
+      <h2 className="login__subheader">BE ONE OF US!</h2>
+
+      {!next?(
+				<div className="login__form">
+					<TextField id="input" label="Mobile Number" variant="outlined" value={mobile} onChange={e=>setMobile(e.target.value)}/>
+					<button className="btn btn-purple" disabled={mobile=== null} onClick={handleNext}>NEXT</button>
+				</div>
+			):(
+				<div className="login__form">
+					<TextField id="input" label="OTP" variant="outlined" value={otp} onChange={e=>setOTP(e.target.value)}/>
+					<button className="btn btn-purple" disabled={otp=== null} onClick={handleLogin}>LOGIN</button>
+				</div>
+			)}
+    </div>
+  );
+}

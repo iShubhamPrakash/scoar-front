@@ -1,0 +1,39 @@
+.login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	&__header{
+		color: $scoar_purple;
+	}
+
+	&__subheader{
+		color: gray;
+		font-weight: normal;
+	}
+
+	&__form{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		#input{
+			border-radius: 25px;
+		}
+
+		button{
+			border-radius: 25px;
+			margin: 1em 0;
+			width: 100%;
+			padding: 1em;
+			font-size: 1em;
+			outline: none;
+
+			&:active{
+				background: $scoar_purple_dark;
+			}
+		}
+	}
+}

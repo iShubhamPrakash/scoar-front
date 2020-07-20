@@ -4,6 +4,7 @@ import logo from "./logo.png";
 import Basic from "./components/ContactForm";
 import Demo from "./components/Demo";
 import Whiteboard from "./components/Whiteboard/WhiteBoard2.js";
+import Login from "./components/Auth/Login";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -66,6 +67,10 @@ function App() {
 
         <Route exact path="/whiteboard">
           <Whiteboard />
+        </Route>
+
+        <Route exact path="/auth">
+          <Login/>
         </Route>
       </Switch>
     </div>
