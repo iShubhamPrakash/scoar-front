@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -10,7 +12,9 @@ export default function Signup() {
   const [mobile, setMobile] = useState("");
   const [otp, setOTP] = useState("");
   const [role, setRole] = useState("student");
-  const [next, setNext] = useState(false);
+	const [next, setNext] = useState(false);
+	
+	let history = useHistory();
 
 
   const handleChange = (event) => {
@@ -18,38 +22,66 @@ export default function Signup() {
   };
 
   const handleNext = async () => {
-    setNext(true);
+		// setNext(true);
+		try{
+    	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/sendotp/${mobile}`)
 
-    // try{
-    // 	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/sendotp/${mobile}`)
-
-    // 	if(res.status === 200){
-    // 		setNext(true)
-    // 	}else{
-    // 		alert("Try again! Something went wrong!!")
-    // 	}
-    // }catch(e){
-    // 	alert("Try again! Something went wrong!!")
-    // }
+    	if(res.status === 200){
+    		setNext(true)
+    	}else{
+    		alert("Try again! Something went wrong!!")
+    	}
+    }catch(e){
+    	alert("Try again! Something went wrong!!")
+    }
+		
   };
 
-  const handleLogin = async () => {
-    alert("Success");
+  const handleSignup = async () => {
+    // alert("Success");
 
-    // try{
-    // 	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/verifyotp/${otp}`)
-    // 	const result = await res.text()
+    try{
+    	const res = await fetch(`https://score-backend.herokuapp.com/scoar/cred/add`,{
+				method: 'POST',
+				headers:{
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					contactNo : mobile,
+					role: role
+				})
+			})
+    	const result = await res.text()
 
-    // 	if(result === 'approved'){
-    // 		alert("Success")
-    // 	}else{
-    // 		alert("Try again! Something went wrong!!")
-    // 	}
+    	if(result.toLocaleLowerCase() === 'success'){
+				console.log("Success")
+				handleLogIn(otp)
+				
+    	}else{
+    		alert("Try again! Something went wrong!!")
+    	}
 
-    // }catch(e){
-    // 	alert("Try again! Something went wrong!!")
-    // }
-  };
+    }catch(e){
+    	alert("Try again! Something went wrong!!")
+    }
+	};
+	
+	const handleLogIn = async (otp) =>{
+		try{
+    	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/verifyotp/${otp}`)
+    	const result = await res.text()
+
+    	if(result === 'approved'){
+			console.log("Success")
+			history.push("/whiteboard");
+    	}else{
+    		alert("Try again! Something went wrong!!")
+    	}
+
+    }catch(e){
+    	alert("Try again! Something went wrong!!")
+    }
+	}
 
   return (
     <div className="login">
@@ -108,7 +140,7 @@ export default function Signup() {
           <button
             className="btn btn-purple"
             disabled={mobile === null}
-            onClick={handleNext}
+            onClick={handleSignup}
           >
             SIGN UP
           </button>

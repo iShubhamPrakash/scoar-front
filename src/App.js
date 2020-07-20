@@ -43,6 +43,9 @@ function App() {
          <div className="App">
          <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
+            
+            <div><AuthModal/></div>
+
             <Link to="/whiteboard"><h4>Open Whiteboard</h4></Link>
             {process.env.NODE_ENV === "production" ? (
               <p>Scoar</p>

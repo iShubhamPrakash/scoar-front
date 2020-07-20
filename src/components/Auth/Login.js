@@ -1,43 +1,46 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
   const [mobile, setMobile] = useState("");
   const [otp, setOTP] = useState("");
   const [next, setNext] = useState(false);
+  let history = useHistory();
 
   const handleNext = async () => {
-    setNext(true);
+    // setNext(true);
 
-    // try{
-    // 	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/sendotp/${mobile}`)
+    try{
+    	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/sendotp/${mobile}`)
 
-    // 	if(res.status === 200){
-    // 		setNext(true)
-    // 	}else{
-    // 		alert("Try again! Something went wrong!!")
-    // 	}
-    // }catch(e){
-    // 	alert("Try again! Something went wrong!!")
-    // }
+    	if(res.status === 200){
+    		setNext(true)
+    	}else{
+    		alert("Try again! Something went wrong!!")
+    	}
+    }catch(e){
+    	alert("Try again! Something went wrong!!")
+    }
   };
 
   const handleLogin = async () => {
-    alert("Success");
+    // alert("Success");
 
-    // try{
-    // 	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/verifyotp/${otp}`)
-    // 	const result = await res.text()
+    try{
+    	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/verifyotp/${otp}`)
+    	const result = await res.text()
 
-    // 	if(result === 'approved'){
-    // 		alert("Success")
-    // 	}else{
-    // 		alert("Try again! Something went wrong!!")
-    // 	}
+    	if(result === 'approved'){
+			console.log("Success")
+			history.push("/whiteboard");
+    	}else{
+    		alert("Try again! Something went wrong!!")
+    	}
 
-    // }catch(e){
-    // 	alert("Try again! Something went wrong!!")
-    // }
+    }catch(e){
+    	alert("Try again! Something went wrong!!")
+    }
   };
 
   return (

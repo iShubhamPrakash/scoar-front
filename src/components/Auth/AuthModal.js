@@ -21,7 +21,7 @@ export default function AuthModal() {
 
   return (
     <div className="authmodalcontainer">
-      <button type="button" onClick={handleOpen}>
+      <button className="btn btn-purple" type="button" onClick={handleOpen}>
         Login / Signup
       </button>
       <Modal
