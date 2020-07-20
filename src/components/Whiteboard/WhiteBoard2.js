@@ -197,12 +197,15 @@ class WhiteBoard extends Component {
 
   render = () => {
     let { controlledValue } = this.state;
-    const { canvasData, currentPage, totalPage } = this.props;
+    const { canvasData, currentPage, totalPage, role } = this.props;
+    const controlDisabled = (role ==="teacher" ? false : true)
+
     return (
       <div className="whiteboard">
         <TopToolBar exportToPNG={this.exportToPNG} />
 
-        <LeftToolBar
+       {!controlDisabled?
+       <LeftToolBar
           Tools={Tools}
           saveCanvasData={this.saveCanvasData}
           canvasCLEAR={this._clear}
@@ -225,14 +228,15 @@ class WhiteBoard extends Component {
           fillColor={this.state.fillColor}
           setFillColor={(color) => this.setState({ fillColor: color })}
           addImage={(imageURL) => this._sketch.addImg(imageURL)}
-        />
+        />: null}
 
+        {!controlDisabled?
         <RightToolBar
           Tools={Tools}
           selectTool={(val) => this._selectTool(val)}
           increaseCanvasSize={(e) => this._sketch.zoom(1.25)}
           decreaseCanvasSize={(e) => this._sketch.zoom(0.8)}
-        />
+        />: null}
 
         <div className="row">
           <div className="col-12">
@@ -240,8 +244,8 @@ class WhiteBoard extends Component {
               name="sketch"
               className="canvas-area"
               ref={(c) => (this._sketch = c)}
-              lineColor={this.state.lineColor}
-              lineWidth={this.state.lineWidth}
+              lineColor={!controlDisabled ? this.state.lineColor:"transparent" }
+              lineWidth={!controlDisabled ? this.state.lineWidth : 0}
               fillColor={
                 this.state.fillWithColor ? this.state.fillColor : "transparent"
               }
