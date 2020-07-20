@@ -5,6 +5,8 @@ import Basic from "./components/ContactForm";
 import Demo from "./components/Demo";
 import Whiteboard from "./components/Whiteboard/WhiteBoard2.js";
 import Login from "./components/Auth/Login";
+import Signup from "./components/Auth/Signup";
+import AuthModal from "./components/Auth/AuthModal";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -70,7 +72,7 @@ function App() {
         </Route>
 
         <Route exact path="/auth">
-          <Login/>
+          <AuthModal/>
         </Route>
       </Switch>
     </div>
