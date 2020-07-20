@@ -33,16 +33,19 @@ export default function RightToolBar(props) {
             <img alt="" src={"/icons/SS2.svg"} />
           </span>
         </button>
-        <button className="board-tool">
+        
+        {/* <button className="board-tool">
           <span className="custom-icon">
             <img alt="" src={"/icons/SS3.svg"} />
           </span>
-        </button>
-        <button className="board-tool">
+        </button> */}
+
+        {/* <button className="board-tool">
           <span className="custom-icon">
             <img alt="" src={"/icons/SS4.svg"} />
           </span>
-        </button>
+        </button> */}
+
         <button className="board-tool" title={ isFullScreen ? "Exit full screen" : "Enter full screen"} onClick={e=>handleFullScreen()}>
           <span className="custom-icon">
             <img alt="" src={"/icons/SS5.svg"} />

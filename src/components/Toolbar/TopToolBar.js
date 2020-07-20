@@ -27,19 +27,19 @@ export default function TopToolBar(props) {
         </Link>
       </div>
 
-      <div className="time tool_container">
+      {/* <div className="time tool_container">
         <p>Product Designing &nbsp;&nbsp;| &nbsp;&nbsp; 1:20:32</p>
-      </div>
+      </div> */}
 
       <div className="whiteboard-top-right">
         <div className="popover-btn-container tool_container">
-          <button id="more-popover-btn" onClick={handlePopoverBtnClick}>
+          {/* <button id="more-popover-btn" onClick={handlePopoverBtnClick}>
             More Options
             <i className="custom-icon">
               <img alt="" src={"/icons/dROPDOWN.svg"} />
             </i>
           </button>
-          &nbsp;&nbsp; | &nbsp;&nbsp;
+          &nbsp;&nbsp; | &nbsp;&nbsp; */}
           <button id="export-popover-btn" onClick={handlePopoverBtnClick}>
             Export
             <i className="custom-icon">
@@ -88,11 +88,11 @@ export default function TopToolBar(props) {
             </div>
           </Popover>
         </div>
-
+{/* 
         <button className="btn btn-purple tool invite-btn">
           {" "}
           <i className="fa fa-user-plus" /> Invite
-        </button>
+        </button> */}
       </div>
     </div>
   );

@@ -241,7 +241,7 @@ class WhiteBoard extends Component {
               fillColor={
                 this.state.fillWithColor ? this.state.fillColor : "transparent"
               }
-              backgroundColor="#FF0000"
+              backgroundColor="#FFFFFF"
               width={this.state.sketchWidth}
               height={this.state.sketchHeight}
               

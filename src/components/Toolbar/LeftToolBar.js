@@ -80,9 +80,9 @@ export default function LeftToolBar(props) {
   return (
     <div className="toolbar_left">
       <div className="board-tools tool_container">
-        <span className="top-right-icon">
+        {/* <span className="top-right-icon">
           <img alt="" src={"/icons/SS15.svg"} />
-        </span>
+        </span> */}
         <button
           className="board-tool"
           onClick={(e) => selectTool(Tools.Select)}
@@ -245,12 +245,12 @@ export default function LeftToolBar(props) {
                 <SVGIcon filepath="/icons/SS17.svg" />
               </button>
 
-              <button>
+              {/* <button>
                 <SVGIcon filepath="/icons/SS19.svg" />
-              </button>
+              </button> */}
             </div>
 
-            <div className="fixed-line-toggle-container">
+            {/* <div className="fixed-line-toggle-container">
               <p>Fixed line width </p>
 
               <Switch
@@ -261,7 +261,7 @@ export default function LeftToolBar(props) {
                 name="fixedLine"
                 inputProps={{ "aria-label": "primary checkbox" }}
               />
-            </div>
+            </div> */}
             <div className="brush-size-slider-container">
               <p>Pen Size</p>
               <Slider
@@ -421,10 +421,10 @@ export default function LeftToolBar(props) {
               <button onClick={(e) => selectTool(Tools.Line)}>
                 <SVGIcon filepath="/icons/SS20.svg" />
               </button>
-
+            {/* 
               <button>
                 <SVGIcon filepath="/icons/SS18.svg" />
-              </button>
+              </button> */}
             </div>
 
             <div className="fixed-line-toggle-container">
@@ -448,7 +448,7 @@ export default function LeftToolBar(props) {
                 aria-labelledby="continuous-slider"
               />
             </div>
-            <div>
+            {/* <div>
               <TextField
                 label="Image URL"
                 helperText="Copy/Paste an image URL"
@@ -463,7 +463,7 @@ export default function LeftToolBar(props) {
               >
                 Load Image from URL
               </Button>
-            </div>
+            </div> */}
           </div>
         </Popover>
 
@@ -479,7 +479,7 @@ export default function LeftToolBar(props) {
           </span>
         </button>
       </div>
-
+{/* 
       <div className="tool_container scale-tool tool">
         <button className="board-tool">
           <span className="custom-icon">
@@ -487,7 +487,7 @@ export default function LeftToolBar(props) {
           </span>
         </button>
         <span className="scale-value"> 12 </span>
-      </div>
+      </div> */}
 
       <div className="pages tool">
         <button
