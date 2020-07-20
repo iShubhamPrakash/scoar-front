@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import * as actionTypes from "../../constants/actionTypes";
 
 import whiteboardReducer from "./whiteboardReducer";
+import authReducer from "./authReducer.js"
 
 const test = (state = [], action) => {
   switch (action.type) {
@@ -16,5 +17,6 @@ const test = (state = [], action) => {
 
 export default combineReducers({
   test,
+  auth: authReducer,
   whiteBoard: whiteboardReducer,
 });

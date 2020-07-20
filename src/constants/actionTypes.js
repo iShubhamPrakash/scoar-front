@@ -8,3 +8,8 @@ export const SET_CANVAS_WIDTH = 'SET_CANVAS_WIDTH'
 export const SET_TOTAL_PAGE = 'SET_TOTAL_PAGE'
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export const SET_CANVAS_DATA = 'SET_CANVAS_DATA'
+
+
+// Authentication related action types
+export const SIGN_IN = 'SIGN_IN'
+export const SIGN_OUT = 'SIGN_OUT'

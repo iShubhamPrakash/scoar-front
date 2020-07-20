@@ -49,12 +49,12 @@ class WhiteBoard extends Component {
 
   componentDidMount() {
     this.loadSavedDataInCanvas(this.props.currentPage);
-    window.addEventListener('resize',(e)=>{
+    window.addEventListener("resize", (e) => {
       this.setState({
         sketchWidth: window.innerWidth,
         sketchHeight: window.innerHeight,
-      })
-    })
+      });
+    });
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -120,19 +120,21 @@ class WhiteBoard extends Component {
   };
 
   _onSketchChange = () => {
-    console.log("_onSketchChange", this._sketch);   
-    let controlledValue = this._sketch.toJSON();
-    // this.setState({ controlledValue})
+    try {
+      console.log("_onSketchChange", this._sketch);
+      let controlledValue = this._sketch.toJSON();
+      // this.setState({ controlledValue})
 
-    // Save canvas data to the local storage
-    this.saveCanvasData(controlledValue, this.props.currentPage);
-
-    let prev = this.state.canUndo;
-    let now = this._sketch.canUndo();
-    if (prev !== now) {
-      this.setState({ canUndo: now });
+      // Save canvas data to the local storage
+      this.saveCanvasData(controlledValue, this.props.currentPage);
+      let prev = this.state.canUndo;
+      let now = this._sketch.canUndo();
+      if (prev !== now) {
+        this.setState({ canUndo: now });
+      }
+    } catch (e) {
+      console.log("_onSketchChange err:", e);
     }
-
   };
 
   _onBackgroundImageDrop = (accepted /*, rejected*/) => {
@@ -169,7 +171,7 @@ class WhiteBoard extends Component {
     }
   };
 
-  saveCanvasData = (data,currentPage) => {
+  saveCanvasData = (data, currentPage) => {
     // let data = this._sketch.toJSON();
     if (data) {
       data = JSON.stringify(data);
@@ -185,9 +187,11 @@ class WhiteBoard extends Component {
       link.download = "scoar-whiteboard.png";
       link.href = canvasData;
       link.click();
-    }catch(e) {
-      alert("Image on the canvas can't be exported.. Only drawing can be exported..")
-      console.error(e)
+    } catch (e) {
+      alert(
+        "Image on the canvas can't be exported.. Only drawing can be exported.."
+      );
+      console.error(e);
     }
   };
 
@@ -244,11 +248,9 @@ class WhiteBoard extends Component {
               backgroundColor="#FFFFFF"
               width={this.state.sketchWidth}
               height={this.state.sketchHeight}
-              
               forceValue={false}
               value={controlledValue}
               onChange={this._onSketchChange}
-
               tool={this.state.tool}
             />
           </div>
@@ -271,6 +273,6 @@ class WhiteBoard extends Component {
 // }
 
 const mapStateToProps = (state) => {
-  return state.whiteBoard;
+  return {...state.whiteBoard, ...state.auth};
 };
 export default connect(mapStateToProps)(WhiteBoard);
