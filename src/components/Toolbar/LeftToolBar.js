@@ -415,7 +415,7 @@ export default function LeftToolBar(props) {
               </button>
 
               <button title="Circle" onClick={(e) => selectTool(Tools.Circle)}>
-                <SVGIcon filepath="/icons/circle.svg" />
+                <SVGIcon filepath="/icons/circle.svg" id="circle-svg-img"/>
               </button>
 
               <button onClick={(e) => selectTool(Tools.Line)}>
