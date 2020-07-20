@@ -178,12 +178,17 @@ class WhiteBoard extends Component {
   };
 
   exportToPNG = () => {
-    const canvasData = this._sketch.toDataURL();
-    // console.log(canvasData)
-    const link = document.createElement("a");
-    link.download = "scoar-whiteboard.png";
-    link.href = canvasData;
-    link.click();
+    try {
+      const canvasData = this._sketch.toDataURL();
+      // console.log(canvasData)
+      const link = document.createElement("a");
+      link.download = "scoar-whiteboard.png";
+      link.href = canvasData;
+      link.click();
+    }catch(e) {
+      alert("Image on the canvas can't be exported.. Only drawing can be exported..")
+      console.error(e)
+    }
   };
 
   render = () => {
@@ -243,7 +248,7 @@ class WhiteBoard extends Component {
               forceValue={false}
               value={controlledValue}
               onChange={this._onSketchChange}
-              
+
               tool={this.state.tool}
             />
           </div>
