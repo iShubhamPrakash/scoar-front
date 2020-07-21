@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="102" height="102" viewBox="0 0 102 102">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.969" y1="0.022" x2="0" y2="0.718" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8468f5"/>
+      <stop offset="1" stop-color="#ec74e7"/>
+    </linearGradient>
+  </defs>
+  <g id="btn-prev" transform="translate(70 21)">
+    <circle id="shadow" cx="15" cy="15" r="15" transform="translate(-34 15)" fill="rgba(133,145,176,0.31)"/>
+    <circle id="Oval_2" data-name="Oval 2" cx="18.5" cy="18.5" r="18.5" transform="translate(-37)" fill="#fff"/>
+    <g id="Combined_Shape" data-name="Combined Shape">
+      <path id="Combined_Shape-2" data-name="Combined Shape" d="M-7.7,13.494l-5.42-5.42H0V6.606H-13.264L-7.7,1.038-8.734,0-16,7.266l7.267,7.267Z" transform="translate(-10 11)" fill="#fff"/>
+      <path id="Combined_Shape-3" data-name="Combined Shape" d="M-7.7,13.494l-5.42-5.42H0V6.606H-13.264L-7.7,1.038-8.734,0-16,7.266l7.267,7.267Z" transform="translate(-10 11)" fill="#fff"/>
+      <path id="Combined_Shape-4" data-name="Combined Shape" d="M-7.7,13.494l-5.42-5.42H0V6.606H-13.264L-7.7,1.038-8.734,0-16,7.266l7.267,7.267Z" transform="translate(-10 11)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

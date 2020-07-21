@@ -7,6 +7,7 @@ import Whiteboard from "./components/Whiteboard/WhiteBoard2.js";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import AuthModal from "./components/Auth/AuthModal";
+import LandingPage from "./components/Landing/LandingPage";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -76,6 +77,10 @@ function App() {
 
         <Route exact path="/auth">
           <AuthModal/>
+        </Route>
+
+        <Route exact path="/landing">
+          <LandingPage/>
         </Route>
       </Switch>
     </div>

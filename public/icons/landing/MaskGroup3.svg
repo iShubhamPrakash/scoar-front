@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="154" height="33" viewBox="0 0 154 33">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="btn-bg" width="154" height="33" rx="16.5" transform="translate(323 453)" fill="#8468f5"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.031" y1="0.022" x2="1" y2="0.718" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8468f5"/>
+      <stop offset="1" stop-color="#ec74e7"/>
+    </linearGradient>
+  </defs>
+  <g id="Mask_Group_3" data-name="Mask Group 3" transform="translate(-323 -453)" clip-path="url(#clip-path)">
+    <g id="btn" transform="translate(182 453)">
+      <rect id="btn-shadow" width="148" height="21" rx="10.5" transform="translate(143 12)" fill="url(#linear-gradient)"/>
+      <g id="Group_41" data-name="Group 41" transform="translate(194)">
+        <rect id="btn-bg-2" data-name="btn-bg" width="154" height="33" rx="16.5" transform="translate(-53)" fill="url(#linear-gradient)"/>
+        <g id="send-icon" transform="translate(68 11)">
+          <path id="Fill_1" data-name="Fill 1" d="M12.333.115.357,6.913c-.493.278-.474.689.045.911l1.527.654a1.844,1.844,0,0,0,1.737-.272l6.641-5.667c.436-.374.484-.318.1.122L5.161,8.745a.71.71,0,0,0,.251,1.194l.179.074c.518.217,1.364.58,1.877.81l1.7.745c.516.227.935.416.938.419s0,.013.005.013.123-.472.268-1.052L12.962.661c.146-.579-.138-.825-.629-.547" transform="translate(0 0)" fill="#fff"/>
+          <path id="Fill_4" data-name="Fill 4" d="M1.542.664.536.089C.094-.161-.118.133.067.747.067.747,1,3.883.974,4s.9-1.863.9-1.863A1.141,1.141,0,0,0,1.542.664" transform="translate(4 10)" fill="#fff"/>
+        </g>
+        <text id="Notify" transform="translate(-33 6)" fill="#fff" font-size="14" font-family="SegoeUI, Segoe UI"><tspan x="0" y="15">Start your class</tspan></text>
+      </g>
+      <g id="Group_39" data-name="Group 39" transform="translate(48 -65)">
+        <g id="Group_40" data-name="Group 40" transform="translate(5 -1)">
+          <rect id="btn-bg-3" data-name="btn-bg" width="154" height="33" rx="16.5" transform="translate(-53 66)" fill="url(#linear-gradient)"/>
+          <g id="send-icon-2" data-name="send-icon" transform="translate(66 76)">
+            <path id="Fill_1-2" data-name="Fill 1" d="M12.333.115.357,6.913c-.493.278-.474.689.045.911l1.527.654a1.844,1.844,0,0,0,1.737-.272l6.641-5.667c.436-.374.484-.318.1.122L5.161,8.745a.71.71,0,0,0,.251,1.194l.179.074c.518.217,1.364.58,1.877.81l1.7.745c.516.227.935.416.938.419s0,.013.005.013.123-.472.268-1.052L12.962.661c.146-.579-.138-.825-.629-.547" transform="translate(0 0)" fill="#fff"/>
+            <path id="Fill_4-2" data-name="Fill 4" d="M1.542.664.536.089C.094-.161-.118.133.067.747.067.747,1,3.883.974,4s.9-1.863.9-1.863A1.141,1.141,0,0,0,1.542.664" transform="translate(4 10)" fill="#fff"/>
+          </g>
+          <text id="Notify-2" data-name="Notify" transform="translate(-33 71)" fill="#fff" font-size="14" font-family="SegoeUI, Segoe UI"><tspan x="0" y="15">Let&apos;s Go</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
