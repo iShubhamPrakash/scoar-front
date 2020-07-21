@@ -78,16 +78,18 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       }
 
       &:last-child {
-        background: transparent;
+        background: #fff;
+        color: $scoar-purple;
         padding: 0.2rem 1rem;
         border-radius: 28px;
         border: 2px solid #fff;
-
+        box-shadow: $shadow;
+        text-shadow: none;
         &:hover {
-          background: #fff;
-          color: $scoar-purple;
-          box-shadow: $shadow;
-          text-shadow: none;
+          background:  $scoar-purple;
+          color: #fff;
+          border-color: $scoar-purple;
+          box-shadow: 0 3px 6px rgba(63, 5, 70, 0.16), 0 3px 6px rgba(64, 4, 97, 0.23);
         }
       }
     }
