@@ -1,7 +1,6 @@
 import React from "react";
 import "normalize.css";
 import Nav from "./Nav";
-import Section from "./Section";
 
 export default function LandingPage() {
   return (
@@ -56,7 +55,7 @@ export default function LandingPage() {
 
       {/* ------------- Group 1---------------- */}
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6 left">
+        <div className="col col-12 col-lg-6 left" data-aos="fade-right">
           <h2>
             TAKE YOUR CLASS <span className="purple">ONLINE</span> IN TWO
             MINUTES
@@ -68,17 +67,17 @@ export default function LandingPage() {
             style={{ marginLeft: "2em" }}
           />
         </div>
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <img src="/icons/landing/1_svg.svg" alt="" />
         </div>
       </div>
 
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6">
+        <div className="col col-12 col-lg-6" data-aos="fade-right">
           <img src="/icons/landing/2_svg.svg" className="rotate180" alt="" />
         </div>
 
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <h2>
             THE BOARD IS THE TEACHE'S{" "}
             <span className="purple">BEST FRIEND</span>
@@ -95,7 +94,7 @@ export default function LandingPage() {
 
       {/* ------------- Group 2---------------- */}
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6 left">
+        <div className="col col-12 col-lg-6 left" data-aos="fade-right">
           <h2>
             SLOW <span className="purple">NETWORK</span>? NO PROBLEM
           </h2>
@@ -106,17 +105,17 @@ export default function LandingPage() {
             classroom interruptions.
           </p>
         </div>
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <img src="/icons/landing/3_svg.svg" alt="" />
         </div>
       </div>
 
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6">
+        <div className="col col-12 col-lg-6" data-aos="fade-right">
           <img src="/icons/landing/4_svg.svg" className="rotate180" alt="" />
         </div>
 
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <h2>
             <span className="purple">COMPLETE</span> CLASS SUPERVISION
           </h2>
@@ -131,7 +130,7 @@ export default function LandingPage() {
 
       {/* ------------- Group 3---------------- */}
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6 left">
+        <div className="col col-12 col-lg-6 left" data-aos="fade-right">
           <h2>
             <span className="purple">POWERFUL</span> PAYMENT MODULE{" "}
           </h2>
@@ -142,17 +141,17 @@ export default function LandingPage() {
             before the due dates.
           </p>
         </div>
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <img src="/icons/landing/5_svg.svg" alt="" />
         </div>
       </div>
 
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6">
+        <div className="col col-12 col-lg-6" data-aos="fade-right">
           <img src="/icons/landing/6_svg.svg" className="rotate180" alt="" />
         </div>
 
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <h2>
             SEND & TRACK ASSIGNMENTS
             <span className="purple"> ERRORTLESSLY</span>
@@ -170,7 +169,7 @@ export default function LandingPage() {
 
       {/* ------------- Group 4---------------- */}
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6 left">
+        <div className="col col-12 col-lg-6 left" data-aos="fade-right">
           <h2>
             NO MORE <span className="purple"> STRANGERS </span> IN CLASS
           </h2>
@@ -180,17 +179,17 @@ export default function LandingPage() {
             in the course can enter the class on one device at a time.{" "}
           </p>
         </div>
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <img src="/icons/landing/7_svg.svg" className="rotate180" alt="" />
         </div>
       </div>
 
       <div className="row landing__section">
-        <div className="col col-12 col-lg-6">
+        <div className="col col-12 col-lg-6" data-aos="fade-right">
           <img src="/icons/landing/8_svg.svg" className="rotate180" alt="" />
         </div>
 
-        <div className="col col-12 col-lg-6 right">
+        <div className="col col-12 col-lg-6 right" data-aos="fade-left">
           <h2>
             <span className="purple">BEST-IN-CLASS </span> SECURITY
           </h2>

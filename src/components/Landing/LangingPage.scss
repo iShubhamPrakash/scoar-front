@@ -196,9 +196,6 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 			margin-bottom: 0;
 		}
 
-		p{
-			line-height: 1.6;
-		}
 
 		.col{
 			display: flex;
@@ -208,6 +205,7 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 			p{
 				padding: 2em;
+				line-height: 1.6;
 			}
 		}
 		.left{
