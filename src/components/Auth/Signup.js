@@ -8,6 +8,12 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 
+const addUserURL = 'https://score-backend.herokuapp.com/scoar/cred/add'
+const checkUserExistURL= 'https://score-backend.herokuapp.com/scoar/cred/checkuserexists/'
+const sendOTPURL= 'https://score-backend.herokuapp.com/scoar/auth/sendotp/'
+const verifyOTPURL ='https://score-backend.herokuapp.com/scoar/auth/verifyotp/'
+
+
 export default function Signup() {
   const [mobile, setMobile] = useState("");
   const [otp, setOTP] = useState("");
@@ -21,47 +27,106 @@ export default function Signup() {
     setRole(event.target.value);
   };
 
-  const handleNext = async () => {
-		// setNext(true);
-		try{
-    	const res = await fetch(`https://score-backend.herokuapp.com/scoar/auth/sendotp/${mobile}`)
+  const sendOTP = async (mobile)=>{
+    try{
+    	const res = await fetch(`${sendOTPURL}${mobile}`)
+    	const result = await res.text()
+      console.log("result:",result)
+    	if(result === '"SUCCESS"'){
+			  setNext(true);
+    	}else{
+    		alert("Try again! OTP could not be sent!!")
+    	}
+    }catch(e){
+      console.log("Error sending OTP",e)
+    	alert("Try again! Something went wrong!!")
+    }
+  }
 
+  const verifyOTP = async (otp) =>{
+    try{
+    	const res = await fetch(`${verifyOTPURL}${otp}`)
+    	const result = await res.text()
+
+    	if(result === 'approved'){
+       return result === 'approved'
+    	}else{
+        alert("Invalid OTP!!")
+        return false
+    	}
+
+    }catch(e){
+      console.log("Error verifying OTP", e)
+      alert("Try again! Something went wrong!!")
+      return false
+    }
+  }
+
+  const addNewUser = async (data) =>{
+    try{
+      const rawResponse = await fetch(addUserURL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await rawResponse.json();
+
+        console.log("add user res", result)
+
+      // TODO: complete the signup
+
+    	// if(result === 'approved'){
+      //   console.log("Signup Success")
+      //  alert("Sign up success.. Please login to continue")
+    	// }else{
+    	// 	alert("Sign Up failed.. please try again")
+    	// }
+
+    }catch(e){
+      console.log("Error verifying OTP", e)
+    	alert("Try again! Something went wrong!!")
+    }
+  }
+
+  const handleNext = async () => {
+    // setNext(true);
+    try{
+    	let res = await fetch(`${checkUserExistURL}${mobile}`)
+  
     	if(res.status === 200){
-    		setNext(true)
+        res = await res.json()
+        console.log("sucess", res)
+        const {uid} = res.credential;
+        if(uid !== 0){
+          alert("User already exist. Please sign up")
+        }else{
+          console.log("sending OTP...")
+          sendOTP(mobile)
+        }
     	}else{
     		alert("Try again! Something went wrong!!")
     	}
     }catch(e){
     	alert("Try again! Something went wrong!!")
     }
-		
   };
 
   const handleSignup = async () => {
     // alert("Success");
-
     try{
-    	const res = await fetch(`https://score-backend.herokuapp.com/scoar/cred/add`,{
-				method: 'POST',
-				headers:{
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					contactNo : mobile,
-					role: role
-				})
-			})
-    	const result = await res.text()
+      // verify otp
+      const verified = await verifyOTP(otp)
 
-    	if(result.toLocaleLowerCase() === 'success'){
-				console.log("Success")
-				handleLogIn(otp)
-				
-    	}else{
-    		alert("Try again! Something went wrong!!")
-    	}
-
+      if(verified){
+        // Add new user in DB
+        await addNewUser({contactNo: mobile, role})
+      }
     }catch(e){
+      console.log("Error signup", e)
     	alert("Try again! Something went wrong!!")
     }
 	};
