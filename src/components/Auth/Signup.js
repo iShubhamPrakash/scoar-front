@@ -17,7 +17,7 @@ const verifyOTPURL ='https://score-backend.herokuapp.com/scoar/auth/verifyotp/'
 export default function Signup() {
   const [mobile, setMobile] = useState("");
   const [otp, setOTP] = useState("");
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState("Student");
 	const [next, setNext] = useState(false);
 	
 	let history = useHistory();
@@ -73,9 +73,11 @@ export default function Signup() {
         body: JSON.stringify(data)
       });
 
+      console.log(JSON.stringify(data));
+
       const result = await rawResponse.json();
 
-        console.log("add user res", result)
+      console.log("add user res", result)
 
       // TODO: complete the signup
 
@@ -123,7 +125,7 @@ export default function Signup() {
 
       if(verified){
         // Add new user in DB
-        await addNewUser({contactNo: mobile, role})
+        await addNewUser({contactNo: mobile, role: role})
       }
     }catch(e){
       console.log("Error signup", e)
@@ -178,17 +180,17 @@ export default function Signup() {
               aria-label="role"
               name="role"
               value={role}
-              defaultValue="student"
+              defaultValue="Student"
 							onChange={handleChange}
 							className="radiogroup"
             >
               <FormControlLabel
-                value="student"
+                value="Student"
                 control={<Radio color="primary" />}
                 label="STUDENT"
               />
               <FormControlLabel
-                value="teacher"
+                value="Teacher"
                 control={<Radio color="primary" />}
                 label="TEACHER"
               />
