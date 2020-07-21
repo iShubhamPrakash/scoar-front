@@ -264,7 +264,9 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="footerImage"></div>
+        <div className="footerImage">
+          <img src="/icons/landing/last_svg.svg" alt="footer"/>
+        </div>
       </div>
       {/* ------------Footer section end--------------- */}
     </div>

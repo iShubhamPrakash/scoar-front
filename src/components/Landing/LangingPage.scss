@@ -137,8 +137,7 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       display: flex;
       flex-direction: column;
       line-height: 1.3;
-      // text-shadow: -5px 3px 12px rgba(150, 150, 150, 1);
-
+      align-items: flex-start;
       h2 {
         font-weight: 300;
       }
@@ -151,6 +150,9 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         align-items: center;
         padding: 0 8px;
         box-shadow: $shadow;
+        height: 48px;
+        width: 100%;
+        max-width: 450px;
         input {
           border: none;
           border-radius: 25px;
@@ -158,10 +160,12 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           padding: 1.1em 1em;
           font-size: 1rem;
           background: transparent;
+          width: 80%;
+          height: 100%;
         }
 
         img {
-          height: 40px;
+          height: 48px;
           width: auto;
           cursor: pointer;
         }
@@ -285,6 +289,7 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     max-width: 1200px;
     border-top: 2px solid #544837;
     padding: 2em 1em;
+
     .logo,
     .social,
     .links {
@@ -327,5 +332,15 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
       }
 
+      .footerImage{
+        width: 100%;
+        height: fit-content;
+        text-align: center;
+        margin: 0;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
   }
 }
