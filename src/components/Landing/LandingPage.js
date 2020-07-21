@@ -1,6 +1,11 @@
 import React from "react";
 import "normalize.css";
 import Nav from "./Nav";
+import { Link } from "react-router-dom";
+
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
 export default function LandingPage() {
   return (
@@ -201,6 +206,67 @@ export default function LandingPage() {
         </div>
       </div>
       {/* -------------Group 4 end---------------- */}
+
+      {/* -------------Subscribe section---------------- */}
+      <div className="row landing__subscribeSection">
+        <div className="col col-12 col-sm-12 col-md-12 col-lg-12">
+          <h2>Subscribe Us</h2>
+          <h3>Fillium morte multavitsi sine dubio praeclara</h3>
+          <div className="emailbox">
+            <input type="text" placeholder="Enter your email" />
+            <button>Subscribe</button>
+          </div>
+
+          {/* <div className="testimonialbox">
+
+        </div> */}
+        </div>
+      </div>
+      {/* ------------Subscribe section end--------------- */}
+
+      {/* -------------Footer section---------------- */}
+
+      <div className="landing__footer">
+        <div className="row">
+          <div className="col col-12 col-lg-4 logo">
+            <img src="/logo-full-small.png" alt="" />
+          </div>
+          <div className="col col-12 col-lg-4 links">
+            <h3>Quick links</h3>
+            <Link to="/about">About Us</Link>
+            <Link to="/blog">Blog</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+          <div className="col col-12 col-lg-4 social">
+            <h3>Social</h3>
+            <a
+              href="https://www.linkedin.com/company/topscoar/?originalSubdomain=in"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <LinkedInIcon className="linkedin" /> LinkedIn
+            </a>
+            <a
+              href="https://www.facebook.com/topscoar"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FacebookIcon className="facebook" /> Facebook
+            </a>
+            <a
+              href="https://twitter.com/topscoar"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <TwitterIcon className="twitter" /> Twittr
+            </a>
+          </div>
+        </div>
+
+        <div className="footerImage"></div>
+      </div>
+      {/* ------------Footer section end--------------- */}
     </div>
   );
 }
