@@ -21,9 +21,9 @@ export default function AuthModal() {
 
   return (
     <div className="authmodalcontainer">
-      <button className="btn btn-purple" type="button" onClick={handleOpen}>
-        Login / Signup
-      </button>
+      <span type="button" onClick={handleOpen} style={{cursor:"pointer"}}>
+        Signup
+      </span>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -61,7 +61,7 @@ const WelcomeGraphics = ({ view, setView }) => (
     <h1>WELCOME TO SCOAR</h1>
     <h2>Join our community that</h2>
     {view === "login" ? (
-      <p>
+      <p className="signup-link-text">
         Don't have account?{" "}
         <span
           style={{ color: "#fc0384", cursor: "pointer" }}
@@ -71,7 +71,7 @@ const WelcomeGraphics = ({ view, setView }) => (
         </span>
       </p>
     ) : (
-      <p>
+      <p className="signup-link-text">
         Already have an account?{" "}
         <span
           style={{ color: "#fc0384", cursor: "pointer" }}

@@ -41,22 +41,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/" >
-         <div className="App">
-         <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            
-            <div><AuthModal/></div>
-
-            <Link to="/whiteboard"><h4>Open Whiteboard</h4></Link>
-            {process.env.NODE_ENV === "production" ? (
-              <p>Scoar</p>
-            ) : (
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-            )}
-          </header>
-         </div>
+          <LandingPage/>
         </Route>
         <Route exact path="/form">
           <Basic />

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AuthModal from "../Auth/AuthModal";
 
 export default function Nav() {
   return (
@@ -13,7 +14,7 @@ export default function Nav() {
         <Link to="/pricing">Pricing</Link>
         <Link to="/support">Support</Link>
         <Link to="/about">About</Link>
-        <Link to="/auth">Sign up</Link>
+        <Link><AuthModal/></Link>
       </div>
     </div>
   );

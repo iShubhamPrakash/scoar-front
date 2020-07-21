@@ -72,6 +72,10 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       color: #fff;
       transition: $transition;
 
+			span{
+				background: transparent;
+			}
+
       &:last-child {
         background: transparent;
         padding: 0.2rem 1rem;
