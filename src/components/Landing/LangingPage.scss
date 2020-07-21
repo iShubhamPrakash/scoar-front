@@ -27,11 +27,11 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .pink {
-	color: rgb(234, 27, 172);
+  color: rgb(234, 27, 172);
 }
 
-.rotate180{
-	transform: rotate(180deg);
+.rotate180 {
+  transform: rotate(180deg);
 }
 
 .nav {
@@ -44,6 +44,10 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   top: 0;
   left: 0;
   width: 100%;
+  // background: $scoar-purple;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
   &__logo {
     display: flex;
     flex-direction: row;
@@ -51,6 +55,7 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     align-items: center;
     text-decoration: none;
     color: rgb(36, 35, 35);
+    margin-left: 2em;
     img {
       width: 50px;
       height: auto;
@@ -59,6 +64,7 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   &__links {
+    margin-right: 2em;
     a {
       padding: 0.4rem 1.8rem;
       font-size: 1.2em;
@@ -87,19 +93,17 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow-x: hidden;
   font-family: "Poppins", sans-serif;
   color: rgb(34, 19, 39);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: 500;
   position: relative;
 
   &::before {
     content: "";
-    width: 100%;
-    height: 100%;
     z-index: -1;
-    background: rgb(255, 255, 255);
+    background: rgb(199, 51, 51);
     background: linear-gradient(
       0deg,
       rgba(255, 255, 255, 1) 0%,
@@ -114,16 +118,10 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     background-size: 130%;
     position: absolute;
     left: 0;
-    top: -30%;
+    top: -10%;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-  }
-
-  &__upperbg {
-    position: absolute;
-    top: -280px;
-    left: -160px;
-    width: 120%;
-    z-index: -1;
   }
 
   &__top {
@@ -167,8 +165,8 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   &__top2 {
     width: 80%;
     margin: 0 auto;
-		text-align: center;
-		margin-top: 3em;
+    text-align: center;
+    margin-top: 3em;
     .innerBox {
       @include purple-pink-gradient;
       border-radius: 15px;
@@ -181,41 +179,40 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       align-items: center;
       color: #fff;
     }
-	}
-	
-	&__section {
-		width: 90%;
-		max-width: 1200px;
-		margin: 1em auto;
-		
-		h2{
-			font-size: 2.5em;
-			padding: 1em;
-			font-weight: 400;
-			padding-bottom: 0;
-			margin-bottom: 0;
-		}
+  }
 
+  &__section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 1em auto;
 
-		.col{
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+    h2 {
+      font-size: 2.5em;
+      padding: 1em;
+      font-weight: 400;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
 
-			p{
-				padding: 2em;
-				line-height: 1.6;
-			}
-		}
-		.left{
-			text-align: left;
-			align-items: flex-start;
-		}
+    .col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-		.right{
-			text-align: right;
-			align-items: flex-end;
-		}
-	}
+      p {
+        padding: 2em;
+        line-height: 1.6;
+      }
+    }
+    .left {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .right {
+      text-align: right;
+      align-items: flex-end;
+    }
+  }
 }
