@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export default function Section({image}) {
-    return (
-        <div>
-            
-        </div>
-    )
+export default function Section(...props) {
+	const {children, ...rest} = props
+
+	console.log("section props", props)
+  return <div className="row">
+				{children}
+	</div>;
 }
