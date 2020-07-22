@@ -8,6 +8,7 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import AuthModal from "./components/Auth/AuthModal";
 import LandingPage from "./components/Landing/LandingPage";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -64,8 +65,8 @@ function App() {
           <AuthModal/>
         </Route>
 
-        <Route exact path="/landing">
-          <LandingPage/>
+        <Route exact path="/dashboard">
+          <Dashboard/>
         </Route>
       </Switch>
     </div>
