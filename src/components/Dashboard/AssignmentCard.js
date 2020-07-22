@@ -1,11 +1,8 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
-import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
 import SubjectIcon from "@material-ui/icons/Subject";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
@@ -13,7 +10,7 @@ export default function AssignmentCard() {
 	return (
 		<Card className="card assignmentCard">
 			<CardHeader
-				subheader="Assignment"
+				subheader="Assignments"
 				action={<Button size="small">Create</Button>}
 				style={{ borderBottom: "1px solid lightgray" }}
 				size="small"

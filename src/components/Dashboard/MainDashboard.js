@@ -6,7 +6,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import AssignmentCard from "./AssignmentCard";
 export default function MainDashboard() {
 	return (
-		<div className="dashboard container-fluid">
+		<div className="dashboard container-fluid" style={{padding:"0"}}>
 			<div className="row dashboard__topRow">
 				<div className="col col-12 col-md-12 col-lg-4">
 					<div className="welcome">

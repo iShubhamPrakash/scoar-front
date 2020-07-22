@@ -128,7 +128,7 @@ const PaymentPeople = ({ time, date, avatar, name, bio, handleThanks }) => {
 				<p>{bio}</p>
 			</div>
 			<div className="col col-3 col-sm-3 col-md-3 paymentPeople__right">
-				<Button variant="outlined" size="small">
+				<Button variant="outlined" size="small" onClick={e=>handleThanks(e)}>
 					Thank Mail
 				</Button>
 			</div>
