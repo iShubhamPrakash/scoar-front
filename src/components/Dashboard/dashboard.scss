@@ -1,87 +1,170 @@
-@mixin flex-center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.dashboard {
+	position: relative;
+
+	.card {
+		height: 100%;
+		max-height: 250px;
+
+		.cardContent {
+			height: 100%;
+			overflow-x: hidden;
+			overflow-y: auto;
+			@include purple-scrollbar;
+		}
+	}
+
+	&__topRow {
+		.welcome {
+			@include flex-center;
+			flex-direction: column;
+			height: 100%;
+			h1,
+			h2 {
+				margin: 0;
+				text-align: center;
+			}
+		}
+
+		.createClassroom {
+			@include flex-center;
+			flex-direction: column;
+			height: 100%;
+
+			button {
+				@include flex-center;
+				flex-direction: column;
+				@include gradient-bg;
+				width: 100%;
+				height: 100%;
+				color: #fff;
+				svg {
+					width: 50px;
+					height: 50px;
+				}
+				h2 {
+					margin: 0;
+					text-transform: capitalize;
+				}
+			}
+		}
+
+		.paymentCard {
+			position: relative;
+			height: 100%;
+			.MuiCardHeader-root {
+				padding: 0.5em 1em;
+			}
+
+			.header {
+				@include flex-center;
+				flex-wrap: wrap;
+				justify-content: space-between;
+
+				.moneyCard {
+					margin: 2px;
+					padding: 0;
+					button {
+						padding: 0;
+						margin: 0;
+						border-radius: 8px;
+					}
+					.active {
+						border: 2px solid orange;
+						box-shadow: $shadow;
+					}
+				}
+			}
+		}
+	}
+
+	&__bottomRow {
+		.card {
+			height: 100%;
+			max-height: 550px;
+		}
+	}
 }
 
-@mixin gradient-bg {
-  background: rgb(255,255,255);
-  background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(162,131,255,1) 0%, rgba(52,28,134,1) 100%);
+.MoneyInfo {
+	display: flex;
+	border-radius: 8px;
+	padding: 0.4em 0.6em;
+	width: 100%;
+	min-width: 100px;
+	height: 100%;
+	margin: 0;
+
+	.left {
+		.head {
+			font-size: 1em;
+			font-weight: bold;
+		}
+
+		.subhead {
+			font-size: 0.7em;
+			font-weight: bold;
+			text-transform: capitalize;
+			color: rgb(65, 65, 65);
+		}
+	}
+
+	.right {
+		padding: 0em;
+		@include flex-center;
+		border-radius: 50%;
+		margin-left: 0.5em;
+		background: rgb(236, 255, 255);
+		.MuiBox-root {
+			width: 100%;
+			height: 100%;
+
+			.MuiTypography-root {
+				font-size: 9px;
+				font-weight: bold;
+				@include flex-center;
+			}
+		}
+	}
 }
 
-@mixin purple-scrollbar {
-  &::-webkit-scrollbar {
-      width: 6px;
-  }
-  
-  &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background-color: $blue;
-    outline: 1px solid $scoar-purple;
-  }
-}
+.paymentPeople {
+	box-shadow: 0px 0px 18px 4px rgba(0, 0, 0, 0.07);
+	padding: 0.5em;
+	border-radius: 8px;
+	margin: 0.5em auto;
+	font-weight: bold;
+	&__left {
+		@include flex-center;
+		font-size: 0.8em;
+		color: gray;
 
-$blue: rgba(52,28,134,1);
+		.dateData {
+			padding: 0;
+			padding-right: 4px;
+		}
+	}
 
-.dashboard{
-  position: relative;
+	&__center {
+		@include flex-center;
+		flex-direction: column;
+		align-items: flex-start;
+		overflow: hidden;
+		font-size: 0.8em;
+		color: gray;
+		padding: 0 0.5em;
+		padding-left: 1em;
+		.orange {
+			color: rgb(255, 81, 0);
+		}
+	}
 
-  .card{
-    height: 100%;
-    max-height: 250px;
-    
-    .cardContent{
-      height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-      @include purple-scrollbar;
-    }
-  }
+	&__right {
+		@include flex-center;
 
-  &__topRow{
-    .welcome{
-      @include flex-center;
-      flex-direction: column;
-      height: 100%;
-      h1,
-      h2{
-        margin: 0;
-        text-align: center;
-      }
-    }
-
-    .createClassroom{
-      @include flex-center;
-      flex-direction: column;
-      height: 100%;
-
-      button{
-        @include flex-center;
-        flex-direction: column;
-        @include gradient-bg;
-        width: 100%;
-        height: 100%;
-        color: #fff;
-        svg{
-          width: 50px;
-          height: 50px;
-        }
-        h2{
-          margin: 0;
-          text-transform: capitalize;
-        }
-      }
-
-    }
-  }
-
-  &__bottomRow{
-    .card{
-      height: 100%;
-      max-height: 550px;
-    }
-  }
+		button {
+			font-size: 0.8em;
+			text-transform: capitalize;
+			padding: 2px 4px;
+		}
+	}
 }

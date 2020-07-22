@@ -24,7 +24,9 @@ export default function MainDashboard() {
           </div>
 				</div>
 				<div className="col col-12 col-md-12 col-lg-4">
-					<PaymentCard />
+					<div className="paymentCard">
+            <PaymentCard />
+          </div>
 				</div>
 			</div>
 			<br />

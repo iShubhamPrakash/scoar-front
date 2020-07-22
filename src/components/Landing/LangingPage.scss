@@ -1,21 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
 
-$shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-
-$shadow-spread: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-
-$transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-@mixin purple-pink-gradient {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(72, 83, 239, 1) 0%,
-    rgba(236, 0, 255, 1) 100%
-  );
-}
-
 .center {
   display: flex;
   justify-content: center;
