@@ -104,7 +104,7 @@ export default function Signup() {
         console.log("sucess", res)
         const {uid} = res.credential;
         if(uid !== 0){
-          alert("User already exist. Please sign up")
+          alert("User already exist. Please Login")
         }else{
           console.log("sending OTP...")
           sendOTP(mobile)

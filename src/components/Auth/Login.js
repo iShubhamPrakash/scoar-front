@@ -85,7 +85,7 @@ export default function Login() {
 
   return (
     <div className="login">
-      <h1 className="login__header">Login</h1>
+      <h1 className="login__header">LOGIN</h1>
       <h2 className="login__subheader">BE ONE OF US!</h2>
 
       {!next ? (
