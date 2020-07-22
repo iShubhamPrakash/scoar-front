@@ -65,7 +65,7 @@ function App() {
           <AuthModal/>
         </Route>
 
-        <Route exact path="/dashboard">
+        <Route path="/dashboard">
           <Dashboard/>
         </Route>
       </Switch>

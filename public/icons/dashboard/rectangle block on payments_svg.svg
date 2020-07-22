@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="556" height="122" viewBox="0 0 556 122">
+  <defs>
+    <filter id="rectangle_block_on_payments_svg" x="0" y="0" width="556" height="122" filterUnits="userSpaceOnUse">
+      <feOffset dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#rectangle_block_on_payments_svg)">
+    <rect id="rectangle_block_on_payments_svg-2" data-name="rectangle block on payments_svg" width="496" height="62" rx="12" transform="translate(30 24)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="68" height="58" viewBox="0 0 68 58">
+  <defs>
+    <filter id="Rectangle_85" x="10" y="0" width="58" height="58" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="classroom_icon_on_classroom_list_block_svg" data-name="classroom icon on classroom list block_svg" transform="translate(-295 -533)">
+    <rect id="Rectangle_86" data-name="Rectangle 86" width="4" height="40" rx="2" transform="translate(295 539)" fill="#8858f0"/>
+    <g transform="matrix(1, 0, 0, 1, 295, 533)" filter="url(#Rectangle_85)">
+      <rect id="Rectangle_85-2" data-name="Rectangle 85" width="40" height="40" rx="12" transform="translate(19 6)" fill="#8858f0"/>
+    </g>
+  </g>
+</svg>

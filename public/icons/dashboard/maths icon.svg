@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="maths_icon" data-name="maths icon" transform="translate(-5 -5)">
+    <path id="Path_11468" data-name="Path 11468" d="M16.2,14.6a1.6,1.6,0,0,1-1.6,1.6h-8A1.6,1.6,0,0,1,5,14.6v-8A1.6,1.6,0,0,1,6.6,5h8a1.6,1.6,0,0,1,1.6,1.6ZM6.6,9.8v1.6h8V9.8Z" fill="#fff"/>
+    <path id="Path_11469" data-name="Path 11469" d="M64.2,27.4A1.6,1.6,0,0,1,62.6,29h-8A1.6,1.6,0,0,1,53,27.4V6.6A1.6,1.6,0,0,1,54.6,5h8a1.6,1.6,0,0,1,1.6,1.6ZM54.6,14.6v1.6h8V14.6Zm0,3.2v1.6h8V17.8Z" transform="translate(-35.2)" fill="#fff"/>
+    <path id="Path_11470" data-name="Path 11470" d="M16.2,62.6a1.6,1.6,0,0,1-1.6,1.6h-8A1.6,1.6,0,0,1,5,62.6v-8A1.6,1.6,0,0,1,6.6,53h8a1.6,1.6,0,0,1,1.6,1.6Zm-4.8-4.8V54.6H9.8v3.2H6.6v1.6H9.8v3.2h1.6V59.4h3.2V57.8Z" transform="translate(0 -35.2)" fill="#fff"/>
+  </g>
+</svg>

@@ -20,6 +20,10 @@ import MailIcon from "@material-ui/icons/Mail";
 import Badge from "@material-ui/core/Badge";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import NavLinks from './NavLinks'
+import MessageIcon from '@material-ui/icons/Message';
+import MainDashboard from "./MainDashboard";
+
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -27,14 +31,14 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 	},
 	grow: {
-    flexGrow: 1,
-  },
+		flexGrow: 1,
+	},
 	appBar: {
 		transition: theme.transitions.create(["margin", "width"], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
-		backgroundColor:"#fff",
+		backgroundColor: "#fff",
 	},
 	appBarShift: {
 		width: `calc(100% - ${drawerWidth}px)`,
@@ -115,7 +119,11 @@ export default function PersistentDrawerLeft() {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap className={clsx(classes.menuButton, open && classes.hide)}>
+					<Typography
+						variant="h6"
+						noWrap
+						className={clsx(classes.menuButton, open && classes.hide)}
+					>
 						<img
 							src="/logo-full-small.png"
 							style={{ width: "120px", height: "auto" }}
@@ -126,7 +134,7 @@ export default function PersistentDrawerLeft() {
 					<div className={classes.grow} />
 					<IconButton aria-label="show 4 new mails" color="#000">
 						<Badge badgeContent={4} color="secondary">
-							<MailIcon />
+							<MessageIcon />
 						</Badge>
 					</IconButton>
 					<IconButton aria-label="show 17 new notifications" color="#000">
@@ -168,62 +176,26 @@ export default function PersistentDrawerLeft() {
 					</IconButton>
 				</div>
 				<Divider />
-				<List>
-					{["Dashboard", "Classroom", "Payments", "Assignments"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
-				<Divider />
+				<NavLinks/>
+
 				<div className={classes.grow} />
 				<List>
-				<ListItem button>
-							<ListItemIcon>
+					<ListItem button>
+						<ListItemIcon>
 							<MailIcon />
-							</ListItemIcon>
-							<ListItemText primary={"Feedback"} />
-						</ListItem>
+						</ListItemIcon>
+						<ListItemText primary={"Feedback"} />
+					</ListItem>
 				</List>
 			</Drawer>
 			<main
 				className={clsx(classes.content, {
 					[classes.contentShift]: open,
 				})}
+				style={{backgroundColor:"#F5F5F5"}}
 			>
 				<div className={classes.drawerHeader} />
-				<Typography paragraph>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-					dolor purus non enim praesent elementum facilisis leo vel. Risus at
-					ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-					quisque non tellus. Convallis convallis tellus id interdum velit
-					laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-					adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-					integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-					eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-					quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-					vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-					lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-					faucibus et molestie ac.
-				</Typography>
-				<Typography paragraph>
-					Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-					ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-					elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-					sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-					mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-					risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-					purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-					tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-					morbi tristique senectus et. Adipiscing elit duis tristique
-					sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-					eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-					posuere sollicitudin aliquam ultrices sagittis orci a.
-				</Typography>
+				<MainDashboard/>
 			</main>
 		</div>
 	);

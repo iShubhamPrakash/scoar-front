@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1713" height="82" viewBox="0 0 1713 82">
+  <defs>
+    <filter id="Rectangle_16" x="0" y="0" width="1713" height="82" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#8759f3" flood-opacity="0.369"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="top_bar_svg" data-name="top bar_svg" transform="translate(-216 6)">
+    <g transform="matrix(1, 0, 0, 1, 216, -6)" filter="url(#Rectangle_16)">
+      <rect id="Rectangle_16-2" data-name="Rectangle 16" width="1695" height="64" transform="translate(9 6)" fill="#fff"/>
+    </g>
+    <path id="Path_11397" data-name="Path 11397" d="M-1358,690H337" transform="translate(1583 -626)" fill="none" stroke="#8759f3" stroke-width="1"/>
+  </g>
+</svg>

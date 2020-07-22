@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="799" height="601" viewBox="0 0 799 601">
+  <defs>
+    <filter id="view_class_button_background" x="0" y="0" width="799" height="601" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.122"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#view_class_button_background)">
+    <rect id="view_class_button_background-2" data-name="view class button background" width="781" height="583" rx="12" transform="translate(9 6)" fill="#fff"/>
+  </g>
+</svg>
