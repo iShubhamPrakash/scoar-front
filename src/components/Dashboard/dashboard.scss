@@ -90,9 +90,9 @@
       .scheduleItem{
         @include flex-center;
         border-left: 4px solid $blue;
-
         &__left{
           @include flex-center;
+          padding: 0;
           .icon{
             background: $blue;
 						border-radius: 8px;
@@ -106,9 +106,13 @@
 
         &__bottom{
           @include flex-center;
-          justify-content: space-evenly;
+          justify-content: flex-end;
           padding: 0.5em 0;
           border-bottom: 1px solid lightgray;
+          margin-bottom: 1em;
+          button{
+            margin: 0 0.5em;
+          }
         }
       }
 
