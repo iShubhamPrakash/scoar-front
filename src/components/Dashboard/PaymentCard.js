@@ -36,64 +36,20 @@ export default function PaymentCard() {
 						</Button>
 					</div>
 				</div>
-				<PaymentPeople
-					time={"08:34 AM"}
-					date={"23 AUG 2020"}
-					avatar={"./shubham.png"}
-					name={"Shubham Prakash"}
-					bio={"Student of CS"}
-					handleThanks={(e) => alert("Thanks sent")}
-				/>
-				<PaymentPeople
-					time={"08:34 AM"}
-					date={"23 AUG 2020"}
-					avatar={"./shubham.png"}
-					name={"Shubham Prakash"}
-					bio={"Student of CS"}
-					handleThanks={(e) => alert("Thanks sent")}
-				/>
-				<PaymentPeople
-					time={"08:34 AM"}
-					date={"23 AUG 2020"}
-					avatar={"./shubham.png"}
-					name={"Shubham Prakash"}
-					bio={"Student of CS"}
-					handleThanks={(e) => alert("Thanks sent")}
-				/>
-				<PaymentPeople
-					time={"08:34 AM"}
-					date={"23 AUG 2020"}
-					avatar={"./shubham.png"}
-					name={"Shubham Prakash"}
-					bio={"Student of CS"}
-					handleThanks={(e) => alert("Thanks sent")}
-				/>
-				<PaymentPeople
-					time={"08:34 AM"}
-					date={"23 AUG 2020"}
-					avatar={"./shubham.png"}
-					name={"Shubham Prakash"}
-					bio={"Student of CS"}
-					handleThanks={(e) => alert("Thanks sent")}
-				/>
-				<PaymentPeople
-					time={"08:34 AM"}
-					date={"23 AUG 2020"}
-					avatar={"./shubham.png"}
-					name={"Shubham Prakash"}
-					bio={"Student of CS"}
-					handleThanks={(e) => alert("Thanks sent")}
-				/>
-				<PaymentPeople
-					time={"08:34 AM"}
-					date={"23 AUG 2020"}
-					avatar={"./shubham.png"}
-					name={"Shubham Prakash"}
-					bio={"Student of CS"}
-					handleThanks={(e) => alert("Thanks sent")}
-				/>
-        <br/>
-        <br/>
+
+				{[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
+					<PaymentPeople
+						time={"08:34 AM"}
+						date={"23 AUG 2020"}
+						avatar={"./shubham.png"}
+						name={"Shubham Prakash"}
+						bio={"Student of CS"}
+						handleThanks={(e) => alert("Thanks sent")}
+					/>
+				))}
+
+				<br />
+				<br />
 			</CardContent>
 		</Card>
 	);
@@ -128,7 +84,11 @@ const PaymentPeople = ({ time, date, avatar, name, bio, handleThanks }) => {
 				<p>{bio}</p>
 			</div>
 			<div className="col col-3 col-sm-3 col-md-3 paymentPeople__right">
-				<Button variant="outlined" size="small" onClick={e=>handleThanks(e)}>
+				<Button
+					variant="outlined"
+					size="small"
+					onClick={(e) => handleThanks(e)}
+				>
 					Thank Mail
 				</Button>
 			</div>

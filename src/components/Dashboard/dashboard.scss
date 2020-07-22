@@ -1,6 +1,6 @@
 .dashboard {
-  position: relative;
-  padding: 0em;
+	position: relative;
+	padding: 0em;
 
 	.card {
 		height: 100%;
@@ -75,57 +75,87 @@
 					}
 				}
 			}
-    }
-
+		}
 	}
 
 	&__bottomRow {
-    .assignmentCard {
-			position: relative;
-      height: 100%;
-      max-height: 550px;
+		.scheduleCard {
+      position: relative;
+			height: 100%;
+			max-height: 550px;
+			.MuiCardHeader-root {
+				padding: 0.5em 1em;
+      }
       
-      .assignmentItem{
-        padding: 1em 0;
+      .scheduleItem{
         @include flex-center;
-        border-bottom: 1px solid lightgray;
-        
-        &__left{
+        border-left: 4px solid $blue;
 
+        &__left{
+          @include flex-center;
           .icon{
             background: $blue;
-            border-radius: 8px;
-            box-shadow: $shadow;
-            @include flex-center;
-            height: 40px;
-            width: 40px;
-            color: #fff;
-          }
-
-        }
-
-        &__center{
-          p{
-            position: relative;
-            span{
-              position: absolute;
-              right: 0;
-              font-weight: normal;
-            }
+						border-radius: 8px;
+						box-shadow: $shadow;
+						@include flex-center;
+						height: 40px;
+						width: 40px;
+						color: #fff;
           }
         }
 
-        &__right{
+        &__bottom{
           @include flex-center;
-          button{
-            text-transform: capitalize;
-          }
+          justify-content: space-evenly;
+          padding: 0.5em 0;
+          border-bottom: 1px solid lightgray;
         }
-
       }
 
-    }
 
+		}
+
+		.assignmentCard {
+			position: relative;
+			height: 100%;
+			max-height: 550px;
+
+			.assignmentItem {
+				padding: 1em 0;
+				@include flex-center;
+				border-bottom: 1px solid lightgray;
+
+				&__left {
+					.icon {
+						background: $blue;
+						border-radius: 8px;
+						box-shadow: $shadow;
+						@include flex-center;
+						height: 40px;
+						width: 40px;
+						color: #fff;
+					}
+				}
+
+				&__center {
+					p {
+						position: relative;
+						span {
+							position: absolute;
+							right: 0;
+							font-weight: normal;
+						}
+					}
+				}
+
+				&__right {
+					@include flex-center;
+					button {
+						text-transform: capitalize;
+					}
+				}
+			}
+		}
 	}
 }
 

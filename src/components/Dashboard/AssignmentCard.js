@@ -16,110 +16,15 @@ export default function AssignmentCard() {
 				size="small"
 			/>
 			<CardContent className="cardContent">
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
-				<AssignmentItem
-					Icon={(e) => <SubjectIcon />}
-					assignmentText={"Science for class 6th"}
-					num={10}
-					total={14}
-					handleView={(e) => alert("View open")}
-				/>
-
+				{[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
+					<AssignmentItem
+						Icon={(e) => <SubjectIcon />}
+						assignmentText={"Science for class 6th"}
+						num={10}
+						total={14}
+						handleView={(e) => alert("View open")}
+					/>
+				))}
 				<br />
 				<br />
 			</CardContent>

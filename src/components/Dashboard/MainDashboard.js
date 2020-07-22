@@ -4,6 +4,7 @@ import PaymentCard from "./PaymentCard";
 import Button from '@material-ui/core/Button';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import AssignmentCard from "./AssignmentCard";
+import ScheduleCard from "./ScheduleCard";
 export default function MainDashboard() {
 	return (
 		<div className="dashboard container-fluid" style={{padding:"0"}}>
@@ -38,7 +39,7 @@ export default function MainDashboard() {
             <AssignmentCard/>
 				</div>
 				<div className="col col-12 col-md-12 col-lg-4">
-            <AssignmentCard/>
+            <ScheduleCard/>
 				</div>
 				<div className="col col-12 col-md-12 col-lg-4">
             <AssignmentCard/>
