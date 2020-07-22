@@ -74,14 +74,57 @@
 					}
 				}
 			}
-		}
+    }
+
 	}
 
 	&__bottomRow {
-		.card {
-			height: 100%;
-			max-height: 550px;
-		}
+    .assignmentCard {
+			position: relative;
+      height: 100%;
+      max-height: 550px;
+      
+      .assignmentItem{
+        padding: 1em 0;
+        @include flex-center;
+        border-bottom: 1px solid lightgray;
+        
+        &__left{
+
+          .icon{
+            background: $blue;
+            border-radius: 8px;
+            box-shadow: $shadow;
+            @include flex-center;
+            height: 40px;
+            width: 40px;
+            color: #fff;
+          }
+
+        }
+
+        &__center{
+          p{
+            position: relative;
+            span{
+              position: absolute;
+              right: 0;
+              font-weight: normal;
+            }
+          }
+        }
+
+        &__right{
+          @include flex-center;
+          button{
+            text-transform: capitalize;
+          }
+        }
+
+      }
+
+    }
+
 	}
 }
 

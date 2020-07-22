@@ -92,6 +92,8 @@ export default function PaymentCard() {
 					bio={"Student of CS"}
 					handleThanks={(e) => alert("Thanks sent")}
 				/>
+        <br/>
+        <br/>
 			</CardContent>
 		</Card>
 	);

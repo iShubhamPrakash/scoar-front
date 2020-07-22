@@ -3,6 +3,7 @@ import "normalize.css";
 import PaymentCard from "./PaymentCard";
 import Button from '@material-ui/core/Button';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import AssignmentCard from "./AssignmentCard";
 export default function MainDashboard() {
 	return (
 		<div className="dashboard container-fluid">
@@ -29,16 +30,18 @@ export default function MainDashboard() {
           </div>
 				</div>
 			</div>
+			
 			<br />
+
 			<div className="row dashboard__bottomRow">
-				<div className="col col-12 col-md-12 col-lg-5">
-					<PaymentCard />
+				<div className="col col-12 col-md-12 col-lg-4">
+            <AssignmentCard/>
 				</div>
 				<div className="col col-12 col-md-12 col-lg-4">
-					<PaymentCard />
+            <AssignmentCard/>
 				</div>
-				<div className="col col-12 col-md-12 col-lg-3">
-					<PaymentCard />
+				<div className="col col-12 col-md-12 col-lg-4">
+            <AssignmentCard/>
 				</div>
 			</div>
 		</div>
