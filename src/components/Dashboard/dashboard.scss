@@ -79,44 +79,82 @@
 	}
 
 	&__bottomRow {
-		.scheduleCard {
-      position: relative;
+		.classroomCard {
+			position: relative;
 			height: 100%;
 			max-height: 550px;
 			.MuiCardHeader-root {
-				padding: 0.5em 1em;
-      }
-      
-      .scheduleItem{
-        @include flex-center;
-        border-left: 4px solid $blue;
-        &__left{
-          @include flex-center;
-          padding: 0;
-          .icon{
-            background: $blue;
+				padding: 1em;
+			}
+
+			.classroomItem {
+				@include flex-center;
+				// border-left: 4px solid $blue;
+				margin: 0.5em 0;
+				&__left {
+					@include flex-center;
+					padding: 0;
+					.icon {
+						background: $blue;
 						border-radius: 8px;
 						box-shadow: $shadow;
 						@include flex-center;
 						height: 40px;
 						width: 40px;
 						color: #fff;
-          }
-        }
+					}
+				}
 
-        &__bottom{
-          @include flex-center;
-          justify-content: flex-end;
-          padding: 0.5em 0;
-          border-bottom: 1px solid lightgray;
-          margin-bottom: 1em;
-          button{
-            margin: 0 0.5em;
-          }
-        }
-      }
+				// &__center{}
 
+				&__right {
+					@include flex-center;
+					button {
+						margin: 0 0.5em;
+						text-transform: capitalize;
+						font-size: 13px;
+					}
+				}
+			}
+		}
 
+		.scheduleCard {
+			position: relative;
+			height: 100%;
+			max-height: 550px;
+			.MuiCardHeader-root {
+				padding: 0.5em 1em;
+			}
+
+			.scheduleItem {
+				@include flex-center;
+				border-left: 4px solid $blue;
+				&__left {
+					@include flex-center;
+					padding: 0;
+					.icon {
+						background: $blue;
+						border-radius: 8px;
+						box-shadow: $shadow;
+						@include flex-center;
+						height: 40px;
+						width: 40px;
+						color: #fff;
+					}
+				}
+
+				&__bottom {
+					@include flex-center;
+					justify-content: flex-end;
+					padding: 0.5em 0;
+					border-bottom: 1px solid lightgray;
+					margin-bottom: 1em;
+					button {
+						margin: 0 0.5em;
+						text-transform: capitalize;
+					}
+				}
+			}
 		}
 
 		.assignmentCard {

@@ -14,7 +14,7 @@ export default function PaymentCard() {
 		<Card className="card">
 			<CardHeader
 				subheader="Payment"
-				action={<Button>Hello</Button>}
+				action={<Button>Go to Payments</Button>}
 				style={{ borderBottom: "1px solid lightgray" }}
 				size="small"
 			/>

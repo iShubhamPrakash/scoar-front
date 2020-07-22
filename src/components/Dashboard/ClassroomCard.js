@@ -8,21 +8,22 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 export default function ClassoomCard() {
 	return (
-		<Card className="card assignmentCard">
+		<Card className="card classroomCard">
 			<CardHeader
-				subheader="Assignments"
-				action={<Button size="small">Create</Button>}
+				subheader="Class Room List"
+				action={<Button size="small">Create New</Button>}
 				style={{ borderBottom: "1px solid lightgray" }}
 				size="small"
 			/>
 			<CardContent className="cardContent">
 				{[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
-					<AssignmentItem
+					<ClassroomItem
 						Icon={(e) => <SubjectIcon />}
-						assignmentText={"Science for class 6th"}
+						classroomText={"Science for class 6th"}
 						num={10}
-						total={14}
+						totalStudents={14}
 						handleView={(e) => alert("View open")}
+						handleChangeSchedule={(e) => alert("Change schedule")}
 					/>
 				))}
 				<br />
@@ -32,29 +33,41 @@ export default function ClassoomCard() {
 	);
 }
 
-const AssignmentItem = ({ Icon, assignmentText, num, total, handleView }) => {
+const ClassroomItem = (props) => {
+	const {
+		Icon,
+		classroomText,
+		totalStudents,
+		handleView,
+		handleChangeSchedule,
+	} = props;
 	return (
-		<div className="assignmentItem row">
-			<div className="col col-2 col-sm-2 col-md-2 col-lg-2 assignmentItem__left">
+		<div className="classroomItem row">
+			<div className="col col-1 col-sm-1 col-md-1 col-lg-1 classroomItem__left">
 				<div className="icon">
 					<Icon />
 				</div>
 			</div>
-			<div className="col col-7 col-sm-7 col-md-7 col-lg-7 assignmentItem__center">
-				<p className="small">Submission for</p>
-				<p className="text-bold">
-					{assignmentText} <span className="small">{`${num}/${total}`}</span>
-				</p>
-				<LinearProgress
-					variant="determinate"
-					value={parseInt((num * 100) / total) || 0}
-				/>
+			<div className="col col-6 col-sm-6 col-md-6 col-lg-6 classroomItem__center">
+				<p className="text-bold">{classroomText}</p>
+				<p className="small">Total Students: {totalStudents}</p>
 			</div>
-			<div className="col col-3 col-sm-3 col-md-3 col-lg-3 assignmentItem__right">
+			<div className="col col-5 col-sm-5 col-md-5 col-lg-5 classroomItem__right">
 				<Button variant="outlined" size="small" onClick={(e) => handleView()}>
 					View
 				</Button>
+				<Button
+					variant="outlined"
+					size="small"
+					onClick={(e) => handleChangeSchedule()}
+				>
+					Re-Schedule
+				</Button>
 			</div>
+
+      {/* <div className="row">
+        classes On
+      </div> */}
 		</div>
 	);
 };
