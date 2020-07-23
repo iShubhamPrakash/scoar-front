@@ -13,7 +13,7 @@ export default function Nav() {
         <Link to="/home">Home</Link>
         <Link to="/pricing">Pricing</Link>
         <Link to="/support">Support</Link>
-        <Link to="/about">About</Link>
+        <Link to="/dashboard">About</Link>
         <Link><AuthModal/></Link>
       </div>
     </div>

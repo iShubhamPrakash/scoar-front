@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 import SubjectIcon from "@material-ui/icons/Subject";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { Avatar } from "@material-ui/core";
 
 export default function ClassoomCard() {
 	return (
@@ -65,9 +66,46 @@ const ClassroomItem = (props) => {
 				</Button>
 			</div>
 
-      {/* <div className="row">
-        classes On
-      </div> */}
+			<div className="classroomItem__weekView">
+				<h5 className="text-left">Classes on</h5>
+				<div className="week">
+					<div className="day">
+						<Avatar className="active">S</Avatar>
+						<p>{"7:00 PM"}</p>
+						<p>{"8:00 PM"}</p>
+					</div>
+					<div className="day">
+						<Avatar className="">M</Avatar>
+						<p>{"-"}</p>
+						<p>{"-"}</p>
+					</div>
+					<div className="day">
+						<Avatar className="active">T</Avatar>
+						<p>{"7:00 PM"}</p>
+						<p>{"8:00 PM"}</p>
+					</div>
+					<div className="day">
+						<Avatar className="active">W</Avatar>
+						<p>{"7:00 PM"}</p>
+						<p>{"8:00 PM"}</p>
+					</div>
+					<div className="day">
+						<Avatar className="">T</Avatar>
+						<p>{"-"}</p>
+						<p>{"-"}</p>
+					</div>
+					<div className="day">
+						<Avatar className="active">F</Avatar>
+						<p>{"7:00 PM"}</p>
+						<p>{"8:00 PM"}</p>
+					</div>
+					<div className="day">
+						<Avatar className="active">S</Avatar>
+						<p>{"7:00 PM"}</p>
+						<p>{"8:00 PM"}</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };

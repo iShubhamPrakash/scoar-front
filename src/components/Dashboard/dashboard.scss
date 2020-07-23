@@ -115,6 +115,38 @@
 						font-size: 13px;
 					}
 				}
+
+				&__weekView{
+					flex-direction: column;
+					padding-bottom: 1em;
+					border-bottom: 2px solid lightgray;
+					width: 100%;
+					margin: 0;
+					margin-bottom: 1em;
+
+					h5{
+						margin: 0;
+						font-weight: bold;
+						margin: 0.5em 0;
+						font-size: 1.1em;
+					}
+					.week{
+					@include flex-center;
+					justify-content: space-between;
+
+					.day{
+						@include flex-center;
+						flex-direction: column;
+						font-size: 9px;
+						margin: 0 2px;
+						.active{
+							color: #fff;
+							background: lightseagreen;
+						}
+					}
+
+					}
+				}
 			}
 		}
 
