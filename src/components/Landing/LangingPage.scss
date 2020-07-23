@@ -267,6 +267,64 @@
       height: 173px;
       overflow: hidden;
       margin: 2em auto;
+      position: relative;
+      padding: 1em 3em;
+      .controlDots{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 30px;
+        position: absolute;
+        right: 20px;
+        top: 0;
+        span{
+          width: 13px;
+          height: 13px;
+          margin: 4px;
+          border-radius: 50%;
+          background: transparent;
+          border: 2px solid #fff;
+          cursor: pointer;
+        }
+
+        .activeDot{
+          background: #fff;
+        }
+      }
+
+      .upper{
+        margin-top: 1em;
+        padding-left: 2em;
+        @include flex-center;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        p{
+          margin: 0 1em;
+          color: #fff;
+          p{
+            font-size: 12px;
+            position: relative;
+            left: -10px;
+            font-weight: normal;
+            padding-top: 2px ;
+          }
+        }
+      }
+
+      .lower{
+        font-size: 0.9em;
+        padding: 0 1em;
+
+        p{
+          padding: 1em;
+          color: #fff;
+        }
+      }
+
+
     }
   }
 

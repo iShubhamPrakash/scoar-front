@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import "normalize.css";
 import Nav from "./Nav";
 import { Link } from "react-router-dom";
@@ -6,8 +6,14 @@ import { Link } from "react-router-dom";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
+import { Avatar } from "@material-ui/core";
+import testimonial from './testimonial/index'
 
 export default function LandingPage() {
+
+  const [testimonialId, setTestimonialId] = useState(0)
+
+
   return (
     <div className="landing container-fluid">
       <Nav />
@@ -217,9 +223,19 @@ export default function LandingPage() {
             <button>Subscribe</button>
           </div>
 
-          {/* <div className="testimonialbox">
-
-        </div> */}
+          <div className="testimonialbox">
+            <div className="controlDots">
+              {testimonial.map((item,index)=><span className={testimonialId===index?"activeDot" :""} onClick={e=>setTestimonialId(index)}></span>)}
+            </div>
+            
+            <div className="upper">
+              <Avatar src={testimonial[testimonialId].avatar} />
+              <p>{testimonial[testimonialId].name} <p>{testimonial[testimonialId].profession}</p></p>
+            </div>
+            <div className="lower">
+              <p>{testimonial[testimonialId].message}</p>
+            </div>
+          </div>
         </div>
       </div>
       {/* ------------Subscribe section end--------------- */}
