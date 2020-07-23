@@ -40,10 +40,10 @@ export default function AuthModal() {
           <div className="container">
             <CancelIcon className="cancel-btn" onClick={handleClose} />
             <div className="row">
-              <div className="col col-12 col-md-9 col-lg-9">
+              <div className="col col-sm-6 col-md-9 col-lg-9">
                 <WelcomeGraphics view={view} setView={setView} />
               </div>
-              <div className="col col-12 col-md-3 col-lg-3">
+              <div className="col col-sm-6 col-md-3 col-lg-3">
                 <div className="form">
                   {view === "login" ? <Login /> : <Signup />}
                 </div>
@@ -82,7 +82,7 @@ const WelcomeGraphics = ({ view, setView }) => (
       </p>
     )}
 
-    <span id="logo" ><img src={"./logo.png"} alt="" /> <h1>SCOAR</h1></span>
+    <span id="logo" ><img src={"./logo-full-small.png"} alt="" /></span>
     <img id="coaching" src={"./icons/auth/coaching.svg"} alt="" />
     <img id="teacher" src={"./icons/auth/teacher.svg"} alt="" />
   </div>

@@ -90,7 +90,7 @@ export default function LandingPage() {
 
 				<div className="col col-12 col-lg-6 right" data-aos="fade-left">
 					<h2>
-						THE BOARD IS THE TEACHE'S{" "}
+						THE BOARD IS THE TEACHER'S{" "}
 						<span className="purple">BEST FRIEND</span>
 					</h2>
 					<p>
@@ -146,7 +146,7 @@ export default function LandingPage() {
 						<span className="purple">POWERFUL</span> PAYMENT MODULE{" "}
 					</h2>
 					<p>
-						Get the ability to set differential pricing and individualdue dated
+						Get the ability to set differential pricing and individual due dates
 						for each course and each student. We{" "}
 						<span className="pink"> remind </span> your student to ay the fees
 						before the due dates.
@@ -165,7 +165,7 @@ export default function LandingPage() {
 				<div className="col col-12 col-lg-6 right" data-aos="fade-left">
 					<h2>
 						SEND & TRACK ASSIGNMENTS
-						<span className="purple"> ERRORTLESSLY</span>
+						<span className="purple"> EFFORTLESSLY</span>
 					</h2>
 					<p>
 						Send individual & group assignments and handle submissions, all on
