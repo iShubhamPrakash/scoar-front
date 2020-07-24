@@ -262,48 +262,6 @@
 	}
 }
 
-.MoneyInfo {
-	display: flex;
-	border-radius: 8px;
-	padding: 0.4em 0.6em;
-	width: 100%;
-	min-width: 100px;
-	height: 100%;
-	margin: 0;
-
-	.left {
-		.head {
-			font-size: 1em;
-			font-weight: bold;
-		}
-
-		.subhead {
-			font-size: 0.7em;
-			font-weight: bold;
-			text-transform: capitalize;
-			color: rgb(65, 65, 65);
-		}
-	}
-
-	.right {
-		padding: 0em;
-		@include flex-center;
-		border-radius: 50%;
-		margin-left: 0.5em;
-		background: rgb(236, 255, 255);
-		.MuiBox-root {
-			width: 100%;
-			height: 100%;
-
-			.MuiTypography-root {
-				font-size: 9px;
-				font-weight: bold;
-				@include flex-center;
-			}
-		}
-	}
-}
-
 .paymentPeople {
 	box-shadow: 0px 0px 18px 4px rgba(0, 0, 0, 0.07);
 	padding: 0.5em;

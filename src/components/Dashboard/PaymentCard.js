@@ -6,8 +6,8 @@ import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
+import MoneyInfo from './Payment/MoneyInfo'
 
-import CircularProgressWithLabel from "../UI/CircularProgressWithLabel";
 
 export default function PaymentCard() {
 	return (
@@ -54,20 +54,6 @@ export default function PaymentCard() {
 		</Card>
 	);
 }
-
-const MoneyInfo = ({ balance, percentagePaid, type }) => {
-	return (
-		<div className="MoneyInfo">
-			<div className="left">
-				<p className="head"> {balance} </p>
-				<p className="subhead">{type}</p>
-			</div>
-			<div className="right">
-				<CircularProgressWithLabel value={percentagePaid} />
-			</div>
-		</div>
-	);
-};
 
 const PaymentPeople = ({ time, date, avatar, name, bio, handleThanks }) => {
 	return (
