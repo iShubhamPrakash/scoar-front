@@ -23,6 +23,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import NavLinks from './NavLinks'
 import MessageIcon from '@material-ui/icons/Message';
 import MainDashboard from "./MainDashboard";
+import { Route,Switch } from "react-router-dom";
+import Payment from "./Payment";
 
 const drawerWidth = 200;
 
@@ -195,7 +197,12 @@ export default function PersistentDrawerLeft() {
 				style={{backgroundColor:"#F5F5F5"}}
 			>
 				<div className={classes.drawerHeader} />
-				<MainDashboard/>
+
+				
+				<Switch>
+					<Route exact path="/dashboard" component={MainDashboard} />
+					<Route path="/dashboard/payment" component={Payment} />
+				</Switch>
 			</main>
 		</div>
 	);
