@@ -59,12 +59,83 @@
       margin: 1em 0;
 
       .leftMoney{
-        .left{
+        position: relative;
+        // background: pink;
+        padding: 1em;
+        height: 100%;
+        &__left{
+					.dataContainer{
+						display: flex;
+						margin-top: 2em;
+						.icon{
+							width: 20%;
+							height: 45px;
+							border-left: 4px solid $blue;
+							@include flex-center;
+							span{
+								background: $blue;
+								width: 40px;
+								height: 40px;
+								color: #fff;
+								padding: 1em;
+								@include flex-center;
+								border-radius: 8px;
+							}
+						}
+						.studentDetails{
+							width: 80%;
+							h4{
+								margin: 0;
+								font-size: 1.3em;
+							}
+							p{
+								@include flex-center;
+								justify-content: flex-start;
+								svg{
+									width: 0.7em;
+									height: 0.7em;
+								}
+							}
+						}
+					}
+					.btnContainer{
+						position: absolute;
+						bottom: 3em;
+						left: 1em;
+						width: 100%;
 
+						button{
+							background: #fff;
+							text-transform: capitalize;
+							border: 1px solid rgba(105, 37, 151, 0.516);
+						}
+					}
         }
   
-        .right{
-          
+        &__right{
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 130px;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+					justify-content: space-evenly;
+					
+					button{
+						border: 2px solid rgba(250, 148, 101, 0.938);
+						border-radius: 8px;
+						width: 100%;
+						display: flex;
+						justify-content: space-between;
+						box-shadow: $shadow;
+					}
+
+					.activeBtn{
+						border: 2px solid $blue;
+					}
+
         }
       }
 
@@ -98,7 +169,6 @@
 
 // ####### HISTORY MODAL
 .historyModal {
-	background-color: rgba(135, 89, 243, 0.183);
 
 	#customized-dialog-title {
 		.balance {
@@ -158,14 +228,19 @@
 // ######## MONEYINFO COMPONENT
 .MoneyInfo {
 	display: flex;
+	justify-content: space-between;
 	border-radius: 8px;
-	padding: 0.4em 0.6em;
 	width: 100%;
 	min-width: 100px;
 	height: 100%;
 	margin: 0;
 
 	.left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		align-items: flex-start;
 		.head {
 			font-size: 1em;
 			font-weight: bold;

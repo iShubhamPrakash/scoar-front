@@ -8,6 +8,9 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import SettingsIcon from "@material-ui/icons/Settings";
 import MoneyInfo from "./MoneyInfo";
 import Avatar from "@material-ui/core/Avatar";
+import SubjectIcon from "@material-ui/icons/Subject";
+import ScheduleIcon from '@material-ui/icons/Schedule';
+
 
 export default function Payment() {
 	return (
@@ -104,11 +107,34 @@ const DataRow = () => {
 			<div className="row">
 				<div className="col col-md-5 col-lg-5">
 					<div className="leftMoney">
-						<div className="left"></div>
-						<div className="right">
-							<MoneyInfo balance={370} percentagePaid={70} type="Received" />
-							<MoneyInfo balance={370} percentagePaid={70} type="Due" />
-							<MoneyInfo balance={370} percentagePaid={70} type="Upcomming" />
+						<div className="leftMoney__left">
+							<div className="dataContainer">
+								<div className="icon">
+									<span><SubjectIcon/></span>
+								</div>
+								<div className="studentDetails">
+									<h4>{"Science"} for class {"6th"}</h4>
+									<p>Total students: {"40"}</p>
+									<p>Mode of instruction: {"English"}</p>
+									<p><ScheduleIcon/> {"1 hour"}</p>
+								</div>
+							</div>
+              <div className="btnContainer">
+								<Button size="small" variant="contained" >Add student</Button>
+								&nbsp; &nbsp;
+								<Button size="small" variant="contained" >View</Button>
+							</div>
+            </div>
+						<div className="leftMoney__right">
+							<Button className="activeBtn">
+								<MoneyInfo balance={370} percentagePaid={70} type="Received" />
+							</Button>
+							<Button>
+								<MoneyInfo balance={370} percentagePaid={70} type="Due" />
+							</Button>
+							<Button>
+								<MoneyInfo balance={370} percentagePaid={70} type="Upcomming" />
+							</Button>
 						</div>
 					</div>
 				</div>
