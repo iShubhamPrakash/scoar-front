@@ -1,0 +1,59 @@
+// ####### HISTORY MODAL
+.historyModal {
+	background-color: rgba(135, 89, 243, 0.183);
+
+	#customized-dialog-title {
+		.balance {
+			display: flex;
+			justify-content: space-between;
+			div {
+				margin-left: 20%;
+			}
+
+			h2 {
+				font-weight: bold;
+				font-size: 2.5em;
+				margin: 0;
+			}
+		}
+	}
+
+	.table {
+		padding: 0 1em;
+		.col {
+			text-align: left;
+		}
+		.header {
+			width: 100%;
+			padding-bottom: 0.8em;
+			border-bottom: 1px solid gray;
+			.col {
+				@include flex-center;
+				justify-content: flex-start;
+			}
+			p {
+				font-weight: bold;
+				font-size: 1.2em;
+			}
+		}
+
+		.body {
+			width: 100%;
+
+			.row {
+				width: 100%;
+				padding: 1em 0;
+				border-bottom: 1px solid lightgray;
+			}
+			.col {
+				@include flex-center;
+				justify-content: flex-start;
+			}
+			.name {
+				padding-left: 1em;
+			}
+		}
+	}
+}
+
+// ####### HISTORY MODAL END

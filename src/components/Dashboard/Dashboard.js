@@ -24,7 +24,7 @@ import NavLinks from './NavLinks'
 import MessageIcon from '@material-ui/icons/Message';
 import MainDashboard from "./MainDashboard";
 import { Route,Switch } from "react-router-dom";
-import Payment from "./Payment";
+import Payment from "./Payment/Payment";
 
 const drawerWidth = 200;
 
