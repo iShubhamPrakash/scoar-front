@@ -25,6 +25,8 @@ import MessageIcon from '@material-ui/icons/Message';
 import MainDashboard from "./MainDashboard";
 import { Route,Switch } from "react-router-dom";
 import Payment from "./Payment/Payment";
+import Details from "../DetailForm/Details";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 200;
 
@@ -89,7 +91,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
+	const history = useHistory();
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
@@ -149,6 +152,9 @@ export default function PersistentDrawerLeft() {
 						aria-label="account of current user"
 						aria-haspopup="true"
 						color="#000"
+						onClick={e=>{
+							history.push("/dashboard/add-details");
+						}}
 					>
 						<AccountCircle />
 					</IconButton>
@@ -202,6 +208,7 @@ export default function PersistentDrawerLeft() {
 				<Switch>
 					<Route exact path="/dashboard" component={MainDashboard} />
 					<Route path="/dashboard/payment" component={Payment} />
+					<Route path="/dashboard/add-details" component={Details} />
 				</Switch>
 			</main>
 		</div>
