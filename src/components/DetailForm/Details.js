@@ -12,7 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 export default function Details() {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(1);
   const [gender, setGender] = useState("male");
 	const [teacherType, setTeacherType] = useState("one");
   

@@ -2,22 +2,6 @@
 .payment {
 	margin-top: -2.5em;
 
-	&__topHeader {
-		background: pink;
-		padding: 1em;
-		padding-top: 1.5em;
-		display: flex;
-		align-items: center;
-
-		h1 {
-			margin: 0;
-			padding-left: 1.5em;
-		}
-		.flex-grow {
-			flex-grow: 1;
-		}
-	}
-
 	&__dataHeader {
     padding: 1em 0;
 		.blueBox {

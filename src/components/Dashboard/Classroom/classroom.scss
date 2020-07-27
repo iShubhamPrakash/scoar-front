@@ -1,0 +1,110 @@
+.classroom {
+	margin-top: -2.5em;
+	position: relative;
+
+	&__body {
+		@include flex-center;
+		padding-top: 1.5em;
+		padding: 1em;
+
+		.classCard {
+			margin: 1em;
+			padding: 1em;
+		}
+	}
+}
+
+// ####### classData START
+.classData {
+	position: relative;
+	height: 100%;
+
+  &__id{
+    display: flex;
+    justify-content: flex-end;
+    color: gray;
+    font-weight: bold;
+  }
+
+	&__dataContainer {
+		display: flex;
+		margin-top: 0.5em;
+		.icon {
+			width: 20%;
+			height: 45px;
+			border-left: 4px solid $blue;
+			@include flex-center;
+			span {
+				background: $blue;
+				width: 40px;
+				height: 40px;
+				color: #fff;
+				padding: 1em;
+				@include flex-center;
+				border-radius: 8px;
+			}
+		}
+		.studentDetails {
+			width: 80%;
+			h4 {
+				margin: 0;
+				font-size: 1.3em;
+			}
+			p {
+				@include flex-center;
+				justify-content: flex-start;
+				svg {
+					width: 0.7em;
+					height: 0.7em;
+				}
+			}
+		}
+	}
+
+	&__calendar{
+		flex-direction: column;
+		width: 100%;
+		margin: 0;
+		margin-bottom: 1em;
+
+		h5{
+			margin: 0;
+			font-weight: bold;
+			margin: 0.5em 0;
+			font-size: 1.1em;
+		}
+		.week{
+		@include flex-center;
+		justify-content: space-between;
+
+		.day{
+			@include flex-center;
+			flex-direction: column;
+
+			margin: 0 2px;
+			.MuiAvatar-root{
+				width: 28px;
+				height: 28px;
+				font-size: 1em;
+			}
+			.active{
+				color: #fff;
+				background: lightseagreen;
+			}
+		}
+
+		}
+	}
+
+	&__btnContainer {
+		width: 100%;
+    display: flex;
+    justify-content: flex-end;
+		button {
+			background: #fff;
+			text-transform: capitalize;
+			border: 1px solid rgba(105, 37, 151, 0.516);
+		}
+	}
+}
+// ####### classData END

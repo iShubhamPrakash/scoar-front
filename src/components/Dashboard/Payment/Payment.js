@@ -9,20 +9,19 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import MoneyInfo from "./MoneyInfo";
 import Avatar from "@material-ui/core/Avatar";
 import SubjectIcon from "@material-ui/icons/Subject";
-import ScheduleIcon from '@material-ui/icons/Schedule';
-
+import ScheduleIcon from "@material-ui/icons/Schedule";
+import HeaderTop from "../Containers/HeaderTop";
 
 export default function Payment() {
 	return (
 		<div className="payment">
-			<Card className="payment__topHeader">
+			<HeaderTop>
 				<h1>Your Payments</h1>
 				<div className="flex-grow"></div>
 				<HistoryModal />
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<SearchInput />
-			</Card>
-
+			</HeaderTop>
 			{/* data header starts */}
 			<div className="payment__dataHeader row">
 				<div className="col col-sm-3 col-md-3 col-lg-3">
@@ -110,21 +109,31 @@ const DataRow = () => {
 						<div className="leftMoney__left">
 							<div className="dataContainer">
 								<div className="icon">
-									<span><SubjectIcon/></span>
+									<span>
+										<SubjectIcon />
+									</span>
 								</div>
 								<div className="studentDetails">
-									<h4>{"Science"} for class {"6th"}</h4>
+									<h4>
+										{"Science"} for class {"6th"}
+									</h4>
 									<p>Total students: {"40"}</p>
 									<p>Mode of instruction: {"English"}</p>
-									<p><ScheduleIcon/> {"1 hour"}</p>
+									<p>
+										<ScheduleIcon /> {"1 hour"}
+									</p>
 								</div>
 							</div>
-              <div className="btnContainer">
-								<Button size="small" variant="contained" >Add student</Button>
+							<div className="btnContainer">
+								<Button size="small" variant="contained">
+									Add student
+								</Button>
 								&nbsp; &nbsp;
-								<Button size="small" variant="contained" >View</Button>
+								<Button size="small" variant="contained">
+									View
+								</Button>
 							</div>
-            </div>
+						</div>
 						<div className="leftMoney__right">
 							<Button className="activeBtn">
 								<MoneyInfo balance={370} percentagePaid={70} type="Received" />

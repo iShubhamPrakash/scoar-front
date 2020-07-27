@@ -1,0 +1,20 @@
+.headerTop {
+	background: pink;
+	padding: 1em;
+	padding-top: 1.5em;
+	display: flex;
+  align-items: center;
+  width: 100%;
+  position: sticky;
+  top: 60px;
+  left: 0;
+  z-index: 100;
+
+	h1 {
+		margin: 0;
+		padding-left: 1.5em;
+	}
+	.flex-grow {
+		flex-grow: 1;
+	}
+}
