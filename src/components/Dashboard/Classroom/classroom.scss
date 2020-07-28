@@ -6,15 +6,14 @@
 		padding-top: 1.5em;
 		padding: 1em;
 
-		
-		.classCardRow{
+		.classCardRow {
 			.classCard {
 				margin: 1em;
 				padding: 1em;
 			}
 		}
 
-		.formContainer{
+		.formContainer {
 			// background: pink;
 			padding: 1em;
 		}
@@ -26,12 +25,12 @@
 	position: relative;
 	height: 100%;
 
-  &__id{
-    display: flex;
-    justify-content: flex-end;
-    color: gray;
-    font-weight: bold;
-  }
+	&__id {
+		display: flex;
+		justify-content: flex-end;
+		color: gray;
+		font-weight: bold;
+	}
 
 	&__dataContainer {
 		display: flex;
@@ -68,45 +67,44 @@
 		}
 	}
 
-	&__calendar{
+	&__calendar {
 		flex-direction: column;
 		width: 100%;
 		margin: 0;
 		margin-bottom: 1em;
 
-		h5{
+		h5 {
 			margin: 0;
 			font-weight: bold;
 			margin: 0.5em 0;
 			font-size: 1.1em;
 		}
-		.week{
-		@include flex-center;
-		justify-content: space-between;
-
-		.day{
+		.week {
 			@include flex-center;
-			flex-direction: column;
+			justify-content: space-between;
 
-			margin: 0 2px;
-			.MuiAvatar-root{
-				width: 28px;
-				height: 28px;
-				font-size: 1em;
-			}
-			.active{
-				color: #fff;
-				background: lightseagreen;
-			}
-		}
+			.day {
+				@include flex-center;
+				flex-direction: column;
 
+				margin: 0 2px;
+				.MuiAvatar-root {
+					width: 28px;
+					height: 28px;
+					font-size: 1em;
+				}
+				.active {
+					color: #fff;
+					background: lightseagreen;
+				}
+			}
 		}
 	}
 
 	&__btnContainer {
 		width: 100%;
-    display: flex;
-    justify-content: flex-end;
+		display: flex;
+		justify-content: flex-end;
 		button {
 			background: #fff;
 			text-transform: capitalize;
@@ -116,15 +114,14 @@
 }
 // ####### classData END
 
-
 // ####### createClassRommForm START
-.createClassRommForm{
+.createClassRommForm {
 	position: relative;
-	&__header{
+	&__header {
 		width: 100%;
 		@include flex-center;
-		
-		h3{
+
+		h3 {
 			text-align: center;
 			font-size: 1.5em;
 			padding: 0.5em 0;
@@ -138,7 +135,7 @@
 		flex-direction: column;
 		align-items: center;
 
-		.form{
+		.form {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -146,33 +143,91 @@
 			max-width: 100%;
 			position: relative;
 
-			.input{
+			.input {
 				min-width: 300px;
 				max-width: 100%;
 				height: 40px;
 			}
-			.feeRow{
+			.feeRow {
 				min-width: 300px;
 				max-width: 100%;
 				display: flex;
 				justify-content: space-between;
-				#fee{
+				#fee {
 					width: 140px;
 				}
-				.periodSelect{
+				.periodSelect {
 					height: 40px;
 					// width: 100px;
 				}
 			}
 
-			.createClassbtn{
+			.createClassbtn {
 				background: $blue;
 				color: #fff;
 			}
-			
 		}
-	 
 	}
-
 }
 // ####### createClassRommForm START
+
+// ####### AddStudent MODAL
+.addStudentModal {
+	#customized-dialog-title {
+		padding: 2em;
+		h2 {
+			margin: 0;
+			font-weight: normal;
+		}
+		.heading {
+			display: flex;
+			justify-content: flex-start;
+			margin-top: 1em;
+
+			.icon {
+				height: 50px;
+				border-left: 6px solid $blue;
+				@include flex-center;
+				padding: 0 0.6em;
+				span {
+					background: $blue;
+					width: 50px;
+					height: 100%;
+					color: #fff;
+					@include flex-center;
+					border-radius: 8px;
+				}
+			}
+
+			.details {
+				h4 {
+					font-weight: bold;
+					font-size: 1em;
+					margin: 0;
+					margin-top: -6px;
+				}
+
+				p {
+					font-size: 0.8em;
+				}
+			}
+		}
+	}
+	.body {
+		width: 100%;
+		padding: 0 2em;
+
+		.input {
+			width: 100%;
+			max-width: 500px;
+			margin: 1em 0;
+		}
+
+		button {
+			background: $blue;
+			color: #fff;
+			margin: 1em 0;
+		}
+	}
+}
+// ####### AddStudent MODAL END

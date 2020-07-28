@@ -18,6 +18,16 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import { withStyles } from "@material-ui/core/styles";
+
 export default function Classroom() {
 	return (
 		<div className="classroom">
@@ -118,9 +128,7 @@ const ClassData = (props) => {
 			</div>
 
 			<div className="classData__btnContainer">
-				<Button size="small" variant="contained">
-					Add student
-				</Button>
+				<AddStudentModal />
 				&nbsp; &nbsp;
 				<Button size="small" variant="contained">
 					View
@@ -210,7 +218,7 @@ const CreateClassRoomForm = (props) => {
 								onChange={(e) => {}}
 								label="Type of teacher"
 								size="small"
-								style={{height:"40px"}}
+								style={{ height: "40px" }}
 							>
 								<MenuItem value={"one"}>per month</MenuItem>
 								<MenuItem value={"two"}>quaterly</MenuItem>
@@ -225,17 +233,150 @@ const CreateClassRoomForm = (props) => {
 						label="Description"
 						variant="outlined"
 						size="small"
-						style={{width:"300px"}}
+						style={{ width: "300px" }}
 						multiline
 						rows={4}
-          	rowsMax={4}
+						rowsMax={4}
 					/>
 					<br />
-					<Button variant="contained" className="createClassbtn" onClick={(e) => ""}>
+					<Button
+						variant="contained"
+						className="createClassbtn"
+						onClick={(e) => ""}
+					>
 						Create Class
 					</Button>
 				</form>
 			</div>
+		</div>
+	);
+};
+
+// Modals
+
+const styles = (theme) => ({
+	root: {
+		margin: 0,
+		padding: theme.spacing(2),
+	},
+	closeButton: {
+		position: "absolute",
+		right: theme.spacing(1),
+		top: theme.spacing(1),
+		color: theme.palette.grey[500],
+	},
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+	const { children, classes, onClose, ...other } = props;
+	return (
+		<MuiDialogTitle disableTypography className={classes.root} {...other}>
+			<Typography variant="h6">{children}</Typography>
+			{onClose ? (
+				<IconButton
+					aria-label="close"
+					className={classes.closeButton}
+					onClick={onClose}
+				>
+					<CloseIcon />
+				</IconButton>
+			) : null}
+		</MuiDialogTitle>
+	);
+});
+
+const DialogContent = withStyles((theme) => ({
+	root: {
+		padding: theme.spacing(2),
+	},
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+	root: {
+		margin: 0,
+		padding: theme.spacing(1),
+	},
+}))(MuiDialogActions);
+
+const AddStudentModal = (props) => {
+	const [open, setOpen] = React.useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
+
+	return (
+		<div>
+			<Button size="small" variant="contained" onClick={handleClickOpen}>
+				Add Student
+			</Button>
+			<Dialog
+				onClose={handleClose}
+				aria-labelledby="customized-dialog-title"
+				open={open}
+				className="addStudentModal"
+				fullWidth={true}
+				maxWidth={"md"}
+			>
+				<DialogTitle id="customized-dialog-title" onClose={handleClose}>
+					<img src="/logo-full-small.png" alt="" style={{ width: "100px" }} />
+					<h2>Add student to the class</h2>
+					<div className="heading">
+						<div className="icon">
+							<span>
+								<SubjectIcon />
+							</span>
+						</div>
+						<div className="details">
+							<h4>
+								{"Science"} for class {"6th"}
+							</h4>
+							<p>Total students: {"40"}</p>
+							{/* <p>Mode of instruction: {"English"}</p> */}
+						</div>
+					</div>
+				</DialogTitle>
+				<DialogContent dividers>
+					<div className="body">
+						<form autoComplete="off" className="form">
+							<TextField
+								id="name"
+								label="Name"
+								variant="outlined"
+								size="small"
+								className="input"
+							/>
+							<br />
+							<TextField
+								id="number"
+								label="Mobile Number"
+								variant="outlined"
+								size="small"
+								className="input"
+							/>
+							<br />
+							<TextField
+								id="fees"
+								label="Fees"
+								variant="outlined"
+								size="small"
+								className="input"
+							/>
+							<br />
+							<Button
+								variant="contained"
+								className="createClassbtn"
+								onClick={(e) => ""}
+							>
+								Add Student
+							</Button>
+						</form>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</div>
 	);
 };
