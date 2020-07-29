@@ -40,7 +40,7 @@ export default function ClassroomView(props) {
 					</div>
 				</div>
 				<div className="col col-7 col-sm-7 col-md-7 col-lg-7">
-					<Card className="contentContainer rightCard">
+					<Card className="contentContainer rightCard" raised>
 						<ClassDetailCard {...props} />
 					</Card>
 				</div>
