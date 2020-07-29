@@ -16,6 +16,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
 import SearchIcon from "@material-ui/icons/Search";
+import EditClassModal from "./EditClassModal";
 
 export default function ClassroomView(props) {
 	const history = useHistory();
@@ -126,15 +127,7 @@ const ClassData = (props) => {
 					Cancel
 				</Button>
 				&nbsp; &nbsp;
-				<Button
-					size="small"
-					variant="contained"
-					onClick={(e) => ""}
-					className="topBtn"
-					startIcon={<EditIcon />}
-				>
-					Edit
-				</Button>
+				<EditClassModal/>
 			</div>
 
 			<div className="classData__dataContainer">
