@@ -291,11 +291,9 @@
 			height: 100%;
 
 			.classDetailCard {
-				background: yellow;
 				height: 100%;
 
 				.top {
-					background: powderblue;
 					height: 55%;
 					.topBtn {
 						background: #fff;
@@ -311,12 +309,12 @@
 						width: 100%;
 						max-width: 400px;
 					}
-					h5{
+					h5 {
 						margin: 0;
 						font-size: 1.1em;
 						padding-bottom: 8px;
 					}
-					.description{
+					.description {
 						background: #fff;
 						padding: 0.5em;
 						margin: 0 1em;
@@ -325,14 +323,58 @@
 						@include purple-scrollbar;
 						border-radius: 8px;
 						border: 1px solid $blue;
-						box-shadow: $shadow;
+						// box-shadow: $shadow;
 					}
 				}
 
-				.bottom{
+				.bottom {
 					height: 45%;
 					overflow: auto;
 					@include purple-scrollbar;
+
+					.studentList {
+						.table {
+							padding: 0 1em;
+							.col {
+								text-align: left;
+							}
+							.header {
+								width: 100%;
+								padding-bottom: 0.8em;
+								border-bottom: 1px solid gray;
+								.col {
+									@include flex-center;
+									justify-content: flex-start;
+								}
+								p {
+									font-weight: bold;
+									font-size: 1.2em;
+								}
+
+								.totalCheck {
+									padding: 0;
+									margin-left: 0.4em;
+								}
+							}
+
+							.body {
+								width: 100%;
+
+								.row {
+									width: 100%;
+									padding: 1em 0;
+									border-bottom: 1px solid lightgray;
+								}
+								.col {
+									@include flex-center;
+									justify-content: flex-start;
+								}
+								.name {
+									padding-left: 1em;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
