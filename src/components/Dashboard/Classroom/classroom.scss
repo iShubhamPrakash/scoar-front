@@ -262,7 +262,7 @@
 		display: flex;
 		height: 100%;
 
-		.col{
+		.col {
 			height: 100%;
 		}
 
@@ -278,19 +278,64 @@
 			padding: 3em 1em;
 			cursor: pointer;
 
-			&:active{
+			&:active {
 				background: rgb(240, 238, 238);
 			}
-		
 		}
 
-		#activeCard{
+		#activeCard {
 			border-bottom: 4px solid $blue;
 		}
-		
-		.rightCard {
-		}
 
+		.rightCard {
+			height: 100%;
+
+			.classDetailCard {
+				background: yellow;
+				height: 100%;
+
+				.top {
+					background: powderblue;
+					height: 55%;
+					.topBtn {
+						background: #fff;
+						text-transform: capitalize;
+					}
+					.joinBtn {
+						background: $blue;
+						color: #eee;
+					}
+
+					.classData__calendar,
+					.classData__dataContainer {
+						width: 100%;
+						max-width: 400px;
+					}
+					h5{
+						margin: 0;
+						font-size: 1.1em;
+						padding-bottom: 8px;
+					}
+					.description{
+						background: #fff;
+						padding: 0.5em;
+						margin: 0 1em;
+						height: 70px;
+						overflow: auto;
+						@include purple-scrollbar;
+						border-radius: 8px;
+						border: 1px solid $blue;
+						box-shadow: $shadow;
+					}
+				}
+
+				.bottom{
+					height: 45%;
+					overflow: auto;
+					@include purple-scrollbar;
+				}
+			}
+		}
 	}
 }
 

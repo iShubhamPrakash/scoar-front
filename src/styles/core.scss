@@ -8,184 +8,191 @@ $scoar_purple_light: #b033ea;
 $scoar_purple_dark: #781da1;
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 p {
-  margin: 0;
+	margin: 0;
 }
 
 .display-none {
-  display: none;
+	display: none;
 }
 
-.opacity0{
-  opacity: 0;
+.opacity0 {
+	opacity: 0;
 }
 
 .btn-transparent {
-  padding: 0.7em;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  font-size: 0.8em;
-  background: transparent;
-  outline: none;
-  &:active {
-    background-color: #00000010;
-  }
+	padding: 0.7em;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	font-size: 0.8em;
+	background: transparent;
+	outline: none;
+	&:active {
+		background-color: #00000010;
+	}
 }
 
 .btn {
-  padding: 0.7em;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  font-size: 0.8em;
+	padding: 0.7em;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	font-size: 0.8em;
 
-  &:hover {
-    background-color: $scoar_purple_light;
-    box-shadow: 0px 15px 20px #b721fd36;
-  }
+	&:hover {
+		background-color: $scoar_purple_light;
+		box-shadow: 0px 15px 20px #b721fd36;
+	}
 }
 
 .custom-icon {
-  position: relative;
-  text-align: center;
-  width: 10px;
-  height: 10px;
-  padding: 1em;
-  margin: 0;
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1.8em;
-    height: auto;
-  }
+	position: relative;
+	text-align: center;
+	width: 10px;
+	height: 10px;
+	padding: 1em;
+	margin: 0;
+	img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 1.8em;
+		height: auto;
+	}
 }
 
 .btn-purple {
-  background: $scoar_purple;
-  color: rgb(241, 238, 238);
+	background: $scoar_purple;
+	color: rgb(241, 238, 238);
 }
 
-
-.text-center{
-  text-align: center;
+.text-center {
+	text-align: center;
 }
 
-.text-left{
-  text-align: left;
+.text-left {
+	text-align: left;
 }
 
-.text-right{
-  text-align: right;
+.text-right {
+	text-align: right;
 }
 
-.text-bold{
-  font-weight: bold;
+.text-bold {
+	font-weight: bold;
 }
 
-.text-sm-1{
-  font-size: 0.9em;
+.text-sm-1 {
+	font-size: 0.9em;
 }
 
-.text-sm-2{
-  font-size: 0.8em;
+.text-sm-2 {
+	font-size: 0.8em;
 }
 
-.text-sm-3{
-  font-size: 0.7em;
+.text-sm-3 {
+	font-size: 0.7em;
 }
 
-.text-sm-4{
-  font-size: 0.6em;
+.text-sm-4 {
+	font-size: 0.6em;
 }
 
-.text-sm-5{
-  font-size: 0.5em;
+.text-sm-5 {
+	font-size: 0.5em;
 }
 
-
-.text-lg-1{
-  font-size: 1.1em;
+.text-lg-1 {
+	font-size: 1.1em;
 }
 
-.text-lg-2{
-  font-size: 1.2em;
+.text-lg-2 {
+	font-size: 1.2em;
 }
 
-.text-lg-3{
-  font-size: 1.3em;
+.text-lg-3 {
+	font-size: 1.3em;
 }
 
-
-.text-lg-4{
-  font-size: 1.4em;
+.text-lg-4 {
+	font-size: 1.4em;
 }
 
-.text-lg-5{
-  font-size: 1.5em;
+.text-lg-5 {
+	font-size: 1.5em;
 }
 
-.small{
-  font-size: 13px;
+.small {
+	font-size: 13px;
+}
+
+.flex-grow {
+	flex-grow: 1;
+}
+
+.flex-grow-1 {
+	flex-grow: 1;
+}
+.flex-grow-2 {
+	flex-grow: 2;
 }
 
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+	animation: App-logo-spin infinite 20s linear;
+	height: 40vmin;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
-
 
 $shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
@@ -194,39 +201,44 @@ $shadow-spread: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 @mixin purple-pink-gradient {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(72, 83, 239, 1) 0%,
-    rgba(236, 0, 255, 1) 100%
-  );
+	background: rgb(255, 255, 255);
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(72, 83, 239, 1) 0%,
+		rgba(236, 0, 255, 1) 100%
+	);
 }
 
-@mixin flex-center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 @mixin gradient-bg {
-  background: rgb(255,255,255);
-  background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(162,131,255,1) 0%, rgba(52,28,134,1) 100%);
+	background: rgb(255, 255, 255);
+	background: linear-gradient(
+		115deg,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(162, 131, 255, 1) 0%,
+		rgba(52, 28, 134, 1) 100%
+	);
 }
 
 @mixin purple-scrollbar {
-  &::-webkit-scrollbar {
-      width: 6px;
-  }
-  
-  &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background-color: #8a00c15e;
-    outline: 1px solid #b033ea;
-  }
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	&::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #8a00c15e;
+		outline: 1px solid #b033ea;
+	}
 }
 
 $blue: rgb(115, 44, 190);
