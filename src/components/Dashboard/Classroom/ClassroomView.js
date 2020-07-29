@@ -1,12 +1,21 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import { Avatar, Card, Button, IconButton } from "@material-ui/core";
+import {
+	Avatar,
+	Card,
+	Button,
+	IconButton,
+	Input,
+	InputAdornment,
+	Paper,
+} from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import SubjectIcon from "@material-ui/icons/Subject";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import EditIcon from "@material-ui/icons/Edit";
 import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
+import SearchIcon from "@material-ui/icons/Search";
 
 export default function ClassroomView(props) {
 	const history = useHistory();
@@ -86,11 +95,9 @@ const ClassDetailCard = (props) => {
 };
 
 const ClassData = (props) => {
-	const history = useHistory();
 	return (
 		<div className="classData">
 			<div className="classData__id">
-				<p>Classroom ID: {props.match.params.id}</p>
 				<div className="flex-grow-1" />
 				<Button
 					size="small"
@@ -192,33 +199,69 @@ const StudentList = (props) => {
 	return (
 		<div className="studentList">
 			<div className="table container-flex">
-				<div className="header row">
-					<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
-						<Checkbox
-							color="primary"
-							inputProps={{ "aria-label": "secondary checkbox" }}
-							size="small"
-							className="totalCheck"
-						/>
-					</div>
-					<div className="col col-3 col-sm-3 col-md-3 col-lg-3">
-						<p>Name</p>
-					</div>
-					<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
-						<p>Join Date</p>
-					</div>
-					<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
-						<p>Assignment</p>
-					</div>
-					<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
-						<p>Fee</p>
-					</div>
+				<div className="header">
+					<div className="row tableTop">
+						<h5>Student List</h5>
+						<Paper className="searchInput" elevation={3}>
+							<SearchInput />
+						</Paper>
 
-					<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
-						<p>Details</p>
+						<Button size="small" variant="contained" className="topBtn">
+							Export Data
+						</Button>
+					</div>
+					<div className="row headerRow">
+						<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
+							<Checkbox
+								color="primary"
+								inputProps={{ "aria-label": "secondary checkbox" }}
+								size="small"
+								className="totalCheck"
+							/>
+						</div>
+						<div className="col col-4 col-sm-4 col-md-4 col-lg-4">
+							<p>Name</p>
+						</div>
+						<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+							<p>Join Date</p>
+						</div>
+						<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+							<p>Assignment</p>
+						</div>
+						<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
+							<p>Fee</p>
+						</div>
+
+						<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+							<p>&nbsp;</p>
+						</div>
 					</div>
 				</div>
 				<div className="body">
+					<TableRow
+						name="Shubham"
+						avatar="/shubham.png"
+						assignment="Issued"
+						fee="Paid"
+						date="23 Aug, 2020"
+						handleView={(e) => alert("View open")}
+					/>
+					<TableRow
+						name="Shubham"
+						avatar="/shubham.png"
+						assignment="Issued"
+						fee="Paid"
+						date="23 Aug, 2020"
+						handleView={(e) => alert("View open")}
+					/>
+					<TableRow
+						name="Shubham"
+						avatar="/shubham.png"
+						assignment="Issued"
+						fee="Paid"
+						date="23 Aug, 2020"
+						handleView={(e) => alert("View open")}
+					/>
 					<TableRow
 						name="Shubham"
 						avatar="/shubham.png"
@@ -277,8 +320,8 @@ const TableRow = (props) => {
 				/>
 			</div>
 
-			<div className="col col-3 col-sm-3 col-md-3 col-lg-3">
-				<Avatar src={avatar} />
+			<div className="col col-4 col-sm-4 col-md-4 col-lg-4">
+				<Avatar src={avatar} className="avatar"/>
 				<Typography
 					gutterBottom
 					variant="subtitle2"
@@ -302,7 +345,7 @@ const TableRow = (props) => {
 				</Typography>
 			</div>
 
-			<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+			<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
 				<Typography
 					gutterBottom
 					variant="subtitle2"
@@ -313,11 +356,27 @@ const TableRow = (props) => {
 				</Typography>
 			</div>
 
-			<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
-				<Button size="small" onClick={(e) => handleView(e)}>
+			<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+				<Button size="small" className="viewBtn" onClick={(e) => handleView(e)}>
 					View
 				</Button>
 			</div>
 		</div>
+	);
+};
+
+const SearchInput = () => {
+	return (
+		<Input
+			id="search-input"
+			variant="outlined"
+			placeholder="Search Student"
+			disableUnderline
+			startAdornment={
+				<InputAdornment position="start">
+					<SearchIcon />
+				</InputAdornment>
+			}
+		/>
 	);
 };

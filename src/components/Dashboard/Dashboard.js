@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3,2),
+		padding: theme.spacing(1,2),
 		transition: theme.transitions.create("margin", {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -205,7 +205,6 @@ export default function PersistentDrawerLeft(props) {
 				style={{backgroundColor:"#F5F5F5"}}
 			>
 				<div className={classes.drawerHeader} />
-
 				
 				<Switch>
 					<Route exact path="/dashboard" component={MainDashboard}/>
