@@ -231,3 +231,67 @@
 	}
 }
 // ####### AddStudent MODAL END
+
+// ####### classroomView Component START
+.classroomView {
+	position: relative;
+	padding: 0;
+	// padding-top: 3em;
+	height: calc(100vh - 120px);
+
+	&__backBtn {
+		background: #fff !important;
+		color: rgb(37, 36, 36) !important;
+		box-shadow: $shadow;
+		cursor: pointer;
+		width: 35px !important;
+		height: 35px !important;
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		z-index: 10;
+		&:active {
+			background: rgb(234, 234, 233) !important;
+		}
+	}
+
+	&__body {
+		padding: 0;
+		margin: 0;
+		position: relative;
+		display: flex;
+		height: 100%;
+
+		.col{
+			height: 100%;
+		}
+
+		.contentContainer {
+			padding: 1em;
+			height: 100%;
+			overflow: auto;
+			@include purple-scrollbar;
+		}
+
+		.classCard {
+			margin: 1em 0;
+			padding: 3em 1em;
+			cursor: pointer;
+
+			&:active{
+				background: rgb(240, 238, 238);
+			}
+		
+		}
+
+		#activeCard{
+			border-bottom: 4px solid $blue;
+		}
+		
+		.rightCard {
+		}
+
+	}
+}
+
+// ####### classroomView Component END

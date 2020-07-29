@@ -19,7 +19,7 @@ export default function NavLinks() {
 				<AccountBalanceWalletIcon />
 				<span>payment</span>
 			</NavLink>
-			<NavLink exact to="/dashboard/classroom">
+			<NavLink to="/dashboard/classroom">
 				<ClassIcon />
 				<span>Classroom</span>
 			</NavLink>

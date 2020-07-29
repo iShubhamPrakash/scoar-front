@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from 'react-router'
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
@@ -76,6 +77,7 @@ const SearchInput = () => {
 };
 
 const ClassData = (props) => {
+	const history = useHistory();
 	return (
 		<div className="classData">
 			<div className="classData__id">
@@ -130,7 +132,7 @@ const ClassData = (props) => {
 			<div className="classData__btnContainer">
 				<AddStudentModal />
 				&nbsp; &nbsp;
-				<Button size="small" variant="contained">
+				<Button size="small" variant="contained" onClick={e=>history.push('/dashboard/classroom/123')}>
 					View
 				</Button>
 			</div>
