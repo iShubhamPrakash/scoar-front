@@ -17,6 +17,7 @@ import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
 import SearchIcon from "@material-ui/icons/Search";
 import EditClassModal from "./EditClassModal";
+import ChangeScheduleModal from "./ChangeScheduleModal";
 
 export default function ClassroomView(props) {
 	const history = useHistory();
@@ -109,14 +110,7 @@ const ClassData = (props) => {
 					Join Now
 				</Button>
 				&nbsp; &nbsp;
-				<Button
-					size="small"
-					variant="contained"
-					onClick={(e) => ""}
-					className="topBtn"
-				>
-					Change Schedule
-				</Button>
+				<ChangeScheduleModal />
 				&nbsp; &nbsp;
 				<Button
 					size="small"
@@ -127,7 +121,7 @@ const ClassData = (props) => {
 					Cancel
 				</Button>
 				&nbsp; &nbsp;
-				<EditClassModal/>
+				<EditClassModal />
 			</div>
 
 			<div className="classData__dataContainer">
@@ -314,7 +308,7 @@ const TableRow = (props) => {
 			</div>
 
 			<div className="col col-4 col-sm-4 col-md-4 col-lg-4">
-				<Avatar src={avatar} className="avatar"/>
+				<Avatar src={avatar} className="avatar" />
 				<Typography
 					gutterBottom
 					variant="subtitle2"
