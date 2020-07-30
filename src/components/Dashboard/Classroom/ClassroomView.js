@@ -18,6 +18,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import SearchIcon from "@material-ui/icons/Search";
 import EditClassModal from "./EditClassModal";
 import ChangeScheduleModal from "./ChangeScheduleModal";
+import StudentDetailsModal from "./StudentDetailsModal";
+
 
 export default function ClassroomView(props) {
 	const history = useHistory();
@@ -344,9 +346,7 @@ const TableRow = (props) => {
 			</div>
 
 			<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
-				<Button size="small" className="viewBtn" onClick={(e) => handleView(e)}>
-					View
-				</Button>
+				<StudentDetailsModal/>
 			</div>
 		</div>
 	);

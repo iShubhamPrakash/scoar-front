@@ -456,5 +456,91 @@
 		}
 	}
 }
-
 // ####### classroomView Component END
+
+// ####### studentDetailsModal Component END
+.studentDetailsModal {
+	&__left{
+		.top{
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			.avatar{
+				width: 120px;
+				height: 120px;
+			}
+
+			h3{
+				margin: 0;
+				font-size: 1.5em;
+			}
+		}
+
+		.details{
+			p{
+				color: rgb(56, 56, 56);
+				font-size: 1.1em;
+				font-weight: bold;
+				padding: 0.5em 1em;
+			}
+		}
+
+	}
+
+	&__right{
+		height: 600px;
+
+		.top{
+			height: 250px;
+			overflow: auto;
+			overflow-x: hidden;
+			position: relative;
+			@include purple-scrollbar;
+
+			h3{
+				position: sticky;
+				width: 100%;
+				left: 0;
+				top: -1px;
+				background: #fff;
+				padding: 4px;
+			}
+
+			.classCard{
+				padding: 0.5em;
+				cursor: pointer;
+
+				&:active{
+					background: rgb(246, 245, 245);
+				}
+			}
+		}
+
+		.bottom{
+			height: 350px;
+			overflow: auto;
+			overflow-x: hidden;
+			@include purple-scrollbar;
+			position: relative;
+			padding: 0 1em;
+
+			h3{
+				position: sticky;
+				width: 100%;
+				left: 0;
+				top: -1px;
+				background: #fff;
+				padding: 4px;
+				margin: 0;
+				z-index: 10;
+			}
+
+
+			.paymentPeople__right{
+				font-weight: normal;
+				font-size: 13px;
+			}
+		}
+	}
+}
+// ####### studentDetailsModal Component END
