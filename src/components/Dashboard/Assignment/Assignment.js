@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import SubjectIcon from "@material-ui/icons/Subject";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import HeaderTop from "../Containers/HeaderTop";
-import { Card, Button, Avatar, TextField } from "@material-ui/core";
+import { Card, Button, Avatar, TextField, CircularProgress } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -18,26 +18,26 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import CircularProgressWithLabel from "../../UI/CircularProgressWithLabel";
 
-import { withStyles } from "@material-ui/core/styles";
 
-export default function Classroom() {
-	return (
-		<div className="classroom">
-			<HeaderTop>
-				<h1>Your Class Room List</h1>
+export default function Assignment() {
+  return (
+    <div className="assignment">
+      <HeaderTop>
+      <h1>Assignments</h1>
 				<div className="flex-grow"></div>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<SearchInput />
-			</HeaderTop>
-
-			<div className="classroom__body row">
+      </HeaderTop>
+      
+			<div className="assignment__body row">
 				<div className="col-sm-8 col-lg-8">
-					<div className="row classCardRow">
-						{[1, 2, 3, 4, 5].map((i) => (
+					<div className="row assignmentCardRow">
+						{[1, 2].map((i) => (
 							<div className="col-12 col-sm-12 col-lg-6">
-								<Card className="classCard">
-									<ClassData />
+								<Card className="assignementCard">
+									<AssignmentData />
 								</Card>
 							</div>
 						))}
@@ -45,12 +45,13 @@ export default function Classroom() {
 				</div>
 				<div className="col-sm-4 col-lg-4 formContainer">
 					<Card>
-						<CreateClassRoomForm />
+						<CreateAssignmentRoomForm />
 					</Card>
 				</div>
 			</div>
-		</div>
-	);
+
+    </div>
+  )
 }
 
 const SearchInput = () => {
@@ -68,15 +69,16 @@ const SearchInput = () => {
 	);
 };
 
-const ClassData = (props) => {
+
+const AssignmentData = (props) => {
 	const history = useHistory();
 	return (
-		<div className="classData">
-			<div className="classData__id">
-				<p>Classroom ID: {123}</p>
+		<div className="assignmentData">
+			<div className="assignmentData__id">
+				<p>Submission Date: {"23-08-2020"}</p>
 			</div>
 
-			<div className="classData__dataContainer">
+			<div className="assignmentData__dataContainer">
 				<div className="icon">
 					<span>
 						<SubjectIcon />
@@ -87,48 +89,21 @@ const ClassData = (props) => {
 						{"Science"} for class {"6th"}
 					</h4>
 					<p>Total students: {"40"}</p>
-					<p>Mode of instruction: {"English"}</p>
-					<p>
-						<ScheduleIcon /> {"1 hour"}
-					</p>
 				</div>
 			</div>
 
-			<div className="classData__calendar">
-				<h5 className="text-left">Classes on</h5>
-				<div className="week">
-					<div className="day">
-						<Avatar className="active">S</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="">M</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">T</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">W</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="">T</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">F</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">S</Avatar>
-					</div>
-				</div>
+			<div className="assignmentData__details">
+				<h5>Topic:<span>{"Number Theory"}</span></h5>
+        <h5>Number of questions:<span>{"5"}</span></h5>
+        <h5>Reference Notes:<span>{"Given"}</span> </h5>
 			</div>
 
-			<div className="classData__btnContainer">
-				<AddStudentModal />
-				&nbsp; &nbsp;
-				<Button
-					size="small"
-					variant="contained"
-					onClick={(e) => history.push("/dashboard/classroom/123")}
-				>
+			<div className="assignmentData__btnContainer">
+        <Button size="small" variant="contained">
+					<span className="text-bold">364</span>&nbsp;&nbsp; Submitted &nbsp;&nbsp; <CircularProgressWithLabel value={70}/>
+				</Button>
+			  <div className="flex-grow"/>
+				<Button size="small" variant="contained" onClick={e=>history.push('/dashboard/assignment/123')}>
 					View
 				</Button>
 			</div>
@@ -136,7 +111,7 @@ const ClassData = (props) => {
 	);
 };
 
-const CreateClassRoomForm = (props) => {
+const CreateAssignmentRoomForm = (props) => {
 	return (
 		<div className="createClassRommForm">
 			<div className="createClassRommForm__header">
@@ -246,135 +221,6 @@ const CreateClassRoomForm = (props) => {
 					</Button>
 				</form>
 			</div>
-		</div>
-	);
-};
-
-// Modals
-
-const styles = (theme) => ({
-	root: {
-		margin: 0,
-		padding: theme.spacing(2),
-	},
-	closeButton: {
-		position: "absolute",
-		right: theme.spacing(1),
-		top: theme.spacing(1),
-		color: theme.palette.grey[500],
-	},
-});
-
-const DialogTitle = withStyles(styles)((props) => {
-	const { children, classes, onClose, ...other } = props;
-	return (
-		<MuiDialogTitle disableTypography className={classes.root} {...other}>
-			<Typography variant="h6">{children}</Typography>
-			{onClose ? (
-				<IconButton
-					aria-label="close"
-					className={classes.closeButton}
-					onClick={onClose}
-				>
-					<CloseIcon />
-				</IconButton>
-			) : null}
-		</MuiDialogTitle>
-	);
-});
-
-const DialogContent = withStyles((theme) => ({
-	root: {
-		padding: theme.spacing(2),
-	},
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-	root: {
-		margin: 0,
-		padding: theme.spacing(1),
-	},
-}))(MuiDialogActions);
-
-const AddStudentModal = (props) => {
-	const [open, setOpen] = React.useState(false);
-
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
-	const handleClose = () => {
-		setOpen(false);
-	};
-
-	return (
-		<div>
-			<Button size="small" variant="contained" onClick={handleClickOpen}>
-				Add Student
-			</Button>
-			<Dialog
-				onClose={handleClose}
-				aria-labelledby="customized-dialog-title"
-				open={open}
-				className="addStudentModal"
-				fullWidth={true}
-				maxWidth={"md"}
-			>
-				<DialogTitle id="customized-dialog-title" onClose={handleClose}>
-					<img src="/logo-full-small.png" alt="" style={{ width: "100px" }} />
-					<h2>Add student to the class</h2>
-					<div className="heading">
-						<div className="icon">
-							<span>
-								<SubjectIcon />
-							</span>
-						</div>
-						<div className="details">
-							<h4>
-								{"Science"} for class {"6th"}
-							</h4>
-							<p>Total students: {"40"}</p>
-							{/* <p>Mode of instruction: {"English"}</p> */}
-						</div>
-					</div>
-				</DialogTitle>
-				<DialogContent dividers>
-					<div className="body">
-						<form autoComplete="off" className="form">
-							<TextField
-								id="name"
-								label="Name"
-								variant="outlined"
-								size="small"
-								className="input"
-							/>
-							<br />
-							<TextField
-								id="number"
-								label="Mobile Number"
-								variant="outlined"
-								size="small"
-								className="input"
-							/>
-							<br />
-							<TextField
-								id="fees"
-								label="Fees"
-								variant="outlined"
-								size="small"
-								className="input"
-							/>
-							<br />
-							<Button
-								variant="contained"
-								className="createClassbtn"
-								onClick={(e) => ""}
-							>
-								Add Student
-							</Button>
-						</form>
-					</div>
-				</DialogContent>
-			</Dialog>
 		</div>
 	);
 };

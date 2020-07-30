@@ -29,6 +29,7 @@ import Details from "../DetailForm/Details";
 import { useHistory } from "react-router-dom";
 import Classroom from "./Classroom/Classroom";
 import ClassroomView from "./Classroom/ClassroomView";
+import Assignment from "./Assignment/Assignment";
 
 const drawerWidth = 200;
 
@@ -212,6 +213,7 @@ export default function PersistentDrawerLeft(props) {
 					<Route exact path="/dashboard/add-details" component={Details}/>
 					<Route exact path="/dashboard/classroom" component={Classroom}/>
 					<Route exact path="/dashboard/classroom/:id" component={ClassroomView}/>
+					<Route exact path="/dashboard/assignment" component={Assignment}/>
 				</Switch>
 			</main>
 		</div>

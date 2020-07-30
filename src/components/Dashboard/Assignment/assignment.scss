@@ -1,0 +1,160 @@
+.assignment{
+  margin: 0;
+  margin-top: -1em;
+  position: relative;
+  
+  &__body {
+		padding-top: 1.5em;
+		padding: 1em;
+
+		.assignmentCardRow {
+			.assignementCard {
+				margin: 1em;
+				padding: 1em;
+			}
+		}
+
+		.formContainer {
+			padding: 1em;
+		}
+  }
+  
+}
+
+
+// ####### assignmentData START
+.assignmentData {
+	position: relative;
+	height: 100%;
+
+	&__id {
+		display: flex;
+		justify-content: flex-end;
+		color: gray;
+		font-weight: bold;
+	}
+
+	&__dataContainer {
+		display: flex;
+		margin-top: 0.5em;
+		.icon {
+			width: 20%;
+			height: 45px;
+			border-left: 4px solid $blue;
+			@include flex-center;
+			span {
+				background: $blue;
+				width: 40px;
+				height: 40px;
+				color: #fff;
+				padding: 1em;
+				@include flex-center;
+				border-radius: 8px;
+			}
+		}
+		.studentDetails {
+			width: 80%;
+			h4 {
+				margin: 0;
+				font-size: 1.3em;
+			}
+			p {
+				@include flex-center;
+				justify-content: flex-start;
+				svg {
+					width: 0.7em;
+					height: 0.7em;
+				}
+			}
+		}
+	}
+
+	&__details {
+		flex-direction: column;
+		width: 100%;
+		margin: 0;
+		margin-bottom: 1em;
+
+		h5 {
+			margin: 0;
+			font-weight: bold;
+			margin: 0.5em 0;
+      font-size: 1.1em;
+      
+      span{
+        font-weight: normal;
+        margin-left: 0.6em;
+      }
+		}
+
+	}
+
+	&__btnContainer {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		button {
+			background: #fff;
+			text-transform: capitalize;
+			border: 1px solid rgba(105, 37, 151, 0.516);
+		}
+	}
+}
+// ####### assignmentData END
+
+// ####### createClassRommForm START
+.createClassRommForm {
+	position: relative;
+	&__header {
+		width: 100%;
+		@include flex-center;
+
+		h3 {
+			text-align: center;
+			font-size: 1.5em;
+			padding: 0.5em 0;
+			margin-bottom: 0;
+		}
+	}
+
+	&__body {
+		padding: 1em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			min-width: 300px;
+			max-width: 100%;
+			position: relative;
+
+			.input {
+				min-width: 300px;
+				max-width: 100%;
+				height: 40px;
+			}
+			.feeRow {
+				min-width: 300px;
+				max-width: 100%;
+				display: flex;
+				justify-content: space-between;
+				#fee {
+					width: 140px;
+				}
+				.periodSelect {
+					height: 40px;
+					// width: 100px;
+				}
+			}
+
+			.createClassbtn {
+				background: $blue;
+				color: #fff;
+			}
+		}
+	}
+}
+// ####### createClassRommForm START
