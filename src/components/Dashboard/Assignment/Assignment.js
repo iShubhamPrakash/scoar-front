@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -6,7 +6,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import SubjectIcon from "@material-ui/icons/Subject";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import HeaderTop from "../Containers/HeaderTop";
-import { Card, Button, Avatar, TextField, CircularProgress } from "@material-ui/core";
+import {
+	Card,
+	Button,
+	Avatar,
+	TextField,
+	CircularProgress,
+} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -19,22 +25,20 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import CircularProgressWithLabel from "../../UI/CircularProgressWithLabel";
-
+import { DropzoneArea } from "material-ui-dropzone";
 
 export default function Assignment() {
-  return (
-    <div className="assignment">
-      <HeaderTop>
-      <h1>Assignments</h1>
+	return (
+		<div className="assignment">
+			<HeaderTop>
+				<h1>Assignments</h1>
 				<div className="flex-grow"></div>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<SearchInput />
-      </HeaderTop>
-      
+			</HeaderTop>
+
 			<div className="assignment__body row">
 				<div className="col-sm-8 col-lg-8">
 					<div className="row assignmentCardRow">
-						{[1, 2].map((i) => (
+						{[1, 2,3,4,5].map((i) => (
 							<div className="col-12 col-sm-12 col-lg-6">
 								<Card className="assignementCard">
 									<AssignmentData />
@@ -49,26 +53,9 @@ export default function Assignment() {
 					</Card>
 				</div>
 			</div>
-
-    </div>
-  )
-}
-
-const SearchInput = () => {
-	return (
-		<Input
-			id="search-input"
-			variant="outlined"
-			placeholder="Search Student"
-			startAdornment={
-				<InputAdornment position="start">
-					<SearchIcon />
-				</InputAdornment>
-			}
-		/>
+		</div>
 	);
-};
-
+}
 
 const AssignmentData = (props) => {
 	const history = useHistory();
@@ -93,17 +80,28 @@ const AssignmentData = (props) => {
 			</div>
 
 			<div className="assignmentData__details">
-				<h5>Topic:<span>{"Number Theory"}</span></h5>
-        <h5>Number of questions:<span>{"5"}</span></h5>
-        <h5>Reference Notes:<span>{"Given"}</span> </h5>
+				<h5>
+					Topic:<span>{"Number Theory"}</span>
+				</h5>
+				<h5>
+					Number of questions:<span>{"5"}</span>
+				</h5>
+				<h5>
+					Reference Notes:<span>{"Given"}</span>{" "}
+				</h5>
 			</div>
 
 			<div className="assignmentData__btnContainer">
-        <Button size="small" variant="contained">
-					<span className="text-bold">364</span>&nbsp;&nbsp; Submitted &nbsp;&nbsp; <CircularProgressWithLabel value={70}/>
+				<Button size="small" variant="contained">
+					<span className="text-bold">364</span>&nbsp;&nbsp; Submitted
+					&nbsp;&nbsp; <CircularProgressWithLabel value={70} />
 				</Button>
-			  <div className="flex-grow"/>
-				<Button size="small" variant="contained" onClick={e=>history.push('/dashboard/assignment/123')}>
+				<div className="flex-grow" />
+				<Button
+					size="small"
+					variant="contained"
+					onClick={(e) => history.push("/dashboard/assignment/123")}
+				>
 					View
 				</Button>
 			</div>
@@ -112,16 +110,22 @@ const AssignmentData = (props) => {
 };
 
 const CreateAssignmentRoomForm = (props) => {
+	const [files, setFiles] = useState([]);
+
+	const handleChange = (files) => {
+		setFiles([...files]);
+	};
+
 	return (
-		<div className="createClassRommForm">
-			<div className="createClassRommForm__header">
-				<h3>Create Class Room</h3>
+		<div className="createAssignmentForm">
+			<div className="createAssignmentForm__header">
+				<h3>Create Assignment</h3>
 			</div>
-			<div className="createClassRommForm__body">
+			<div className="createAssignmentForm__body">
 				<form autoComplete="off" className="form">
 					<TextField
 						id="name"
-						label="Name"
+						label="Assignment On"
 						variant="outlined"
 						size="small"
 						className="input"
@@ -130,7 +134,7 @@ const CreateAssignmentRoomForm = (props) => {
 					<br />
 
 					<FormControl variant="outlined">
-						<InputLabel>Tution Type</InputLabel>
+						<InputLabel>Select Class</InputLabel>
 						<Select
 							labelId="demo-simple-select-outlined-label"
 							id="demo-simple-select-outlined"
@@ -149,15 +153,15 @@ const CreateAssignmentRoomForm = (props) => {
 					<br />
 
 					<TextField
-						id="addSchedule"
-						label="Add Schedule"
+						id="submissionDate"
+						label="Submission date"
 						variant="outlined"
 						size="small"
 						className="input"
 					/>
 					<br />
 					<FormControl variant="outlined">
-						<InputLabel>Instruction mode</InputLabel>
+						<InputLabel>Assigned to</InputLabel>
 						<Select
 							labelId="demo-simple-select-outlined-label"
 							id="demo-simple-select-outlined"
@@ -174,47 +178,35 @@ const CreateAssignmentRoomForm = (props) => {
 					</FormControl>
 					<br />
 
-					<div className="feeRow">
-						<TextField
-							id="fee"
-							label="Enter Fee"
-							variant="outlined"
+					<FormControl variant="outlined">
+						<InputLabel>ABC XYZ</InputLabel>
+						<Select
+							labelId="demo-simple-select-outlined-label"
+							id="demo-simple-select-outlined"
+							value={"one"}
+							onChange={(e) => {}}
+							label="abc xyzr"
 							size="small"
-						/>
-						<FormControl variant="outlined" className="periodSelect">
-							<InputLabel>Billing period</InputLabel>
-
-							<Select
-								labelId="timeperiod"
-								id="timeperiod"
-								value={"one"}
-								onChange={(e) => {}}
-								label="Type of teacher"
-								size="small"
-								style={{ height: "40px" }}
-							>
-								<MenuItem value={"one"}>per month</MenuItem>
-								<MenuItem value={"two"}>quaterly</MenuItem>
-								<MenuItem value={"three"}>Yearly</MenuItem>
-							</Select>
-						</FormControl>
-					</div>
+							className="input"
+						>
+							<MenuItem value={"one"}>one</MenuItem>
+							<MenuItem value={"two"}>two</MenuItem>
+							<MenuItem value={"three"}>three</MenuItem>
+						</Select>
+					</FormControl>
 					<br />
 
-					<TextField
-						id="description"
-						label="Description"
-						variant="outlined"
-						size="small"
-						style={{ width: "300px" }}
-						multiline
-						rows={4}
-						rowsMax={4}
-					/>
+
+          <div className="upload">
+            <DropzoneArea 
+            onChange={handleChange.bind(this)} 
+            acceptedFiles={['image/jpeg, image/png', '.doc','.docx','.pdf','.ppt','.pptx','.xls']}
+            />
+          </div>
 					<br />
 					<Button
 						variant="contained"
-						className="createClassbtn"
+						className="createAssignmentBtn"
 						onClick={(e) => ""}
 					>
 						Create Class

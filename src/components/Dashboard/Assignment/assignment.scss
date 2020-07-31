@@ -102,8 +102,8 @@
 }
 // ####### assignmentData END
 
-// ####### createClassRommForm START
-.createClassRommForm {
+// ####### createAssignmentForm START
+.createAssignmentForm {
 	position: relative;
 	&__header {
 		width: 100%;
@@ -136,25 +136,31 @@
 				max-width: 100%;
 				height: 40px;
 			}
-			.feeRow {
+			.upload {
 				min-width: 300px;
 				max-width: 100%;
-				display: flex;
-				justify-content: space-between;
-				#fee {
-					width: 140px;
-				}
-				.periodSelect {
-					height: 40px;
-					// width: 100px;
-				}
+        background: yellow;
+        .MuiDropzoneArea-root{
+          width: 100%;
+          min-width: 300px;
+          max-width: 100%;
+          position: relative;
+
+          .MuiDropzoneArea-textContainer{
+
+            p{
+              font-size: 1em !important;
+            }
+
+          }
+        }
 			}
 
-			.createClassbtn {
+			.createAssignmentBtn {
 				background: $blue;
 				color: #fff;
 			}
 		}
 	}
 }
-// ####### createClassRommForm START
+// ####### createAssignmentForm START
