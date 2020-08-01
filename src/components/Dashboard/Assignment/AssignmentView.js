@@ -28,7 +28,7 @@ export default function AssignmentView(props) {
 		<div className="assignmentView">
 			<Avatar
 				className={"assignmentView__backBtn"}
-				onClick={(e) => history.push("/dashboard/classroom")}
+				onClick={(e) => history.push("/dashboard/assignment")}
 			>
 				<ArrowBackIcon />
 			</Avatar>
@@ -103,26 +103,7 @@ const AssignmentData = (props) => {
 		<div className="assignmentData">
 			<div className="assignmentData__id">
 				<div className="flex-grow-1" />
-				<Button
-					size="small"
-					variant="contained"
-					onClick={(e) => ""}
-					className="topBtn joinBtn"
-				>
-					Join Now
-				</Button>
-
-				&nbsp; &nbsp;
-				<Button
-					size="small"
-					variant="contained"
-					onClick={(e) => ""}
-					className="topBtn"
-				>
-					Cancel
-				</Button>
-				&nbsp; &nbsp;
-
+        &nbsp;
 			</div>
 
 			<div className="assignmentData__dataContainer">
@@ -157,6 +138,10 @@ const StudentList = (props) => {
 							<SearchInput />
 						</Paper>
 
+            <Button size="small" variant="contained" className="topBtn">
+							Add student
+						</Button>
+
 						<Button size="small" variant="contained" className="topBtn">
 							Export Data
 						</Button>
@@ -173,23 +158,19 @@ const StudentList = (props) => {
 						<div className="col col-4 col-sm-4 col-md-4 col-lg-4">
 							<p>Name</p>
 						</div>
-						<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
-							<p>Join Date</p>
-						</div>
-						<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+
+						<div className="col col-4 col-sm-4 col-md-4 col-lg-4">
 							<p>Assignment</p>
 						</div>
-						<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
-							<p>Fee</p>
-						</div>
 
-						<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+						<div className="col col-3 col-sm-3 col-md-3 col-lg-3">
 							<p>&nbsp;</p>
 						</div>
 					</div>
 				</div>
 				<div className="body">
-					<TableRow
+					{[1,2,3,4,5,6,7,8,9,10].map(i=>(
+            <TableRow
 						name="Shubham"
 						avatar="/shubham.png"
 						assignment="Issued"
@@ -197,62 +178,7 @@ const StudentList = (props) => {
 						date="23 Aug, 2020"
 						handleView={(e) => alert("View open")}
 					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
+          ))}
 				</div>
 			</div>
 		</div>
@@ -284,27 +210,17 @@ const TableRow = (props) => {
 				</Typography>
 			</div>
 
-			<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
-				<Typography gutterBottom variant="subtitle2" component="p">
-					{date}
-				</Typography>
-			</div>
-
-			<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
+			<div className="col col-4 col-sm-4 col-md-4 col-lg-4">
 				<Typography gutterBottom variant="subtitle2" component="p">
 					{assignment}
 				</Typography>
 			</div>
 
-			<div className="col col-1 col-sm-1 col-md-1 col-lg-1">
-				<Typography
-					gutterBottom
-					variant="subtitle2"
-					component="p"
-					color="textSecondary"
+			<div className="col col-3 col-sm-3 col-md-3 col-lg-3">
+				<Button
 				>
 					{fee}
-				</Typography>
+				</Button>
 			</div>
 
 		</div>
