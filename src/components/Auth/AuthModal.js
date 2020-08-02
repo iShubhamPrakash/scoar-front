@@ -50,7 +50,7 @@ export default function AuthModal() {
 								>
 									Back to{" "}
 									<span className="pink">
-										{view === "login" ? "SignIn" : "LogIn"}
+										{view === "login" ? "SignUp" : "LogIn"}
 									</span>
 								</p>
 								<div className="form">
