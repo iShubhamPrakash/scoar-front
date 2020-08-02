@@ -14,8 +14,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
 		
     case actionTypes.SIGN_IN:
-			const { contactNo,role,uid} = action.userData;
-			return { ...state, contactNo,role,uid};
+			const { user,token} = action.userData;
+			return { ...state, contactNo: user.contactNo,role: user.role,uid: user.uid, token};
 
     case actionTypes.SIGN_OUT:
 			return initialState;

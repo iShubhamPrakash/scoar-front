@@ -19,6 +19,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
+    position: relative;
 
     div {
       border-radius: 25px;
@@ -26,8 +28,10 @@
       outline-color: $scoar_purple;
     }
 
-    #input {
-      border-radius: 25px;
+    #input,
+    .react-tel-input,
+    .form-control {
+      border-radius: 25px !important;
     }
 
     button {
@@ -41,7 +45,18 @@
       &:active {
         background: $scoar_purple_dark;
       }
+
+      &:disabled {
+        background: #dddddd;
+        color: gray;
+      }
     }
+
+    .nextLoading{
+      position: absolute;
+      bottom: 32px;
+    }
+
 
     .radiogroup {
       display: flex;
@@ -81,6 +96,14 @@
       // left: 50%;
       // top: 50%;
       // transform: translate(-50%,-50%);
+
+      .backBtn{
+        position: absolute;
+        padding: 1em;
+        top: 1em;
+        cursor: pointer;
+      }
+
       .welcome {
         padding: 2.5em;
         margin: 0;

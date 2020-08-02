@@ -1,40 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import {
   signIn,
   signOut
 } from "../../store/actions/authActions";
 
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/material.css'
+
+
+const getIPURL = 'https://score-backend.herokuapp.com/scoar/'
+
+
 const checkUserExistURL= 'https://score-backend.herokuapp.com/scoar/cred/checkuserexists/'
-const sendOTPURL= 'https://score-backend.herokuapp.com/scoar/auth/sendotp/'
+const sendOTPURL= 'https://score-backend.herokuapp.com/scoar/auth/login/sendotp/'
 const verifyOTPURL ='https://score-backend.herokuapp.com/scoar/auth/verifyotp/'
 
-export default function Login() {
+export default function Login(props) {
   const [mobile, setMobile] = useState("");
   const [otp, setOTP] = useState("");
   const [next, setNext] = useState(false);
   const [userData, setUserData] = useState({})
+  const [loading, setLoading] = useState(false)
   let history = useHistory();
   const dispatch = useDispatch();
 
 
+  useEffect(() => {
+    getIP()
+  }, [])
+
+  const getIP = async () =>{
+    try{
+    	const res = await fetch(getIPURL)
+    	const result = await res.text()
+      console.log("result:",result)
+    }catch(e){
+      console.log("Error getting IP",e)
+
+    }
+  }
+
   const sendOTP = async (mobile)=>{
     try{
+      setLoading(true);
     	const res = await fetch(`${sendOTPURL}${mobile}`)
     	const result = await res.text()
       console.log("result:",result)
     	if(result === '"SUCCESS"'){
+        setLoading(true);
 			  setNext(true);
-    	}else{
-    		alert("Try again! OTP could not be sent!!")
+      }else if(result === '"USERNOTEXISTS"'){
+        alert("You have not signed up yet. Please sign up first...")
+        setLoading(false);
+        props.setView('signup')
+      }else{
+        alert("Try again! OTP could not be sent!!")
+        setLoading(false);
     	}
     }catch(e){
       console.log("Error sending OTP",e)
-    	alert("Try again! Something went wrong!!")
-    }
+      alert("Try again! Something went wrong!!")
+      setLoading(false);
+    } 
   }
 
 
@@ -42,21 +74,21 @@ export default function Login() {
     // setNext(true);
 
     try{
-    	let res = await fetch(`${checkUserExistURL}${mobile}`)
-  
-    	if(res.status === 200){
-        res = await res.json()
-        console.log("sucess", res)
-        const {contactNo, role, uid} = res.credential;
-        if(uid !== 0){
-          setUserData({contactNo, role: role.toLowerCase(), uid})
-          sendOTP(mobile)
-        }else{
-          alert("User does not exist, Please sign up...")
-        }
-    	}else{
-    		alert("Try again! Something went wrong!!")
-    	}
+    	// let res = await fetch(`${checkUserExistURL}${mobile}`)
+    	// if(res.status === 200){
+      //   res = await res.json()
+      //   console.log("sucess", res)
+      //   const {contactNo, role, uid} = res.credential;
+      //   if(uid !== 0){
+      //     setUserData({contactNo, role: role.toLowerCase(), uid})
+      //     sendOTP(mobile)
+      //   }else{
+      //     alert("User does not exist, Please sign up...")
+      //   }
+    	// }else{
+    	// 	alert("Try again! Something went wrong!!")
+      // }
+      sendOTP(mobile)
     }catch(e){
     	alert("Try again! Something went wrong!!")
     }
@@ -66,12 +98,26 @@ export default function Login() {
     // alert("Success");
 
     try{
-    	const res = await fetch(`${verifyOTPURL}${otp}`)
-    	const result = await res.text()
+    	const res = await fetch(`${verifyOTPURL}${otp}`,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
 
-    	if(result === 'approved'){
+        body: JSON.stringify({
+          'contactNo':mobile,
+          'role': 0
+        })
+      })
+    	const result = await res.json()
+
+    	if(result.statusCode === 'SUCCESS'){
         console.log("Login Success")
-        dispatch(signIn(userData))
+        const data = {
+          user: result.user,
+          token: result.token
+        }
+        dispatch(signIn(data))
 			  history.push("/whiteboard");
     	}else{
     		alert("Invalid OTP!!")
@@ -90,20 +136,24 @@ export default function Login() {
 
       {!next ? (
         <div className="login__form">
-          <TextField
-            id="input"
-            label="Mobile Number"
-            variant="outlined"
+          <PhoneInput
+            country={'in'}
             value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
+            onChange={mobile => setMobile(mobile)}
+            inputProps={{
+              name: 'phone',
+              required: true,
+              autoFocus: true,
+            }}
           />
           <button
             className="btn btn-purple"
-            disabled={mobile === null}
+            disabled={mobile.length  < 5}
             onClick={handleNext}
           >
             NEXT
           </button>
+          {loading && <CircularProgress size={24} className={"nextLoading"} />}
         </div>
       ) : (
         <div className="login__form">
