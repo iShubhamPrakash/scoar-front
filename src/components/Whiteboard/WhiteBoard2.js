@@ -198,7 +198,7 @@ class WhiteBoard extends Component {
   render = () => {
     let { controlledValue } = this.state;
     const { canvasData, currentPage, totalPage, role } = this.props;
-    const controlDisabled = (role ==="teacher" ? false : true)
+    const controlDisabled = (role ==="Teacher" ? false : true)
 
     return (
       <div className="whiteboard">

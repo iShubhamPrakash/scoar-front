@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { toast } from "react-toastify";
-import { signIn, signOut } from "../../store/actions/authActions";
+import { handleSignIn,signIn, signOut } from "../../store/actions/authActions";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
@@ -48,7 +48,7 @@ export default function Login(props) {
 			const result = await res.text();
 			console.log("result:", result);
 			if (result === '"SUCCESS"') {
-				setLoading(true);
+				setLoading(false);
 				setNext(true);
 			} else if (result === '"USERNOTEXISTS"') {
 				toast("💡 You have not signed up yet. Please sign up first...");
@@ -91,7 +91,7 @@ export default function Login(props) {
 
 	const handleLogin = async () => {
 		// toast("Success");
-
+		setLoading(true);
 		try {
 			const res = await fetch(`${verifyOTPURL}${otp}`, {
 				method: "POST",
@@ -108,18 +108,31 @@ export default function Login(props) {
 
 			if (result.statusCode === "SUCCESS") {
 				console.log("Login Success");
-				const data = {
-					user: result.user,
-					token: result.token,
-				};
-				dispatch(signIn(data));
-				history.push("/whiteboard");
+				setLoading(false);
+
+        const userData= {
+          token: result.token,
+          role: result.user.role,
+          uid: result.user.uid,
+          contactNo: result.user.contactNo
+        }
+
+        console.log("Setting data in localstorage", userData )
+        await localStorage.setItem('scoar_auth_token', userData.token)
+        console.log("localstorage done.. now dispatching" )
+        
+        await dispatch(signIn(userData));
+        
+        history.push("/whiteboard");
+        
 			} else {
 				toast("❌ Invalid OTP!!");
+				setLoading(false);
 			}
 		} catch (e) {
 			console.log("Error verifying OTP", e);
 			toast("❌ Try again! Something went wrong!!");
+			setLoading(false);
 		}
 	};
 
@@ -160,11 +173,12 @@ export default function Login(props) {
 					/>
 					<button
 						className="btn btn-purple"
-						disabled={otp === null}
+						disabled={otp.length === 0}
 						onClick={handleLogin}
 					>
 						LOGIN
 					</button>
+					{loading && <CircularProgress size={24} className={"nextLoading"} />}
 				</div>
 			)}
 		</div>
