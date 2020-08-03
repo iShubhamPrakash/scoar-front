@@ -9,6 +9,9 @@ import Signup from "./components/Auth/Signup";
 import AuthModal from "./components/Auth/AuthModal";
 import LandingPage from "./components/Landing/LandingPage";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -40,6 +43,19 @@ function App() {
 
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
+        {/* Same as */}
+      <ToastContainer />
       <Switch>
         <Route exact path="/" >
           <LandingPage/>

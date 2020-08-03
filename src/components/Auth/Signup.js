@@ -12,17 +12,16 @@ import { useSelector, useDispatch } from "react-redux";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import { toast } from "react-toastify";
 
-import {
-  signIn,
-  signOut
-} from "../../store/actions/authActions";
+import { signIn, signOut } from "../../store/actions/authActions";
 
 const addUserURL = "https://score-backend.herokuapp.com/scoar/cred/add";
 const checkUserExistURL =
-  "https://score-backend.herokuapp.com/scoar/cred/checkuserexists/";
-  
-const sendOTPURL = "https://score-backend.herokuapp.com/scoar/auth/signup/sendotp/";
+	"https://score-backend.herokuapp.com/scoar/cred/checkuserexists/";
+
+const sendOTPURL =
+	"https://score-backend.herokuapp.com/scoar/auth/signup/sendotp/";
 
 const verifyOTPURL =
 	"https://score-backend.herokuapp.com/scoar/auth/verifyotp/";
@@ -31,10 +30,9 @@ export default function Signup(props) {
 	const [mobile, setMobile] = useState("");
 	const [otp, setOTP] = useState("");
 	const [role, setRole] = useState("Student");
-  const [next, setNext] = useState(false);
-  const [loading, setLoading] = useState(false)
-  const dispatch = useDispatch();
-  
+	const [next, setNext] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const dispatch = useDispatch();
 
 	let history = useHistory();
 
@@ -44,58 +42,58 @@ export default function Signup(props) {
 
 	const sendOTP = async (mobile) => {
 		try {
-      setLoading(true);
+			setLoading(true);
 			const res = await fetch(`${sendOTPURL}${mobile}`);
 			const result = await res.text();
 			console.log("result:", result);
 			if (result === '"SUCCESS"') {
-        setLoading(false);
+				setLoading(false);
 				setNext(true);
-			} else if(result === '"USERALREADYEXISTS"'){
-        setLoading(false);
-        alert("Account already exists, please sign in");
-        props.setView('login')
-      }else {
-        alert("Try again! OTP could not be sent!!");
-        setLoading(false);
+			} else if (result === '"USERALREADYEXISTS"') {
+				setLoading(false);
+				toast("Account already exists, please sign in");
+				props.setView("login");
+			} else {
+				toast("Try again! OTP could not be sent!!");
+				setLoading(false);
 			}
 		} catch (e) {
 			console.log("Error sending OTP", e);
-      alert("Try again! Something went wrong!!");
-      setLoading(false);
+			toast("Try again! Something went wrong!!");
+			setLoading(false);
 		}
 	};
 
 	const verifyOTP = async (otp) => {
 		try {
-			const res = await fetch(`${verifyOTPURL}${otp}`,{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json'
-        },
+			const res = await fetch(`${verifyOTPURL}${otp}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
 
-        body: JSON.stringify({
-          'contactNo':mobile,
-          'role': role
-        })
-      });
-      const result = await res.json()
+				body: JSON.stringify({
+					contactNo: mobile,
+					role: role,
+				}),
+			});
+			const result = await res.json();
 
-      if(result.statusCode === 'SUCCESS'){
-        console.log("Sign up Success")
-        const data = {
-          user: result.user,
-          token: result.token
-        }
-        dispatch(signIn(data))
-			  history.push("/whiteboard");
-    	}else{
-        alert("Invalid OTP!!")
-        return
-    	}
+			if (result.statusCode === "SUCCESS") {
+				console.log("Sign up Success");
+				const data = {
+					user: result.user,
+					token: result.token,
+				};
+				dispatch(signIn(data));
+				history.push("/whiteboard");
+			} else {
+				toast("Invalid OTP!!");
+				return;
+			}
 		} catch (e) {
 			console.log("Error verifying OTP", e);
-			alert("Try again! Something went wrong!!");
+			toast("Try again! Something went wrong!!");
 			return false;
 		}
 	};
@@ -121,41 +119,41 @@ export default function Signup(props) {
 
 			// if(result === 'approved'){
 			//   console.log("Signup Success")
-			//  alert("Sign up success.. Please login to continue")
+			//  toast("Sign up success.. Please login to continue")
 			// }else{
-			// 	alert("Sign Up failed.. please try again")
+			// 	toast("Sign Up failed.. please try again")
 			// }
 		} catch (e) {
 			console.log("Error verifying OTP", e);
-			alert("Try again! Something went wrong!!");
+			toast("Try again! Something went wrong!!");
 		}
 	};
 
 	const handleNext = async () => {
 		// setNext(true);
 		try {
-      sendOTP(mobile);
+			sendOTP(mobile);
 			// let res = await fetch(`${checkUserExistURL}${mobile}`);
 			// if (res.status === 200) {
 			// 	res = await res.json();
 			// 	console.log("sucess", res);
 			// 	const { uid } = res.credential;
 			// 	if (uid !== 0) {
-			// 		alert("User already exist. Please Login");
+			// 		toast("User already exist. Please Login");
 			// 	} else {
 			// 		console.log("sending OTP...");
 			// 		sendOTP(mobile);
 			// 	}
 			// } else {
-			// 	alert("Try again! Something went wrong!!");
+			// 	toast("Try again! Something went wrong!!");
 			// }
 		} catch (e) {
-			alert("Try again! Something went wrong!!");
+			toast("Try again! Something went wrong!!");
 		}
 	};
 
 	const handleSignup = async () => {
-		// alert("Success");
+		// toast("Success");
 		try {
 			// verify otp
 			const verified = await verifyOTP(otp);
@@ -166,7 +164,7 @@ export default function Signup(props) {
 			}
 		} catch (e) {
 			console.log("Error signup", e);
-			alert("Try again! Something went wrong!!");
+			toast("Try again! Something went wrong!!");
 		}
 	};
 
@@ -181,10 +179,10 @@ export default function Signup(props) {
 				console.log("Success");
 				history.push("/whiteboard");
 			} else {
-				alert("Try again! Something went wrong!!");
+				toast("Try again! Something went wrong!!");
 			}
 		} catch (e) {
-			alert("Try again! Something went wrong!!");
+			toast("Try again! Something went wrong!!");
 		}
 	};
 
@@ -207,13 +205,12 @@ export default function Signup(props) {
 					/>
 					<button
 						className="btn btn-purple"
-						disabled={mobile.length  < 5}
+						disabled={mobile.length < 5}
 						onClick={handleNext}
 					>
 						NEXT
 					</button>
-          {loading && <CircularProgress size={24} className={"nextLoading"} />}
-
+					{loading && <CircularProgress size={24} className={"nextLoading"} />}
 				</div>
 			) : (
 				<div className="login__form">
