@@ -107,15 +107,15 @@ export default function Login(props) {
 			const result = await res.json();
 
 			if (result.statusCode === "SUCCESS") {
-				console.log("Login Success");
-				setLoading(false);
+					console.log("Login Success");
+					setLoading(false);
 
-        const userData= {
-          token: result.token,
-          role: result.user.role,
-          uid: result.user.uid,
-          contactNo: result.user.contactNo
-        }
+					const userData= {
+						token: result.token,
+						role: result.user.role,
+						uid: result.user.uid,
+						contactNo: result.user.contactNo
+					}
 
         console.log("Setting data in localstorage", userData )
         await localStorage.setItem('scoar_auth_token', userData.token)

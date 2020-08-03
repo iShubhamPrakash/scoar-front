@@ -66,6 +66,7 @@ export default function Signup(props) {
 
 	const verifyOTP = async (otp) => {
 		try {
+			setLoading(true);
 			const res = await fetch(`${verifyOTPURL}${otp}`, {
 				method: "POST",
 				headers: {
@@ -81,53 +82,66 @@ export default function Signup(props) {
 
 			if (result.statusCode === "SUCCESS") {
 				console.log("Sign up Success");
-				const data = {
-					user: result.user,
-					token: result.token,
-				};
-				dispatch(signIn(data));
-				history.push("/whiteboard");
+
+					setLoading(false);
+
+					const userData= {
+						token: result.token,
+						role: result.user.role,
+						uid: result.user.uid,
+						contactNo: result.user.contactNo
+					}
+
+        console.log("Setting data in localstorage", userData )
+        await localStorage.setItem('scoar_auth_token', userData.token)
+        console.log("localstorage done.. now dispatching" )
+        
+        await dispatch(signIn(userData));
+        
+        history.push("/whiteboard");
 			} else {
 				toast("Invalid OTP!!");
+				setLoading(true);
 				return;
 			}
 		} catch (e) {
 			console.log("Error verifying OTP", e);
 			toast("Try again! Something went wrong!!");
+			setLoading(true);
 			return false;
 		}
 	};
 
-	const addNewUser = async (data) => {
-		try {
-			const rawResponse = await fetch(addUserURL, {
-				method: "POST",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			});
+	// const addNewUser = async (data) => {
+	// 	try {
+	// 		const rawResponse = await fetch(addUserURL, {
+	// 			method: "POST",
+	// 			headers: {
+	// 				Accept: "application/json",
+	// 				"Content-Type": "application/json",
+	// 			},
+	// 			body: JSON.stringify(data),
+	// 		});
 
-			console.log(JSON.stringify(data));
+	// 		console.log(JSON.stringify(data));
 
-			const result = await rawResponse.json();
+	// 		const result = await rawResponse.json();
 
-			console.log("add user res", result);
+	// 		console.log("add user res", result);
 
-			// TODO: complete the signup
+	// 		// TODO: complete the signup
 
-			// if(result === 'approved'){
-			//   console.log("Signup Success")
-			//  toast("Sign up success.. Please login to continue")
-			// }else{
-			// 	toast("Sign Up failed.. please try again")
-			// }
-		} catch (e) {
-			console.log("Error verifying OTP", e);
-			toast("Try again! Something went wrong!!");
-		}
-	};
+	// 		// if(result === 'approved'){
+	// 		//   console.log("Signup Success")
+	// 		//  toast("Sign up success.. Please login to continue")
+	// 		// }else{
+	// 		// 	toast("Sign Up failed.. please try again")
+	// 		// }
+	// 	} catch (e) {
+	// 		console.log("Error verifying OTP", e);
+	// 		toast("Try again! Something went wrong!!");
+	// 	}
+	// };
 
 	const handleNext = async () => {
 		// setNext(true);
@@ -156,12 +170,12 @@ export default function Signup(props) {
 		// toast("Success");
 		try {
 			// verify otp
-			const verified = await verifyOTP(otp);
+			await verifyOTP(otp);
 
-			if (verified) {
-				// Add new user in DB
-				await addNewUser({ contactNo: mobile, role: role });
-			}
+			// if (verified) {
+			// 	// Add new user in DB
+			// 	await addNewUser({ contactNo: mobile, role: role });
+			// }
 		} catch (e) {
 			console.log("Error signup", e);
 			toast("Try again! Something went wrong!!");
@@ -248,11 +262,12 @@ export default function Signup(props) {
 					/>
 					<button
 						className="btn btn-purple"
-						disabled={mobile === null}
+						disabled={otp.length === 0}
 						onClick={handleSignup}
 					>
 						SIGN UP
 					</button>
+					{loading && <CircularProgress size={24} className={"nextLoading"} />}
 				</div>
 			)}
 		</div>
