@@ -16,9 +16,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { toast } from "react-toastify";
+import { DASHBOARD_PATH } from "../../constants/path";
+import { BASIC_DETAIL_API_URL } from "../../constants/api";
 
-const BASIC_DETAIL_API_URL =
-	"https://score-backend.herokuapp.com/scoar/teacher/details/add/";
 
 export default function Details() {
 	const history = useHistory();
@@ -104,20 +104,20 @@ export default function Details() {
 			const result = await res.text();
 
 			console.log("Result", result);
-			if (result === "SUCCESS") {
-				alert("SUCCESS");
+			if (result.includes("SUCCESS")) {
+				toast("SUCCESS");
 				setLoading(false);
-				history.push('/dashboard');
+				history.push(DASHBOARD_PATH);
 			} else if (result === "WRONGTOKEN") {
-				alert("Wrong token. please sign in again...");
+				toast("Wrong token. please sign in again...");
 				setLoading(false);
 			} else {
-				alert("Something went wrong");
+				toast("Something went wrong");
 				setLoading(false);
 			}
 		} catch (e) {
 			console.log("Error submitting data", e);
-			alert("Error: Could not submit data");
+			toast("Error: Could not submit data");
 			setLoading(false);
 		}
 	};
@@ -301,7 +301,7 @@ const StepOneForm = (props) => {
 							label="Male"
 						/>
 						<FormControlLabel
-							value="Femail"
+							value="Female"
 							control={<Radio color="primary" />}
 							label="Female"
 						/>
