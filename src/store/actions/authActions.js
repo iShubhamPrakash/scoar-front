@@ -20,7 +20,8 @@ export const signIn = (userData) => {
 		token: userData.token,
 		role: userData.role,
 		uid: userData.uid,
-		contactNo: userData.contactNo
+		contactNo: userData.contactNo,
+		basicDetailsExist: userData.basicDetailsExist
 	};
 };
 

@@ -7,6 +7,7 @@ const initialState = {
 	contactNo: null,
 	role: null,
 	uid: null,
+	basicDetailsExist: false,
 	modalOpen: false,
 };
 
@@ -36,13 +37,14 @@ export default (state = initialState, action) => {
 
 		case actionTypes.SIGN_IN:
 			console.log("signin action-", action);
-			const { token, uid, role, contactNo } = action;
+			const { token, uid, role, contactNo, basicDetailsExist } = action;
 			return {
 				...state,
 				token,
 				uid,
 				role,
 				contactNo,
+				basicDetailsExist,
 			};
 
 		case actionTypes.SIGN_OUT:

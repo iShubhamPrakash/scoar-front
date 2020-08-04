@@ -4,25 +4,18 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { toast } from "react-toastify";
-import { handleSignIn,signIn, signOut } from "../../store/actions/authActions";
+import { handleSignIn,signIn, signOut, closeAuthModal } from "../../store/actions/authActions";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
-
-const getIPURL = "https://score-backend.herokuapp.com/scoar/";
-
-const checkUserExistURL =
-	"https://score-backend.herokuapp.com/scoar/cred/checkuserexists/";
-const sendOTPURL =
-	"https://score-backend.herokuapp.com/scoar/auth/login/sendotp/";
-const verifyOTPURL =
-	"https://score-backend.herokuapp.com/scoar/auth/verifyotp/";
+import { LOCAL_STORAGE_AUTH_KEY } from "../../constants/base";
+import { getIPURL, sendLoginOTPURL, verifyOTPURL } from "../../constants/api";
+import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH } from "../../constants/path";
 
 export default function Login(props) {
 	const [mobile, setMobile] = useState("");
 	const [otp, setOTP] = useState("");
 	const [next, setNext] = useState(false);
-	const [userData, setUserData] = useState({});
 	const [loading, setLoading] = useState(false);
 	let history = useHistory();
 	const dispatch = useDispatch();
@@ -44,7 +37,7 @@ export default function Login(props) {
 	const sendOTP = async (mobile) => {
 		try {
 			setLoading(true);
-			const res = await fetch(`${sendOTPURL}${mobile}`);
+			const res = await fetch(`${sendLoginOTPURL}${mobile}`);
 			const result = await res.text();
 			console.log("result:", result);
 			if (result === '"SUCCESS"') {
@@ -65,32 +58,11 @@ export default function Login(props) {
 		}
 	};
 
-	const handleNext = async () => {
-		// setNext(true);
-
-		try {
-			// let res = await fetch(`${checkUserExistURL}${mobile}`)
-			// if(res.status === 200){
-			//   res = await res.json()
-			//   console.log("sucess", res)
-			//   const {contactNo, role, uid} = res.credential;
-			//   if(uid !== 0){
-			//     setUserData({contactNo, role: role.toLowerCase(), uid})
-			//     sendOTP(mobile)
-			//   }else{
-			//     toast("User does not exist, Please sign up...")
-			//   }
-			// }else{
-			// 	toast("Try again! Something went wrong!!")
-			// }
-			sendOTP(mobile);
-		} catch (e) {
-			toast("❌ Try again! Something went wrong!!");
-		}
+	const handleNext = () => {
+		sendOTP(mobile);
 	};
 
 	const handleLogin = async () => {
-		// toast("Success");
 		setLoading(true);
 		try {
 			const res = await fetch(`${verifyOTPURL}${otp}`, {
@@ -114,16 +86,22 @@ export default function Login(props) {
 						token: result.token,
 						role: result.user.role,
 						uid: result.user.uid,
-						contactNo: result.user.contactNo
+						contactNo: result.user.contactNo,
+						basicDetailsExist: result.user.basicDetailsExist
 					}
 
         console.log("Setting data in localstorage", userData )
-        await localStorage.setItem('scoar_auth_token', userData.token)
+        await localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, userData.token)
         console.log("localstorage done.. now dispatching" )
         
-        await dispatch(signIn(userData));
-        
-        history.push("/whiteboard");
+				await dispatch(signIn(userData));
+				await dispatch(closeAuthModal());
+				
+				if(userData.basicDetailsExist){
+					history.push(WHITEBOARD_PATH);
+				}else{
+					history.push(TEACHER_ADD_DETAILS_PATH);
+				}
         
 			} else {
 				toast("❌ Invalid OTP!!");

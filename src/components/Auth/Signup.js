@@ -14,17 +14,11 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import { toast } from "react-toastify";
 
-import { signIn, signOut } from "../../store/actions/authActions";
+import { signIn, signOut, closeAuthModal } from "../../store/actions/authActions";
+import { verifyOTPURL,sendSignupOTPURL } from "../../constants/api";
+import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH } from "../../constants/path";
+import { LOCAL_STORAGE_AUTH_KEY } from "../../constants/base";
 
-const addUserURL = "https://score-backend.herokuapp.com/scoar/cred/add";
-const checkUserExistURL =
-	"https://score-backend.herokuapp.com/scoar/cred/checkuserexists/";
-
-const sendOTPURL =
-	"https://score-backend.herokuapp.com/scoar/auth/signup/sendotp/";
-
-const verifyOTPURL =
-	"https://score-backend.herokuapp.com/scoar/auth/verifyotp/";
 
 export default function Signup(props) {
 	const [mobile, setMobile] = useState("");
@@ -43,7 +37,7 @@ export default function Signup(props) {
 	const sendOTP = async (mobile) => {
 		try {
 			setLoading(true);
-			const res = await fetch(`${sendOTPURL}${mobile}`);
+			const res = await fetch(`${sendSignupOTPURL}${mobile}`);
 			const result = await res.text();
 			console.log("result:", result);
 			if (result === '"SUCCESS"') {
@@ -89,16 +83,23 @@ export default function Signup(props) {
 						token: result.token,
 						role: result.user.role,
 						uid: result.user.uid,
-						contactNo: result.user.contactNo
+						contactNo: result.user.contactNo,
+						basicDetailsExist: result.user.basicDetailsExist
 					}
 
         console.log("Setting data in localstorage", userData )
-        await localStorage.setItem('scoar_auth_token', userData.token)
+        await localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, userData.token)
         console.log("localstorage done.. now dispatching" )
         
         await dispatch(signIn(userData));
-        
-        history.push("/whiteboard");
+				await dispatch(closeAuthModal());
+				
+				if(userData.basicDetailsExist){
+					history.push(WHITEBOARD_PATH);
+				}else{
+					history.push(TEACHER_ADD_DETAILS_PATH);
+				}
+
 			} else {
 				toast("Invalid OTP!!");
 				setLoading(true);
@@ -112,90 +113,16 @@ export default function Signup(props) {
 		}
 	};
 
-	// const addNewUser = async (data) => {
-	// 	try {
-	// 		const rawResponse = await fetch(addUserURL, {
-	// 			method: "POST",
-	// 			headers: {
-	// 				Accept: "application/json",
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 			body: JSON.stringify(data),
-	// 		});
-
-	// 		console.log(JSON.stringify(data));
-
-	// 		const result = await rawResponse.json();
-
-	// 		console.log("add user res", result);
-
-	// 		// TODO: complete the signup
-
-	// 		// if(result === 'approved'){
-	// 		//   console.log("Signup Success")
-	// 		//  toast("Sign up success.. Please login to continue")
-	// 		// }else{
-	// 		// 	toast("Sign Up failed.. please try again")
-	// 		// }
-	// 	} catch (e) {
-	// 		console.log("Error verifying OTP", e);
-	// 		toast("Try again! Something went wrong!!");
-	// 	}
-	// };
-
 	const handleNext = async () => {
-		// setNext(true);
-		try {
-			sendOTP(mobile);
-			// let res = await fetch(`${checkUserExistURL}${mobile}`);
-			// if (res.status === 200) {
-			// 	res = await res.json();
-			// 	console.log("sucess", res);
-			// 	const { uid } = res.credential;
-			// 	if (uid !== 0) {
-			// 		toast("User already exist. Please Login");
-			// 	} else {
-			// 		console.log("sending OTP...");
-			// 		sendOTP(mobile);
-			// 	}
-			// } else {
-			// 	toast("Try again! Something went wrong!!");
-			// }
-		} catch (e) {
-			toast("Try again! Something went wrong!!");
-		}
+		sendOTP(mobile);
 	};
 
 	const handleSignup = async () => {
-		// toast("Success");
 		try {
 			// verify otp
 			await verifyOTP(otp);
-
-			// if (verified) {
-			// 	// Add new user in DB
-			// 	await addNewUser({ contactNo: mobile, role: role });
-			// }
 		} catch (e) {
 			console.log("Error signup", e);
-			toast("Try again! Something went wrong!!");
-		}
-	};
-
-	const handleLogIn = async (otp) => {
-		try {
-			const res = await fetch(
-				`https://score-backend.herokuapp.com/scoar/auth/verifyotp/${otp}`
-			);
-			const result = await res.text();
-
-			if (result === "approved") {
-				console.log("Success");
-				history.push("/whiteboard");
-			} else {
-				toast("Try again! Something went wrong!!");
-			}
-		} catch (e) {
 			toast("Try again! Something went wrong!!");
 		}
 	};
