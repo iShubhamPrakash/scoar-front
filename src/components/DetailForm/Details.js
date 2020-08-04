@@ -15,6 +15,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import { toast } from "react-toastify";
 
 const BASIC_DETAIL_API_URL =
 	"https://score-backend.herokuapp.com/scoar/teacher/details/add/";
