@@ -154,6 +154,18 @@
         }
         
       }
+
+      button{
+        &:disabled {
+          background: #dddddd;
+          color: gray;
+        }
+      }
+
+      .submitLoading{
+        position: relative;
+        bottom: 2em;
+      }
      
     }
   }

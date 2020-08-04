@@ -11,6 +11,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 // import Select from "@material-ui/core/Select";
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -104,11 +105,14 @@ export default function Details() {
 			console.log("Result", result);
 			if (result === "SUCCESS") {
 				alert("SUCCESS");
+				setLoading(false);
 				history.push('/dashboard');
 			} else if (result === "WRONGTOKEN") {
 				alert("Wrong token. please sign in again...");
+				setLoading(false);
 			} else {
 				alert("Something went wrong");
+				setLoading(false);
 			}
 		} catch (e) {
 			console.log("Error submitting data", e);
@@ -629,9 +633,11 @@ const StepThreeForm = (props) => {
 					variant="contained"
 					color="primary"
 					onClick={(e) => handleFinalSubmit()}
+					disabled={loading}
 				>
 					Submit
 				</Button>
+				{loading && <CircularProgress size={24} className={"submitLoading"} />}
 			</form>
 		</>
 	);
