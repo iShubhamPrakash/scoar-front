@@ -97,10 +97,10 @@ export default function Login(props) {
 				await dispatch(signIn(userData));
 				await dispatch(closeAuthModal());
 				
-				if(userData.basicDetailsExist){
-					history.push(WHITEBOARD_PATH);
-				}else{
+				if(userData.role === 'Teacher' && !userData.basicDetailsExist){
 					history.push(TEACHER_ADD_DETAILS_PATH);
+				}else{
+					history.push(WHITEBOARD_PATH);
 				}
         
 			} else {

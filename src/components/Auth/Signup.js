@@ -94,21 +94,21 @@ export default function Signup(props) {
         await dispatch(signIn(userData));
 				await dispatch(closeAuthModal());
 				
-				if(userData.basicDetailsExist){
-					history.push(WHITEBOARD_PATH);
-				}else{
+				if(userData.role === 'Teacher' && !userData.basicDetailsExist){
 					history.push(TEACHER_ADD_DETAILS_PATH);
+				}else{
+					history.push(WHITEBOARD_PATH);
 				}
 
 			} else {
 				toast("Invalid OTP!!");
-				setLoading(true);
+				setLoading(false);
 				return;
 			}
 		} catch (e) {
 			console.log("Error verifying OTP", e);
 			toast("Try again! Something went wrong!!");
-			setLoading(true);
+			setLoading(false);
 			return false;
 		}
 	};
