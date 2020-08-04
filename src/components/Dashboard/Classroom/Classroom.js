@@ -7,7 +7,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import SubjectIcon from "@material-ui/icons/Subject";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import HeaderTop from "../Containers/HeaderTop";
-import { Card, Button, Avatar, TextField } from "@material-ui/core";
+import { Card, Button, Avatar, TextField, CircularProgress } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -23,6 +23,8 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { CLASSROOMS_LIST_API_URL } from "../../../constants/api";
 import { getDiffInHr } from "../../../utils/dateTime";
+import LoadingIcon from "../../UI/LoadingIcon";
+import { CLASSROOM_PATH } from "../../../constants/path";
 
 export default function Classroom() {
 	const [classList, setClassList] = useState([]);
@@ -66,36 +68,40 @@ export default function Classroom() {
 			<div className="classroom__body row">
 				<div className="col-sm-8 col-lg-8">
 					<div className="row classCardRow">
-						{classList.map(classRoom =>{
-							const {
-								crid,
-								classroomname,
-								classtype,
-								starttime,
-								endtime,
-								mode,
-								fees,
-								description,
-								noofstudent
-							} = classRoom;
-							return (
-								<div className="col-12 col-sm-12 col-lg-6">
-								<Card className="classCard">
-									<ClassData 
-										crid = {crid}
-										classroomname = {classroomname}
-										classtype = {classtype}
-										starttime = {starttime}
-										endtime = {endtime}
-										mode = {mode}
-										fees = {fees}
-										description = {description}
-										noofstudent = {noofstudent}
-									/>
-								</Card>
-							</div>
-							)
-						})}
+						{classListLoading ? (
+							<LoadingIcon/>
+						):classList.length?(
+							classList.map(classRoom =>{
+								const {
+									crid,
+									classroomname,
+									classtype,
+									starttime,
+									endtime,
+									mode,
+									fees,
+									description,
+									noofstudents
+								} = classRoom;
+								return (
+									<div className="col-12 col-sm-12 col-lg-6">
+									<Card className="classCard">
+										<ClassData 
+											crid = {crid}
+											classroomname = {classroomname}
+											classtype = {classtype}
+											starttime = {starttime}
+											endtime = {endtime}
+											mode = {mode}
+											fees = {fees}
+											description = {description}
+											noofstudents = {noofstudents}
+										/>
+									</Card>
+								</div>
+								)
+							})
+						): <p className="center-text">No data to show</p>}
 					</div>
 				</div>
 				<div className="col-sm-4 col-lg-4 formContainer">
@@ -135,7 +141,7 @@ const ClassData = (props) => {
 		mode,
 		fees,
 		description,
-		noofstudent
+		noofstudents
 	} = props;
 	return (
 		<div className="classData">
@@ -153,7 +159,7 @@ const ClassData = (props) => {
 					<h4>
 						{classroomname}
 					</h4>
-					<p>Total students: {noofstudent}</p>
+					<p>Total students: {noofstudents}</p>
 					<p>Mode of instruction: {mode}</p>
 					<p>
 						<ScheduleIcon /> {getDiffInHr(starttime,endtime)} hours
@@ -194,7 +200,7 @@ const ClassData = (props) => {
 				<Button
 					size="small"
 					variant="contained"
-					onClick={(e) => history.push("/dashboard/classroom/123")}
+					onClick={(e) => history.push(`${CLASSROOM_PATH}/${crid}`)}
 				>
 					View
 				</Button>
