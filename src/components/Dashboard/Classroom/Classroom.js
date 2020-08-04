@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import Input from "@material-ui/core/Input";
@@ -22,15 +22,17 @@ import Typography from "@material-ui/core/Typography";
 
 import { withStyles } from "@material-ui/core/styles";
 import { CLASSROOMS_LIST_API_URL } from "../../../constants/api";
+import { getDiffInHr } from "../../../utils/dateTime";
 
 export default function Classroom() {
-
+	const [classList, setClassList] = useState([]);
+	const [classListLoading, setClassListLoading] = useState(true)
 	const auth = useSelector((state) => state.auth);
 	const token = auth.token;
 
 	useEffect(()=>{
 		fetchClassRoomList()
-	})
+	},[])
 
 	const fetchClassRoomList = ()=>{
 		try{
@@ -38,6 +40,13 @@ export default function Classroom() {
 			.then(res=>res.json())
 			.then(data=>{
 				console.log("classlist data", data)
+				if(data.statusCode.includes("SUCCESS")){
+					setClassList(data.classRoom)
+					setClassListLoading(false)
+				}else{
+					setClassList([])
+					setClassListLoading(false)
+				}
 			})
 		}catch (e){
 
@@ -57,13 +66,36 @@ export default function Classroom() {
 			<div className="classroom__body row">
 				<div className="col-sm-8 col-lg-8">
 					<div className="row classCardRow">
-						{[1, 2, 3, 4, 5].map((i) => (
-							<div className="col-12 col-sm-12 col-lg-6">
+						{classList.map(classRoom =>{
+							const {
+								crid,
+								classroomname,
+								classtype,
+								starttime,
+								endtime,
+								mode,
+								fees,
+								description,
+								noofstudent
+							} = classRoom;
+							return (
+								<div className="col-12 col-sm-12 col-lg-6">
 								<Card className="classCard">
-									<ClassData />
+									<ClassData 
+										crid = {crid}
+										classroomname = {classroomname}
+										classtype = {classtype}
+										starttime = {starttime}
+										endtime = {endtime}
+										mode = {mode}
+										fees = {fees}
+										description = {description}
+										noofstudent = {noofstudent}
+									/>
 								</Card>
 							</div>
-						))}
+							)
+						})}
 					</div>
 				</div>
 				<div className="col-sm-4 col-lg-4 formContainer">
@@ -93,10 +125,22 @@ const SearchInput = () => {
 
 const ClassData = (props) => {
 	const history = useHistory();
+
+	const {
+		crid,
+		classroomname,
+		classtype,
+		starttime,
+		endtime,
+		mode,
+		fees,
+		description,
+		noofstudent
+	} = props;
 	return (
 		<div className="classData">
 			<div className="classData__id">
-				<p>Classroom ID: {123}</p>
+				<p>Classroom ID: {crid}</p>
 			</div>
 
 			<div className="classData__dataContainer">
@@ -107,12 +151,12 @@ const ClassData = (props) => {
 				</div>
 				<div className="studentDetails">
 					<h4>
-						{"Science"} for class {"6th"}
+						{classroomname}
 					</h4>
-					<p>Total students: {"40"}</p>
-					<p>Mode of instruction: {"English"}</p>
+					<p>Total students: {noofstudent}</p>
+					<p>Mode of instruction: {mode}</p>
 					<p>
-						<ScheduleIcon /> {"1 hour"}
+						<ScheduleIcon /> {getDiffInHr(starttime,endtime)} hours
 					</p>
 				</div>
 			</div>
