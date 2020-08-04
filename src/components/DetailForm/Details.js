@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useSelector} from 'react-redux'
 import Card from "@material-ui/core/Card";
 import { Avatar, TextField, Button } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
@@ -13,8 +14,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
+const BASIC_DETAIL_API_URL ="https://score-backend.herokuapp.com/scoar/teacher/details/add/"
+
 export default function Details() {
 	const [step, setStep] = useState(1);
+	const [loading, setLoading] = useState(false)
+
 	/// Step 1
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -23,21 +28,90 @@ export default function Details() {
 	const [experience, setExperience] = useState("0");
 	const [teacherType, setTeacherType] = useState("Tuition");
 
-	/// Step 2 -TutionTeacher
-	const [schoolName, setSchoolName] = useState(""); //school teacher
-
-	const [centrename, setCentrename] = useState(""); // tutionTeacher
-
+	/// Step 2 
+	const [schoolName, setSchoolName] = useState("");
+	const [centrename, setCentrename] = useState("");
 	const [noOfStudents, SetNoOfStudents] = useState("");
-
-	const [subjects, setSubjects] = useState([]); // tutionTeacher
-
+	const [subjects, setSubjects] = useState([]); 
 	const [addressLine1, setAddressLine1] = useState("");
 	const [addressLine2, setAddressLine2] = useState("");
 	const [city, setCity] = useState("");
 	const [zip, setZip] = useState("");
 	const [country, setCountry] = useState("India");
 
+	/// Step 3
+
+	const [beneficiary, setBeneficiary] = useState("")
+	const [accountNo, setAccountNo] = useState("")
+	const [accountNoConfirm, setAccountNoConfirm] = useState("")
+	const [ifsc, setIfsc] = useState("")
+	const [beneficiaryBankName, setBeneficiaryBankName] = useState("")
+	const [branch, setBranch] = useState("")
+
+	const auth = useSelector(state => state.auth)
+
+	useEffect(() => {
+		console.log("state", auth)
+	}, [])
+
+	// Submit
+	const handleFinalSubmit = async ()=>{
+		console.log("submit start...")
+		setLoading(true)
+
+		const token = auth.token;
+
+		const submitData = {
+			firstname: firstName,
+			lastname: lastName,
+			email: email,
+			gender: gender,
+			experience: experience,
+			type: teacherType,
+			centrename: centrename,
+			noofstudents: noOfStudents,
+			profilepic: "",
+			schoolname: schoolName,
+			line1: addressLine1,
+			line2: addressLine2,
+			city: city,
+			zipcode: zip,
+			country: country,
+			holdername: beneficiary,
+			accountnumber: accountNo,
+			ifsccode: ifsc,
+			bankname: beneficiaryBankName,
+			branchname: branch,
+			subjects: subjects
+		}
+
+		try{
+			const res = await fetch(`${BASIC_DETAIL_API_URL}${token}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+
+				body: JSON.stringify(submitData),
+			});
+
+			const result = await res.text();
+
+			console.log("Result", result)
+			if(result === "SUCCESS"){
+				alert("SUCCESS")
+			} else if(result === "WRONGTOKEN"){
+				alert("Wrong token. please sign in again...")
+			}else{
+				alert("Something went wrong")
+			}
+		}catch (e) {
+			console.log("Error submitting data", e)
+			alert("Error: Could not submit data")
+			setLoading(false)
+		}
+
+	}
 	return (
 		<div className="detailsForm container-flex">
 			<div className="row detailsForm__mainRow">
@@ -49,9 +123,24 @@ export default function Details() {
 						<div className="header">
 							<img src="/logo-full-small.png" alt="" />
 							<div className="stepIndicator">
-								<span className={step == 1 ? "active" : null}>1</span>
-								<span className={step == 2 ? "active" : null}>2</span>
-								<span className={step == 3 ? "active" : null}>3</span>
+								<span
+									className={step == 1 ? "active" : null}
+									onClick={(e) => setStep(1)}
+								>
+									1
+								</span>
+								<span
+									className={step == 2 ? "active" : null}
+									onClick={(e) => setStep(2)}
+								>
+									2
+								</span>
+								<span
+									className={step == 3 ? "active" : null}
+									onClick={(e) => setStep(3)}
+								>
+									3
+								</span>
 							</div>
 						</div>
 
@@ -96,7 +185,24 @@ export default function Details() {
 									setStep={setStep}
 								/>
 							) : (
-								<h1>Step 3</h1>
+								
+								<StepThreeForm
+									beneficiary={beneficiary}
+									setBeneficiary={setBeneficiary}
+									accountNo={accountNo}
+									setAccountNo={setAccountNo}
+									accountNoConfirm={accountNoConfirm}
+									setAccountNoConfirm={setAccountNoConfirm}
+									ifsc={ifsc}
+									setIfsc={setIfsc}
+									beneficiaryBankName={beneficiaryBankName}
+									setBeneficiaryBankName={setBeneficiaryBankName}
+									branch={branch}
+									setBranch={setBranch}
+									handleFinalSubmit={handleFinalSubmit}
+									loading={loading}
+									setLoading={setLoading}
+								/>
 							)}
 						</div>
 					</Card>
@@ -134,7 +240,7 @@ const StepOneForm = (props) => {
 			<h2 className="text-center">Account Details</h2>
 			<Avatar src="" className="avatar" />
 			<br />
-			<form autoComplete="off">
+			<form>
 				<TextField
 					id="first-name"
 					label="First Name"
@@ -258,7 +364,7 @@ const StepTwoForm = (props) => {
 	} = props;
 
 	useEffect(() => {
-		setSubjects(value.map((item) => item.value));
+		value && setSubjects(value.map((item) => item.value));
 	}, [value]);
 
 	const components = {
@@ -291,6 +397,7 @@ const StepTwoForm = (props) => {
 				console.log(value);
 				console.groupEnd();
 				setInputValue("");
+
 				setValue([...value, createOption(inputValue)]);
 
 				event.preventDefault();
@@ -304,6 +411,20 @@ const StepTwoForm = (props) => {
 		<>
 			<h2 className="text-center">Account Details</h2>
 			<form>
+				{teacherType === "School" ? (
+					<>
+						<TextField
+							id="school-name"
+							label="Name of the School"
+							variant="outlined"
+							size="small"
+							className="input"
+							value={schoolName}
+							onChange={(e) => setSchoolName(e.target.value)}
+						/>
+						<br />
+					</>
+				) : null}
 				<TextField
 					id="institute-name"
 					label="Institute/Coaching center Name"
@@ -312,9 +433,9 @@ const StepTwoForm = (props) => {
 					className="input"
 					value={centrename}
 					onChange={(e) => setCentrename(e.target.value)}
-					helperText= "Enter NA if not applicable"
+					helperText="* Enter NA if not applicable"
+					style={{ marginBottom: "1em" }}
 				/>
-
 				<br />
 
 				<TextField
@@ -326,26 +447,31 @@ const StepTwoForm = (props) => {
 					value={noOfStudents}
 					onChange={(e) => SetNoOfStudents(e.target.value)}
 				/>
-
 				<br />
 
-				<CreatableSelect
-					components={components}
-					inputValue={inputValue}
-					isClearable
-					isMulti
-					menuIsOpen={false}
-					onChange={handleChange}
-					onInputChange={handleInputChange}
-					onKeyDown={handleKeyDown}
-					placeholder="* Enter Subject names..."
-					value={value}
-					className="input"
-				/>
+				{teacherType !== "Extra" ? (
+					<>
+						<CreatableSelect
+							components={components}
+							inputValue={inputValue}
+							isClearable
+							isMulti
+							menuIsOpen={false}
+							onChange={handleChange}
+							onInputChange={handleInputChange}
+							onKeyDown={handleKeyDown}
+							placeholder="Add Subject (Press enter to add multiple items)"
+							value={value}
+							className="input"
+						/>
+						<small>Press enter to add more subjects...</small>
+						<br />
+					</>
+				) : null}
 
-				<br />
 				<p className="text-bold text-small text-left">Shipping Address</p>
 				<br />
+
 				<TextField
 					id="addressLine1"
 					label="Address line 1"
@@ -356,6 +482,7 @@ const StepTwoForm = (props) => {
 					onChange={(e) => setAddressLine1(e.target.value)}
 				/>
 				<br />
+
 				<TextField
 					id="addressLine2"
 					label="Address line 2"
@@ -366,6 +493,7 @@ const StepTwoForm = (props) => {
 					onChange={(e) => setAddressLine2(e.target.value)}
 				/>
 				<br />
+
 				<div className="input groupOfTwo">
 					<TextField
 						id="city"
@@ -385,6 +513,7 @@ const StepTwoForm = (props) => {
 					/>
 				</div>
 				<br />
+
 				<TextField
 					id="country"
 					label="City"
@@ -395,10 +524,109 @@ const StepTwoForm = (props) => {
 					onChange={(e) => setCountry(e.target.value)}
 				/>
 				<br />
-				<Button variant="contained" color="primary" onClick={(e) => setStep(2)}>
+
+				<Button variant="contained" color="primary" onClick={(e) => setStep(3)}>
 					Next
 				</Button>
 			</form>
 		</>
 	);
 };
+
+const StepThreeForm = (props) =>{
+	const {
+		beneficiary,
+		setBeneficiary,
+		accountNo,
+		setAccountNo,
+		accountNoConfirm,
+		setAccountNoConfirm,
+		ifsc,
+		setIfsc,
+		beneficiaryBankName,
+		setBeneficiaryBankName,
+		branch,
+		setBranch,
+		handleFinalSubmit,
+		loading,
+		setLoading
+	} = props;
+
+	return (
+		<>
+			<form>
+				<h2 className="text-center">Bank Details</h2>
+				<TextField
+					id="beneficiary-name"
+					label="Beneficiary Name"
+					variant="outlined"
+					size="small"
+					className="input"
+					value={beneficiary}
+					onChange={(e) => setBeneficiary(e.target.value)}
+				/>
+				<br />
+
+				<TextField
+					id="account-no"
+					label="Account Number"
+					variant="outlined"
+					size="small"
+					className="input"
+					value={accountNo}
+					onChange={(e) => setAccountNo(e.target.value)}
+				/>
+				<br />
+
+				<TextField
+					id="account-no-confirm"
+					label="Confirm Account Number"
+					variant="outlined"
+					size="small"
+					className="input"
+					value={accountNoConfirm}
+					onChange={(e) => setAccountNoConfirm(e.target.value)}
+				/>
+				<br />
+
+
+				<TextField
+					id="ifcs"
+					label="IFSC Code"
+					variant="outlined"
+					size="small"
+					className="input"
+					value={ifsc}
+					onChange={(e) => setIfsc(e.target.value)}
+				/>
+				<br />
+
+				<TextField
+					id="beneficiary-bank-name"
+					label="Beneficiary Bank Name"
+					variant="outlined"
+					size="small"
+					className="input"
+					value={beneficiaryBankName}
+					onChange={(e) => setBeneficiaryBankName(e.target.value)}
+				/>
+				<br />
+
+				<TextField
+					id="branch-name"
+					label="Branch Name"
+					variant="outlined"
+					size="small"
+					className="input"
+					value={branch}
+					onChange={(e) => setBranch(e.target.value)}
+				/>
+				<br />
+
+				<Button variant="contained" color="primary" onClick={(e) => handleFinalSubmit()}>
+					Submit
+				</Button>
+			</form>
+		</>
+	);
+}

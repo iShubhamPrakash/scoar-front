@@ -67,6 +67,7 @@
           border-radius: 50%;
           font-size: 9px;
           color: gray;
+          cursor: pointer;
           @include flex-center;
         }
         .active{
@@ -110,16 +111,21 @@
         position: relative;
         padding: 0 1em;
 
-        .text-left{
+        .text-left,
+        small{
           text-align: left;
           width: 100%;
           margin-bottom: -1em;
         }
 
+        small{
+          color: gray;
+        }
+
         .input{
           width: 100%;
           height: 40px;
-          margin: 0.5em auto;
+          margin: 0 auto;
         }
 
         .groupOfTwo{
