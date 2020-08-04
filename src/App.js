@@ -44,6 +44,7 @@ function App() {
   return (
     <div>
       <ToastContainer/>
+      <AuthModal/>
       <Switch>
         <Route exact path="/" >
           <LandingPage/>
@@ -64,11 +65,6 @@ function App() {
         <Route exact path="/whiteboard">
           <Whiteboard />
         </Route>
-
-        <Route exact path="/auth">
-          <AuthModal/>
-        </Route>
-
         <Route path="/dashboard">
           <Dashboard/>
         </Route>

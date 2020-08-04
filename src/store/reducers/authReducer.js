@@ -7,6 +7,7 @@ const initialState = {
 	contactNo: null,
 	role: null,
 	uid: null,
+	modalOpen: false,
 };
 
 // {
@@ -21,6 +22,18 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
+		case actionTypes.OPEN_AUTH_MODAL:
+			return {
+				...state,
+				modalOpen: true,
+			};
+
+		case actionTypes.CLOSE_AUTH_MODAL:
+			return {
+				...state,
+				modalOpen: false,
+			};
+
 		case actionTypes.SIGN_IN:
 			console.log("signin action-", action);
 			const { token, uid, role, contactNo } = action;

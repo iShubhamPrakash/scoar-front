@@ -1,5 +1,18 @@
 import * as actionTypes from "../../constants/actionTypes";
 
+export const openAuthModal = () =>{
+	return{
+		type: actionTypes.OPEN_AUTH_MODAL
+	}
+}
+
+export const closeAuthModal = () =>{
+	return{
+		type: actionTypes.CLOSE_AUTH_MODAL
+	}
+}
+
+
 export const signIn = (userData) => {
 	console.log("signIn action payload", userData);
 	return {
