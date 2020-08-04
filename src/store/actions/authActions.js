@@ -1,17 +1,18 @@
 import * as actionTypes from "../../constants/actionTypes";
+import { getDataFromCookie, removeCookie } from "../../utils/cookieData";
+import { AUTH_COOKIE_NAME } from "../../constants/base";
 
-export const openAuthModal = () =>{
-	return{
-		type: actionTypes.OPEN_AUTH_MODAL
-	}
-}
+export const openAuthModal = () => {
+	return {
+		type: actionTypes.OPEN_AUTH_MODAL,
+	};
+};
 
-export const closeAuthModal = () =>{
-	return{
-		type: actionTypes.CLOSE_AUTH_MODAL
-	}
-}
-
+export const closeAuthModal = () => {
+	return {
+		type: actionTypes.CLOSE_AUTH_MODAL,
+	};
+};
 
 export const signIn = (userData) => {
 	console.log("signIn action payload", userData);
@@ -21,7 +22,7 @@ export const signIn = (userData) => {
 		role: userData.role,
 		uid: userData.uid,
 		contactNo: userData.contactNo,
-		basicDetailsExist: userData.basicDetailsExist
+		basicDetailsExist: userData.basicDetailsExist,
 	};
 };
 
@@ -31,10 +32,17 @@ export const signOut = () => {
 	};
 };
 
-export const handleSignIn = (data) => async dispatch => {
-	console.log("Setting data in localstorage", data )
-	await localStorage.setItem('scoar_auth_token', data.token)
-	console.log("localstorage done.. now dispatching", data )
+export const handleSignOut = (data) => async (dispatch) => {
+	await removeCookie(AUTH_COOKIE_NAME);
+	return dispatch(signOut());
+};
 
-	return dispatch(signIn(data))
-}
+export const getInitialAuthData = () => async (dispatch) => {
+	const data = await getDataFromCookie(AUTH_COOKIE_NAME);
+
+	const userData = JSON.parse(data);
+
+	console.log(typeof userData, userData);
+
+	return dispatch(signIn(userData));
+};

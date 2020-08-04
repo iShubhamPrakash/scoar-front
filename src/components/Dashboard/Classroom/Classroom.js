@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
@@ -20,8 +21,30 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import { withStyles } from "@material-ui/core/styles";
+import { CLASSROOMS_LIST_API_URL } from "../../../constants/api";
 
 export default function Classroom() {
+
+	const auth = useSelector((state) => state.auth);
+	const token = auth.token;
+
+	useEffect(()=>{
+		fetchClassRoomList()
+	})
+
+	const fetchClassRoomList = ()=>{
+		try{
+			fetch(`${CLASSROOMS_LIST_API_URL}/${token}`)
+			.then(res=>res.json())
+			.then(data=>{
+				console.log("classlist data", data)
+			})
+		}catch (e){
+
+		}
+	}
+
+
 	return (
 		<div className="classroom">
 			<HeaderTop>

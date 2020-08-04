@@ -8,3 +8,4 @@ export const API_BASE_URL= production ? productionAPI : devAPI
 
 
 export const LOCAL_STORAGE_AUTH_KEY = 'scoar_auth_token';
+export const AUTH_COOKIE_NAME = 'scoar_auth';

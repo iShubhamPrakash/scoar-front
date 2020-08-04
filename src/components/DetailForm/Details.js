@@ -18,6 +18,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import { toast } from "react-toastify";
 import { DASHBOARD_PATH } from "../../constants/path";
 import { BASIC_DETAIL_API_URL } from "../../constants/api";
+import { saveDataAsCookie } from "../../utils/cookieData";
+import { AUTH_COOKIE_NAME } from "../../constants/base";
 
 
 export default function Details() {
@@ -106,6 +108,7 @@ export default function Details() {
 			console.log("Result", result);
 			if (result.includes("SUCCESS")) {
 				toast("SUCCESS");
+				saveDataAsCookie(AUTH_COOKIE_NAME, {...auth,basicDetailsExist:true})
 				setLoading(false);
 				history.push(DASHBOARD_PATH);
 			} else if (result === "WRONGTOKEN") {

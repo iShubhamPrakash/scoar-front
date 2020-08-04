@@ -8,9 +8,10 @@ import { handleSignIn,signIn, signOut, closeAuthModal } from "../../store/action
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
-import { LOCAL_STORAGE_AUTH_KEY } from "../../constants/base";
+import { LOCAL_STORAGE_AUTH_KEY, AUTH_COOKIE_NAME } from "../../constants/base";
 import { getIPURL, sendLoginOTPURL, verifyOTPURL } from "../../constants/api";
 import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH } from "../../constants/path";
+import { saveDataAsCookie } from "../../utils/cookieData";
 
 export default function Login(props) {
 	const [mobile, setMobile] = useState("");
@@ -90,9 +91,12 @@ export default function Login(props) {
 						basicDetailsExist: result.user.basicDetailsExist
 					}
 
-        console.log("Setting data in localstorage", userData )
-        await localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, userData.token)
-        console.log("localstorage done.. now dispatching" )
+        console.log("Setting data in cookie", userData )
+				// await localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, userData.token)
+				
+				await saveDataAsCookie(AUTH_COOKIE_NAME, userData)
+
+        console.log("set cookie done.. now dispatching" )
         
 				await dispatch(signIn(userData));
 				await dispatch(closeAuthModal());

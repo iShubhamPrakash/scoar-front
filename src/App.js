@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Route, Switch, Link } from "react-router-dom";
-import logo from "./logo.png";
+import {useDispatch} from "react-redux";
 import Basic from "./components/ContactForm";
 import Demo from "./components/Demo";
 import Whiteboard from "./components/Whiteboard/WhiteBoard2.js";
@@ -11,35 +11,15 @@ import LandingPage from "./components/Landing/LandingPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { getInitialAuthData } from "./store/actions/authActions";
 
 function App() {
-  const [message, setMessage] = useState(null);
-  const [isFetching, setIsFetching] = useState(false);
-  const [url, setUrl] = useState("/api");
-
-  const fetchData = useCallback(() => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((json) => {
-        setMessage(json.message);
-        setIsFetching(false);
-      })
-      .catch((e) => {
-        setMessage(`API call failed: ${e}`);
-        setIsFetching(false);
-      });
-  }, [url]);
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    setIsFetching(true);
-    fetchData();
-  }, [fetchData]);
+    console.log("App mounted")
+    dispatch(getInitialAuthData())
+  }, []);
 
   return (
     <div>

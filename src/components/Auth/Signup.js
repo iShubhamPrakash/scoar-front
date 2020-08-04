@@ -17,7 +17,8 @@ import { toast } from "react-toastify";
 import { signIn, signOut, closeAuthModal } from "../../store/actions/authActions";
 import { verifyOTPURL,sendSignupOTPURL } from "../../constants/api";
 import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH } from "../../constants/path";
-import { LOCAL_STORAGE_AUTH_KEY } from "../../constants/base";
+import { LOCAL_STORAGE_AUTH_KEY, AUTH_COOKIE_NAME } from "../../constants/base";
+import { saveDataAsCookie } from "../../utils/cookieData";
 
 
 export default function Signup(props) {
@@ -87,9 +88,13 @@ export default function Signup(props) {
 						basicDetailsExist: result.user.basicDetailsExist
 					}
 
-        console.log("Setting data in localstorage", userData )
-        await localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, userData.token)
-        console.log("localstorage done.. now dispatching" )
+        console.log("Setting data in cookie", userData )
+        // await localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, userData.token)
+				
+				await saveDataAsCookie(AUTH_COOKIE_NAME, userData)
+
+        console.log("set cookie done.. now dispatching" )
+        
         
         await dispatch(signIn(userData));
 				await dispatch(closeAuthModal());
