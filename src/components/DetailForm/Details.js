@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import { Avatar, TextField, Button } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
@@ -14,11 +15,14 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
-const BASIC_DETAIL_API_URL ="https://score-backend.herokuapp.com/scoar/teacher/details/add/"
+const BASIC_DETAIL_API_URL =
+	"https://score-backend.herokuapp.com/scoar/teacher/details/add/";
 
 export default function Details() {
+	const history = useHistory();
+
 	const [step, setStep] = useState(1);
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(false);
 
 	/// Step 1
 	const [firstName, setFirstName] = useState("");
@@ -28,11 +32,11 @@ export default function Details() {
 	const [experience, setExperience] = useState("0");
 	const [teacherType, setTeacherType] = useState("Tuition");
 
-	/// Step 2 
+	/// Step 2
 	const [schoolName, setSchoolName] = useState("");
 	const [centrename, setCentrename] = useState("");
 	const [noOfStudents, SetNoOfStudents] = useState("");
-	const [subjects, setSubjects] = useState([]); 
+	const [subjects, setSubjects] = useState([]);
 	const [addressLine1, setAddressLine1] = useState("");
 	const [addressLine2, setAddressLine2] = useState("");
 	const [city, setCity] = useState("");
@@ -41,23 +45,23 @@ export default function Details() {
 
 	/// Step 3
 
-	const [beneficiary, setBeneficiary] = useState("")
-	const [accountNo, setAccountNo] = useState("")
-	const [accountNoConfirm, setAccountNoConfirm] = useState("")
-	const [ifsc, setIfsc] = useState("")
-	const [beneficiaryBankName, setBeneficiaryBankName] = useState("")
-	const [branch, setBranch] = useState("")
+	const [beneficiary, setBeneficiary] = useState("");
+	const [accountNo, setAccountNo] = useState("");
+	const [accountNoConfirm, setAccountNoConfirm] = useState("");
+	const [ifsc, setIfsc] = useState("");
+	const [beneficiaryBankName, setBeneficiaryBankName] = useState("");
+	const [branch, setBranch] = useState("");
 
-	const auth = useSelector(state => state.auth)
+	const auth = useSelector((state) => state.auth);
 
 	useEffect(() => {
-		console.log("state", auth)
-	}, [])
+		console.log("state", auth);
+	}, []);
 
 	// Submit
-	const handleFinalSubmit = async ()=>{
-		console.log("submit start...")
-		setLoading(true)
+	const handleFinalSubmit = async () => {
+		console.log("submit start...");
+		setLoading(true);
 
 		const token = auth.token;
 
@@ -82,10 +86,10 @@ export default function Details() {
 			ifsccode: ifsc,
 			bankname: beneficiaryBankName,
 			branchname: branch,
-			subjects: subjects
-		}
+			subjects: subjects,
+		};
 
-		try{
+		try {
 			const res = await fetch(`${BASIC_DETAIL_API_URL}${token}`, {
 				method: "POST",
 				headers: {
@@ -97,21 +101,21 @@ export default function Details() {
 
 			const result = await res.text();
 
-			console.log("Result", result)
-			if(result === "SUCCESS"){
-				alert("SUCCESS")
-			} else if(result === "WRONGTOKEN"){
-				alert("Wrong token. please sign in again...")
-			}else{
-				alert("Something went wrong")
+			console.log("Result", result);
+			if (result === "SUCCESS") {
+				alert("SUCCESS");
+				history.push('/dashboard');
+			} else if (result === "WRONGTOKEN") {
+				alert("Wrong token. please sign in again...");
+			} else {
+				alert("Something went wrong");
 			}
-		}catch (e) {
-			console.log("Error submitting data", e)
-			alert("Error: Could not submit data")
-			setLoading(false)
+		} catch (e) {
+			console.log("Error submitting data", e);
+			alert("Error: Could not submit data");
+			setLoading(false);
 		}
-
-	}
+	};
 	return (
 		<div className="detailsForm container-flex">
 			<div className="row detailsForm__mainRow">
@@ -185,7 +189,6 @@ export default function Details() {
 									setStep={setStep}
 								/>
 							) : (
-								
 								<StepThreeForm
 									beneficiary={beneficiary}
 									setBeneficiary={setBeneficiary}
@@ -533,7 +536,7 @@ const StepTwoForm = (props) => {
 	);
 };
 
-const StepThreeForm = (props) =>{
+const StepThreeForm = (props) => {
 	const {
 		beneficiary,
 		setBeneficiary,
@@ -549,7 +552,7 @@ const StepThreeForm = (props) =>{
 		setBranch,
 		handleFinalSubmit,
 		loading,
-		setLoading
+		setLoading,
 	} = props;
 
 	return (
@@ -589,7 +592,6 @@ const StepThreeForm = (props) =>{
 				/>
 				<br />
 
-
 				<TextField
 					id="ifcs"
 					label="IFSC Code"
@@ -623,10 +625,14 @@ const StepThreeForm = (props) =>{
 				/>
 				<br />
 
-				<Button variant="contained" color="primary" onClick={(e) => handleFinalSubmit()}>
+				<Button
+					variant="contained"
+					color="primary"
+					onClick={(e) => handleFinalSubmit()}
+				>
 					Submit
 				</Button>
 			</form>
 		</>
 	);
-}
+};
