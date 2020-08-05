@@ -12,6 +12,9 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getInitialAuthData } from "./store/actions/authActions";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { DASHBOARD_PATH, AUTH_PATH } from "./constants/path";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   const dispatch = useDispatch()
@@ -42,12 +45,18 @@ function App() {
           <Demo />
         </Route>
 
+        <Route exact path={AUTH_PATH}>
+          <Auth/>
+        </Route>
+
         <Route exact path="/whiteboard">
           <Whiteboard />
         </Route>
-        <Route path="/dashboard">
+        {/* <Route path="/dashboard">
           <Dashboard/>
-        </Route>
+        </Route> */}
+
+        <ProtectedRoute path={DASHBOARD_PATH} component={Dashboard}/>
       </Switch>
     </div>
   );

@@ -1,3 +1,5 @@
+export const AUTH_PATH = '/auth'
+
 export const LANDING_PAGE_PATH ="/"
 export const WHITEBOARD_PATH = "/whiteboard"
 export const DASHBOARD_PATH = "/dashboard"

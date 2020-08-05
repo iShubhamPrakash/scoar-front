@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from 'react-router-dom'
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -9,10 +10,12 @@ import Signup from "./Signup";
 
 import "normalize.css";
 import { openAuthModal, closeAuthModal } from "../../store/actions/authActions";
+import { AUTH_PATH } from "../../constants/path";
 
 export default function AuthModal() {
 	const open = useSelector((state) => state.auth.modalOpen);
 	const dispatch = useDispatch();
+	let location = useLocation();
 
 	const [view, setView] = useState("login");
 
@@ -41,10 +44,11 @@ export default function AuthModal() {
 					timeout: 300,
 				}}
 				className="authmodalcontainer__modal"
+				disableBackdropClick={location.pathname === AUTH_PATH}
 			>
 				<Fade in={open}>
 					<div className="container">
-						<CancelIcon className="cancel-btn" onClick={handleClose} />
+						{ location.pathname === AUTH_PATH || <CancelIcon className="cancel-btn" onClick={handleClose} />}
 						<div className="row">
 							<div className="col col-sm-6 col-md-8 col-lg-8">
 								<WelcomeGraphics view={view} setView={setView} />
