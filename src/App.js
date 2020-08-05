@@ -33,6 +33,7 @@ function App() {
         <Route exact path={AUTH_PATH} component={Auth}/>
         <ProtectedRoute path={WHITEBOARD_PATH} component={Whiteboard}/>
         <ProtectedRoute path={DASHBOARD_PATH} component={Dashboard}/>
+        <Route path="" component={LandingPage} />
       </Switch>
     </div>
   );

@@ -52,7 +52,7 @@ export default function ClassroomView(props) {
 				}
 			})
 		}catch (e){
-
+			setClassListLoading(false)
 		}
 	}
 
@@ -104,7 +104,10 @@ export default function ClassroomView(props) {
 				</div>
 				<div className="col col-7 col-sm-7 col-md-7 col-lg-7">
 					<Card className="contentContainer rightCard" raised>
-						<ClassDetailCard {...props} />
+						<ClassDetailCard 
+							{...props} 
+							classList={classList}
+						/>
 					</Card>
 				</div>
 			</div>
@@ -149,10 +152,10 @@ const ClassCard = (props) => {
 						{classroomname}
 					</h4>
 					<p>Total students: {noofstudents}</p>
-					{/* <p>Mode of instruction: {"English"}</p> */}
-					<p>
+					<p>Mode of instruction: {mode}</p>
+					{/* <p>
 						<ScheduleIcon /> {getDiffInHr(starttime,endtime)} hours
-					</p>
+					</p> */}
 				</div>
 			</div>
 		</Card>
@@ -160,6 +163,15 @@ const ClassCard = (props) => {
 };
 
 const ClassDetailCard = (props) => {
+	const {
+		classList
+	} = props;
+
+	const classId = props.match.params.id;
+
+	useEffect(() => {
+		console.log("ClassDetailCard props", props)
+	}, [])
 	return (
 		<div className="classDetailCard">
 			<div className="top">

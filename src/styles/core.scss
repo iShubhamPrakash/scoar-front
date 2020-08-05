@@ -68,6 +68,13 @@ p {
 	}
 }
 
+button {
+	&:disabled {
+		background: #dddddd;
+		color: gray;
+	}
+}
+
 .custom-icon {
 	position: relative;
 	text-align: center;

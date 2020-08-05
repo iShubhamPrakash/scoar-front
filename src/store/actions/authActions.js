@@ -42,7 +42,7 @@ export const getInitialAuthData = () => async (dispatch) => {
 
 	const userData = JSON.parse(data);
 
-	console.log(typeof userData, userData);
+	// console.log(typeof userData, userData);
 
 	return dispatch(signIn(userData));
 };

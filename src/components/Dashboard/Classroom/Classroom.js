@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import Input from "@material-ui/core/Input";
@@ -7,7 +7,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import SubjectIcon from "@material-ui/icons/Subject";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import HeaderTop from "../Containers/HeaderTop";
-import { Card, Button, Avatar, TextField, CircularProgress } from "@material-ui/core";
+import {
+	Card,
+	Button,
+	Avatar,
+	TextField,
+	CircularProgress,
+} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -21,40 +27,45 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import { withStyles } from "@material-ui/core/styles";
-import { CLASSROOMS_LIST_API_URL } from "../../../constants/api";
+import {
+	CLASSROOMS_LIST_API_URL,
+	ADD_STUDENT_TO_CLASS_API_URL,
+} from "../../../constants/api";
 import { getDiffInHr } from "../../../utils/dateTime";
 import LoadingIcon from "../../UI/LoadingIcon";
 import { CLASSROOM_PATH } from "../../../constants/path";
+import { toast } from "react-toastify";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
 
 export default function Classroom() {
 	const [classList, setClassList] = useState([]);
-	const [classListLoading, setClassListLoading] = useState(true)
+	const [classListLoading, setClassListLoading] = useState(true);
 	const auth = useSelector((state) => state.auth);
 	const token = auth.token;
 
-	useEffect(()=>{
-		fetchClassRoomList()
-	},[])
+	useEffect(() => {
+		fetchClassRoomList();
+	}, []);
 
-	const fetchClassRoomList = ()=>{
-		try{
+	const fetchClassRoomList = () => {
+		try {
 			fetch(`${CLASSROOMS_LIST_API_URL}/${token}`)
-			.then(res=>res.json())
-			.then(data=>{
-				console.log("classlist data", data)
-				if(data.statusCode.includes("SUCCESS")){
-					setClassList(data.classRoom)
-					setClassListLoading(false)
-				}else{
-					setClassList([])
-					setClassListLoading(false)
-				}
-			})
-		}catch (e){
-
+				.then((res) => res.json())
+				.then((data) => {
+					console.log("classlist data", data);
+					if (data.statusCode.includes("SUCCESS")) {
+						setClassList(data.classRoom);
+						setClassListLoading(false);
+					} else {
+						setClassList([]);
+						setClassListLoading(false);
+					}
+				});
+		} catch (e) {
+			setClassListLoading(false);
 		}
-	}
-
+	};
 
 	return (
 		<div className="classroom">
@@ -69,9 +80,9 @@ export default function Classroom() {
 				<div className="col-sm-8 col-lg-8">
 					<div className="row classCardRow">
 						{classListLoading ? (
-							<LoadingIcon/>
-						):classList.length?(
-							classList.map(classRoom =>{
+							<LoadingIcon />
+						) : classList.length ? (
+							classList.map((classRoom) => {
 								const {
 									crid,
 									classroomname,
@@ -81,27 +92,29 @@ export default function Classroom() {
 									mode,
 									fees,
 									description,
-									noofstudents
+									noofstudents,
 								} = classRoom;
 								return (
 									<div className="col-12 col-sm-12 col-lg-6">
-									<Card className="classCard">
-										<ClassData 
-											crid = {crid}
-											classroomname = {classroomname}
-											classtype = {classtype}
-											starttime = {starttime}
-											endtime = {endtime}
-											mode = {mode}
-											fees = {fees}
-											description = {description}
-											noofstudents = {noofstudents}
-										/>
-									</Card>
-								</div>
-								)
+										<Card className="classCard">
+											<ClassData
+												crid={crid}
+												classroomname={classroomname}
+												classtype={classtype}
+												starttime={starttime}
+												endtime={endtime}
+												mode={mode}
+												fees={fees}
+												description={description}
+												noofstudents={noofstudents}
+											/>
+										</Card>
+									</div>
+								);
 							})
-						): <p className="center-text">No data to show</p>}
+						) : (
+							<p className="center-text">No data to show</p>
+						)}
 					</div>
 				</div>
 				<div className="col-sm-4 col-lg-4 formContainer">
@@ -141,7 +154,7 @@ const ClassData = (props) => {
 		mode,
 		fees,
 		description,
-		noofstudents
+		noofstudents,
 	} = props;
 	return (
 		<div className="classData">
@@ -156,14 +169,12 @@ const ClassData = (props) => {
 					</span>
 				</div>
 				<div className="studentDetails">
-					<h4>
-						{classroomname}
-					</h4>
+					<h4>{classroomname}</h4>
 					<p>Total students: {noofstudents}</p>
 					<p>Mode of instruction: {mode}</p>
-					<p>
+					{/* <p>
 						<ScheduleIcon /> {getDiffInHr(starttime,endtime)} hour
-					</p>
+					</p> */}
 				</div>
 			</div>
 
@@ -195,7 +206,7 @@ const ClassData = (props) => {
 			</div>
 
 			<div className="classData__btnContainer">
-				<AddStudentModal />
+				<AddStudentModal {...props} />
 				&nbsp; &nbsp;
 				<Button
 					size="small"
@@ -370,13 +381,59 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 const AddStudentModal = (props) => {
-	const [open, setOpen] = React.useState(false);
+	const {
+		crid,
+		classroomname,
+		classtype,
+		starttime,
+		endtime,
+		mode,
+		fees,
+		description,
+		noofstudents,
+	} = props;
+
+	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [name, setName] = useState("");
+	const [mobile, setMobile] = useState("");
+	const [fee, setFee] = useState(fees);
 
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
 	const handleClose = () => {
 		setOpen(false);
+	};
+
+	const handleAddStudent = () => {
+		if (name.length === 0 || mobile.length === 0 || fee.length === 0) {
+			toast.error("💡 All fields are mandetory");
+			return;
+		}
+		addStudentToClass(ADD_STUDENT_TO_CLASS_API_URL, crid, mobile, fee);
+	};
+
+	const addStudentToClass = (url, crid, mobile, fee) => {
+		setLoading(true);
+		try {
+			fetch(`${url}/${crid}/${mobile}/${fee}`)
+				.then((res) => res.text())
+				.then((res) => {
+					if (res.includes("SUCCESS")) {
+						toast("✅ Student added successfully");
+						handleClose()
+					} else if (res.includes("USERALREADYEXISTS")) {
+						toast.warn("💡 Student already added to the class");
+					} else {
+						toast.error("❌ Could not add student to the class");
+					}
+					setLoading(false);
+				});
+		} catch (e) {
+			toast.error("❌ Could not add student to the class");
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -402,10 +459,8 @@ const AddStudentModal = (props) => {
 							</span>
 						</div>
 						<div className="details">
-							<h4>
-								{"Science"} for class {"6th"}
-							</h4>
-							<p>Total students: {"40"}</p>
+							<h4>{classroomname}</h4>
+							<p>Total students: {noofstudents}</p>
 							{/* <p>Mode of instruction: {"English"}</p> */}
 						</div>
 					</div>
@@ -417,34 +472,46 @@ const AddStudentModal = (props) => {
 								id="name"
 								label="Name"
 								variant="outlined"
-								size="small"
 								className="input"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
 							/>
-							<br />
-							<TextField
-								id="number"
-								label="Mobile Number"
-								variant="outlined"
-								size="small"
-								className="input"
+
+							<PhoneInput
+								country={"in"}
+								value={mobile}
+								onChange={(mobile) => setMobile(mobile)}
+								containerClass="phoneInput"
+								inputProps={{
+									name: "phone",
+									required: true,
+								}}
 							/>
-							<br />
+
 							<TextField
 								id="fees"
 								label="Fees"
 								variant="outlined"
-								size="small"
 								className="input"
+								value={fee}
+								onChange={(e) => setFee(e.target.value)}
+								type="number"
 							/>
-							<br />
+						</form>
+						<div className="submitContainer">
+							<div className="flex-grow" />
+
+							{loading && <CircularProgress size={24} />}
+							&nbsp; &nbsp;
 							<Button
 								variant="contained"
 								className="createClassbtn"
-								onClick={(e) => ""}
+								onClick={handleAddStudent}
+								disabled={loading}
 							>
 								Add Student
 							</Button>
-						</form>
+						</div>
 					</div>
 				</DialogContent>
 			</Dialog>

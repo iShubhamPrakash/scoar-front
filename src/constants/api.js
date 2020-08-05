@@ -17,3 +17,4 @@ export const BASIC_DETAIL_API_URL = `${API_BASE_URL}/scoar/teacher/details/add/`
 // Classroom
 
 export const CLASSROOMS_LIST_API_URL = `${API_BASE_URL}/scoar/teacher/listofclass/`;
+export const ADD_STUDENT_TO_CLASS_API_URL =`${API_BASE_URL}/scoar/teacher/classroom/addstudent/`
