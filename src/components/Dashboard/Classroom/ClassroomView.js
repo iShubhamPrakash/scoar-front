@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import {
 	Avatar,
 	Card,
@@ -24,38 +24,36 @@ import { CLASSROOMS_LIST_API_URL } from "../../../constants/api";
 import LoadingIcon from "../../UI/LoadingIcon";
 import { getDiffInHr } from "../../../utils/dateTime";
 
-
 export default function ClassroomView(props) {
 	const history = useHistory();
-	const [classList, setClassList] = useState([]);
-	const [classListLoading, setClassListLoading] = useState(true)
+	const [classRoomList, setclassRoomList] = useState([]);
+	const [classRoomListLoading, setclassRoomListLoading] = useState(true);
 	const auth = useSelector((state) => state.auth);
 	const token = auth.token;
 
 	useEffect(() => {
 		console.log("class view props", props);
-		fetchClassRoomList()
+		fetchClassRoomList();
 	}, []);
 
-	const fetchClassRoomList = ()=>{
-		try{
+	const fetchClassRoomList = () => {
+		try {
 			fetch(`${CLASSROOMS_LIST_API_URL}/${token}`)
-			.then(res=>res.json())
-			.then(data=>{
-				console.log("classlist data", data)
-				if(data.statusCode.includes("SUCCESS")){
-					setClassList(data.classRoom)
-					setClassListLoading(false)
-				}else{
-					setClassList([])
-					setClassListLoading(false)
-				}
-			})
-		}catch (e){
-			setClassListLoading(false)
+				.then((res) => res.json())
+				.then((data) => {
+					console.log("classRoomList data", data);
+					if (data.statusCode.includes("SUCCESS")) {
+						setclassRoomList(data.classRoom);
+						setclassRoomListLoading(false);
+					} else {
+						setclassRoomList([]);
+						setclassRoomListLoading(false);
+					}
+				});
+		} catch (e) {
+			setclassRoomListLoading(false);
 		}
-	}
-
+	};
 
 	return (
 		<div className="classroomView">
@@ -68,10 +66,10 @@ export default function ClassroomView(props) {
 			<div className="classroomView__body row">
 				<div className="col col-5 col-sm-5 col-md-5 col-lg-5">
 					<div className="contentContainer">
-						{classListLoading ? (
-							<LoadingIcon/>
-						):classList.length?(
-							classList.map(classRoom =>{
+						{classRoomListLoading ? (
+							<LoadingIcon />
+						) : classRoomList.length ? (
+							classRoomList.map((classRoom) => {
 								const {
 									crid,
 									classroomname,
@@ -81,34 +79,34 @@ export default function ClassroomView(props) {
 									mode,
 									fees,
 									description,
-									noofstudents
+									noofstudents,
 								} = classRoom;
 								return (
-									<ClassCard 
+									<ClassCard
 										{...props}
-										crid = {crid}
-										classroomname = {classroomname}
-										classtype = {classtype}
-										starttime = {starttime}
-										endtime = {endtime}
-										mode = {mode}
-										fees = {fees}
-										description = {description}
-										noofstudents = {noofstudents}
+										crid={crid}
+										classroomname={classroomname}
+										classtype={classtype}
+										starttime={starttime}
+										endtime={endtime}
+										mode={mode}
+										fees={fees}
+										description={description}
+										noofstudents={noofstudents}
 									/>
-								)
+								);
 							})
-						): <p className="center-text">No data to show</p>}
-
+						) : (
+							<p className="center-text">No data to show</p>
+						)}
 					</div>
 				</div>
 				<div className="col col-7 col-sm-7 col-md-7 col-lg-7">
-					<Card className="contentContainer rightCard" raised>
-						<ClassDetailCard 
-							{...props} 
-							classList={classList}
-						/>
-					</Card>
+					{classRoomList.length ? (
+						<Card className="contentContainer rightCard" raised>
+							<ClassDetailCard {...props} classRoomList={classRoomList} />
+						</Card>
+					) : null}
 				</div>
 			</div>
 		</div>
@@ -116,7 +114,6 @@ export default function ClassroomView(props) {
 }
 
 const ClassCard = (props) => {
-
 	const history = useHistory();
 
 	const {
@@ -128,9 +125,8 @@ const ClassCard = (props) => {
 		mode,
 		fees,
 		description,
-		noofstudents
+		noofstudents,
 	} = props;
-
 
 	const classId = props.match.params.id;
 
@@ -148,9 +144,7 @@ const ClassCard = (props) => {
 					</span>
 				</div>
 				<div className="studentDetails">
-					<h4>
-						{classroomname}
-					</h4>
+					<h4>{classroomname}</h4>
 					<p>Total students: {noofstudents}</p>
 					<p>Mode of instruction: {mode}</p>
 					{/* <p>
@@ -163,28 +157,69 @@ const ClassCard = (props) => {
 };
 
 const ClassDetailCard = (props) => {
-	const {
-		classList
-	} = props;
+	const { classRoomList } = props;
 
 	const classId = props.match.params.id;
 
-	useEffect(() => {
-		console.log("ClassDetailCard props", props)
-	}, [])
+	const {
+		crid,
+		classroomname,
+		classtype,
+		starttime,
+		endtime,
+		mode,
+		fees,
+		description,
+		noofstudents,
+	} = classRoomList.find(classRoom => classRoom.crid == classId);
+
 	return (
 		<div className="classDetailCard">
 			<div className="top">
-				<ClassData {...props} />
+				<ClassData
+					{...props}
+					crid={crid}
+					classroomname={classroomname}
+					classtype={classtype}
+					starttime={starttime}
+					endtime={endtime}
+					mode={mode}
+					fees={fees}
+					description={description}
+					noofstudents={noofstudents}
+				/>
 			</div>
 			<div className="bottom">
-				<StudentList {...props} />
+				<StudentList
+					{...props}
+					crid={crid}
+					classroomname={classroomname}
+					classtype={classtype}
+					starttime={starttime}
+					endtime={endtime}
+					mode={mode}
+					fees={fees}
+					description={description}
+					noofstudents={noofstudents}
+				/>
 			</div>
 		</div>
 	);
 };
 
 const ClassData = (props) => {
+	const {
+		crid,
+		classroomname,
+		classtype,
+		starttime,
+		endtime,
+		mode,
+		fees,
+		description,
+		noofstudents,
+	} = props;
+
 	return (
 		<div className="classData">
 			<div className="classData__id">
@@ -220,13 +255,13 @@ const ClassData = (props) => {
 				</div>
 				<div className="studentDetails">
 					<h4>
-						{"Science"} for class {"6th"}
+						{classroomname}
 					</h4>
-					<p>Total students: {"40"}</p>
-					<p>Mode of instruction: {"English"}</p>
-					<p>
+					<p>Total students: {noofstudents}</p>
+					<p>Mode of instruction: {mode}</p>
+					{/* <p>
 						<ScheduleIcon /> {"1 hour"}
-					</p>
+					</p> */}
 				</div>
 			</div>
 
@@ -259,10 +294,7 @@ const ClassData = (props) => {
 			<h5>Description</h5>
 			<div className="description">
 				<p>
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi,
-					nobis natus debitis hic asperiores minima! Lorem ipsum, dolor sit amet
-					consectetur adipisicing elit. Excepturi, nobis natus debitis hic
-					asperiores minima!
+				{description}
 				</p>
 			</div>
 		</div>
@@ -432,7 +464,7 @@ const TableRow = (props) => {
 			</div>
 
 			<div className="col col-2 col-sm-2 col-md-2 col-lg-2">
-				<StudentDetailsModal/>
+				<StudentDetailsModal />
 			</div>
 		</div>
 	);
