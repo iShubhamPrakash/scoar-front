@@ -22,3 +22,8 @@ export const CLASSROOMS_LIST_API_URL = getFullAPIURL("/scoar/teacher/listofclass
 export const ADD_STUDENT_TO_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/addstudent/");
 export const STUDENT_LIST_API_URL = getFullAPIURL("/scoar/teacher/classroom/view/");
 export const CREATE_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/add/");
+
+
+// Payment
+
+export const VIEW_TOTAL_PAYMENTS_API_URL= getFullAPIURL("/scoar/teacher/payment/")

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HistoryModal from "./HistoryModal";
 import { Card, Button } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
@@ -11,8 +11,49 @@ import Avatar from "@material-ui/core/Avatar";
 import SubjectIcon from "@material-ui/icons/Subject";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import HeaderTop from "../Containers/HeaderTop";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { VIEW_TOTAL_PAYMENTS_API_URL } from "../../../constants/api";
+import LoadingIcon from "../../UI/LoadingIcon";
 
 export default function Payment() {
+	const [loading, setLoading] = useState(false);
+
+	const [totalEarning, setTotalEarning] = useState("0");
+	const [earningThisMonth, setEarningThisMonth] = useState("0");
+	const [dueBalance, setDueBalance] = useState("0");
+	const [classRoomList, setClassRoomList] = useState([]);
+
+	const auth = useSelector((state) => state.auth);
+
+	useEffect(() => {
+		fetchPaymentData();
+	}, []);
+
+	const fetchPaymentData = async () => {
+		setLoading(true);
+		try {
+			const res = await fetch(`${VIEW_TOTAL_PAYMENTS_API_URL}${auth.token}`);
+			const data = await res.json();
+
+			if (data.statusCode.includes("SUCCESS")) {
+				setTotalEarning(data.totalearning);
+				setEarningThisMonth(data.earningthismonth);
+				setDueBalance(data.duebalance);
+				setClassRoomList(data.classesList);
+				setLoading(false);
+			} else {
+				console.log("Error fetching payment data");
+				toast.error("🙄 Could not fetch payment data...");
+				setLoading(false);
+			}
+		} catch (e) {
+			console.log("Error fetching payment data");
+			toast.error("🙄 Could not fetch payment data...");
+			setLoading(false);
+		}
+	};
+
 	return (
 		<div className="payment">
 			<HeaderTop>
@@ -28,7 +69,7 @@ export default function Payment() {
 					<div className="blueBox">
 						<div className="heading">Total Earning</div>
 						<div className="body">
-							<p>$16,756.00</p>
+							<p>{totalEarning}</p>
 						</div>
 					</div>
 				</div>
@@ -36,7 +77,7 @@ export default function Payment() {
 					<div className="blueBox">
 						<div className="heading">Earning this month</div>
 						<div className="body">
-							<p>$20,00.00</p>
+							<p>{earningThisMonth}</p>
 						</div>
 					</div>
 				</div>
@@ -52,7 +93,7 @@ export default function Payment() {
 							</Button>
 						</div>
 						<div className="body">
-							<p>$786.00</p>
+							<p>{dueBalance}</p>
 						</div>
 					</div>
 				</div>
@@ -72,10 +113,15 @@ export default function Payment() {
 			{/* data header ends */}
 
 			<div className="payment__dataContainer">
-				<DataRow />
-				<DataRow />
-				<DataRow />
-				<DataRow />
+				{!loading ? (
+					classRoomList.length ? (
+						classRoomList.map((classRoom) => <DataRow classRoom={classRoom} />)
+					) : (
+						<p className="center-text">No data to show !!</p>
+					)
+				) : (
+					<LoadingIcon />
+				)}
 			</div>
 		</div>
 	);
@@ -100,7 +146,18 @@ const SearchInput = () => {
 	);
 };
 
-const DataRow = () => {
+const DataRow = (props) => {
+	const { 
+			classname,
+      totalstudents,
+      mode,
+      received,
+      due,
+      upcoming,
+      recievedamount,
+      dueamount
+	 } = props.classRoom;
+
 	return (
 		<Card className="dataRow">
 			<div className="row">
@@ -115,13 +172,13 @@ const DataRow = () => {
 								</div>
 								<div className="studentDetails">
 									<h4>
-										{"Science"} for class {"6th"}
+										{classname}
 									</h4>
-									<p>Total students: {"40"}</p>
-									<p>Mode of instruction: {"English"}</p>
-									<p>
+									<p>Total students: {totalstudents}</p>
+									<p>Mode of instruction: {mode}</p>
+									{/* <p>
 										<ScheduleIcon /> {"1 hour"}
-									</p>
+									</p> */}
 								</div>
 							</div>
 							<div className="btnContainer">
@@ -136,13 +193,13 @@ const DataRow = () => {
 						</div>
 						<div className="leftMoney__right">
 							<Button className="activeBtn">
-								<MoneyInfo balance={370} percentagePaid={70} type="Received" />
+								<MoneyInfo balance={received} percentagePaid={isNaN(received/recievedamount)? 0 : received/recievedamount} type="Received" />
 							</Button>
 							<Button>
-								<MoneyInfo balance={370} percentagePaid={70} type="Due" />
+								<MoneyInfo balance={due} percentagePaid={isNaN(due/dueamount)? 0 : due/dueamount} type="Due" />
 							</Button>
 							<Button>
-								<MoneyInfo balance={370} percentagePaid={70} type="Upcomming" />
+								<MoneyInfo balance={upcoming} percentagePaid={0} type="Upcomming" />
 							</Button>
 						</div>
 					</div>
