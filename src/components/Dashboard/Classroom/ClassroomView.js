@@ -23,6 +23,7 @@ import StudentDetailsModal from "./StudentDetailsModal";
 import { CLASSROOMS_LIST_API_URL, STUDENT_LIST_API_URL } from "../../../constants/api";
 import LoadingIcon from "../../UI/LoadingIcon";
 import { getDiffInHr } from "../../../utils/dateTime";
+import { WHITEBOARD_PATH } from "../../../constants/path";
 
 export default function ClassroomView(props) {
 	const history = useHistory();
@@ -208,6 +209,8 @@ const ClassDetailCard = (props) => {
 };
 
 const ClassData = (props) => {
+
+	const history = useHistory()
 	const {
 		crid,
 		classroomname,
@@ -227,7 +230,7 @@ const ClassData = (props) => {
 				<Button
 					size="small"
 					variant="contained"
-					onClick={(e) => ""}
+					onClick={(e) => history.push(WHITEBOARD_PATH)}
 					className="topBtn joinBtn"
 				>
 					Join Now
