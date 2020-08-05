@@ -162,7 +162,7 @@ const ClassData = (props) => {
 					<p>Total students: {noofstudents}</p>
 					<p>Mode of instruction: {mode}</p>
 					<p>
-						<ScheduleIcon /> {getDiffInHr(starttime,endtime)} hours
+						<ScheduleIcon /> {getDiffInHr(starttime,endtime)} hour
 					</p>
 				</div>
 			</div>

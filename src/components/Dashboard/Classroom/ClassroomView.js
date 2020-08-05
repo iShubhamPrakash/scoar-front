@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import {useSelector} from "react-redux";
 import {
 	Avatar,
 	Card,
@@ -19,13 +20,42 @@ import SearchIcon from "@material-ui/icons/Search";
 import EditClassModal from "./EditClassModal";
 import ChangeScheduleModal from "./ChangeScheduleModal";
 import StudentDetailsModal from "./StudentDetailsModal";
+import { CLASSROOMS_LIST_API_URL } from "../../../constants/api";
+import LoadingIcon from "../../UI/LoadingIcon";
+import { getDiffInHr } from "../../../utils/dateTime";
 
 
 export default function ClassroomView(props) {
 	const history = useHistory();
+	const [classList, setClassList] = useState([]);
+	const [classListLoading, setClassListLoading] = useState(true)
+	const auth = useSelector((state) => state.auth);
+	const token = auth.token;
+
 	useEffect(() => {
 		console.log("class view props", props);
+		fetchClassRoomList()
 	}, []);
+
+	const fetchClassRoomList = ()=>{
+		try{
+			fetch(`${CLASSROOMS_LIST_API_URL}/${token}`)
+			.then(res=>res.json())
+			.then(data=>{
+				console.log("classlist data", data)
+				if(data.statusCode.includes("SUCCESS")){
+					setClassList(data.classRoom)
+					setClassListLoading(false)
+				}else{
+					setClassList([])
+					setClassListLoading(false)
+				}
+			})
+		}catch (e){
+
+		}
+	}
+
 
 	return (
 		<div className="classroomView">
@@ -38,9 +68,38 @@ export default function ClassroomView(props) {
 			<div className="classroomView__body row">
 				<div className="col col-5 col-sm-5 col-md-5 col-lg-5">
 					<div className="contentContainer">
-						{[1, 2, 3, 4, 5].map((i) => (
-							<ClassCard {...props} classId={i} />
-						))}
+						{classListLoading ? (
+							<LoadingIcon/>
+						):classList.length?(
+							classList.map(classRoom =>{
+								const {
+									crid,
+									classroomname,
+									classtype,
+									starttime,
+									endtime,
+									mode,
+									fees,
+									description,
+									noofstudents
+								} = classRoom;
+								return (
+									<ClassCard 
+										{...props}
+										crid = {crid}
+										classroomname = {classroomname}
+										classtype = {classtype}
+										starttime = {starttime}
+										endtime = {endtime}
+										mode = {mode}
+										fees = {fees}
+										description = {description}
+										noofstudents = {noofstudents}
+									/>
+								)
+							})
+						): <p className="center-text">No data to show</p>}
+
 					</div>
 				</div>
 				<div className="col col-7 col-sm-7 col-md-7 col-lg-7">
@@ -54,15 +113,30 @@ export default function ClassroomView(props) {
 }
 
 const ClassCard = (props) => {
+
 	const history = useHistory();
+
+	const {
+		crid,
+		classroomname,
+		classtype,
+		starttime,
+		endtime,
+		mode,
+		fees,
+		description,
+		noofstudents
+	} = props;
+
+
 	const classId = props.match.params.id;
 
-	console.log("clicked", props.classId, classId);
+	console.log("clicked", crid, classId);
 	return (
 		<Card
 			className="classCard"
-			id={props.classId == classId ? "activeCard" : null}
-			onClick={(e) => history.push(`/dashboard/classroom/${props.classId}`)}
+			id={props.crid == classId ? "activeCard" : null}
+			onClick={(e) => history.push(`/dashboard/classroom/${crid}`)}
 		>
 			<div className="classData__dataContainer">
 				<div className="icon">
@@ -72,12 +146,12 @@ const ClassCard = (props) => {
 				</div>
 				<div className="studentDetails">
 					<h4>
-						{"Science"} for class {"6th"}
+						{classroomname}
 					</h4>
-					<p>Total students: {"40"}</p>
+					<p>Total students: {noofstudents}</p>
 					{/* <p>Mode of instruction: {"English"}</p> */}
 					<p>
-						<ScheduleIcon /> {"1 hour"}
+						<ScheduleIcon /> {getDiffInHr(starttime,endtime)} hours
 					</p>
 				</div>
 			</div>

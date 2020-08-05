@@ -1,14 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { openAuthModal, closeAuthModal } from "../../store/actions/authActions";
+import { useHistory } from "react-router-dom";
 
-export default function Auth() {
-	const dispatch = useDispatch();
+export default function Auth(props) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { from } = props.location.state || { from: { pathname: '/' } }
 
 	useEffect(() => {
+    console.log("auth props",props)
 		dispatch(openAuthModal());
 		return () => {
-			dispatch(closeAuthModal());
+      dispatch(closeAuthModal());
+      history.push(from)
 		};
 	}, []);
 
