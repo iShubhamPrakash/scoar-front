@@ -58,15 +58,16 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 const ChangeScheduleModal = (props) => {
+	const {
+		startTime,
+		endTime,
+		setStartTime,
+		setEndTime,
+		buttonText,
+		buttonClass
+	} = props;
+
 	const [open, setOpen] = React.useState(false);
-
-	const [selectedDate, setSelectedDate] = React.useState(
-		new Date("2014-08-18T21:11:54")
-	);
-
-	const handleDateChange = (date) => {
-		setSelectedDate(date);
-	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -90,9 +91,9 @@ const ChangeScheduleModal = (props) => {
 				size="small"
 				variant="contained"
 				onClick={handleClickOpen}
-				className="topBtn"
+				className={buttonClass}
 			>
-				Change Schedule
+				{buttonText}
 			</Button>
 			<Dialog
 				onClose={handleClose}
@@ -113,41 +114,55 @@ const ChangeScheduleModal = (props) => {
 								<h5 className="text-left">Days</h5>
 								<div className="week">
 									<div className="day">
-										<Avatar className="active">S</Avatar>
+										<Avatar className={startTime[0] && startTime[0].length && endTime[0].length ? "active": null}>S</Avatar>
 									</div>
 									<div className="day">
-										<Avatar className="">M</Avatar>
+										<Avatar className={startTime[1] && startTime[1].length && endTime[1].length ? "active": null}>M</Avatar>
 									</div>
 									<div className="day">
-										<Avatar className="active">T</Avatar>
+										<Avatar className={startTime[2] && startTime[2].length && endTime[2].length ? "active": null}>T</Avatar>
 									</div>
 									<div className="day">
-										<Avatar className="active">W</Avatar>
+										<Avatar className={startTime[3] && startTime[3].length && endTime[3].length ? "active": null}>W</Avatar>
 									</div>
 									<div className="day">
-										<Avatar className="">T</Avatar>
+										<Avatar className={startTime[4] && startTime[4].length && endTime[4].length ? "active": null}>T</Avatar>
 									</div>
 									<div className="day">
-										<Avatar className="active">F</Avatar>
+										<Avatar className={startTime[5] && startTime[5].length && endTime[5].length ? "active": null}>F</Avatar>
 									</div>
 									<div className="day">
-										<Avatar className="active">S</Avatar>
+										<Avatar className={startTime[6] && startTime[6].length && endTime[6].length ? "active": null}>S</Avatar>
 									</div>
 								</div>
 							</div>
 							<form autoComplete="off" className="form">
-								{days.map((day) => (
+								{days.map((day,i) => (
 									<div className="row" style={{ margin: "0.4em 0" }}>
 										<div className="col col-sm-2 col-md-2 col-lg-1"></div>
 										<div className="col col-sm-3 col-md-3 col-lg-3">
 											<p className="text-bold">{day}</p>
 										</div>
 										<div className="col col-sm-2 col-md-2 col-lg-3">
-											<TimePickers />
+											<TimePickers 
+												value={startTime[i]}
+												onChange={e=>{
+													let temp = [...startTime]
+													temp[i] = e.target.value
+													setStartTime(temp)
+												}}
+											/>
 										</div>
 										<div className="col col-sm-1 col-md-1 col-lg-1"> to </div>
 										<div className="col col-sm-2 col-md-2 col-lg-3">
-											<TimePickers />{" "}
+											<TimePickers 
+												value={endTime[i]}
+												onChange={e=>{
+													let temp = [...endTime]
+													temp[i] = e.target.value
+													setEndTime(temp)
+												}}
+											/>{" "}
 										</div>
 										<div className="col col-sm-2 col-md-2 col-lg-1"></div>
 									</div>
@@ -158,7 +173,7 @@ const ChangeScheduleModal = (props) => {
 								<Button
 									variant="contained"
 									className="createClassbtn"
-									onClick={(e) => ""}
+									onClick={(e) => handleClose()}
 								>
 									Save
 								</Button>

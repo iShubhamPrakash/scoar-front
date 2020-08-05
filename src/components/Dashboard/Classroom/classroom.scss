@@ -165,6 +165,17 @@
 				background: $blue;
 				color: #fff;
 			}
+
+			button{
+				&:disabled {
+					background: #dddddd;
+					color: gray;
+				}
+			}
+			.loadingIcon{
+				position: absolute;
+				bottom: 0.5em;
+			}
 		}
 	}
 }

@@ -30,6 +30,7 @@ import { withStyles } from "@material-ui/core/styles";
 import {
 	CLASSROOMS_LIST_API_URL,
 	ADD_STUDENT_TO_CLASS_API_URL,
+	CREATE_CLASS_API_URL,
 } from "../../../constants/api";
 import { getDiffInHr } from "../../../utils/dateTime";
 import LoadingIcon from "../../UI/LoadingIcon";
@@ -37,6 +38,7 @@ import { CLASSROOM_PATH } from "../../../constants/path";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import ChangeScheduleModal from "./ChangeScheduleModal";
 
 export default function Classroom() {
 	const [classList, setClassList] = useState([]);
@@ -119,7 +121,7 @@ export default function Classroom() {
 				</div>
 				<div className="col-sm-4 col-lg-4 formContainer">
 					<Card>
-						<CreateClassRoomForm />
+						<CreateClassRoomForm fetchClassRoomList={fetchClassRoomList} />
 					</Card>
 				</div>
 			</div>
@@ -221,6 +223,69 @@ const ClassData = (props) => {
 };
 
 const CreateClassRoomForm = (props) => {
+	const { fetchClassRoomList } = props;
+
+	const [name, setName] = useState("");
+	const [tuitionType, setTuitionType] = useState("Academics");
+	const [startTime, setStartTime] = useState(["", "", "", "", "", "", ""]);
+	const [endTime, setEndTime] = useState(["", "", "", "", "", "", ""]);
+	const [mode, setMode] = useState("English");
+	const [fee, setFee] = useState(0);
+	const [billingPeriod, setBillingPeriod] = useState("montly");
+	const [description, setDescription] = useState("");
+	const [loading, setLoading] = useState(false);
+
+	const auth = useSelector((state) => state.auth);
+	const formSubmit = () => {
+		setLoading(true);
+
+		if (name.length === 0 || description.length === 0) {
+			toast.error("💡 All fiels are required");
+			setLoading(false);
+			return;
+		}
+
+		try {
+			// Changing the fee to montly
+			let fees = fee;
+			if (billingPeriod === "quaterly") {
+				fees = fee / 4;
+			} else if (billingPeriod === "yearly") {
+				fees = fee / 12;
+			}
+
+			fetch(`${CREATE_CLASS_API_URL}${auth.token}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					classroomname: name,
+					classtype: tuitionType,
+					starttime: startTime,
+					endtime: endTime,
+					mode: mode,
+					fees: fees,
+					description: description,
+				}),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.statusCode.includes("SUCCESS")) {
+						toast("✅ Class room created successfully");
+						fetchClassRoomList();
+						setLoading(false);
+					} else {
+						toast.error("❌ Could not create class room");
+						setLoading(false);
+					}
+				});
+		} catch (e) {
+			setLoading(false);
+			toast.error("❌ Could not create class room");
+			console.log("error submitting form", e);
+		}
+	};
 	return (
 		<div className="createClassRommForm">
 			<div className="createClassRommForm__header">
@@ -234,6 +299,8 @@ const CreateClassRoomForm = (props) => {
 						variant="outlined"
 						size="small"
 						className="input"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
 					/>
 
 					<br />
@@ -243,26 +310,28 @@ const CreateClassRoomForm = (props) => {
 						<Select
 							labelId="demo-simple-select-outlined-label"
 							id="demo-simple-select-outlined"
-							value={"one"}
-							onChange={(e) => {}}
+							value={tuitionType}
+							onChange={(e) => setTuitionType(e.target.value)}
 							label="Type of teacher"
 							size="small"
 							className="input"
 						>
-							<MenuItem value={"one"}>one</MenuItem>
-							<MenuItem value={"two"}>two</MenuItem>
-							<MenuItem value={"three"}>three</MenuItem>
+							<MenuItem value={"Academics"}>Academics</MenuItem>
+							<MenuItem value={"Dancing"}>Dancing</MenuItem>
+							<MenuItem value={"Music"}>Music</MenuItem>
+							<MenuItem value={"Painting"}>Painting</MenuItem>
 						</Select>
 					</FormControl>
 
 					<br />
 
-					<TextField
-						id="addSchedule"
-						label="Add Schedule"
-						variant="outlined"
-						size="small"
-						className="input"
+					<ChangeScheduleModal
+						startTime={startTime}
+						endTime={endTime}
+						setStartTime={setStartTime}
+						setEndTime={setEndTime}
+						buttonText={"Add schedule"}
+						buttonClass=""
 					/>
 					<br />
 					<FormControl variant="outlined">
@@ -270,15 +339,17 @@ const CreateClassRoomForm = (props) => {
 						<Select
 							labelId="demo-simple-select-outlined-label"
 							id="demo-simple-select-outlined"
-							value={"one"}
-							onChange={(e) => {}}
+							value={mode}
+							onChange={(e) => {
+								setMode(e.target.value);
+							}}
 							label="Type of teacher"
 							size="small"
 							className="input"
 						>
-							<MenuItem value={"one"}>one</MenuItem>
-							<MenuItem value={"two"}>two</MenuItem>
-							<MenuItem value={"three"}>three</MenuItem>
+							<MenuItem value={"English"}>English</MenuItem>
+							<MenuItem value={"Hindi"}>Hindi</MenuItem>
+							<MenuItem value={"Regional"}>Regional</MenuItem>
 						</Select>
 					</FormControl>
 					<br />
@@ -289,6 +360,9 @@ const CreateClassRoomForm = (props) => {
 							label="Enter Fee"
 							variant="outlined"
 							size="small"
+							value={fee}
+							type="number"
+							onChange={(e) => setFee(e.target.value)}
 						/>
 						<FormControl variant="outlined" className="periodSelect">
 							<InputLabel>Billing period</InputLabel>
@@ -296,15 +370,15 @@ const CreateClassRoomForm = (props) => {
 							<Select
 								labelId="timeperiod"
 								id="timeperiod"
-								value={"one"}
-								onChange={(e) => {}}
+								value={billingPeriod}
+								onChange={(e) => setBillingPeriod(e.target.value)}
 								label="Type of teacher"
 								size="small"
 								style={{ height: "40px" }}
 							>
-								<MenuItem value={"one"}>per month</MenuItem>
-								<MenuItem value={"two"}>quaterly</MenuItem>
-								<MenuItem value={"three"}>Yearly</MenuItem>
+								<MenuItem value={"montly"}>per month</MenuItem>
+								<MenuItem value={"quaterly"}>quaterly</MenuItem>
+								<MenuItem value={"yearly"}>yearly</MenuItem>
 							</Select>
 						</FormControl>
 					</div>
@@ -319,15 +393,22 @@ const CreateClassRoomForm = (props) => {
 						multiline
 						rows={4}
 						rowsMax={4}
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
 					/>
 					<br />
 					<Button
 						variant="contained"
 						className="createClassbtn"
-						onClick={(e) => ""}
+						onClick={formSubmit}
+						disabled={loading}
 					>
 						Create Class
 					</Button>
+
+					{loading ? (
+						<CircularProgress size={24} className="loadingIcon" />
+					) : null}
 				</form>
 			</div>
 		</div>
@@ -422,7 +503,7 @@ const AddStudentModal = (props) => {
 				.then((res) => {
 					if (res.includes("SUCCESS")) {
 						toast("✅ Student added successfully");
-						handleClose()
+						handleClose();
 					} else if (res.includes("USERALREADYEXISTS")) {
 						toast.warn("💡 Student already added to the class");
 					} else {
@@ -500,7 +581,6 @@ const AddStudentModal = (props) => {
 						</form>
 						<div className="submitContainer">
 							<div className="flex-grow" />
-
 							{loading && <CircularProgress size={24} />}
 							&nbsp; &nbsp;
 							<Button

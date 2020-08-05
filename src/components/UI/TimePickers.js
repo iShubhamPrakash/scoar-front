@@ -14,16 +14,15 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function TimePickers() {
+export default function TimePickers(props) {
 	const classes = useStyles();
 
+	const {value, onChange } = props;
 	return (
 		<form className={classes.container} noValidate>
 			<TextField
 				id="time"
-				// label="Choose time"
 				type="time"
-				defaultValue="07:30"
 				className={classes.textField}
 				variant="outlined"
 				size="small"
@@ -33,6 +32,8 @@ export default function TimePickers() {
 				inputProps={{
 					step: 300, // 5 min
 				}}
+				value={value}
+				onChange={onChange}
 			/>
 		</form>
 	);

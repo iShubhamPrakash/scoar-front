@@ -233,7 +233,14 @@ const ClassData = (props) => {
 					Join Now
 				</Button>
 				&nbsp; &nbsp;
-				<ChangeScheduleModal />
+				<ChangeScheduleModal 
+					startTime={starttime}
+					endTime ={endtime}
+					setStartTime={e=>{}}
+					setEndTime={e=>{}}
+					buttonClass="topBtn"
+					buttonText="Change schedule"
+				/>
 				&nbsp; &nbsp;
 				<Button
 					size="small"
@@ -315,21 +322,25 @@ const StudentList = (props) => {
 	} = props;
 
 	const [studentList, setStudentList] = useState([])
-
+	const [loading, setLoading] = useState(false)
+	
 	useEffect(() => {
 		fetchStudentList(crid);
 	}, [crid])	
 
 	const fetchStudentList=(crid)=>{
+		setLoading(true)
 		setStudentList([])
 		try{
 			fetch(`${STUDENT_LIST_API_URL}/${crid}`)
 			.then(res=> res.json())
 			.then(data=>{
 				setStudentList(data)
+				setLoading(false)
 			})
 		}catch (e){
 			console.log("Error fetching student list", e)
+			setLoading(false)
 		}
 	}
 	return (
@@ -386,7 +397,7 @@ const StudentList = (props) => {
 						/>
 						))
 					):(
-						<LoadingIcon/>
+						loading ? <LoadingIcon/> : <p className="center-text">No data to display</p>
 					)}
 				
 				</div>
