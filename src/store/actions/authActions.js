@@ -38,11 +38,12 @@ export const handleSignOut = (data) => async (dispatch) => {
 };
 
 export const getInitialAuthData = () => async (dispatch) => {
-	const data = await getDataFromCookie(AUTH_COOKIE_NAME);
-
-	const userData = JSON.parse(data);
-
-	// console.log(typeof userData, userData);
-
-	return dispatch(signIn(userData));
+	try {
+		const data = await getDataFromCookie(AUTH_COOKIE_NAME);
+		const userData = JSON.parse(data);
+		// console.log(typeof userData, userData);
+		return dispatch(signIn(userData));
+	} catch (e) {
+		console.log("error gettig daata from cookie", e)
+	}
 };

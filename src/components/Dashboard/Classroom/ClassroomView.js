@@ -20,7 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import EditClassModal from "./EditClassModal";
 import ChangeScheduleModal from "./ChangeScheduleModal";
 import StudentDetailsModal from "./StudentDetailsModal";
-import { CLASSROOMS_LIST_API_URL } from "../../../constants/api";
+import { CLASSROOMS_LIST_API_URL, STUDENT_LIST_API_URL } from "../../../constants/api";
 import LoadingIcon from "../../UI/LoadingIcon";
 import { getDiffInHr } from "../../../utils/dateTime";
 
@@ -302,7 +302,36 @@ const ClassData = (props) => {
 };
 
 const StudentList = (props) => {
-	const history = useHistory();
+	const {
+		crid,
+		classroomname,
+		classtype,
+		starttime,
+		endtime,
+		mode,
+		fees,
+		description,
+		noofstudents,
+	} = props;
+
+	const [studentList, setStudentList] = useState([])
+
+	useEffect(() => {
+		fetchStudentList(crid);
+	}, [crid])	
+
+	const fetchStudentList=(crid)=>{
+		setStudentList([])
+		try{
+			fetch(`${STUDENT_LIST_API_URL}/${crid}`)
+			.then(res=> res.json())
+			.then(data=>{
+				setStudentList(data)
+			})
+		}catch (e){
+			console.log("Error fetching student list", e)
+		}
+	}
 	return (
 		<div className="studentList">
 			<div className="table container-flex">
@@ -345,70 +374,21 @@ const StudentList = (props) => {
 					</div>
 				</div>
 				<div className="body">
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
-					<TableRow
-						name="Shubham"
-						avatar="/shubham.png"
-						assignment="Issued"
-						fee="Paid"
-						date="23 Aug, 2020"
-						handleView={(e) => alert("View open")}
-					/>
+					{studentList.length ?(
+						studentList.map(student=>(
+							<TableRow
+							name={student.firstName}
+							avatar={student.profilepic}
+							assignment={student.assignmentstatus}
+							fee={student.feesstatus}
+							date={new Date(student.joindate).toLocaleDateString()}
+							handleView={(e) => alert("View open")}
+						/>
+						))
+					):(
+						<LoadingIcon/>
+					)}
+				
 				</div>
 			</div>
 		</div>
