@@ -3,60 +3,59 @@
 	margin-top: -1em;
 
 	&__dataHeader {
-    padding: 1em 0;
+		padding: 1em 0;
 		.blueBox {
 			padding: 1em;
 			height: 110px;
 			background: linear-gradient(115deg, white 0%, #a283ff 0%, #341c86 100%);
 			border-radius: 8px;
-      box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
-      .heading{
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #fff;
-        @include flex-center;
-        justify-content: start;
+			box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+			.heading {
+				font-size: 1.5em;
+				font-weight: bold;
+				color: #fff;
+				@include flex-center;
+				justify-content: start;
 
-        button{
-          text-transform: capitalize;
-          background: #fff;
-        }
-      }
+				button {
+					text-transform: capitalize;
+					background: #fff;
+				}
+			}
 
-      .body{
-        font-size: 2.5em;
-        font-weight: bold;
-        color: #fff;
-        
-        button{
-          text-transform: capitalize;
-          background: #fff;
-        }
-      }
-    }
-  }
-  
-  &__dataContainer{
+			.body {
+				font-size: 2.5em;
+				font-weight: bold;
+				color: #fff;
 
-    .dataRow{
-      height: 300px;
-      margin: 1em 0;
+				button {
+					text-transform: capitalize;
+					background: #fff;
+				}
+			}
+		}
+	}
 
-      .leftMoney{
-        position: relative;
-        // background: pink;
-        padding: 1em;
-        height: 100%;
-        &__left{
-					.dataContainer{
+	&__dataContainer {
+		.dataRow {
+			height: 300px;
+			margin: 1em 0;
+
+			.leftMoney {
+				position: relative;
+				// background: pink;
+				padding: 1em;
+				height: 100%;
+				&__left {
+					.dataContainer {
 						display: flex;
 						margin-top: 2em;
-						.icon{
+						.icon {
 							width: 20%;
 							height: 45px;
 							border-left: 4px solid $blue;
 							@include flex-center;
-							span{
+							span {
 								background: $blue;
 								width: 40px;
 								height: 40px;
@@ -66,48 +65,48 @@
 								border-radius: 8px;
 							}
 						}
-						.studentDetails{
+						.studentDetails {
 							width: 80%;
-							h4{
+							h4 {
 								margin: 0;
 								font-size: 1.3em;
 							}
-							p{
+							p {
 								@include flex-center;
 								justify-content: flex-start;
-								svg{
+								svg {
 									width: 0.7em;
 									height: 0.7em;
 								}
 							}
 						}
 					}
-					.btnContainer{
+					.btnContainer {
 						position: absolute;
 						bottom: 3em;
 						left: 1em;
 						width: 100%;
 
-						button{
+						button {
 							background: #fff;
 							text-transform: capitalize;
 							border: 1px solid rgba(105, 37, 151, 0.516);
 						}
 					}
-        }
-  
-        &__right{
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 130px;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+				}
+
+				&__right {
+					position: absolute;
+					right: 0;
+					top: 0;
+					width: 130px;
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
 					justify-content: space-evenly;
-					
-					button{
+
+					button {
 						border: 2px solid rgba(250, 148, 101, 0.938);
 						border-radius: 8px;
 						width: 100%;
@@ -116,44 +115,41 @@
 						box-shadow: $shadow;
 					}
 
-					.activeBtn{
+					.activeBtn {
 						border: 2px solid $blue;
 					}
+				}
+			}
 
-        }
-      }
-
-      .paidPeopleList{
-        .header{
-          height: 40px;
-          font-weight: bold;
-          padding: 0.5em;
-          padding-top: 0.8em;
-          white-space: nowrap;
-          .col{
-            @include flex-center;
-          }
-        }
-        .body{
-          height: 260px;
-          width: 100%;
-          overflow-y: auto;
-          @include purple-scrollbar;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-
-    }
-  }
+			.paidPeopleList {
+				.header {
+					height: 40px;
+					font-weight: bold;
+					padding: 0.5em;
+					padding-top: 0.8em;
+					white-space: nowrap;
+					.col {
+						@include flex-center;
+					}
+				}
+				.body {
+					height: 260px;
+					width: 100%;
+					overflow-y: auto;
+					@include purple-scrollbar;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
+	}
 }
 // ####### PAYMENT COMPONENT END
 
 // ####### HISTORY MODAL
 .historyModal {
-
 	#customized-dialog-title {
 		.balance {
 			display: flex;
@@ -258,10 +254,9 @@
 }
 // ######## MONEYINFO COMPONENT END
 
-
 // ######## PaidPeopleListItem COMPONENT
 .paidPeopleListItem {
-  width: 98%;
+	width: 98%;
 	box-shadow: 0px 0px 18px 4px rgba(0, 0, 0, 0.07);
 	padding: 0.5em;
 	border-radius: 8px;
@@ -279,24 +274,24 @@
 	}
 
 	&__name {
-    @include flex-center;
-    justify-content: flex-start;
-    .content{
-      @include flex-center;
-      flex-direction: column;
-      align-items: flex-start;
-      overflow: hidden;
-      font-size: 0.8em;
-      color: gray;
-      padding: 0 0.5em;
-      padding-left: 1em;
-      .orange {
-        color: rgb(255, 81, 0);
-      }
-    }
-  }
-  
-  &__mode {
+		@include flex-center;
+		justify-content: flex-start;
+		.content {
+			@include flex-center;
+			flex-direction: column;
+			align-items: flex-start;
+			overflow: hidden;
+			font-size: 0.8em;
+			color: gray;
+			padding: 0 0.5em;
+			padding-left: 1em;
+			.orange {
+				color: rgb(255, 81, 0);
+			}
+		}
+	}
+
+	&__mode {
 		@include flex-center;
 		// flex-direction: column;
 		// align-items: flex-start;
@@ -310,7 +305,7 @@
 		// }
 	}
 
-	&__btn{
+	&__btn {
 		@include flex-center;
 
 		button {
@@ -321,3 +316,18 @@
 	}
 }
 // ######## PaidPeopleListItem COMPONENT
+
+// ######## studentPaymentLeftCard start
+.studentPaymentLeftCard {
+	padding: 1em;
+	border-radius: 15px !important;
+	position: relative;
+	height: 230px !important;
+	.dueIcon {
+		position: absolute;
+		top: 2em;
+		right: 2em;
+		cursor: pointer;
+	}
+}
+// ######## studentPaymentLeftCard end
