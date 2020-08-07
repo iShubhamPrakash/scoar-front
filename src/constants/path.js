@@ -9,3 +9,4 @@ export const ASSIGNMENT_PATH = "/dashboard/assignment"
 
 export const TEACHER_ADD_DETAILS_PATH= "/dashboard/add-details"
 
+export const STUDENT_ADD_DETAILS_PATH = "/add-details/student"
