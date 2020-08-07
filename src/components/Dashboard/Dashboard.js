@@ -31,6 +31,7 @@ import Classroom from "./Classroom/Classroom";
 import ClassroomView from "./Classroom/ClassroomView";
 import Assignment from "./Assignment/Assignment";
 import AssignmentView from './Assignment/AssignmentView'
+import StudentMainDashboard from "./StudentMainDashboard";
 
 const drawerWidth = 200;
 
@@ -216,6 +217,9 @@ export default function PersistentDrawerLeft(props) {
 					<Route exact path="/dashboard/classroom/:id" component={ClassroomView}/>
 					<Route exact path="/dashboard/assignment" component={Assignment}/>
 					<Route exact path="/dashboard/assignment/:id" component={AssignmentView}/>
+
+					<Route exact path="/dashboard/student" component={StudentMainDashboard}/>
+
 
 				</Switch>
 			</main>
