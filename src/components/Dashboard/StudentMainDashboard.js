@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import StudentAssignmentCard from "./StudentAssignmentCard";
 import StudentScheduleCard from "./StudentScheduleCard";
-import ClassoomCard from "./ClassroomCard";
+import StudentClassroomCard from "./StudentClassroomCard";
 import StudentPaymentCard from "./StudentPaymentCard";
 export default function StudentMainDashboard() {
 	return (
@@ -28,7 +28,7 @@ export default function StudentMainDashboard() {
 
 			<div className="row dashboard__bottomRow">
 				<div className="col col-12 col-md-12 col-lg-5">
-					<ClassoomCard/>
+					<StudentClassroomCard/>
 				</div>
 				<div className="col col-12 col-md-12 col-lg-3">
             <StudentScheduleCard/>
