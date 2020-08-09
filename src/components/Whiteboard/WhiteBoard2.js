@@ -77,6 +77,10 @@ class WhiteBoard extends Component {
     }
   }
 
+  componentWillUnmount(){
+    this.socket.disconnect()
+  }
+
   _selectTool = (tool) => {
     this.setState({
       tool: tool,
@@ -232,7 +236,6 @@ class WhiteBoard extends Component {
       <div className="whiteboard">
         <TopToolBar exportToPNG={this.exportToPNG} />
 
-       {!controlDisabled?
        <LeftToolBar
           Tools={Tools}
           saveCanvasData={this.saveCanvasData}
@@ -256,7 +259,8 @@ class WhiteBoard extends Component {
           fillColor={this.state.fillColor}
           setFillColor={(color) => this.setState({ fillColor: color })}
           addImage={(imageURL) => this._sketch.addImg(imageURL)}
-        />: null}
+          controlDisabled={controlDisabled}
+        />
 
         {!controlDisabled?
         <RightToolBar
@@ -264,6 +268,7 @@ class WhiteBoard extends Component {
           selectTool={(val) => this._selectTool(val)}
           increaseCanvasSize={(e) => this._sketch.zoom(1.25)}
           decreaseCanvasSize={(e) => this._sketch.zoom(0.8)}
+          controlDisabled={controlDisabled}
         />: null}
 
         <div className="row">
