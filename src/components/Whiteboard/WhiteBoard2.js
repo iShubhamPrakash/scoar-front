@@ -5,10 +5,13 @@ import { SketchField, Tools } from "react-sketch";
 import { LeftToolBar, RightToolBar, TopToolBar } from "../Toolbar";
 import { connect } from "react-redux";
 
+import socketIOClient from "socket.io-client";
+
 import {
   setTotalPage,
   setCurrentPage,
 } from "../../store/actions/whiteboardActions";
+import { SOCKET_SERVER_ENDPOINT } from "../../constants/base";
 
 const localStorageKey = "scoar";
 class WhiteBoard extends Component {
@@ -47,6 +50,8 @@ class WhiteBoard extends Component {
     };
   }
 
+  socket = socketIOClient(SOCKET_SERVER_ENDPOINT);
+
   componentDidMount() {
     this.loadSavedDataInCanvas(this.props.currentPage);
     window.addEventListener("resize", (e) => {
@@ -55,6 +60,14 @@ class WhiteBoard extends Component {
         sketchHeight: window.innerHeight,
       });
     });
+
+    this.socket.on("drawing", data => {
+      if (data) {
+        // data = JSON.parse(data);
+        this.setState({ controlledValue: data });
+      } 
+    });
+
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -125,8 +138,11 @@ class WhiteBoard extends Component {
       let controlledValue = this._sketch.toJSON();
       // this.setState({ controlledValue})
 
+      this.socketEmitData(controlledValue)
+
       // Save canvas data to the local storage
       this.saveCanvasData(controlledValue, this.props.currentPage);
+
       let prev = this.state.canUndo;
       let now = this._sketch.canUndo();
       if (prev !== now) {
@@ -178,6 +194,18 @@ class WhiteBoard extends Component {
       localStorage.setItem(`${localStorageKey}${currentPage}`, data);
     }
   };
+
+  socketEmitData =(data) =>{
+    console.log("For socket...", data)
+      // Brodcast to socket server-
+
+      if(data === null || this.state.controlledValue.objects.length !== data.objects.length){
+        console.log("Emmiting...", data)
+        this.socket.emit('drawing', data);
+      }
+      
+
+  }
 
   exportToPNG = () => {
     try {
