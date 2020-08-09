@@ -16,7 +16,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { toast } from "react-toastify";
-import { DASHBOARD_PATH } from "../../constants/path";
+import { DASHBOARD_PATH, getDashboardPath } from "../../constants/path";
 import { BASIC_DETAIL_API_URL } from "../../constants/api";
 import { saveDataAsCookie } from "../../utils/cookieData";
 import { AUTH_COOKIE_NAME } from "../../constants/base";
@@ -110,17 +110,19 @@ export default function Details() {
 				toast("SUCCESS");
 				saveDataAsCookie(AUTH_COOKIE_NAME, {...auth,basicDetailsExist:true})
 				setLoading(false);
-				history.push(DASHBOARD_PATH);
+				history.push(getDashboardPath('Teacher'));
 			} else if (result === "WRONGTOKEN") {
 				toast("Wrong token. please sign in again...");
 				setLoading(false);
 			} else {
 				toast("Something went wrong");
+				history.push(getDashboardPath('Teacher')); // temporarily, Remove after demo
 				setLoading(false);
 			}
 		} catch (e) {
 			console.log("Error submitting data", e);
 			toast("Error: Could not submit data");
+			history.push(getDashboardPath('Teacher')); // temporarily, Remove after demo
 			setLoading(false);
 		}
 	};
