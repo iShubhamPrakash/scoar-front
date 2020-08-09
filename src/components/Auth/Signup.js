@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 
 import { signIn, signOut, closeAuthModal } from "../../store/actions/authActions";
 import { verifyOTPURL,sendSignupOTPURL } from "../../constants/api";
-import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH } from "../../constants/path";
+import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH, getDashboardPath } from "../../constants/path";
 import { LOCAL_STORAGE_AUTH_KEY, AUTH_COOKIE_NAME } from "../../constants/base";
 import { saveDataAsCookie } from "../../utils/cookieData";
 
@@ -102,7 +102,7 @@ export default function Signup(props) {
 				if(userData.role === 'Teacher' && !userData.basicDetailsExist){
 					history.push(TEACHER_ADD_DETAILS_PATH);
 				}else{
-					history.push(WHITEBOARD_PATH);
+					history.push(getDashboardPath(userData.role));
 				}
 
 			} else {

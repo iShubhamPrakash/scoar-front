@@ -10,7 +10,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import { LOCAL_STORAGE_AUTH_KEY, AUTH_COOKIE_NAME } from "../../constants/base";
 import { getIPURL, sendLoginOTPURL, verifyOTPURL } from "../../constants/api";
-import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH } from "../../constants/path";
+import { WHITEBOARD_PATH, TEACHER_ADD_DETAILS_PATH, getDashboardPath } from "../../constants/path";
 import { saveDataAsCookie } from "../../utils/cookieData";
 
 export default function Login(props) {
@@ -104,7 +104,7 @@ export default function Login(props) {
 				if(userData.role === 'Teacher' && !userData.basicDetailsExist){
 					history.push(TEACHER_ADD_DETAILS_PATH);
 				}else{
-					history.push(WHITEBOARD_PATH);
+					history.push(getDashboardPath(userData.role));
 				}
         
 			} else {
