@@ -14,3 +14,4 @@ export const SOCKET_SERVER_ENDPOINT = production ? productionSocketEndpoint : de
 
 export const LOCAL_STORAGE_AUTH_KEY = 'scoar_auth_token';
 export const AUTH_COOKIE_NAME = 'scoar_auth';
+

@@ -20,19 +20,33 @@ import MailIcon from "@material-ui/icons/Mail";
 import Badge from "@material-ui/core/Badge";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import NavLinks from './NavLinks'
-import MessageIcon from '@material-ui/icons/Message';
+import NavLinks from "./NavLinks";
+import MessageIcon from "@material-ui/icons/Message";
 import MainDashboard from "./MainDashboard";
-import { Route,Switch } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import Payment from "./Payment/Payment";
 import Details from "../DetailForm/Details";
 import { useHistory } from "react-router-dom";
 import Classroom from "./Classroom/Classroom";
 import ClassroomView from "./Classroom/ClassroomView";
 import Assignment from "./Assignment/Assignment";
-import AssignmentView from './Assignment/AssignmentView'
+import AssignmentView from "./Assignment/AssignmentView";
 import StudentMainDashboard from "./StudentMainDashboard";
 import StudentPayment from "./Payment/StudentPayment";
+import AirplayIcon from "@material-ui/icons/Airplay";
+import { useSelector } from "react-redux";
+import {
+	DASHBOARD_PATH,
+	PAYMENT_PATH,
+	TEACHER_ADD_DETAILS_PATH,
+	CLASSROOM_PATH,
+	CLASSROOM_VIEW_PATH,
+	ASSIGNMENT_PATH,
+	ASSIGNMENT_VIEW_PATH,
+	STUDENT_DASHBOARD_PATH,
+	STUDENT_PAYMENT_PATH,
+	WHITEBOARD_PATH,
+} from "../../constants/path";
 
 const drawerWidth = 200;
 
@@ -81,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(1,2),
+		padding: theme.spacing(1, 2),
 		transition: theme.transitions.create("margin", {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -158,7 +172,7 @@ export default function PersistentDrawerLeft(props) {
 						aria-label="account of current user"
 						aria-haspopup="true"
 						color="#000"
-						onClick={e=>{
+						onClick={(e) => {
 							history.push("/dashboard/add-details");
 						}}
 					>
@@ -190,10 +204,19 @@ export default function PersistentDrawerLeft(props) {
 					</IconButton>
 				</div>
 				<Divider />
-				<NavLinks/>
+				<NavLinks />
 
 				<div className={classes.grow} />
 				<List>
+					<ListItem button>
+						<ListItemIcon>
+							<AirplayIcon />
+						</ListItemIcon>
+
+						<Link exact to={WHITEBOARD_PATH}>
+							<ListItemText primary={"Whiteboard"} />
+						</Link>
+					</ListItem>
 					<ListItem button>
 						<ListItemIcon>
 							<MailIcon />
@@ -206,24 +229,27 @@ export default function PersistentDrawerLeft(props) {
 				className={clsx(classes.content, {
 					[classes.contentShift]: open,
 				})}
-				style={{backgroundColor:"#F5F5F5"}}
+				style={{ backgroundColor: "#F5F5F5" }}
 			>
 				<div className={classes.drawerHeader} />
-				
+
 				<Switch>
-					<Route exact path="/dashboard" component={MainDashboard}/>
-					<Route exact path="/dashboard/payment" component={Payment}/>
-					<Route exact path="/dashboard/add-details" component={Details}/>
-					<Route exact path="/dashboard/classroom" component={Classroom}/>
-					<Route exact path="/dashboard/classroom/:id" component={ClassroomView}/>
-					<Route exact path="/dashboard/assignment" component={Assignment}/>
-					<Route exact path="/dashboard/assignment/:id" component={AssignmentView}/>
+					<Route exact path={DASHBOARD_PATH} component={MainDashboard} />
+					<Route exact path={PAYMENT_PATH} component={Payment} />
+					<Route exact path={TEACHER_ADD_DETAILS_PATH} component={Details} />
+					<Route exact path={CLASSROOM_PATH} component={Classroom} />
+					<Route exact path={CLASSROOM_VIEW_PATH} component={ClassroomView} />
+					<Route exact path={ASSIGNMENT_PATH} component={Assignment} />
+					<Route exact path={ASSIGNMENT_VIEW_PATH} component={AssignmentView} />
 
-					<Route exact path="/dashboard/student" component={StudentMainDashboard}/>
-					<Route exact path="/dashboard/payment/student" component={StudentPayment}/>
-
+					<Route
+						exact
+						path={STUDENT_DASHBOARD_PATH}
+						component={StudentMainDashboard}
+					/>
+					<Route exact path={STUDENT_PAYMENT_PATH} component={StudentPayment} />
 				</Switch>
 			</main>
 		</div>
-	);	
+	);
 }
