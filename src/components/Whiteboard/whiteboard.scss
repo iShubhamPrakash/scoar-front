@@ -13,3 +13,8 @@
     align-items: center;
   }
 }
+
+// Fix- video iframe overlap
+iframe{
+  z-index: 0;
+}
