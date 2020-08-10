@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import {
 	Avatar,
 	Card,
@@ -24,37 +24,20 @@ import { CLASSROOMS_LIST_API_URL, STUDENT_LIST_API_URL } from "../../../constant
 import LoadingIcon from "../../UI/LoadingIcon";
 import { getDiffInHr } from "../../../utils/dateTime";
 import { WHITEBOARD_PATH } from "../../../constants/path";
+import { fetchClassRoomList } from "../../../store/actions/classRoomActions";
 
 export default function ClassroomView(props) {
 	const history = useHistory();
-	const [classRoomList, setclassRoomList] = useState([]);
-	const [classRoomListLoading, setclassRoomListLoading] = useState(true);
+	const dispatch = useDispatch()
+
 	const auth = useSelector((state) => state.auth);
-	const token = auth.token;
+	const classRoom = useSelector(state => state.classRoom)
+
 
 	useEffect(() => {
-		console.log("class view props", props);
-		fetchClassRoomList();
+		dispatch(fetchClassRoomList(auth.token));
 	}, []);
 
-	const fetchClassRoomList = () => {
-		try {
-			fetch(`${CLASSROOMS_LIST_API_URL}/${token}`)
-				.then((res) => res.json())
-				.then((data) => {
-					console.log("classRoomList data", data);
-					if (data.statusCode.includes("SUCCESS")) {
-						setclassRoomList(data.classRoom);
-						setclassRoomListLoading(false);
-					} else {
-						setclassRoomList([]);
-						setclassRoomListLoading(false);
-					}
-				});
-		} catch (e) {
-			setclassRoomListLoading(false);
-		}
-	};
 
 	return (
 		<div className="classroomView">
@@ -67,10 +50,10 @@ export default function ClassroomView(props) {
 			<div className="classroomView__body row">
 				<div className="col col-5 col-sm-5 col-md-5 col-lg-5">
 					<div className="contentContainer">
-						{classRoomListLoading ? (
+						{classRoom.loadingList ? (
 							<LoadingIcon />
-						) : classRoomList.length ? (
-							classRoomList.map((classRoom) => {
+						) : classRoom.list.length ? (
+							classRoom.list.map((classRoom) => {
 								const {
 									crid,
 									classroomname,
@@ -103,9 +86,9 @@ export default function ClassroomView(props) {
 					</div>
 				</div>
 				<div className="col col-7 col-sm-7 col-md-7 col-lg-7">
-					{classRoomList.length ? (
+					{classRoom.list.length ? (
 						<Card className="contentContainer rightCard" raised>
-							<ClassDetailCard {...props} classRoomList={classRoomList} />
+							<ClassDetailCard {...props} classRoomList={classRoom.list} />
 						</Card>
 					) : null}
 				</div>

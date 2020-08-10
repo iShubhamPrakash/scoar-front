@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
@@ -39,35 +39,16 @@ import { toast } from "react-toastify";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import ChangeScheduleModal from "./ChangeScheduleModal";
+import { fetchClassRoomList } from "../../../store/actions/classRoomActions";
 
 export default function Classroom() {
-	const [classList, setClassList] = useState([]);
-	const [classListLoading, setClassListLoading] = useState(true);
 	const auth = useSelector((state) => state.auth);
-	const token = auth.token;
+	const classRoom = useSelector(state => state.classRoom)
+	const dispatch = useDispatch()
 
 	useEffect(() => {
-		fetchClassRoomList();
+		dispatch(fetchClassRoomList(auth.token));
 	}, []);
-
-	const fetchClassRoomList = () => {
-		try {
-			fetch(`${CLASSROOMS_LIST_API_URL}/${token}`)
-				.then((res) => res.json())
-				.then((data) => {
-					console.log("classlist data", data);
-					if (data.statusCode.includes("SUCCESS")) {
-						setClassList(data.classRoom);
-						setClassListLoading(false);
-					} else {
-						setClassList([]);
-						setClassListLoading(false);
-					}
-				});
-		} catch (e) {
-			setClassListLoading(false);
-		}
-	};
 
 	return (
 		<div className="classroom">
@@ -81,10 +62,10 @@ export default function Classroom() {
 			<div className="classroom__body row">
 				<div className="col-sm-8 col-lg-8">
 					<div className="row classCardRow">
-						{classListLoading ? (
+						{classRoom.loadingList ? (
 							<LoadingIcon />
-						) : classList.length ? (
-							classList.map((classRoom) => {
+						) : classRoom.list.length ? (
+							classRoom.list.map((classRoom) => {
 								const {
 									crid,
 									classroomname,
@@ -121,7 +102,7 @@ export default function Classroom() {
 				</div>
 				<div className="col-sm-4 col-lg-4 formContainer">
 					<Card>
-						<CreateClassRoomForm fetchClassRoomList={fetchClassRoomList} />
+						<CreateClassRoomForm fetchClassRoomList={e=>dispatch(fetchClassRoomList(auth.token))} />
 					</Card>
 				</div>
 			</div>
