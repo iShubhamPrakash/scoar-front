@@ -7,8 +7,11 @@ import SubjectIcon from "@material-ui/icons/Subject";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import IconButton from "@material-ui/core/IconButton";
+import { useHistory } from "react-router-dom";
+import { WHITEBOARD_PATH } from "../../constants/path";
 
 export default function StudentScheduleCard() {
+
 	return (
 		<Card className="card scheduleCard">
 			<CardHeader
@@ -41,6 +44,8 @@ export default function StudentScheduleCard() {
 }
 
 const ScheduleItem = (props) => {
+	const history = useHistory()
+	
 	const {
 		Icon,
 		timeText,
@@ -68,7 +73,7 @@ const ScheduleItem = (props) => {
 				<Button
 					variant="outlined"
 					size="small"
-					onClick={(e) => handleJoin()}
+					onClick={(e) => history.push(WHITEBOARD_PATH)}
 				>
 					Join Now
 				</Button>

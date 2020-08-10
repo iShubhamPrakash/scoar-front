@@ -12,6 +12,7 @@ import {
 	setCurrentPage,
 } from "../../store/actions/whiteboardActions";
 import { SOCKET_SERVER_ENDPOINT } from "../../constants/base";
+import Video from "../Video/Video";
 
 const localStorageKey = "scoar";
 class WhiteBoard extends Component {
@@ -240,8 +241,8 @@ class WhiteBoard extends Component {
 
 		return (
 			<div className="whiteboard">
+        <Video/>
 				<TopToolBar exportToPNG={this.exportToPNG} />
-
 				<LeftToolBar
 					Tools={Tools}
 					saveCanvasData={this.saveCanvasData}
