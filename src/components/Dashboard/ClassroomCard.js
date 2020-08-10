@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -6,18 +6,40 @@ import CardHeader from "@material-ui/core/CardHeader";
 import SubjectIcon from "@material-ui/icons/Subject";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { Avatar } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getClassRoomPath, getClassRoomViewPath } from "../../constants/path";
+import LoadingIcon from "../UI/LoadingIcon";
+import { fetchClassRoomList } from "../../store/actions/classRoomActions";
 
-export default function ClassoomCard() {
+export default function ClassoomCard(props) {
+	const auth = useSelector((state) => state.auth);
+	const classRoom = useSelector((state) => state.classRoom);
+	const history = useHistory();
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchClassRoomList(auth.token));
+	}, []);
+
 	return (
 		<Card className="card classroomCard">
 			<CardHeader
 				subheader="Class Room List"
-				action={<Button size="small">Create New</Button>}
+				action={
+					<Button
+						size="small"
+						onClick={(e) => history.push(getClassRoomPath(auth.role))}
+					>
+						Create New
+					</Button>
+				}
 				style={{ borderBottom: "1px solid lightgray" }}
 				size="small"
 			/>
 			<CardContent className="cardContent">
-				{[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
+				{/* {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
 					<ClassroomItem
 						Icon={(e) => <SubjectIcon />}
 						classroomText={"Science for class 6th"}
@@ -26,7 +48,38 @@ export default function ClassoomCard() {
 						handleView={(e) => alert("View open")}
 						handleChangeSchedule={(e) => alert("Change schedule")}
 					/>
-				))}
+				))} */}
+				{classRoom.loadingList ? (
+					(<LoadingIcon />)
+				) : classRoom.list.length ? (
+					classRoom.list.map((item) => {
+						const {
+							crid,
+							classroomname,
+							classtype,
+							starttime,
+							endtime,
+							mode,
+							fees,
+							description,
+							noofstudents,
+						} = item;
+						return(
+							<ClassroomItem
+							key={crid}
+							Icon={(e) => <SubjectIcon />}
+							classroomText={classroomname}
+							totalStudents={noofstudents}
+							startTime={starttime}
+							endTime={endtime}
+							handleView={(e) => history.push(getClassRoomViewPath(auth.role, crid))}
+							handleChangeSchedule={(e) => alert("Change schedule")}
+						/>
+						)
+					} )
+				) : (
+					<p className="center-text">No data to show!!</p>
+				)}
 				<br />
 				<br />
 			</CardContent>
@@ -39,6 +92,8 @@ const ClassroomItem = (props) => {
 		Icon,
 		classroomText,
 		totalStudents,
+		startTime,
+		endTime,
 		handleView,
 		handleChangeSchedule,
 	} = props;
@@ -69,41 +124,16 @@ const ClassroomItem = (props) => {
 			<div className="classroomItem__weekView">
 				<h5 className="text-left">Classes on</h5>
 				<div className="week">
-					<div className="day">
-						<Avatar className="active">S</Avatar>
-						<p>{"7:00 PM"}</p>
-						<p>{"8:00 PM"}</p>
-					</div>
-					<div className="day">
-						<Avatar className="">M</Avatar>
-						<p>{"-"}</p>
-						<p>{"-"}</p>
-					</div>
-					<div className="day">
-						<Avatar className="active">T</Avatar>
-						<p>{"7:00 PM"}</p>
-						<p>{"8:00 PM"}</p>
-					</div>
-					<div className="day">
-						<Avatar className="active">W</Avatar>
-						<p>{"7:00 PM"}</p>
-						<p>{"8:00 PM"}</p>
-					</div>
-					<div className="day">
-						<Avatar className="">T</Avatar>
-						<p>{"-"}</p>
-						<p>{"-"}</p>
-					</div>
-					<div className="day">
-						<Avatar className="active">F</Avatar>
-						<p>{"7:00 PM"}</p>
-						<p>{"8:00 PM"}</p>
-					</div>
-					<div className="day">
-						<Avatar className="active">S</Avatar>
-						<p>{"7:00 PM"}</p>
-						<p>{"8:00 PM"}</p>
-					</div>
+
+					{
+						['S','M','T','W','T','F','S'].map((WeekDay,i)=>(
+						<div className="day">
+							<Avatar className={startTime[i] && startTime[i].length ? 'active' : null}>{WeekDay}</Avatar>
+							{/* <p>{startTime[i]}</p>
+							<p>{endTime[i]}</p> */}
+						</div>
+						))
+					}
 				</div>
 			</div>
 		</div>

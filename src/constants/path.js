@@ -34,8 +34,8 @@ export const getPaymentPath = (role) =>
 export const getClassRoomPath = (role) =>
 	role === "Student" ? STUDENT_CLASSROOM_PATH : CLASSROOM_PATH;
 
-export const getClassRoomViewPath = (role) =>
-	role === "Student" ? STUDENT_CLASSROOM_VIEW_PATH : CLASSROOM_VIEW_PATH;
+export const getClassRoomViewPath = (role, id) =>
+	role === "Student" ? `/dashboard/classroom/student/${id}` : `/dashboard/classroom/${id}`;
 
 export const getAssignmentPath = (role) =>
 	role === "Student" ? STUDENT_ASSIGNMENT_PATH : ASSIGNMENT_PATH;

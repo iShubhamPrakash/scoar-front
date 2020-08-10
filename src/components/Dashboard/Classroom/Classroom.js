@@ -46,6 +46,7 @@ export default function Classroom() {
 	const classRoom = useSelector(state => state.classRoom)
 	const dispatch = useDispatch()
 
+
 	useEffect(() => {
 		dispatch(fetchClassRoomList(auth.token));
 	}, []);
@@ -65,7 +66,7 @@ export default function Classroom() {
 						{classRoom.loadingList ? (
 							<LoadingIcon />
 						) : classRoom.list.length ? (
-							classRoom.list.map((classRoom) => {
+							classRoom.list.map((item) => {
 								const {
 									crid,
 									classroomname,
@@ -76,9 +77,9 @@ export default function Classroom() {
 									fees,
 									description,
 									noofstudents,
-								} = classRoom;
+								} = item;
 								return (
-									<div className="col-12 col-sm-12 col-lg-6">
+									<div className="col-12 col-sm-12 col-lg-6" key={crid}>
 										<Card className="classCard">
 											<ClassData
 												crid={crid}

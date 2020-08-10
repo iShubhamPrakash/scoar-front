@@ -35,7 +35,9 @@ export default function ClassroomView(props) {
 
 
 	useEffect(() => {
-		dispatch(fetchClassRoomList(auth.token));
+		if(!classRoom.list.length){
+			dispatch(fetchClassRoomList(auth.token))
+		}
 	}, []);
 
 

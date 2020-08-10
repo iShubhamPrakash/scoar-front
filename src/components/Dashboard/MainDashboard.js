@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import "normalize.css";
 import PaymentCard from "./PaymentCard";
 import Button from '@material-ui/core/Button';
@@ -6,7 +6,18 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import AssignmentCard from "./AssignmentCard";
 import ScheduleCard from "./ScheduleCard";
 import ClassoomCard from "./ClassroomCard";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchClassRoomList } from "../../store/actions/classRoomActions";
+
 export default function MainDashboard() {
+	// const dispatch = useDispatch()
+	// const auth = useSelector(state => state.auth)
+
+	// useEffect(()=>{
+	// 	console.log("dashoard useEffect")
+	// 	dispatch(fetchClassRoomList(auth.token))
+	// })
+
 	return (
 		<div className="dashboard container-fluid" style={{padding:"0"}}>
 			<div className="row dashboard__topRow">
