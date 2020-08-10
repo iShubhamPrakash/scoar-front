@@ -1,6 +1,8 @@
 // ####### PAYMENT COMPONENT
 .payment {
 	margin-top: -1em;
+	position: relative;
+	z-index: 888;
 
 	&__dataHeader {
 		padding: 1em 0;

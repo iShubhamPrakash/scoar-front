@@ -1,6 +1,7 @@
 .dashboard {
 	position: relative;
 	padding: 0em;
+	z-index: 888;
 
 	&__nav{
 		@include flex-center;
