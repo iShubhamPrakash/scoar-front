@@ -64,7 +64,8 @@ const ChangeScheduleModal = (props) => {
 		setStartTime,
 		setEndTime,
 		buttonText,
-		buttonClass
+		buttonClass,
+		buttonVarient
 	} = props;
 
 	const [open, setOpen] = React.useState(false);
@@ -89,7 +90,7 @@ const ChangeScheduleModal = (props) => {
 		<div>
 			<Button
 				size="small"
-				variant="contained"
+				variant={buttonVarient ? buttonVarient : "contained"}
 				onClick={handleClickOpen}
 				className={buttonClass}
 			>

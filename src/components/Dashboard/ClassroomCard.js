@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getClassRoomPath, getClassRoomViewPath } from "../../constants/path";
 import LoadingIcon from "../UI/LoadingIcon";
 import { fetchClassRoomList } from "../../store/actions/classRoomActions";
+import ChangeScheduleModal from "./Classroom/ChangeScheduleModal";
 
 export default function ClassoomCard(props) {
 	const auth = useSelector((state) => state.auth);
@@ -112,13 +113,14 @@ const ClassroomItem = (props) => {
 				<Button variant="outlined" size="small" onClick={(e) => handleView()}>
 					View
 				</Button>
-				<Button
-					variant="outlined"
-					size="small"
-					onClick={(e) => handleChangeSchedule()}
-				>
-					Re-Schedule
-				</Button>
+				<ChangeScheduleModal
+					buttonText={"Re-Schedule"}
+					startTime={startTime}
+					endTime={endTime}
+					setStartTime={e=>{}}
+					setEndTime={e=>{}}
+					buttonVarient={"outlined"}
+				/>
 			</div>
 
 			<div className="classroomItem__weekView">
