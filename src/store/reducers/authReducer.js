@@ -11,6 +11,17 @@ const initialState = {
 	modalOpen: false,
 };
 
+const initialStateDev = {
+	name: "",
+	username: "",
+	token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1aWQiOjIwLCJyb2xlIjoiVGVhY2hlciJ9.Wn4Ln116uZ375xb30ZI6wGmspUWxF3XKoarXgb_97Qsoo9XwyGRWh1esKaXTyHUTzFcOFGrXpn1djGMc1ZyGdw',
+	contactNo: '917903652020',
+	role: 'Teacher',
+	uid: 20,
+	basicDetailsExist: false,
+	modalOpen: false,
+};
+
 // {
 //   "statusCode": "SUCCESS",
 //   "user": {

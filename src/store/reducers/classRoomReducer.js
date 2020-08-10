@@ -1,9 +1,11 @@
 import * as actionTypes from "../../constants/actionTypes";
 
-const initialState ={
+const initialState = {
 	list: [],
-	loadingList: false
-}
+	todays: [],
+	loadingTodays: true,
+	loadingList: true,
+};
 
 export default (state = initialState, action) => {
 	switch (action.type) {
@@ -16,8 +18,21 @@ export default (state = initialState, action) => {
 		case actionTypes.LOADING_CLASS_ROOM_LIST:
 			return {
 				...state,
-				loadingList: action.value
-			}
+				loadingList: action.value,
+			};
+
+		case actionTypes.SAVE_TODAYS_CLASSROOM_TO_STORE:
+			return {
+				...state,
+				todays: action.data,
+			};
+
+		case actionTypes.LOADING_TODAYS_CLASSROOM:
+			return {
+				...state,
+				loadingTodays: action.value,
+			};
+			
 		default:
 			return state;
 	}

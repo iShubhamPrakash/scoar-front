@@ -7,8 +7,12 @@ import SubjectIcon from "@material-ui/icons/Subject";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import IconButton from "@material-ui/core/IconButton";
+import { useSelector } from "react-redux";
+import LoadingIcon from "../UI/LoadingIcon";
 
 export default function ScheduleCard() {
+	const classRoom = useSelector((state) => state.classRoom);
+
 	return (
 		<Card className="card scheduleCard">
 			<CardHeader
@@ -22,17 +26,25 @@ export default function ScheduleCard() {
 				size="small"
 			/>
 			<CardContent className="cardContent">
-				{[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
-					<ScheduleItem
-						Icon={(e) => <SubjectIcon />}
-						timeText={"Today: 7:00 PM to 8:00 PM"}
-						subject={"Maths"}
-						classNo={"class 9th"}
-						handleSchedule={(e) => alert("Schedule")}
-						handleReSchedule={(e) => alert("ReSchedule")}
-					/>
-				))}
-
+				{classRoom.loadingTodays ? (
+					<LoadingIcon />
+				) : classRoom.todays.length ? (
+					classRoom.todays.map((item) => {
+						const { crid, classname, starttime, endtime } = item;
+						return (
+							<ScheduleItem
+								key={crid}
+								Icon={(e) => <SubjectIcon />}
+								timeText={`${starttime} to ${endtime}`}
+								classRoomName={classname}
+								handleSchedule={(e) => alert("Schedule")}
+								handleReSchedule={(e) => alert("ReSchedule")}
+							/>
+						);
+					})
+				) : (
+					<p className="center-text">No class Today!!</p>
+				)}
 				<br />
 				<br />
 			</CardContent>
@@ -44,10 +56,9 @@ const ScheduleItem = (props) => {
 	const {
 		Icon,
 		timeText,
-		subject,
-		classNo,
-		handleSchedule,
+		classRoomName,
 		handleReSchedule,
+		handleCancel,
 	} = props;
 	return (
 		<>
@@ -58,9 +69,7 @@ const ScheduleItem = (props) => {
 					</div>
 				</div>
 				<div className="col col-9 col-sm-9 col-md-9 col-lg-9 scheduleItem__right">
-					<p className="text-bold">
-						{subject} for {classNo}
-					</p>
+					<p className="text-bold">{classRoomName}</p>
 					<p className="small">{timeText}</p>
 				</div>
 			</div>
@@ -72,11 +81,7 @@ const ScheduleItem = (props) => {
 				>
 					Re-shedule
 				</Button>
-				<Button
-					variant="outlined"
-					size="small"
-					onClick={(e) => handleSchedule()}
-				>
+				<Button variant="outlined" size="small" onClick={(e) => handleCancel()}>
 					Cancel
 				</Button>
 			</div>

@@ -51,7 +51,7 @@ export default function ClassoomCard(props) {
 					/>
 				))} */}
 				{classRoom.loadingList ? (
-					(<LoadingIcon />)
+					<LoadingIcon />
 				) : classRoom.list.length ? (
 					classRoom.list.map((item) => {
 						const {
@@ -65,19 +65,21 @@ export default function ClassoomCard(props) {
 							description,
 							noofstudents,
 						} = item;
-						return(
+						return (
 							<ClassroomItem
-							key={crid}
-							Icon={(e) => <SubjectIcon />}
-							classroomText={classroomname}
-							totalStudents={noofstudents}
-							startTime={starttime}
-							endTime={endtime}
-							handleView={(e) => history.push(getClassRoomViewPath(auth.role, crid))}
-							handleChangeSchedule={(e) => alert("Change schedule")}
-						/>
-						)
-					} )
+								key={crid}
+								Icon={(e) => <SubjectIcon />}
+								classroomText={classroomname}
+								totalStudents={noofstudents}
+								startTime={starttime}
+								endTime={endtime}
+								handleView={(e) =>
+									history.push(getClassRoomViewPath(auth.role, crid))
+								}
+								handleChangeSchedule={(e) => alert("Change schedule")}
+							/>
+						);
+					})
 				) : (
 					<p className="center-text">No data to show!!</p>
 				)}
@@ -117,8 +119,8 @@ const ClassroomItem = (props) => {
 					buttonText={"Re-Schedule"}
 					startTime={startTime}
 					endTime={endTime}
-					setStartTime={e=>{}}
-					setEndTime={e=>{}}
+					setStartTime={(e) => {}}
+					setEndTime={(e) => {}}
 					buttonVarient={"outlined"}
 				/>
 			</div>
@@ -126,16 +128,19 @@ const ClassroomItem = (props) => {
 			<div className="classroomItem__weekView">
 				<h5 className="text-left">Classes on</h5>
 				<div className="week">
-
-					{
-						['S','M','T','W','T','F','S'].map((WeekDay,i)=>(
+					{["S", "M", "T", "W", "T", "F", "S"].map((WeekDay, i) => (
 						<div className="day">
-							<Avatar className={startTime[i] && startTime[i].length ? 'active' : null}>{WeekDay}</Avatar>
+							<Avatar
+								className={
+									startTime[i] && startTime[i].length ? "active" : null
+								}
+							>
+								{WeekDay}
+							</Avatar>
 							{/* <p>{startTime[i]}</p>
 							<p>{endTime[i]}</p> */}
 						</div>
-						))
-					}
+					))}
 				</div>
 			</div>
 		</div>

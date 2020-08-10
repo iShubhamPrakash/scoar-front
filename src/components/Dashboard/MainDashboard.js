@@ -7,16 +7,16 @@ import AssignmentCard from "./AssignmentCard";
 import ScheduleCard from "./ScheduleCard";
 import ClassoomCard from "./ClassroomCard";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchClassRoomList } from "../../store/actions/classRoomActions";
+import { fetchClassRoomList, fetchTodaysClassRoomList } from "../../store/actions/classRoomActions";
 
 export default function MainDashboard() {
-	// const dispatch = useDispatch()
-	// const auth = useSelector(state => state.auth)
+	const dispatch = useDispatch()
+	const auth = useSelector(state => state.auth)
 
-	// useEffect(()=>{
-	// 	console.log("dashoard useEffect")
-	// 	dispatch(fetchClassRoomList(auth.token))
-	// })
+	useEffect(()=>{
+		console.log("dashoard useEffect")
+		dispatch(fetchTodaysClassRoomList(auth.token))
+	})
 
 	return (
 		<div className="dashboard container-fluid" style={{padding:"0"}}>
