@@ -28,3 +28,4 @@ export const CANCEL_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/canc
 // Payment
 
 export const VIEW_TOTAL_PAYMENTS_API_URL= getFullAPIURL("/scoar/teacher/payment/")
+export const VIEW_PAYMENT_LIST_API_URL= getFullAPIURL('/scoar/teacher/dashboard/payment/')

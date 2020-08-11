@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,9 +7,42 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import MoneyInfo from './Payment/MoneyInfo'
+import { useSelector } from "react-redux";
+import { VIEW_PAYMENT_LIST_API_URL } from "../../constants/api";
 
 
 export default function PaymentCard() {
+
+	const [loading, setLoading] = useState(true)
+	const [totalPaymentList, setTotalPaymentList] = useState([])
+	const [receivedList, setReceivedList] = useState([])
+	const [dueList, setDueList] = useState([])
+	const [upcomingList, setUpcomingList] = useState([])
+
+	const [view, setView] = useState("received") //received - due - upcoming
+
+
+	const auth = useSelector(state => state.auth)
+
+	useEffect(() => {
+		fetchPaymentList();
+	}, [])
+
+	const fetchPaymentList= async ()=>{
+		try{
+			const res= await fetch(`${VIEW_PAYMENT_LIST_API_URL}${auth.token}`)
+			const data = await res.json()
+			console.log("Payment data", data)
+		}catch (e){
+			console.log("Error fetching payment list", e)
+		}
+	}
+
+
+
+
+
+
 	return (
 		<Card className="card">
 			<CardHeader
