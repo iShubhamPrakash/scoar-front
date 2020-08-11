@@ -142,8 +142,9 @@ const ClassroomItem = (props) => {
 							>
 								{WeekDay}
 							</Avatar>
-							{/* <p>{startTime[i]}</p>
-							<p>{endTime[i]}</p> */}
+							<p>&nbsp;{startTime[i] && startTime[i].split(" ")[1] && startTime[i].split(" ")[1]} &nbsp;</p>
+							<br/>
+							<p>&nbsp;{endTime[i] && endTime[i].split(" ")[1] && endTime[i].split(" ")[1]} &nbsp;</p>
 						</div>
 					))}
 				</div>

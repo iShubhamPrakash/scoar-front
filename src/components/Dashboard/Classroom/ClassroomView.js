@@ -280,27 +280,19 @@ const ClassData = (props) => {
 			<div className="classData__calendar">
 				<h5 className="text-left">Classes on</h5>
 				<div className="week">
-					<div className="day">
-						<Avatar className="active">S</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="">M</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">T</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">W</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="">T</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">F</Avatar>
-					</div>
-					<div className="day">
-						<Avatar className="active">S</Avatar>
-					</div>
+				{["S", "M", "T", "W", "T", "F", "S"].map((WeekDay, i) => (
+						<div className="day">
+							<Avatar
+								className={
+									starttime[i] && starttime[i].length ? "active" : null
+								}
+							>
+								{WeekDay}
+							</Avatar>
+							<p>&nbsp;{starttime[i] && starttime[i].split(" ")[1] && starttime[i].split(" ")[1]} &nbsp;</p>
+							<p>&nbsp;{endtime[i] && endtime[i].split(" ")[1] && endtime[i].split(" ")[1]} &nbsp;</p>
+						</div>
+					))}
 				</div>
 			</div>
 			<h5>Description</h5>
