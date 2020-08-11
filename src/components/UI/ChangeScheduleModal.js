@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -19,6 +19,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import TimePickers from "./TimePickers";
+import { GET_SCHEDULE_DATA_API_URL,RESCHEDULE_CLASS_API_URL } from "../../constants/api";
+import LoadingIcon from "./LoadingIcon";
+import { toast } from "react-toastify";
 
 const styles = (theme) => ({
 	root: {
@@ -58,20 +61,82 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 const ChangeScheduleModal = (props) => {
-	const {
-		startTime,
-		endTime,
-		setStartTime,
-		setEndTime,
-		buttonText,
-		buttonClass,
-		buttonVarient
-	} = props;
+	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [startTime, setStartTime] = useState(["", "", "", "", "", "", ""]);
+	const [endTime, setEndTime] = useState(["", "", "", "", "", "", ""]);
 
-	const [open, setOpen] = React.useState(false);
+	const { crid, buttonText, buttonClass, buttonVarient } = props;
+
+	useEffect(() => {
+		console.log("ChangeShedule UseEffect");
+		return () => {
+			setStartTime(["", "", "", "", "", "", ""]);
+			setEndTime(["", "", "", "", "", "", ""]);
+		};
+	}, [crid]);
+
+	const fetchScheduleData = async () => {
+		console.log("Fetching schedule data", crid);
+		try {
+			setLoading(true);
+			const res = await fetch(`${GET_SCHEDULE_DATA_API_URL}${crid}`);
+			const data = await res.json();
+			if (data.length === 7) {
+				setStartTime(
+					data.map((item) =>
+						item.starttime && item.starttime.split(" ")[1]
+							? item.starttime.split(" ")[1]
+							: ""
+					)
+				);
+				setEndTime(
+					data.map((item) =>
+						item.endttime && item.endttime.split(" ")[1]
+							? item.endttime.split(" ")[1]
+							: ""
+					)
+				);
+			}
+			setLoading(false);
+		} catch (e) {
+			console.log("Error fetching shchedule", e);
+			setLoading(false);
+		}
+	};
+
+	const handleSubmit = async () =>{
+
+		let submitData = ['S','M','T','W','T','F','S'].map((day,i)=>{
+			return {
+				crid:crid,
+				startdate: startTime[i],
+				enddate: endTime[i]
+			}
+		})
+		
+		try{
+			const res= await fetch(RESCHEDULE_CLASS_API_URL,{
+				method: 'POST',
+				headers:{
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(submitData)
+			})
+
+			console.log(res)
+			if(res.status === 200 && res.ok){
+				toast("✅ Class rescheduled");
+				handleClose()
+			}
+		}catch(e){
+			console.log("Error submitting data",e)
+		}
+	}
 
 	const handleClickOpen = () => {
 		setOpen(true);
+		fetchScheduleData();
 	};
 	const handleClose = () => {
 		setOpen(false);
@@ -86,6 +151,7 @@ const ChangeScheduleModal = (props) => {
 		"Friday",
 		"Saturday",
 	];
+
 	return (
 		<div>
 			<Button
@@ -111,74 +177,93 @@ const ChangeScheduleModal = (props) => {
 				<DialogContent>
 					<div className="createClassRommForm" style={{ marginTop: "-3em" }}>
 						<div className="createClassRommForm__body">
-							<div className="classData__calendar" style={{ padding: "0 2em" }}>
-								<h5 className="text-left">Days</h5>
-								<div className="week">
-									<div className="day">
-										<Avatar className={startTime[0] && startTime[0].length && endTime[0].length ? "active": null}>S</Avatar>
-									</div>
-									<div className="day">
-										<Avatar className={startTime[1] && startTime[1].length && endTime[1].length ? "active": null}>M</Avatar>
-									</div>
-									<div className="day">
-										<Avatar className={startTime[2] && startTime[2].length && endTime[2].length ? "active": null}>T</Avatar>
-									</div>
-									<div className="day">
-										<Avatar className={startTime[3] && startTime[3].length && endTime[3].length ? "active": null}>W</Avatar>
-									</div>
-									<div className="day">
-										<Avatar className={startTime[4] && startTime[4].length && endTime[4].length ? "active": null}>T</Avatar>
-									</div>
-									<div className="day">
-										<Avatar className={startTime[5] && startTime[5].length && endTime[5].length ? "active": null}>F</Avatar>
-									</div>
-									<div className="day">
-										<Avatar className={startTime[6] && startTime[6].length && endTime[6].length ? "active": null}>S</Avatar>
-									</div>
-								</div>
-							</div>
-							<form autoComplete="off" className="form">
-								{days.map((day,i) => (
-									<div className="row" style={{ margin: "0.4em 0" }}>
-										<div className="col col-sm-2 col-md-2 col-lg-1"></div>
-										<div className="col col-sm-3 col-md-3 col-lg-3">
-											<p className="text-bold">{day}</p>
+							{loading ? (
+								<LoadingIcon />
+							) : (
+								<>
+									<div
+										className="classData__calendar"
+										style={{ padding: "0 2em" }}
+									>
+										<h5 className="text-left">Days</h5>
+										<div className="week">
+											{["S", "M", "T", "W", "T", "F", "S"].map((WeekDay, i) => (
+												<div className="day">
+													<Avatar
+														className={
+															startTime[i] && startTime[i].length
+																? "active"
+																: null
+														}
+													>
+														{WeekDay}
+													</Avatar>
+													<p>
+														&nbsp;
+														{startTime[i] }
+														&nbsp;
+													</p>
+													<br />
+													<p>
+														&nbsp;
+														{endTime[i] }
+														&nbsp;
+													</p>
+												</div>
+											))}
 										</div>
-										<div className="col col-sm-2 col-md-2 col-lg-3">
-											<TimePickers 
-												value={startTime[i]}
-												onChange={e=>{
-													let temp = [...startTime]
-													temp[i] = e.target.value
-													setStartTime(temp)
-												}}
-											/>
-										</div>
-										<div className="col col-sm-1 col-md-1 col-lg-1"> to </div>
-										<div className="col col-sm-2 col-md-2 col-lg-3">
-											<TimePickers 
-												value={endTime[i]}
-												onChange={e=>{
-													let temp = [...endTime]
-													temp[i] = e.target.value
-													setEndTime(temp)
-												}}
-											/>{" "}
-										</div>
-										<div className="col col-sm-2 col-md-2 col-lg-1"></div>
 									</div>
-								))}
+									<form autoComplete="off" className="form">
+										{days.map((day, i) => (
+											<div
+												className="row"
+												style={{ margin: "0.4em 0" }}
+												key={i}
+											>
+												<div className="col col-sm-2 col-md-2 col-lg-1"></div>
+												<div className="col col-sm-3 col-md-3 col-lg-3">
+													<p className="text-bold">{day}</p>
+												</div>
+												<div className="col col-sm-2 col-md-2 col-lg-3">
+													<TimePickers
+														value={startTime[i]}
+														onChange={(e) => {
+															let temp = [...startTime];
+															temp[i] = e.target.value;
+															setStartTime(temp);
+														}}
+													/>
+												</div>
+												<div className="col col-sm-1 col-md-1 col-lg-1">
+													{" "}
+													to{" "}
+												</div>
+												<div className="col col-sm-2 col-md-2 col-lg-3">
+													<TimePickers
+														value={endTime[i]}
+														onChange={(e) => {
+															let temp = [...endTime];
+															temp[i] = e.target.value;
+															setEndTime(temp);
+														}}
+													/>{" "}
+												</div>
+												<div className="col col-sm-2 col-md-2 col-lg-1"></div>
+											</div>
+										))}
 
-								<br />
+										<br />
 
-								<Button
-									variant="contained"
-									className="createClassbtn"
-									onClick={(e) => handleClose()}
-								>
-									Save
-								</Button>
-							</form>
+										<Button
+											variant="contained"
+											className="createClassbtn"
+											onClick={(e) => handleSubmit()}
+										>
+											Save new Timing
+										</Button>
+									</form>
+								</>
+							)}
 						</div>
 					</div>
 				</DialogContent>

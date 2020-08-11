@@ -24,6 +24,7 @@ export default function PaymentCard() {
 
 	useEffect(() => {
 		fetchPaymentList();
+		setView("received")
 	}, []);
 
 	useEffect(() => {

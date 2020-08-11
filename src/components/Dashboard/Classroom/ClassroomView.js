@@ -238,11 +238,8 @@ const ClassData = (props) => {
 					Join Now
 				</Button>
 				&nbsp; &nbsp;
-				<ChangeScheduleModal 
-					startTime={starttime}
-					endTime ={endtime}
-					setStartTime={e=>{}}
-					setEndTime={e=>{}}
+				<ChangeScheduleModal
+					crid={crid} 
 					buttonClass="topBtn"
 					buttonText="Change schedule"
 				/>

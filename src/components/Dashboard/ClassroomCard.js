@@ -73,6 +73,7 @@ export default function ClassoomCard(props) {
 						return (
 							<ClassroomItem
 								key={crid}
+								crid={crid}
 								Icon={(e) => <SubjectIcon />}
 								classroomText={classroomname}
 								totalStudents={noofstudents}
@@ -97,6 +98,7 @@ export default function ClassoomCard(props) {
 
 const ClassroomItem = (props) => {
 	const {
+		crid,
 		Icon,
 		classroomText,
 		totalStudents,
@@ -105,6 +107,7 @@ const ClassroomItem = (props) => {
 		handleView,
 		handleChangeSchedule,
 	} = props;
+
 	return (
 		<div className="classroomItem row">
 			<div className="col col-1 col-sm-1 col-md-1 col-lg-1 classroomItem__left">
@@ -121,11 +124,9 @@ const ClassroomItem = (props) => {
 					View
 				</Button>
 				<ChangeScheduleModal
+					crid={crid}
 					buttonText={"Re-Schedule"}
-					startTime={startTime}
-					endTime={endTime}
-					setStartTime={(e) => {}}
-					setEndTime={(e) => {}}
+					buttonClass={""}
 					buttonVarient={"outlined"}
 				/>
 			</div>
