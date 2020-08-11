@@ -20,11 +20,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import EditClassModal from "./EditClassModal";
 import ChangeScheduleModal from "./ChangeScheduleModal";
 import StudentDetailsModal from "./StudentDetailsModal";
-import { CLASSROOMS_LIST_API_URL, STUDENT_LIST_API_URL } from "../../../constants/api";
+import { CLASSROOMS_LIST_API_URL, STUDENT_LIST_API_URL, CANCEL_CLASS_API_URL } from "../../../constants/api";
 import LoadingIcon from "../../UI/LoadingIcon";
 import { getDiffInHr } from "../../../utils/dateTime";
 import { WHITEBOARD_PATH } from "../../../constants/path";
 import { fetchClassRoomList } from "../../../store/actions/classRoomActions";
+import { toast } from "react-toastify";
 
 export default function ClassroomView(props) {
 	const history = useHistory();
@@ -208,6 +209,22 @@ const ClassData = (props) => {
 		noofstudents,
 	} = props;
 
+	const handleCancelClass = async () => {
+		try {
+			const res = await fetch(`${CANCEL_CLASS_API_URL}${crid}`);
+			const result = await res.text();
+
+			if (result.includes("SUCCESS")) {
+				toast("✅ Class canceled");
+			} else {
+				toast.error("❌ Could not cancel class");
+			}
+		} catch (e) {
+			console.log("Error cancelling class", e);
+			toast.error("❌ Could not cancel class");
+		}
+	};
+
 	return (
 		<div className="classData">
 			<div className="classData__id">
@@ -233,7 +250,7 @@ const ClassData = (props) => {
 				<Button
 					size="small"
 					variant="contained"
-					onClick={(e) => ""}
+					onClick={(e) => handleCancelClass()}
 					className="topBtn"
 				>
 					Cancel

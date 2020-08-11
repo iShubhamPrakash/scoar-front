@@ -23,7 +23,7 @@ export const ADD_STUDENT_TO_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classr
 export const STUDENT_LIST_API_URL = getFullAPIURL("/scoar/teacher/classroom/view/");
 export const CREATE_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/add/");
 export const TODAYS_CLASSROOM_LIST_API_URL =getFullAPIURL("/scoar/teacher/dashboard/todayclassroom/")
-
+export const CANCEL_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/cancel/")
 
 // Payment
 

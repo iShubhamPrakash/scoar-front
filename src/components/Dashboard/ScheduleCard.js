@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -7,11 +7,21 @@ import SubjectIcon from "@material-ui/icons/Subject";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import IconButton from "@material-ui/core/IconButton";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LoadingIcon from "../UI/LoadingIcon";
+import { fetchTodaysClassRoomList } from "../../store/actions/classRoomActions";
+import { toast } from "react-toastify";
+import { CANCEL_CLASS_API_URL } from "../../constants/api";
 
 export default function ScheduleCard() {
+	const auth = useSelector((state) => state.auth);
 	const classRoom = useSelector((state) => state.classRoom);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchTodaysClassRoomList(auth.token));
+	}, []);
 
 	return (
 		<Card className="card scheduleCard">
@@ -34,10 +44,10 @@ export default function ScheduleCard() {
 						return (
 							<ScheduleItem
 								key={crid}
+								crid={crid}
 								Icon={(e) => <SubjectIcon />}
 								timeText={`${starttime} to ${endtime}`}
 								classRoomName={classname}
-								handleSchedule={(e) => alert("Schedule")}
 								handleReSchedule={(e) => alert("ReSchedule")}
 							/>
 						);
@@ -53,13 +63,24 @@ export default function ScheduleCard() {
 }
 
 const ScheduleItem = (props) => {
-	const {
-		Icon,
-		timeText,
-		classRoomName,
-		handleReSchedule,
-		handleCancel,
-	} = props;
+	const { crid, Icon, timeText, classRoomName, handleReSchedule } = props;
+
+	const handleCancel = async () => {
+		try {
+			const res = await fetch(`${CANCEL_CLASS_API_URL}${crid}`);
+			const result = await res.text();
+
+			if (result.includes("SUCCESS")) {
+				toast("✅ Class canceled");
+			} else {
+				toast.error("❌ Could not cancel class");
+			}
+		} catch (e) {
+			console.log("Error cancelling class", e);
+			toast.error("❌ Could not cancel class");
+		}
+	};
+
 	return (
 		<>
 			<div className="scheduleItem row">
