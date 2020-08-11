@@ -58,18 +58,18 @@ export default function PaymentCard() {
 const PaymentPeople = ({ time, date, avatar, name, bio, handleThanks }) => {
 	return (
 		<div className="paymentPeople row">
-			<div className="col col-4 col-sm-4 col-md-4 paymentPeople__left">
+			<div className="col col-5 col-sm-5 col-md-5 paymentPeople__left">
 				<div className="dateData">
 					<p>{time}</p>
 					<p>{date}</p>
 				</div>
 				<Avatar alt={name} src={avatar} />
 			</div>
-			<div className="col col-5 col-sm-5 col-md-5 paymentPeople__center">
+			<div className="col col-7 col-sm-7 col-md-7 paymentPeople__center">
 				<p className="orange">{name}</p>
 				<p>{bio}</p>
 			</div>
-			<div className="col col-3 col-sm-3 col-md-3 paymentPeople__right">
+			{/* <div className="col col-3 col-sm-3 col-md-3 paymentPeople__right">
 				<Button
 					variant="outlined"
 					size="small"
@@ -77,7 +77,7 @@ const PaymentPeople = ({ time, date, avatar, name, bio, handleThanks }) => {
 				>
 					Thank Mail
 				</Button>
-			</div>
+			</div> */}
 		</div>
 	);
 };

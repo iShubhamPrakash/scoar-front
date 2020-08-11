@@ -181,7 +181,7 @@ const DataRow = (props) => {
 									</p> */}
 								</div>
 							</div>
-							<div className="btnContainer">
+							{/* <div className="btnContainer">
 								<Button size="small" variant="contained">
 									Add student
 								</Button>
@@ -189,7 +189,7 @@ const DataRow = (props) => {
 								<Button size="small" variant="contained">
 									View
 								</Button>
-							</div>
+							</div> */}
 						</div>
 						<div className="leftMoney__right">
 							<Button className="activeBtn">

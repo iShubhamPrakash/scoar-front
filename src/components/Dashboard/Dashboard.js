@@ -46,6 +46,7 @@ import {
 	STUDENT_DASHBOARD_PATH,
 	STUDENT_PAYMENT_PATH,
 	WHITEBOARD_PATH,
+	getDetailFormPath,
 } from "../../constants/path";
 
 const drawerWidth = 200;
@@ -117,6 +118,7 @@ export default function PersistentDrawerLeft(props) {
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 
+	const auth = useSelector(state => state.auth)
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -173,7 +175,7 @@ export default function PersistentDrawerLeft(props) {
 						aria-haspopup="true"
 						color="#000"
 						onClick={(e) => {
-							history.push("/dashboard/add-details");
+							history.push(getDetailFormPath(auth.role));
 						}}
 					>
 						<AccountCircle />

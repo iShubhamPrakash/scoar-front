@@ -94,7 +94,7 @@ export default function HistoryModal() {
 								Net Earning
 							</Typography>
 						</div>
-						<Button
+						{/* <Button
 							autoFocus
 							onClick={handleClose}
 							color="primary"
@@ -102,7 +102,7 @@ export default function HistoryModal() {
 							startIcon={<GetAppIcon />}
 						>
 							Download xfax file
-						</Button>
+						</Button> */}
 					</div>
 				</DialogTitle>
 				<DialogContent dividers>
