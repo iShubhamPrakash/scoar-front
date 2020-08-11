@@ -13,6 +13,7 @@ import CachedIcon from '@material-ui/icons/Cached';
 import { fetchTodaysClassRoomList } from "../../store/actions/classRoomActions";
 import { toast } from "react-toastify";
 import { CANCEL_CLASS_API_URL } from "../../constants/api";
+import SingleChengeScheduleModal from "../UI/SingleChengeScheduleModal";
 
 export default function ScheduleCard() {
 	const auth = useSelector((state) => state.auth);
@@ -47,7 +48,8 @@ export default function ScheduleCard() {
 								key={crid}
 								crid={crid}
 								Icon={(e) => <SubjectIcon />}
-								timeText={`${starttime} to ${endtime}`}
+								starttime={starttime.split(" ")[1]?starttime.split(" ")[1] : ""}
+								endtime={endtime.split(" ")[1] ? endtime.split(" ")[1] : ""}
 								classRoomName={classname}
 								handleReSchedule={(e) => alert("ReSchedule")}
 							/>
@@ -64,7 +66,7 @@ export default function ScheduleCard() {
 }
 
 const ScheduleItem = (props) => {
-	const { crid, Icon, timeText, classRoomName, handleReSchedule } = props;
+	const { crid, Icon,starttime,endtime, classRoomName, handleReSchedule } = props;
 
 	const handleCancel = async () => {
 		try {
@@ -92,17 +94,17 @@ const ScheduleItem = (props) => {
 				</div>
 				<div className="col col-9 col-sm-9 col-md-9 col-lg-9 scheduleItem__right">
 					<p className="text-bold">{classRoomName}</p>
-					<p className="small">{timeText}</p>
+					<p className="small">{starttime} to {endtime}</p>
 				</div>
 			</div>
 			<div className="row scheduleItem__bottom">
-				<Button
-					variant="outlined"
-					size="small"
-					onClick={(e) => handleReSchedule()}
-				>
-					Re-shedule
-				</Button>
+				<SingleChengeScheduleModal
+					crid={crid}
+					starttime={starttime}
+					endtime={endtime}
+					buttonVarient={"outlined"}
+					buttonText={"Re-shedule"}
+				/>
 				<Button variant="outlined" size="small" onClick={(e) => handleCancel()}>
 					Cancel
 				</Button>

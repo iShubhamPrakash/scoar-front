@@ -26,7 +26,8 @@ export const TODAYS_CLASSROOM_LIST_API_URL =getFullAPIURL("/scoar/teacher/dashbo
 export const CANCEL_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/cancel/");
 export const GET_SCHEDULE_DATA_API_URL = getFullAPIURL("/scoar/teacher/classroom/getschedule/");
 export const RESCHEDULE_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/reschedule/");
-// Payment
+export const RESCHEDULE_SINGLE_CLASS_API_URL = getFullAPIURL("/scoar/teacher/classroom/addsingleschedule")
 
+// Payment
 export const VIEW_TOTAL_PAYMENTS_API_URL= getFullAPIURL("/scoar/teacher/payment/");
 export const VIEW_PAYMENT_LIST_API_URL= getFullAPIURL('/scoar/teacher/dashboard/payment/');
