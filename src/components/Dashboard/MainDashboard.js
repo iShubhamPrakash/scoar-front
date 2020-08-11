@@ -15,7 +15,7 @@ export default function MainDashboard() {
 
 	useEffect(()=>{
 		console.log("dashoard useEffect")
-		dispatch(fetchTodaysClassRoomList(auth.token))
+		// dispatch(fetchTodaysClassRoomList(auth.token))
 	})
 
 	return (

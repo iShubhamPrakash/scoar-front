@@ -5,13 +5,15 @@ import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 import SubjectIcon from "@material-ui/icons/Subject";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { Avatar } from "@material-ui/core";
+import { Avatar, IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getClassRoomPath, getClassRoomViewPath } from "../../constants/path";
 import LoadingIcon from "../UI/LoadingIcon";
 import { fetchClassRoomList } from "../../store/actions/classRoomActions";
 import ChangeScheduleModal from "./Classroom/ChangeScheduleModal";
+import CachedIcon from '@material-ui/icons/Cached';
+
 
 export default function ClassoomCard(props) {
 	const auth = useSelector((state) => state.auth);
@@ -29,12 +31,15 @@ export default function ClassoomCard(props) {
 			<CardHeader
 				subheader="Class Room List"
 				action={
-					<Button
-						size="small"
-						onClick={(e) => history.push(getClassRoomPath(auth.role))}
-					>
-						Create New
-					</Button>
+					// <Button
+					// 	size="small"
+					// 	onClick={(e) => history.push(getClassRoomPath(auth.role))}
+					// >
+					// 	Create New
+					// </Button>
+					<IconButton color="primary" onClick={e=>dispatch(fetchClassRoomList(auth.token))}>
+						<CachedIcon />
+					</IconButton>
 				}
 				style={{ borderBottom: "1px solid lightgray" }}
 				size="small"

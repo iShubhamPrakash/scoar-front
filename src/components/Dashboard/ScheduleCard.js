@@ -9,6 +9,7 @@ import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import IconButton from "@material-ui/core/IconButton";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingIcon from "../UI/LoadingIcon";
+import CachedIcon from '@material-ui/icons/Cached';
 import { fetchTodaysClassRoomList } from "../../store/actions/classRoomActions";
 import { toast } from "react-toastify";
 import { CANCEL_CLASS_API_URL } from "../../constants/api";
@@ -28,8 +29,8 @@ export default function ScheduleCard() {
 			<CardHeader
 				subheader="Today's Schedule"
 				action={
-					<IconButton color="primary">
-						<EventAvailableIcon />
+					<IconButton color="primary" onClick={e=>dispatch(fetchTodaysClassRoomList(auth.token))}>
+						<CachedIcon />
 					</IconButton>
 				}
 				style={{ borderBottom: "1px solid lightgray" }}
