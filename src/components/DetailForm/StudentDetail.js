@@ -17,7 +17,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { toast } from "react-toastify";
 import { DatePicker } from "@material-ui/pickers";
-import { DASHBOARD_PATH } from "../../constants/path";
+import { DASHBOARD_PATH, getDashboardPath } from "../../constants/path";
 import { BASIC_DETAIL_API_URL, STUDENT_BASIC_DETAIL_API_URL } from "../../constants/api";
 import { saveDataAsCookie } from "../../utils/cookieData";
 import { AUTH_COOKIE_NAME } from "../../constants/base";
@@ -62,16 +62,17 @@ export default function StudentDetail() {
 			lastname: lastName,
 			email: email,
       gender: gender,
-      dob:dateOfBirth,
+      dob: new Date(dateOfBirth).toLocaleDateString(),
 			profilepic: "",
       institutionname: schoolName,
 			board: board,
-			
-			// line1: addressLine1,
-			// line2: addressLine2,
-			// city: city,
-			// zipcode: zip,
-			// country: country,
+			address:{
+			line1: addressLine1,
+			line2: addressLine2,
+			city: city,
+			zipcode: zip,
+			country: country,
+			}
     };
 
 		try {
@@ -94,18 +95,20 @@ export default function StudentDetail() {
 					basicDetailsExist: true,
 				});
 				setLoading(false);
-				history.push(DASHBOARD_PATH);
+				history.push(getDashboardPath(auth.role));
 			} else if (result === "WRONGTOKEN") {
 				toast("Wrong token. please sign in again...");
 				setLoading(false);
 			} else {
 				toast("Something went wrong");
 				setLoading(false);
+				// history.push(getDashboardPath(auth.role));
 			}
 		} catch (e) {
 			console.log("Error submitting data", e);
 			toast("Error: Could not submit data");
 			setLoading(false);
+			// history.push(getDashboardPath(auth.role));
 		}
 	};
 	return (
