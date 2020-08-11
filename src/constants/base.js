@@ -7,7 +7,7 @@ export const API_BASE_URL= production ? productionAPI : devAPI
 
 // Socket server endpoint
 
-const productionSocketEndpoint= 'https://node-server-scoar.herokuapp.com/';
+const productionSocketEndpoint= 'https://node-server-appp.herokuapp.com/';
 const devSocketEndpoint = 'http://127.0.0.1:3001';
 
 export const SOCKET_SERVER_ENDPOINT = production ? productionSocketEndpoint : devSocketEndpoint;
