@@ -8,8 +8,12 @@ import ScheduleCard from "./ScheduleCard";
 import ClassoomCard from "./ClassroomCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClassRoomList, fetchTodaysClassRoomList } from "../../store/actions/classRoomActions";
+import { useHistory } from "react-router-dom";
+import { getClassRoomPath } from "../../constants/path";
 
 export default function MainDashboard() {
+	const history = useHistory()
+
 	const dispatch = useDispatch()
 	const auth = useSelector(state => state.auth)
 
@@ -29,7 +33,7 @@ export default function MainDashboard() {
 				</div>
 				<div className="col col-12 col-md-12 col-lg-4">
 					<div className="createClassroom">
-            <Button>
+            <Button onClick={e=>history.push(getClassRoomPath(auth.role))}>
               <div>
                 <div><AddBoxIcon/></div>
                 <h2>Create Classroom</h2>
