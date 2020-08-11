@@ -18,7 +18,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import { toast } from "react-toastify";
 import { DatePicker } from "@material-ui/pickers";
 import { DASHBOARD_PATH } from "../../constants/path";
-import { BASIC_DETAIL_API_URL } from "../../constants/api";
+import { BASIC_DETAIL_API_URL, STUDENT_BASIC_DETAIL_API_URL } from "../../constants/api";
 import { saveDataAsCookie } from "../../utils/cookieData";
 import { AUTH_COOKIE_NAME } from "../../constants/base";
 
@@ -64,48 +64,49 @@ export default function StudentDetail() {
       gender: gender,
       dob:dateOfBirth,
 			profilepic: "",
-      schoolname: schoolName,
-      board: board,
-			line1: addressLine1,
-			line2: addressLine2,
-			city: city,
-			zipcode: zip,
-			country: country,
+      institutionname: schoolName,
+			board: board,
+			
+			// line1: addressLine1,
+			// line2: addressLine2,
+			// city: city,
+			// zipcode: zip,
+			// country: country,
     };
 
-		// try {
-		// 	const res = await fetch(`${BASIC_DETAIL_API_URL}${token}`, {
-		// 		method: "POST",
-		// 		headers: {
-		// 			"Content-Type": "application/json",
-		// 		},
+		try {
+			const res = await fetch(`${STUDENT_BASIC_DETAIL_API_URL}${token}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
 
-		// 		body: JSON.stringify(submitData),
-		// 	});
+				body: JSON.stringify(submitData),
+			});
 
-		// 	const result = await res.text();
+			const result = await res.text();
 
-		// 	console.log("Result", result);
-		// 	if (result.includes("SUCCESS")) {
-		// 		toast("SUCCESS");
-		// 		saveDataAsCookie(AUTH_COOKIE_NAME, {
-		// 			...auth,
-		// 			basicDetailsExist: true,
-		// 		});
-		// 		setLoading(false);
-		// 		history.push(DASHBOARD_PATH);
-		// 	} else if (result === "WRONGTOKEN") {
-		// 		toast("Wrong token. please sign in again...");
-		// 		setLoading(false);
-		// 	} else {
-		// 		toast("Something went wrong");
-		// 		setLoading(false);
-		// 	}
-		// } catch (e) {
-		// 	console.log("Error submitting data", e);
-		// 	toast("Error: Could not submit data");
-		// 	setLoading(false);
-		// }
+			console.log("Result", result);
+			if (result.includes("SUCCESS")) {
+				toast("SUCCESS");
+				saveDataAsCookie(AUTH_COOKIE_NAME, {
+					...auth,
+					basicDetailsExist: true,
+				});
+				setLoading(false);
+				history.push(DASHBOARD_PATH);
+			} else if (result === "WRONGTOKEN") {
+				toast("Wrong token. please sign in again...");
+				setLoading(false);
+			} else {
+				toast("Something went wrong");
+				setLoading(false);
+			}
+		} catch (e) {
+			console.log("Error submitting data", e);
+			toast("Error: Could not submit data");
+			setLoading(false);
+		}
 	};
 	return (
 		<div className="detailsForm container-flex">

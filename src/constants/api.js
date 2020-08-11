@@ -11,9 +11,9 @@ export const sendSignupOTPURL = getFullAPIURL("/scoar/auth/signup/sendotp/");
 export const verifyOTPURL = getFullAPIURL("/scoar/auth/verifyotp/");
 
 
-// Teacher details
+// Baic details
 export const BASIC_DETAIL_API_URL = getFullAPIURL("/scoar/teacher/details/add/");
-
+export const STUDENT_BASIC_DETAIL_API_URL = getFullAPIURL("/scoar/student/add/")
 
 
 // Classroom
