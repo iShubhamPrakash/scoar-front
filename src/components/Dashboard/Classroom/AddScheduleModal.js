@@ -57,7 +57,7 @@ const DialogContent = withStyles((theme) => ({
 	},
 }))(MuiDialogContent);
 
-const ChangeScheduleModal = (props) => {
+const AddScheduleModal = (props) => {
 	const {
 		startTime,
 		endTime,
@@ -187,4 +187,4 @@ const ChangeScheduleModal = (props) => {
 	);
 };
 
-export default ChangeScheduleModal;
+export default AddScheduleModal;

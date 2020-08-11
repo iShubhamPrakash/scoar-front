@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getClassRoomPath, getClassRoomViewPath } from "../../constants/path";
 import LoadingIcon from "../UI/LoadingIcon";
 import { fetchClassRoomList } from "../../store/actions/classRoomActions";
-import ChangeScheduleModal from "./Classroom/ChangeScheduleModal";
+import ChangeScheduleModal from "../UI/ChangeScheduleModal";
 import CachedIcon from '@material-ui/icons/Cached';
 
 

@@ -38,14 +38,13 @@ import { CLASSROOM_PATH } from "../../../constants/path";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
-import ChangeScheduleModal from "./ChangeScheduleModal";
 import { fetchClassRoomList } from "../../../store/actions/classRoomActions";
+import AddScheduleModal from "./AddScheduleModal";
 
 export default function Classroom() {
 	const auth = useSelector((state) => state.auth);
-	const classRoom = useSelector(state => state.classRoom)
-	const dispatch = useDispatch()
-
+	const classRoom = useSelector((state) => state.classRoom);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(fetchClassRoomList(auth.token));
@@ -103,7 +102,11 @@ export default function Classroom() {
 				</div>
 				<div className="col-sm-4 col-lg-4 formContainer">
 					<Card>
-						<CreateClassRoomForm fetchClassRoomList={e=>dispatch(fetchClassRoomList(auth.token))} />
+						<CreateClassRoomForm
+							fetchClassRoomList={(e) =>
+								dispatch(fetchClassRoomList(auth.token))
+							}
+						/>
 					</Card>
 				</div>
 			</div>
@@ -307,7 +310,7 @@ const CreateClassRoomForm = (props) => {
 
 					<br />
 
-					<ChangeScheduleModal
+					<AddScheduleModal
 						startTime={startTime}
 						endTime={endTime}
 						setStartTime={setStartTime}

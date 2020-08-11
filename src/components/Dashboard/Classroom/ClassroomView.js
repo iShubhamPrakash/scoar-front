@@ -18,7 +18,7 @@ import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
 import SearchIcon from "@material-ui/icons/Search";
 import EditClassModal from "./EditClassModal";
-import ChangeScheduleModal from "./ChangeScheduleModal";
+import ChangeScheduleModal from "../../UI/ChangeScheduleModal";
 import StudentDetailsModal from "./StudentDetailsModal";
 import { CLASSROOMS_LIST_API_URL, STUDENT_LIST_API_URL, CANCEL_CLASS_API_URL } from "../../../constants/api";
 import LoadingIcon from "../../UI/LoadingIcon";
