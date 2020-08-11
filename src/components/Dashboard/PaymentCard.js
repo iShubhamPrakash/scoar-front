@@ -10,40 +10,34 @@ import MoneyInfo from "./Payment/MoneyInfo";
 import { useSelector } from "react-redux";
 import { VIEW_PAYMENT_LIST_API_URL } from "../../constants/api";
 import LoadingIcon from "../UI/LoadingIcon";
+import { useHistory } from "react-router-dom";
+import { getPaymentPath } from "../../constants/path";
 
 export default function PaymentCard() {
 	const [loading, setLoading] = useState(true);
-	const [currentList, setCurrentList] = useState([]);
-	const [receivedList, setReceivedList] = useState([]);
-	const [dueList, setDueList] = useState([]);
-	const [upcomingList, setUpcomingList] = useState([]);
+	const [paymentList, setPaymentList] = useState([])
+
+	const [metaData, setMetaData]= useState({
+		total: 100,
+		paid:0,
+		unpaid:0,
+		upcoming:0,
+	})
 
 	const [view, setView] = useState("received"); //received - due - upcoming
 
 	const auth = useSelector((state) => state.auth);
+	const history = useHistory()
 
 	useEffect(() => {
 		fetchPaymentList();
-		setView("received")
 	}, []);
 
-	useEffect(() => {
-		fetchPaymentList();
-		switch (view) {
-			case "received":
-				setCurrentList(receivedList);
-				break;
-			case "due":
-				setCurrentList(dueList);
-				break;
-			case "upcoming":
-				setCurrentList(upcomingList);
-				break;
-
-			default:
-				setCurrentList([]);
-		}
-	}, [view]);
+	const paymentStatus ={
+		received: "Paid",
+		due: "NotPaid",
+		upcoming: "Upcoming"
+	}
 
 	const fetchPaymentList = async () => {
 		try {
@@ -51,21 +45,25 @@ export default function PaymentCard() {
 			const res = await fetch(`${VIEW_PAYMENT_LIST_API_URL}${auth.token}`);
 			const data = await res.json();
 			console.log("Payment data", data);
-			setReceivedList(data.filter((item) => item.paymentStaus === "Paid"));
-			setDueList(data.filter((item) => item.paymentStaus === "NotPaid"));
-			setUpcomingList(data.filter((item) => item.paymentStaus === "Upcoming"));
+			setMetaData({
+				total: data[0].totalnoofstudents ? data[0].totalnoofstudents : 100,
+				paid: data[0].paid ? data[0].paid : 0,
+				unpaid: data[0].unpaid ? data[0].unpaid : 0,
+				upcoming: data[0].upcoming ? data[0].upcoming : 0,
+			})
+			setPaymentList(data)
 			setLoading(false);
 		} catch (e) {
 			console.log("Error fetching payment list", e);
 			setLoading(false);
 		}
 	};
-
+	
 	return (
 		<Card className="card">
 			<CardHeader
 				subheader="Payment"
-				action={<Button>Go to Payments</Button>}
+				action={<Button onClick={e=> history.push(getPaymentPath(auth.token))}>Go to Payments</Button>}
 				style={{ borderBottom: "1px solid lightgray" }}
 				size="small"
 			/>
@@ -78,7 +76,7 @@ export default function PaymentCard() {
 							onClick={(e) => setView("received")}
 							className={view === "received" ? "active" : null}
 						>
-							<MoneyInfo balance={370} percentagePaid={70} type="Received" />
+							<MoneyInfo balance={metaData.paid} percentagePaid={100*metaData.paid/metaData.total} type="Received" />
 						</Button>
 					</div>
 					<div className="moneyCard">
@@ -88,7 +86,7 @@ export default function PaymentCard() {
 							onClick={(e) => setView("due")}
 							className={view === "due" ? "active" : null}
 						>
-							<MoneyInfo balance={370} percentagePaid={70} type="Due" />
+							<MoneyInfo balance={metaData.unpaid} percentagePaid={100*metaData.unpaid/metaData.total} type="Due" />
 						</Button>
 					</div>
 					<div className="moneyCard">
@@ -98,15 +96,15 @@ export default function PaymentCard() {
 							onClick={(e) => setView("upcoming")}
 							className={view === "upcoming" ? "active" : null}
 						>
-							<MoneyInfo balance={370} percentagePaid={70} type="Upcoming" />
+							<MoneyInfo balance={metaData.upcoming} percentagePaid={100*metaData.upcoming/metaData.total} type="Upcoming" />
 						</Button>
 					</div>
 				</div>
 
 				{loading ? (
 					<LoadingIcon />
-				) : currentList.length ? (
-					currentList.map((item) => (
+				) : paymentList.length ? (
+					paymentList.filter(item=> item.paymentStaus === paymentStatus[view]).map((item) => (
 						<PaymentPeople
 							time={"08:34 AM"}
 							date={item.date}
@@ -117,7 +115,7 @@ export default function PaymentCard() {
 						/>
 					))
 				) : (
-					<p className="center-text"> No data to show </p>
+					<p className="center-text"> ---- </p>
 				)}
 				<br />
 				<br />

@@ -22,6 +22,8 @@ import TimePickers from "./TimePickers";
 import { GET_SCHEDULE_DATA_API_URL,RESCHEDULE_CLASS_API_URL } from "../../constants/api";
 import LoadingIcon from "./LoadingIcon";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchClassRoomList } from "../../store/actions/classRoomActions";
 
 const styles = (theme) => ({
 	root: {
@@ -76,6 +78,10 @@ const ChangeScheduleModal = (props) => {
 		};
 	}, [crid]);
 
+	const dispatch = useDispatch()
+
+	const auth = useSelector(state => state.auth)
+
 	const fetchScheduleData = async () => {
 		console.log("Fetching schedule data", crid);
 		try {
@@ -124,9 +130,11 @@ const ChangeScheduleModal = (props) => {
 				body: JSON.stringify(submitData)
 			})
 
+			const response = await res.text()
 			console.log(res)
-			if(res.status === 200 && res.ok){
+			if(response.includes("SUCCESS")){
 				toast("✅ Class rescheduled");
+				dispatch(fetchClassRoomList(auth.token))
 				handleClose()
 			}
 		}catch(e){
