@@ -47,7 +47,9 @@ import {
 	STUDENT_PAYMENT_PATH,
 	WHITEBOARD_PATH,
 	getDetailFormPath,
+	STUDENT_CLASSROOM_PATH,
 } from "../../constants/path";
+import StudentClassRoom from "./Classroom/StudentClassRoom";
 
 const drawerWidth = 200;
 
@@ -250,6 +252,8 @@ export default function PersistentDrawerLeft(props) {
 						component={StudentMainDashboard}
 					/>
 					<Route exact path={STUDENT_PAYMENT_PATH} component={StudentPayment} />
+					<Route exact path={STUDENT_CLASSROOM_PATH} component={StudentClassRoom} />
+
 				</Switch>
 			</main>
 		</div>
