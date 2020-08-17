@@ -588,3 +588,20 @@
 	}
 }
 // ####### studentDetailsModal Component END
+
+
+
+
+// Student
+
+.student_classCard_dataContainer{
+	position: relative;
+	.schedule-text{
+		color: $blue;
+		font-size: 1.2em;
+		font-weight: bold;
+		position: absolute;
+		right: 1em;
+		bottom: -1em;
+	}
+}
