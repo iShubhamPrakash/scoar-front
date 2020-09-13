@@ -26,6 +26,153 @@ export default function Payment() {
 
 	const auth = useSelector((state) => state.auth);
 
+	const demoPaymentData={
+		"statusCode": "SUCCESS",
+		"totalearning": 11400,
+		"earningthismonth": 11400,
+		"duebalance": 5650,
+		"classesList": [
+			{
+				"classname": "Computer Class for 10th",
+				"totalstudents": 4,
+				"mode": "English",
+				"received": 2,
+				"due": 1,
+				"upcoming": 0,
+				"recievedamount": 11400,
+				"dueamount": 5650
+			},
+			{
+				"classname": "Physics Class",
+				"totalstudents": 3,
+				"mode": "English",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "CS class",
+				"totalstudents": 4,
+				"mode": "Hindi",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Music",
+				"totalstudents": 2,
+				"mode": "Hindi",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Demo class",
+				"totalstudents": 0,
+				"mode": "English",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Demo class",
+				"totalstudents": 0,
+				"mode": "English",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "test",
+				"totalstudents": 0,
+				"mode": "English",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Demo class",
+				"totalstudents": 0,
+				"mode": "English",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Test 2",
+				"totalstudents": 0,
+				"mode": "Hindi",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Final test",
+				"totalstudents": 0,
+				"mode": "English",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Final testing 2",
+				"totalstudents": 0,
+				"mode": "Regional",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "Testing shchedule",
+				"totalstudents": 0,
+				"mode": "English",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			},
+			{
+				"classname": "4 am Testinggggggg",
+				"totalstudents": 1,
+				"mode": "Hindi",
+				"received": 0,
+				"due": 0,
+				"upcoming": 0,
+				"recievedamount": 0,
+				"dueamount": 0
+			}
+		]
+	}
+
+
+	const populateDemoPaymentData = ()=>{
+		return new Promise((resolve)=>{
+			setTimeout(() => {
+				resolve(demoPaymentData);
+			}, 1000);
+		})
+	}
 	useEffect(() => {
 		fetchPaymentData();
 	}, []);
@@ -33,8 +180,9 @@ export default function Payment() {
 	const fetchPaymentData = async () => {
 		setLoading(true);
 		try {
-			const res = await fetch(`${VIEW_TOTAL_PAYMENTS_API_URL}${auth.token}`);
-			const data = await res.json();
+			// const res = await fetch(`${VIEW_TOTAL_PAYMENTS_API_URL}${auth.token}`);
+			// const data = await res.json();
+			const data= await populateDemoPaymentData();
 
 			if (data.statusCode.includes("SUCCESS")) {
 				setTotalEarning(data.totalearning);
