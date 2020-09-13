@@ -19,9 +19,9 @@ export default function PaymentCard() {
 
 	const [metaData, setMetaData]= useState({
 		total: 100,
-		paid:0,
-		unpaid:0,
-		upcoming:0,
+		paid:75,
+		unpaid: 12,
+		upcoming:20,
 	})
 
 	const [view, setView] = useState("received"); //received - due - upcoming
@@ -39,11 +39,220 @@ export default function PaymentCard() {
 		upcoming: "Upcoming"
 	}
 
+	const demoData = ()=>{
+		const data = [
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Shubham Prakash",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "John Doe",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Abhinavv Shrivastava",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Prostagma",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Sanket Mishra",
+				"paymentStaus": "Due",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Shubham Prakash",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "John Doe",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Abhinavv Shrivastava",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Prostagma",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Sanket Mishra",
+				"paymentStaus": "Due",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Shubham Prakash",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "John Doe",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Abhinavv Shrivastava",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Prostagma",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Sanket Mishra",
+				"paymentStaus": "Due",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Shubham Prakash",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "John Doe",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Abhinavv Shrivastava",
+				"paymentStaus": "Paid",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Prostagma",
+				"paymentStaus": "Upcoming",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			},
+			{
+				"date": "08/09/2020",
+				"profilepic": "/shubham.png",
+				"name": "Sanket Mishra",
+				"paymentStaus": "Due",
+				"totalnoofstudents": 4,
+				"paid": 2,
+				"unpaid": 1,
+				"upcoming": 1
+			}
+		]
+		return new Promise((resolve, PromiseRejectionEvent)=>{
+			setTimeout(() => {
+				resolve(data)
+			}, 1000);
+		})
+	}
 	const fetchPaymentList = async () => {
 		try {
 			setLoading(true);
-			const res = await fetch(`${VIEW_PAYMENT_LIST_API_URL}${auth.token}`);
-			const data = await res.json();
+			// const res = await fetch(`${VIEW_PAYMENT_LIST_API_URL}${auth.token}`);
+			const data = await demoData();
 			console.log("Payment data", data);
 			setMetaData({
 				total: data[0].totalnoofstudents ? data[0].totalnoofstudents : 100,
@@ -131,25 +340,25 @@ export default function PaymentCard() {
 const PaymentPeople = ({ time, date, avatar, name, bio, handleThanks }) => {
 	return (
 		<div className="paymentPeople row">
-			<div className="col col-5 col-sm-5 col-md-5 paymentPeople__left">
+			<div className="col col-4 col-sm-4 col-md-4 paymentPeople__left">
 				<div className="dateData">
 					<p>{date} &nbsp; &nbsp;</p>
 				</div>
 				<Avatar alt={name} src={avatar} />
 			</div>
-			<div className="col col-7 col-sm-7 col-md-7 paymentPeople__center">
+			<div className="col col-5 col-sm-5 col-md-5 paymentPeople__center">
 				<p className="orange">{name}</p>
 				{/* <p>{bio}</p> */}
 			</div>
-			{/* <div className="col col-3 col-sm-3 col-md-3 paymentPeople__right">
+			<div className="col col-3 col-sm-3 col-md-3 paymentPeople__right">
 				<Button
 					variant="outlined"
 					size="small"
-					onClick={(e) => handleThanks(e)}
+					onClick={(e) => alert("Thanks mail sent!!")}
 				>
 					Thank Mail
 				</Button>
-			</div> */}
+			</div>
 		</div>
 	);
 };
