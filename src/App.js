@@ -39,12 +39,12 @@ function App() {
 
         <Route exact path={LANDING_PAGE_PATH} component={LandingPage}/>
         <Route exact path={AUTH_PATH} component={Auth}/>
-
+{/* 
         <ProtectedRoute path={WHITEBOARD_PATH} component={Whiteboard}/>
-        <ProtectedRoute path={DASHBOARD_PATH} component={Dashboard}/>
+        <ProtectedRoute path={DASHBOARD_PATH} component={Dashboard}/> */}
 
-        {/* <Route path={WHITEBOARD_PATH} component={Whiteboard}/>
-        <Route path={DASHBOARD_PATH} component={Dashboard}/> */}
+        <Route path={WHITEBOARD_PATH} component={Whiteboard}/>
+        <Route path={DASHBOARD_PATH} component={Dashboard}/>
         
         <Route path="" component={LandingPage} />
       </Switch>
