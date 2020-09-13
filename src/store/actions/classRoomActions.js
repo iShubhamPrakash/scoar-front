@@ -344,6 +344,48 @@ export const fetchClassRoomList = (token) => async (dispatch) => {
 
 
 // Todays classroom list
+
+const demoTodaysData = [
+  {
+    "crid": 4,
+    "classname": "Computer Class for 10th",
+    "starttime": "11/08/2020 08:00:00",
+    "endtime": "11/08/2020 09:00:00"
+  },
+  {
+    "crid": 5,
+    "classname": "Physics Class",
+    "starttime": "11/08/2020 08:00:00",
+    "endtime": "11/08/2020 09:00:00"
+  },
+  {
+    "crid": 6,
+    "classname": "CS class",
+    "starttime": "11/08/2020 08:00:00",
+    "endtime": "11/08/2020 09:00:00"
+  },
+  {
+    "crid": 7,
+    "classname": "Music",
+    "starttime": "11/08/2020 08:00:00",
+    "endtime": "11/08/2020 09:00:00"
+  },
+  {
+    "crid": 10,
+    "classname": "Demo class",
+    "starttime": "11/08/2020 08:00:00",
+    "endtime": "11/08/2020 09:00:00"
+  }
+]
+
+const populateDenoTodaysClassData=()=>{
+	return new Promise((resolve)=>{
+		setTimeout(() => {
+			resolve(demoTodaysData)
+		}, 1500);
+	})
+}
+
 export const setLoadingTodaysClassroom = (value) => {
 	return {
 		type: actionTypes.LOADING_TODAYS_CLASSROOM,
@@ -361,8 +403,11 @@ export const saveTodaysClassRoomToStore = (data) => {
 export const fetchTodaysClassRoomList = (token) => async (dispatch) => {
 	try {
 		dispatch(setLoadingTodaysClassroom(true));
-		const res = await fetch(`${TODAYS_CLASSROOM_LIST_API_URL}${token}`);
-		const data = await res.json();
+		// const res = await fetch(`${TODAYS_CLASSROOM_LIST_API_URL}${token}`);
+		// const data = await res.json();
+
+		const data = await populateDenoTodaysClassData();
+		
 		console.log("todays data", data)
 		dispatch(saveTodaysClassRoomToStore(data));
 		dispatch(setLoadingTodaysClassroom(false));
