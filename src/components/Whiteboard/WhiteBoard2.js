@@ -237,11 +237,12 @@ class WhiteBoard extends Component {
 	render = () => {
 		let { controlledValue } = this.state;
 		const { canvasData, currentPage, totalPage, role } = this.props;
-		const controlDisabled = role === "Teacher" ? false : true;
+		// const controlDisabled = role === "Teacher" ? false : true;
+		const controlDisabled = false;
 
 		return (
 			<div className="whiteboard">
-        <Video/>
+        {/* <Video/> */}
 				<TopToolBar exportToPNG={this.exportToPNG} />
 				<LeftToolBar
 					Tools={Tools}
